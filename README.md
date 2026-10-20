@@ -31,6 +31,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 - `assets/dagger.glb`: optimized teacher-supplied dagger model for existing card 7
 - `assets/cap.glb`: optimized teacher-supplied cap model for existing card 3
 - `assets/shoes.glb`: optimized teacher-supplied footwear model for existing card 10
+- `assets/leggings.glb`: optimized teacher-supplied leggings model for existing card 2
 - `artifacts.js`: artifact names, short notes, and questions
 - `assets/markers/`: ARToolKit 3x3 barcode markers 1–13
 - `vendor/`: pinned A-Frame and AR.js libraries with licenses
@@ -55,6 +56,8 @@ Card 7 now uses the teacher-supplied GLB dagger, optimized from 42,339,160 bytes
 Card 3 now uses the teacher-supplied GLB cap, optimized from 45,390,476 bytes / 1,465,374 triangles to 2,929,228 bytes / 87,920 triangles with an embedded 2048px JPEG texture. It retains the source’s upright orientation and chin straps. The source file, card 3 marker, and reference photograph are unchanged. It uses the shared GLB loader with teacher poses, touch controls, 4× enlargement, and Reset.
 
 Card 10 now uses the supplied GLB footwear model and is labeled Shoes. Its browser copy was reduced from 47,058,648 bytes / 1,451,201 triangles to 3,471,484 bytes / 87,072 triangles, with an embedded 2048px JPEG texture. It keeps the source’s upright orientation. The original source and marker are unchanged. The original photograph remains explicitly labeled inner shoe netting, with a note distinguishing it from the fuller 3D reconstruction. Teacher poses, touch controls, 4× enlargement, and Reset use the shared loader.
+
+Card 2 now uses the supplied GLB leggings. Its browser copy was reduced from 47,890,788 bytes / 1,495,370 triangles to 3,357,752 bytes / 89,722 triangles with an embedded 2048px JPEG texture. The upright base pose turns a quarter turn around the vertical axis to show the two separate leggings. The source file, card 2 marker, and reference photograph are unchanged. Teacher poses, touch controls, 4× enlargement, and Reset use the shared loader.
 
 The original twelve photographs come from the teacher-supplied artifact PDF. Retain its source credits when redistributing. Card 11 is labeled grass mat without treating the disputed cape interpretation as certain.
 
