@@ -1,6 +1,6 @@
 # Ötzi AR Field Lab
 
-A static classroom AR activity for iPads. Place twelve numbered cards beside a skeleton and use Safari to view an illustrative 3D artifact above each card.
+A static classroom AR activity for iPads. Place thirteen numbered cards beside a skeleton and use Safari to view an illustrative 3D artifact above each card.
 
 ## GitHub Pages
 
@@ -14,7 +14,7 @@ Publish the `main` branch from `/ (root)` in **Settings → Pages → Deploy fro
 4. Hold the rear camera roughly 40–70 cm above the whole marker and move slowly.
 5. Print the remaining cards and place them around the skeleton.
 
-Print `cards.html` for the 12 floor cards and `launch.html` for the current launch QR. The teacher key is in `teacher.html`. The earlier `otzi-floor-cards.pdf` is an archived draft whose launch QR points to a draft address; use the browser print links for this deployment. Suggested positions are for classroom use, not original find locations.
+Print `cards.html` for the 13 floor cards and `launch.html` for the current launch QR. The teacher key is in `teacher.html`. The earlier `otzi-floor-cards.pdf` is an archived draft whose launch QR points to a draft address; use the browser print links for this deployment. Suggested positions are for classroom use, not original find locations.
 
 ## What is included
 
@@ -23,9 +23,10 @@ Print `cards.html` for the 12 floor cards and `launch.html` for the current laun
 - `teacher.html`: printing, classroom setup, prompts, and troubleshooting
 - `cards.html`: browser-printable floor cards
 - `launch.html`: printable launch QR for the published scanner
-- `models.js`: original procedural 3D teaching models
+- `models.js`: procedural teaching models and a cached GLB loader
+- `assets/bow.glb`: optimized teacher-supplied bow model for card 13
 - `artifacts.js`: artifact names, short notes, and questions
-- `assets/markers/`: ARToolKit 3x3 barcode markers 1–12
+- `assets/markers/`: ARToolKit 3x3 barcode markers 1–13
 - `vendor/`: pinned A-Frame and AR.js libraries with licenses
 
 ## Accuracy and verification
@@ -39,7 +40,9 @@ Artifact identification was checked against the South Tyrol Museum of Archaeolog
 - https://www.iceman.it/en/oetzi/equipment
 - https://www.iceman.it/en/oetzi/clothing
 
-The photographs come from the teacher-supplied artifact PDF. Retain its source credits when redistributing. Card 11 is labeled grass mat without treating the disputed cape interpretation as certain.
+Card 13 uses a teacher-supplied, generated GLB bow model. The browser copy was reduced from 26,554,668 to 2,576,212 bytes and from 773,798 to 61,902 triangles, with a 2048px embedded JPEG texture. The source file is unchanged. Its image is a rendered preview. Print only the new card at `cards.html?card=13`; the first twelve card numbers remain unchanged.
+
+The original twelve photographs come from the teacher-supplied artifact PDF. Retain its source credits when redistributing. Card 11 is labeled grass mat without treating the disputed cape interpretation as certain.
 
 ## Privacy and libraries
 

@@ -78,14 +78,36 @@
     if(!navigator.mediaDevices?.getUserMedia)return error('This browser cannot provide camera access. Open the page in Safari on the iPad.');
     if(!window.AFRAME?.systems?.arjs)return error('The AR library has not loaded. Check your connection, refresh, and try again.');
     started=true;$('start-screen').hidden=true;$('loading-cover').hidden=false;
-    if(!AFRAME.components['artifact-model'])AFRAME.registerComponent('artifact-model',{schema:{index:{type:'int',default:0}},init(){const T=AFRAME.THREE,model=ArtifactModels.create(T,this.data.index),center=new T.Box3().setFromObject(model).getCenter(new T.Vector3()),pivot=new T.Group();model.position.sub(center);pivot.position.copy(center);pivot.add(model);this.el.setObject3D('artifact',pivot);applyView(this.data.index+1);},remove(){this.el.removeObject3D('artifact');}});
+    if(!AFRAME.components['artifact-model'])AFRAME.registerComponent('artifact-model',{
+      schema:{index:{type:'int',default:0}},
+      init(){
+        const T=AFRAME.THREE,index=this.data.index;
+        const attach=model=>{
+          if(this.removed)return;
+          const center=new T.Box3().setFromObject(model).getCenter(new T.Vector3()),pivot=new T.Group();
+          model.position.sub(center);pivot.position.copy(center);pivot.add(model);
+          this.el.setObject3D('artifact',pivot);applyView(index+1);this.el.emit('artifact-loaded');
+        };
+        if(!ARTIFACTS[index].modelUrl){attach(ArtifactModels.create(T,index));return;}
+        this.load=()=>{
+          if(this.loading||this.el.getObject3D('artifact'))return;
+          this.loading=true;this.el.emit('artifact-loading');
+          ArtifactModels.load(T,index).then(attach).catch(err=>{if(!this.removed){console.error(err);this.el.emit('artifact-error');}}).finally(()=>{this.loading=false;});
+        };
+        this.el.addEventListener('load-artifact',this.load);
+      },
+      remove(){this.removed=true;if(this.load)this.el.removeEventListener('load-artifact',this.load);this.el.removeObject3D('artifact');}
+    });
     scene=document.createElement('a-scene');scene.setAttribute('embedded','');scene.setAttribute('vr-mode-ui','enabled: false');scene.setAttribute('device-orientation-permission-ui','enabled: false');scene.setAttribute('renderer','alpha: true; antialias: true; precision: mediump;');
     scene.setAttribute('arjs','sourceType: webcam; debugUIEnabled: false; trackingMethod: best; detectionMode: mono_and_matrix; matrixCodeType: 3x3; cameraParametersUrl: vendor/camera_para.dat; sourceWidth: 1280; sourceHeight: 960; displayWidth: 1280; displayHeight: 960;');
     const amb=document.createElement('a-entity');amb.setAttribute('light','type: ambient; color: #fff4de; intensity: 1.8');scene.append(amb);const light=document.createElement('a-entity');light.setAttribute('light','type: directional; color: #ffffff; intensity: 2.2');light.setAttribute('position','1 4 2');scene.append(light);
     ARTIFACTS.forEach((a,i)=>{
       const marker=document.createElement('a-marker');marker.setAttribute('type','barcode');marker.setAttribute('value',String(a.n));marker.setAttribute('size','1');marker.setAttribute('emitevents','true');marker.setAttribute('smooth','true');marker.setAttribute('smooth-count','5');marker.setAttribute('smooth-tolerance','0.01');marker.setAttribute('smooth-threshold','2');
       const el=document.createElement('a-entity');models.set(a.n,el);el.setAttribute('artifact-model',`index: ${i}`);el.setAttribute('position','0 0.03 0');marker.append(el);
-      marker.addEventListener('markerFound',()=>{ready();visible.add(a.n);if(active!==a.n)showArtifact(a.n);});
+      el.addEventListener('artifact-loading',()=>{if(active===a.n)$('status').textContent=`Card ${a.n} · loading ${a.name.toLowerCase()} model…`;});
+      el.addEventListener('artifact-loaded',()=>{if(active===a.n)$('status').textContent=`Card ${a.n} · drag to turn · pinch to resize`;});
+      el.addEventListener('artifact-error',()=>{if(active===a.n)$('status').textContent=`${a.name} could not load · check your connection and scan the card again`;});
+      marker.addEventListener('markerFound',()=>{ready();visible.add(a.n);if(active!==a.n)showArtifact(a.n);el.emit('load-artifact');});
       marker.addEventListener('markerLost',()=>{visible.delete(a.n);if(active===a.n)showArtifact(visible.size?[...visible].at(-1):null);});scene.append(marker);
     });
     const camera=document.createElement('a-entity');camera.setAttribute('camera','');scene.append(camera);$('scene-host').append(scene);
