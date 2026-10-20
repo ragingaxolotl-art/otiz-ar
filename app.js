@@ -1,6 +1,6 @@
 (function(){
   const $=id=>document.getElementById(id),T=window.AFRAME?.THREE,host=$('model-viewer');
-  let renderer,scene,camera,model,active=ARTIFACTS.findIndex(a=>a.n===Number(new URLSearchParams(location.search).get('artifact'))),requestId=0,angle=-.55,pitch=.15,dist=3.6,rotating=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let renderer,scene,camera,model,active=ARTIFACTS.findIndex(a=>a.n===Number(new URLSearchParams(location.search).get('artifact'))),requestId=0,angle=-.55,pitch=.15,dist=3.6,zoom=1,baseModelScale=1,modelCenterY=0,rotating=!matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(active<0)active=5;
   const grid=$('artifact-grid'),dialog=$('artifact-dialog');
   ARTIFACTS.forEach((a,i)=>{
@@ -11,12 +11,17 @@
   });
   $('close-dialog').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
   $('dialog-examine').onclick=()=>{dialog.close();host.scrollIntoView({block:'center',behavior:'smooth'});};
+  function setZoom(value){
+    zoom=Math.max(.25,Math.min(4,value));
+    if(model){model.scale.setScalar(baseModelScale*zoom);model.position.y=.22+(1-zoom)*modelCenterY;}
+    $('viewer-scale').textContent=Math.round(zoom*100)+'%';
+  }
   function select(i){
     active=i;const a=ARTIFACTS[i];$('active-number').textContent=String(a.n).padStart(2,'0');$('active-name').textContent=a.name;$('active-material').textContent=a.material;host.setAttribute('aria-label',`Interactive 3D teaching model of ${a.name}`);
     document.querySelectorAll('.artifact-card').forEach((b,k)=>b.classList.toggle('selected',k===i));
-    if(!scene)return;const request=++requestId;if(model){scene.remove(model);model=null;}angle=-.55;pitch=.15;dist=3.6;
+    if(!scene)return;const request=++requestId;if(model){scene.remove(model);model=null;}angle=-.55;pitch=.15;dist=3.6;setZoom(1);
     host.setAttribute('aria-busy','true');$('viewer-loading').textContent=`Loading ${a.name.toLowerCase()} model…`;$('viewer-loading').hidden=false;
-    function attach(object){if(request!==requestId)return;model=object;model.position.y=.22;scene.add(model);host.setAttribute('aria-busy','false');$('viewer-loading').hidden=true;}
+    function attach(object){if(request!==requestId)return;model=object;baseModelScale=model.scale.x;modelCenterY=new T.Box3().setFromObject(model).getCenter(new T.Vector3()).y;setZoom(zoom);scene.add(model);host.setAttribute('aria-busy','false');$('viewer-loading').hidden=true;}
     if(a.modelUrl)ArtifactModels.load(T,i).then(attach).catch(err=>{if(request!==requestId)return;console.error(err);host.setAttribute('aria-busy','false');$('viewer-loading').textContent='Model could not load. Check your connection and select the object again to retry.';});
     else attach(ArtifactModels.create(T,i));
   }
@@ -30,13 +35,13 @@
     select(active);
     const resize=()=>{const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};new ResizeObserver(resize).observe(host);resize();
     let last=performance.now();renderer.setAnimationLoop(now=>{const dt=Math.min((now-last)/1000,.05);last=now;if(rotating)angle+=dt*.2;camera.position.set(Math.sin(angle)*dist,1.65+pitch*dist,Math.cos(angle)*dist);camera.lookAt(0,.85,0);renderer.render(scene,camera);});
-    const points=new Map();let startDist=0,startZoom=dist;
-    host.addEventListener('pointerdown',e=>{host.setPointerCapture(e.pointerId);points.set(e.pointerId,[e.clientX,e.clientY]);if(points.size===2){const p=[...points.values()];startDist=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);startZoom=dist;}});
-    host.addEventListener('pointermove',e=>{if(!points.has(e.pointerId))return;const old=points.get(e.pointerId);points.set(e.pointerId,[e.clientX,e.clientY]);if(points.size===1){angle-=(e.clientX-old[0])*.009;pitch=Math.max(-.25,Math.min(.65,pitch+(e.clientY-old[1])*.004));}else if(points.size===2){const p=[...points.values()];const d=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);dist=Math.max(2.1,Math.min(6,startZoom*startDist/Math.max(d,1)));}});
+    const points=new Map();let startDist=0,startZoom=zoom;
+    host.addEventListener('pointerdown',e=>{host.setPointerCapture(e.pointerId);points.set(e.pointerId,[e.clientX,e.clientY]);if(points.size===2){const p=[...points.values()];startDist=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);startZoom=zoom;}});
+    host.addEventListener('pointermove',e=>{if(!points.has(e.pointerId))return;const old=points.get(e.pointerId);points.set(e.pointerId,[e.clientX,e.clientY]);if(points.size===1){angle-=(e.clientX-old[0])*.009;pitch=Math.max(-.25,Math.min(.65,pitch+(e.clientY-old[1])*.004));}else if(points.size===2&&startDist>0){const p=[...points.values()];const d=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);setZoom(startZoom*d/startDist);}});
     ['pointerup','pointercancel'].forEach(ev=>host.addEventListener(ev,e=>points.delete(e.pointerId)));
-    host.addEventListener('wheel',e=>{e.preventDefault();dist=Math.max(2.1,Math.min(6,dist+e.deltaY*.003));},{passive:false});
+    host.addEventListener('wheel',e=>{e.preventDefault();setZoom(zoom*Math.exp(-e.deltaY*.002));},{passive:false});
     $('rotate-model').onclick=()=>{rotating=!rotating;syncRotate();};
-    $('reset-model').onclick=()=>{angle=-.55;pitch=.15;dist=3.6;};
+    $('reset-model').onclick=()=>{angle=-.55;pitch=.15;dist=3.6;setZoom(1);};
     function syncRotate(){$('rotate-model').textContent=rotating?'Ⅱ':'▷';$('rotate-model').setAttribute('aria-label',rotating?'Pause model rotation':'Start model rotation');$('rotate-model').setAttribute('aria-pressed',String(!rotating));}syncRotate();
     window.fieldLab={select,get active(){return active},get scene(){return scene}};
   }catch(err){console.error(err);const p=document.createElement('p');p.textContent='3D needs WebGL. Try Safari on an updated iPad.';p.style.cssText='padding:90px 25px';host.appendChild(p);}

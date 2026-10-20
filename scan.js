@@ -1,12 +1,12 @@
 (function(){
   const $=id=>document.getElementById(id);let scene,active=null,started=false,revealed=false;const visible=new Set();let timeout;
-  const models=new Map(),views=new Map(),pointers=new Map(),surface=$('gesture-surface');
+  const BASE_SCALE=.8,models=new Map(),views=new Map(),pointers=new Map(),surface=$('gesture-surface');
   let gesture=null;
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   function view(n){if(!views.has(n))views.set(n,{yaw:0,pitch:0});return views.get(n);}
   function applyView(n){
     const el=models.get(n);if(!el)return;
-    el.object3D.scale.setScalar(Number($('scale').value));
+    el.object3D.scale.setScalar(BASE_SCALE*Number($('scale').value));
     const pivot=el.getObject3D('artifact'),v=view(n);
     if(pivot)pivot.rotation.set(v.pitch,v.yaw,0,'YXZ');
   }
@@ -45,7 +45,7 @@
   addEventListener('blur',clearGesture);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)clearGesture();});
   $('scale').oninput=()=>setScale(Number($('scale').value));
-  $('reset-model').onclick=()=>{clearGesture();if(active!==null){views.set(active,{yaw:0,pitch:0});applyView(active);}setScale(.8);};
+  $('reset-model').onclick=()=>{clearGesture();if(active!==null){views.set(active,{yaw:0,pitch:0});applyView(active);}setScale(1);};
   surface.addEventListener('keydown',e=>{
     if(active===null)return;const v=view(active);
     if(e.key==='ArrowLeft')v.yaw-=.15;else if(e.key==='ArrowRight')v.yaw+=.15;
