@@ -27,6 +27,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 - `launch.html`: printable launch QR for the published scanner
 - `models.js`: procedural teaching models and a cached GLB loader
 - `assets/bow.glb`: optimized teacher-supplied bow model for card 13
+- `assets/arrow.glb`: optimized teacher-supplied arrow model for existing card 4
 - `artifacts.js`: artifact names, short notes, and questions
 - `assets/markers/`: ARToolKit 3x3 barcode markers 1–13
 - `vendor/`: pinned A-Frame and AR.js libraries with licenses
@@ -43,6 +44,8 @@ Artifact identification was checked against the South Tyrol Museum of Archaeolog
 - https://www.iceman.it/en/oetzi/clothing
 
 Card 13 uses a teacher-supplied, generated GLB bow model. The browser copy was reduced from 26,554,668 to 2,576,212 bytes and from 773,798 to 61,902 triangles, with a 2048px embedded JPEG texture. The source file is unchanged. Its image is a rendered preview. Print only the new card at `cards.html?card=13`; the first twelve card numbers remain unchanged.
+
+Card 4 now displays the teacher-supplied GLB arrow instead of the procedural pair of arrows. Its browser copy is 2,787,688 bytes (from 42,309,436) with 82,122 triangles (from 1,368,701) and an embedded 2048px JPEG texture. The original GLB is untouched. The long axis is oriented upright as its base pose; teacher settings are applied on top of this. Card numbers, the printed marker, and the original card 4 reference photograph are unchanged. It supports teacher starting poses, touch rotation, 4× enlargement, and Reset through the shared loader.
 
 The original twelve photographs come from the teacher-supplied artifact PDF. Retain its source credits when redistributing. Card 11 is labeled grass mat without treating the disputed cape interpretation as certain.
 
