@@ -29,6 +29,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 - `assets/bow.glb`: optimized teacher-supplied bow model for card 13
 - `assets/arrow.glb`: optimized teacher-supplied arrow model for existing card 4
 - `assets/dagger.glb`: optimized teacher-supplied dagger model for existing card 7
+- `assets/cap.glb`: optimized teacher-supplied cap model for existing card 3
 - `artifacts.js`: artifact names, short notes, and questions
 - `assets/markers/`: ARToolKit 3x3 barcode markers 1–13
 - `vendor/`: pinned A-Frame and AR.js libraries with licenses
@@ -49,6 +50,8 @@ Card 13 uses a teacher-supplied, generated GLB bow model. The browser copy was r
 Card 4 now displays the teacher-supplied GLB arrow instead of the procedural pair of arrows. Its browser copy is 2,787,688 bytes (from 42,309,436) with 82,122 triangles (from 1,368,701) and an embedded 2048px JPEG texture. The original GLB is untouched. The long axis is oriented upright as its base pose; teacher settings are applied on top of this. Card numbers, the printed marker, and the original card 4 reference photograph are unchanged. It supports teacher starting poses, touch rotation, 4× enlargement, and Reset through the shared loader.
 
 Card 7 now uses the teacher-supplied GLB dagger, optimized from 42,339,160 bytes / 1,431,430 triangles to 2,446,292 bytes / 85,884 triangles with an embedded 2048px JPEG texture. The base pose has the blade upright; teacher settings apply on top. The original source, card 7 marker, and reference photograph are unchanged. It uses the shared GLB loader and existing teacher and touch controls.
+
+Card 3 now uses the teacher-supplied GLB cap, optimized from 45,390,476 bytes / 1,465,374 triangles to 2,929,228 bytes / 87,920 triangles with an embedded 2048px JPEG texture. It retains the source’s upright orientation and chin straps. The source file, card 3 marker, and reference photograph are unchanged. It uses the shared GLB loader with teacher poses, touch controls, 4× enlargement, and Reset.
 
 The original twelve photographs come from the teacher-supplied artifact PDF. Retain its source credits when redistributing. Card 11 is labeled grass mat without treating the disputed cape interpretation as certain.
 
