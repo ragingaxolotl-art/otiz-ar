@@ -68,7 +68,7 @@
   function error(message){clearTimeout(timeout);$('loading-cover').hidden=true;$('start-screen').hidden=false;$('error').textContent=message;$('error').hidden=false;$('start-camera').textContent='Try camera again';$('start-camera').disabled=false;if(scene){stop();location.hash='camera-error';}}
   function stop(){clearGesture();visible.clear();active=null;document.querySelectorAll('video').forEach(v=>v.srcObject?.getTracks().forEach(t=>t.stop()));if(scene){scene.remove();scene=null;}models.clear();started=false;}
   function showArtifact(n){
-    clearGesture();active=n;revealed=false;$('target-guide').hidden=n!==null;
+    clearGesture();active=n;['scale','size-4x','reset-model'].forEach(id=>$(id).disabled=n===null);revealed=false;$('target-guide').hidden=n!==null;
     if(n===null){$('status').textContent='Point at a floor card · keep the full square visible';$('artifact-label').textContent='YOUR INVESTIGATION';$('artifact-name').textContent='Find the next clue';$('artifact-description').textContent='The model appears while its marker is visible. Move back or lower the iPad if you lose it.';$('reveal').hidden=true;$('artifact-question').hidden=true;return;}
     $('scale').value=String(view(n).size);$('scale-value').textContent=Math.round(view(n).size*100)+'%';
     const a=ARTIFACTS[n-1];$('status').textContent=`Card ${n} · drag to turn · pinch to resize`;$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
