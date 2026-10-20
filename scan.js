@@ -1,14 +1,75 @@
 (function(){
   const $=id=>document.getElementById(id);let scene,active=null,started=false,revealed=false;const visible=new Set();let timeout;
+  const models=new Map(),views=new Map(),pointers=new Map(),surface=$('gesture-surface');
+  let gesture=null;
+  const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
+  function view(n){if(!views.has(n))views.set(n,{yaw:0,pitch:0});return views.get(n);}
+  function applyView(n){
+    const el=models.get(n);if(!el)return;
+    el.object3D.scale.setScalar(Number($('scale').value));
+    const pivot=el.getObject3D('artifact'),v=view(n);
+    if(pivot)pivot.rotation.set(v.pitch,v.yaw,0,'YXZ');
+  }
+  function setScale(value){
+    value=clamp(value,Number($('scale').min),Number($('scale').max));
+    $('scale').value=String(value);$('scale-value').textContent=Math.round(Number($('scale').value)*100)+'%';
+    models.forEach((el,n)=>applyView(n));
+  }
+  function clearGesture(){
+    for(const id of pointers.keys())if(surface.hasPointerCapture(id))surface.releasePointerCapture(id);
+    pointers.clear();gesture=null;
+  }
+  function beginGesture(){
+    if(active===null||!pointers.size){gesture=null;return;}
+    const p=[...pointers.values()],v=view(active);
+    gesture={n:active,yaw:v.yaw,pitch:v.pitch,scale:Number($('scale').value),x:p[0].x,y:p[0].y,
+      distance:p.length===2?Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y):0};
+  }
+  surface.addEventListener('pointerdown',e=>{
+    if(active===null||!started||(e.pointerType==='mouse'&&e.button!==0)||pointers.size===2)return;
+    e.preventDefault();surface.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});beginGesture();
+  });
+  surface.addEventListener('pointermove',e=>{
+    if(!pointers.has(e.pointerId)||!gesture||gesture.n!==active)return;
+    e.preventDefault();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    const p=[...pointers.values()];
+    if(p.length===1){const v=view(active);v.yaw=gesture.yaw+(p[0].x-gesture.x)*.009;v.pitch=clamp(gesture.pitch+(p[0].y-gesture.y)*.007,-Math.PI/3,Math.PI/3);applyView(active);}
+    else if(gesture.distance>0){const distance=Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y);setScale(gesture.scale*distance/gesture.distance);}
+  });
+  function endPointer(e){
+    if(!pointers.delete(e.pointerId))return;
+    if(surface.hasPointerCapture(e.pointerId))surface.releasePointerCapture(e.pointerId);
+    beginGesture();
+  }
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>surface.addEventListener(type,endPointer));
+  addEventListener('blur',clearGesture);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)clearGesture();});
+  $('scale').oninput=()=>setScale(Number($('scale').value));
+  $('reset-model').onclick=()=>{clearGesture();if(active!==null){views.set(active,{yaw:0,pitch:0});applyView(active);}setScale(.8);};
+  surface.addEventListener('keydown',e=>{
+    if(active===null)return;const v=view(active);
+    if(e.key==='ArrowLeft')v.yaw-=.15;else if(e.key==='ArrowRight')v.yaw+=.15;
+    else if(e.key==='ArrowUp')v.pitch=clamp(v.pitch-.15,-Math.PI/3,Math.PI/3);
+    else if(e.key==='ArrowDown')v.pitch=clamp(v.pitch+.15,-Math.PI/3,Math.PI/3);
+    else if(e.key==='+'||e.key==='=')setScale(Number($('scale').value)+.05);
+    else if(e.key==='-')setScale(Number($('scale').value)-.05);
+    else if(e.key==='Home')$('reset-model').click();else return;
+    e.preventDefault();applyView(active);
+  });
+  $('panel-toggle').onclick=()=>{
+    const collapsed=!$('panel-content').hidden;
+    $('panel-content').hidden=collapsed;$('details-panel').classList.toggle('collapsed',collapsed);
+    $('panel-toggle').setAttribute('aria-expanded',String(!collapsed));
+    $('panel-toggle').textContent=collapsed?'Show details ↑':'Hide details ↓';
+  };
   function error(message){clearTimeout(timeout);$('loading-cover').hidden=true;$('start-screen').hidden=false;$('error').textContent=message;$('error').hidden=false;$('start-camera').textContent='Try camera again';$('start-camera').disabled=false;if(scene){stop();location.hash='camera-error';}}
-  function stop(){document.querySelectorAll('video').forEach(v=>v.srcObject?.getTracks().forEach(t=>t.stop()));if(scene){scene.remove();scene=null;}started=false;}
+  function stop(){clearGesture();visible.clear();active=null;document.querySelectorAll('video').forEach(v=>v.srcObject?.getTracks().forEach(t=>t.stop()));if(scene){scene.remove();scene=null;}models.clear();started=false;}
   function showArtifact(n){
-    active=n;revealed=false;$('target-guide').hidden=n!==null;
+    clearGesture();active=n;revealed=false;$('target-guide').hidden=n!==null;
     if(n===null){$('status').textContent='Point at a floor card · keep the full square visible';$('artifact-label').textContent='YOUR INVESTIGATION';$('artifact-name').textContent='Find the next clue';$('artifact-description').textContent='The model appears while its marker is visible. Move back or lower the iPad if you lose it.';$('reveal').hidden=true;$('artifact-question').hidden=true;return;}
-    const a=ARTIFACTS[n-1];$('status').textContent=`Card ${n} detected · move slowly to explore`;$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
+    const a=ARTIFACTS[n-1];$('status').textContent=`Card ${n} · drag to turn · pinch to resize`;$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
   }
   $('reveal').onclick=()=>{if(active===null)return;revealed=!revealed;const a=ARTIFACTS[active-1];$('artifact-name').textContent=revealed?a.name:`Artifact ${active}`;$('artifact-description').textContent=revealed?a.fact:'Look at its shape and construction. What could it be made from? What might it do?';$('reveal').textContent=revealed?'Hide artifact name':'Reveal artifact name';};
-  $('scale').oninput=()=>{const value=Number($('scale').value);$('scale-value').textContent=Math.round(value*100)+'%';document.querySelectorAll('[artifact-model]').forEach(el=>el.object3D.scale.setScalar(value));};
   function ready(){clearTimeout(timeout);$('loading-cover').hidden=true;$('status').textContent='Camera ready · point at a printed floor card';}
   window.addEventListener('camera-init',ready);window.addEventListener('camera-error',e=>{const code=e.detail?.error?.name||e.detail?.name||'';error(code==='NotAllowedError'?'Camera access was blocked. Allow camera access for this site in Safari, then try again.':'The camera could not start. Check Safari camera permission and close other apps using the camera.');});
   $('start-camera').onclick=()=>{
@@ -17,13 +78,13 @@
     if(!navigator.mediaDevices?.getUserMedia)return error('This browser cannot provide camera access. Open the page in Safari on the iPad.');
     if(!window.AFRAME?.systems?.arjs)return error('The AR library has not loaded. Check your connection, refresh, and try again.');
     started=true;$('start-screen').hidden=true;$('loading-cover').hidden=false;
-    if(!AFRAME.components['artifact-model'])AFRAME.registerComponent('artifact-model',{schema:{index:{type:'int',default:0}},init(){this.el.setObject3D('artifact',ArtifactModels.create(AFRAME.THREE,this.data.index));this.el.object3D.scale.setScalar(Number($('scale').value));},remove(){this.el.removeObject3D('artifact');}});
+    if(!AFRAME.components['artifact-model'])AFRAME.registerComponent('artifact-model',{schema:{index:{type:'int',default:0}},init(){const T=AFRAME.THREE,model=ArtifactModels.create(T,this.data.index),center=new T.Box3().setFromObject(model).getCenter(new T.Vector3()),pivot=new T.Group();model.position.sub(center);pivot.position.copy(center);pivot.add(model);this.el.setObject3D('artifact',pivot);applyView(this.data.index+1);},remove(){this.el.removeObject3D('artifact');}});
     scene=document.createElement('a-scene');scene.setAttribute('embedded','');scene.setAttribute('vr-mode-ui','enabled: false');scene.setAttribute('device-orientation-permission-ui','enabled: false');scene.setAttribute('renderer','alpha: true; antialias: true; precision: mediump;');
     scene.setAttribute('arjs','sourceType: webcam; debugUIEnabled: false; trackingMethod: best; detectionMode: mono_and_matrix; matrixCodeType: 3x3; cameraParametersUrl: vendor/camera_para.dat; sourceWidth: 1280; sourceHeight: 960; displayWidth: 1280; displayHeight: 960;');
     const amb=document.createElement('a-entity');amb.setAttribute('light','type: ambient; color: #fff4de; intensity: 1.8');scene.append(amb);const light=document.createElement('a-entity');light.setAttribute('light','type: directional; color: #ffffff; intensity: 2.2');light.setAttribute('position','1 4 2');scene.append(light);
     ARTIFACTS.forEach((a,i)=>{
       const marker=document.createElement('a-marker');marker.setAttribute('type','barcode');marker.setAttribute('value',String(a.n));marker.setAttribute('size','1');marker.setAttribute('emitevents','true');marker.setAttribute('smooth','true');marker.setAttribute('smooth-count','5');marker.setAttribute('smooth-tolerance','0.01');marker.setAttribute('smooth-threshold','2');
-      const el=document.createElement('a-entity');el.setAttribute('artifact-model',`index: ${i}`);el.setAttribute('position','0 0.03 0');marker.append(el);
+      const el=document.createElement('a-entity');models.set(a.n,el);el.setAttribute('artifact-model',`index: ${i}`);el.setAttribute('position','0 0.03 0');marker.append(el);
       marker.addEventListener('markerFound',()=>{ready();visible.add(a.n);if(active!==a.n)showArtifact(a.n);});
       marker.addEventListener('markerLost',()=>{visible.delete(a.n);if(active===a.n)showArtifact(visible.size?[...visible].at(-1):null);});scene.append(marker);
     });
