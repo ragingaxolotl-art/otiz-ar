@@ -4,15 +4,17 @@ A static classroom AR activity for iPads. Place twelve numbered cards beside a s
 
 ## GitHub Pages
 
+[Open the activity](https://ragingaxolotl-art.github.io/otiz-ar/) · [Teacher setup](https://ragingaxolotl-art.github.io/otiz-ar/teacher.html)
+
 Publish the `main` branch from `/ (root)` in **Settings → Pages → Deploy from a branch**. No installation, build system, external database, or student account is required. All runtime scripts, reference images, and markers are included in this repository.
 
 1. Open the published HTTPS address in Safari on an iPad.
-2. Open **Teacher setup** and download `otzi-floor-cards.pdf`.
-3. Print card 06 first (page 7), tap **Start camera**, and allow camera access.
+2. Open **Teacher setup**, then use **Print floor cards** and **Print launch QR**.
+3. Print card 06 first (page 6 of the browser card view), tap **Start camera**, and allow camera access.
 4. Hold the rear camera roughly 40–70 cm above the whole marker and move slowly.
 5. Print the remaining cards and place them around the skeleton.
 
-The print pack has a launch QR sheet, 12 floor cards, and a teacher key. Suggested positions are for classroom use, not original find locations.
+Print `cards.html` for the 12 floor cards and `launch.html` for the current launch QR. The teacher key is in `teacher.html`. The earlier `otzi-floor-cards.pdf` is an archived draft whose launch QR points to a draft address; use the browser print links for this deployment. Suggested positions are for classroom use, not original find locations.
 
 ## What is included
 
@@ -20,6 +22,7 @@ The print pack has a launch QR sheet, 12 floor cards, and a teacher key. Suggest
 - `scan.html`, `scan.js`: marker AR scanner, artifact-name reveal, and model-size control
 - `teacher.html`: printing, classroom setup, prompts, and troubleshooting
 - `cards.html`: browser-printable floor cards
+- `launch.html`: printable launch QR for the published scanner
 - `models.js`: original procedural 3D teaching models
 - `artifacts.js`: artifact names, short notes, and questions
 - `assets/markers/`: ARToolKit 3x3 barcode markers 1–12
