@@ -20,6 +20,8 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 
 - `index.html`: 3D collection and reference photographs
 - `scan.html`, `scan.js`: marker AR scanner, artifact-name reveal, and model-size control
+- `teacher-mode.html`, `teacher-mode.js`, `teacher-mode.css`: starting-pose editor and printable classroom QR
+- `classroom.js`: validated, versioned settings carried in classroom links
 - `teacher.html`: printing, classroom setup, prompts, and troubleshooting
 - `cards.html`: browser-printable floor cards
 - `launch.html`: printable launch QR for the published scanner
@@ -49,3 +51,11 @@ The original twelve photographs come from the teacher-supplied artifact PDF. Ret
 Camera frames are processed in the browser. This application does not record or upload them, collect student names, or save student responses. Internet is needed to load the website; GitHub applies its normal hosting and request handling.
 
 A-Frame 1.6.0 and AR.js 3.4.7 are bundled under their included MIT licenses. Marker images: https://github.com/nicolocarpignoli/artoolkit-barcode-markers-collection/tree/master/3x3. The floor patterns are AR tracking markers; the launch QR separately opens the website.
+
+## Teacher starting views and touch controls
+
+Open `teacher-mode.html` to choose each artifact’s turn, tilt, roll, and starting size (25–400%). A draft saves to local browser storage. Copy its classroom link or print its QR sheet for student iPads; ordinary scanner links use original defaults. Changes require a newly shared link. Settings are carried in a validated `setup` query parameter, with no account or database. Existing floor cards do not change.
+
+Student size is relative to the teacher’s chosen starting size. Both viewers support pinch enlargement up to 4× and a direct 4× button. Reset restores the starting pose. The scanner stores interaction state per artifact and applies scaling to the model pivot, independently of the tracked A-Frame entity. Another marker entering view does not steal the active controls. The bottom details panel can hide and return.
+
+QR generation uses the bundled MIT-licensed qrcode-generator 1.4.4. Settings links do not upload camera images. Browser tests use a stationary marker fixture; physical Safari/iPad camera and multi-touch behavior still needs a classroom trial.

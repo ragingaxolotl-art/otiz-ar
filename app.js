@@ -1,6 +1,6 @@
 (function(){
   const $=id=>document.getElementById(id),T=window.AFRAME?.THREE,host=$('model-viewer');
-  let renderer,scene,camera,model,active=ARTIFACTS.findIndex(a=>a.n===Number(new URLSearchParams(location.search).get('artifact'))),requestId=0,angle=-.55,pitch=.15,dist=3.6,zoom=1,baseModelScale=1,modelCenterY=0,rotating=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let renderer,scene,camera,model,active=ARTIFACTS.findIndex(a=>a.n===Number(new URLSearchParams(location.search).get('artifact'))),requestId=0,angle=-.55,pitch=.15,dist=3.6,zoom=1,baseModelScale=1,modelCenterY=0,rotating=!Classroom.hasSetup&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(active<0)active=5;
   const grid=$('artifact-grid'),dialog=$('artifact-dialog');
   ARTIFACTS.forEach((a,i)=>{
@@ -21,7 +21,7 @@
     document.querySelectorAll('.artifact-card').forEach((b,k)=>b.classList.toggle('selected',k===i));
     if(!scene)return;const request=++requestId;if(model){scene.remove(model);model=null;}angle=-.55;pitch=.15;dist=3.6;setZoom(1);
     host.setAttribute('aria-busy','true');$('viewer-loading').textContent=`Loading ${a.name.toLowerCase()} model…`;$('viewer-loading').hidden=false;
-    function attach(object){if(request!==requestId)return;model=object;baseModelScale=model.scale.x;modelCenterY=new T.Box3().setFromObject(model).getCenter(new T.Vector3()).y;setZoom(zoom);scene.add(model);host.setAttribute('aria-busy','false');$('viewer-loading').hidden=true;}
+    function attach(object){if(request!==requestId)return;model=new T.Group();const pivot=Classroom.frame(T,object);model.add(pivot);model.userData={...object.userData};const p=Classroom.pose(a.n);pivot.rotation.set(...Classroom.rotation(p));model.scale.setScalar(p.size/100);baseModelScale=model.scale.x;modelCenterY=new T.Box3().setFromObject(model).getCenter(new T.Vector3()).y;setZoom(zoom);scene.add(model);host.setAttribute('aria-busy','false');$('viewer-loading').hidden=true;}
     if(a.modelUrl)ArtifactModels.load(T,i).then(attach).catch(err=>{if(request!==requestId)return;console.error(err);host.setAttribute('aria-busy','false');$('viewer-loading').textContent='Model could not load. Check your connection and select the object again to retry.';});
     else attach(ArtifactModels.create(T,i));
   }
@@ -41,6 +41,7 @@
     ['pointerup','pointercancel'].forEach(ev=>host.addEventListener(ev,e=>points.delete(e.pointerId)));
     host.addEventListener('wheel',e=>{e.preventDefault();setZoom(zoom*Math.exp(-e.deltaY*.002));},{passive:false});
     $('rotate-model').onclick=()=>{rotating=!rotating;syncRotate();};
+    $('viewer-4x').onclick=()=>setZoom(4);
     $('reset-model').onclick=()=>{angle=-.55;pitch=.15;dist=3.6;setZoom(1);};
     function syncRotate(){$('rotate-model').textContent=rotating?'Ⅱ':'▷';$('rotate-model').setAttribute('aria-label',rotating?'Pause model rotation':'Start model rotation');$('rotate-model').setAttribute('aria-pressed',String(!rotating));}syncRotate();
     window.fieldLab={select,get active(){return active},get scene(){return scene}};

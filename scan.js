@@ -3,17 +3,19 @@
   const BASE_SCALE=.8,models=new Map(),views=new Map(),pointers=new Map(),surface=$('gesture-surface');
   let gesture=null;
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
-  function view(n){if(!views.has(n))views.set(n,{yaw:0,pitch:0});return views.get(n);}
+  function startingView(n){const p=Classroom.pose(n),k=Math.PI/180;return {yaw:p.yaw*k,pitch:p.pitch*k,roll:p.roll*k,size:1};}
+  function view(n){if(!views.has(n))views.set(n,startingView(n));return views.get(n);}
   function applyView(n){
     const el=models.get(n);if(!el)return;
-    el.object3D.scale.setScalar(BASE_SCALE*Number($('scale').value));
-    const pivot=el.getObject3D('artifact'),v=view(n);
-    if(pivot)pivot.rotation.set(v.pitch,v.yaw,0,'YXZ');
+    const v=view(n),pivot=el.getObject3D('artifact');
+    // Apply size to the model itself, independently of A-Frame / marker transforms.
+    el.object3D.scale.setScalar(BASE_SCALE);
+    if(pivot){pivot.scale.setScalar(Classroom.pose(n).size/100*v.size);pivot.rotation.set(v.pitch,v.yaw,v.roll,'YXZ');}
   }
   function setScale(value){
     value=clamp(value,Number($('scale').min),Number($('scale').max));
     $('scale').value=String(value);$('scale-value').textContent=Math.round(Number($('scale').value)*100)+'%';
-    models.forEach((el,n)=>applyView(n));
+    if(active!==null){view(active).size=Number($('scale').value);applyView(active);}
   }
   function clearGesture(){
     for(const id of pointers.keys())if(surface.hasPointerCapture(id))surface.releasePointerCapture(id);
@@ -33,7 +35,7 @@
     if(!pointers.has(e.pointerId)||!gesture||gesture.n!==active)return;
     e.preventDefault();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
     const p=[...pointers.values()];
-    if(p.length===1){const v=view(active);v.yaw=gesture.yaw+(p[0].x-gesture.x)*.009;v.pitch=clamp(gesture.pitch+(p[0].y-gesture.y)*.007,-Math.PI/3,Math.PI/3);applyView(active);}
+    if(p.length===1){const v=view(active);v.yaw=gesture.yaw+(p[0].x-gesture.x)*.009;v.pitch=clamp(gesture.pitch+(p[0].y-gesture.y)*.007,-Math.PI,Math.PI);applyView(active);}
     else if(gesture.distance>0){const distance=Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y);setScale(gesture.scale*distance/gesture.distance);}
   });
   function endPointer(e){
@@ -44,13 +46,14 @@
   ['pointerup','pointercancel','lostpointercapture'].forEach(type=>surface.addEventListener(type,endPointer));
   addEventListener('blur',clearGesture);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)clearGesture();});
+  $('size-4x').onclick=()=>{clearGesture();setScale(4);};
   $('scale').oninput=()=>setScale(Number($('scale').value));
-  $('reset-model').onclick=()=>{clearGesture();if(active!==null){views.set(active,{yaw:0,pitch:0});applyView(active);}setScale(1);};
+  $('reset-model').onclick=()=>{clearGesture();if(active!==null){views.set(active,startingView(active));applyView(active);}setScale(1);};
   surface.addEventListener('keydown',e=>{
     if(active===null)return;const v=view(active);
     if(e.key==='ArrowLeft')v.yaw-=.15;else if(e.key==='ArrowRight')v.yaw+=.15;
-    else if(e.key==='ArrowUp')v.pitch=clamp(v.pitch-.15,-Math.PI/3,Math.PI/3);
-    else if(e.key==='ArrowDown')v.pitch=clamp(v.pitch+.15,-Math.PI/3,Math.PI/3);
+    else if(e.key==='ArrowUp')v.pitch=clamp(v.pitch-.15,-Math.PI,Math.PI);
+    else if(e.key==='ArrowDown')v.pitch=clamp(v.pitch+.15,-Math.PI,Math.PI);
     else if(e.key==='+'||e.key==='=')setScale(Number($('scale').value)+.05);
     else if(e.key==='-')setScale(Number($('scale').value)-.05);
     else if(e.key==='Home')$('reset-model').click();else return;
@@ -67,6 +70,7 @@
   function showArtifact(n){
     clearGesture();active=n;revealed=false;$('target-guide').hidden=n!==null;
     if(n===null){$('status').textContent='Point at a floor card · keep the full square visible';$('artifact-label').textContent='YOUR INVESTIGATION';$('artifact-name').textContent='Find the next clue';$('artifact-description').textContent='The model appears while its marker is visible. Move back or lower the iPad if you lose it.';$('reveal').hidden=true;$('artifact-question').hidden=true;return;}
+    $('scale').value=String(view(n).size);$('scale-value').textContent=Math.round(view(n).size*100)+'%';
     const a=ARTIFACTS[n-1];$('status').textContent=`Card ${n} · drag to turn · pinch to resize`;$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
   }
   $('reveal').onclick=()=>{if(active===null)return;revealed=!revealed;const a=ARTIFACTS[active-1];$('artifact-name').textContent=revealed?a.name:`Artifact ${active}`;$('artifact-description').textContent=revealed?a.fact:'Look at its shape and construction. What could it be made from? What might it do?';$('reveal').textContent=revealed?'Hide artifact name':'Reveal artifact name';};
@@ -84,8 +88,7 @@
         const T=AFRAME.THREE,index=this.data.index;
         const attach=model=>{
           if(this.removed)return;
-          const center=new T.Box3().setFromObject(model).getCenter(new T.Vector3()),pivot=new T.Group();
-          model.position.sub(center);pivot.position.copy(center);pivot.add(model);
+          const pivot=Classroom.frame(T,model);
           this.el.setObject3D('artifact',pivot);applyView(index+1);this.el.emit('artifact-loaded');
         };
         if(!ARTIFACTS[index].modelUrl){attach(ArtifactModels.create(T,index));return;}
@@ -107,7 +110,7 @@
       el.addEventListener('artifact-loading',()=>{if(active===a.n)$('status').textContent=`Card ${a.n} · loading ${a.name.toLowerCase()} model…`;});
       el.addEventListener('artifact-loaded',()=>{if(active===a.n)$('status').textContent=`Card ${a.n} · drag to turn · pinch to resize`;});
       el.addEventListener('artifact-error',()=>{if(active===a.n)$('status').textContent=`${a.name} could not load · check your connection and scan the card again`;});
-      marker.addEventListener('markerFound',()=>{ready();visible.add(a.n);if(active!==a.n)showArtifact(a.n);el.emit('load-artifact');});
+      marker.addEventListener('markerFound',()=>{ready();visible.add(a.n);if(active===null)showArtifact(a.n);el.emit('load-artifact');});
       marker.addEventListener('markerLost',()=>{visible.delete(a.n);if(active===a.n)showArtifact(visible.size?[...visible].at(-1):null);});scene.append(marker);
     });
     const camera=document.createElement('a-entity');camera.setAttribute('camera','');scene.append(camera);$('scene-host').append(scene);
