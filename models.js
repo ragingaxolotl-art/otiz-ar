@@ -135,7 +135,7 @@
     return files.get(artifact.modelUrl).then(gltf=>{
       const g=new T.Group(),content=gltf.scene.clone(true);
       content.rotation.set(...(artifact.modelRotation||[0,0,0]));content.updateMatrixWorld(true);
-      const bounds=new T.Box3().setFromObject(content),size=bounds.getSize(new T.Vector3()),center=bounds.getCenter(new T.Vector3());
+      const bounds=new T.Box3().setFromObject(content,true),size=bounds.getSize(new T.Vector3()),center=bounds.getCenter(new T.Vector3());
       if(!Number.isFinite(size.y)||Math.max(size.x,size.y,size.z)<=0)throw new Error('The model contains no visible geometry.');
       content.position.sub(new T.Vector3(center.x,bounds.min.y,center.z));g.add(content);
       g.scale.setScalar(Math.min(1.35/Math.max(size.x,size.z,.001),1.65/Math.max(size.y,.001)));

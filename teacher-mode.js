@@ -6,7 +6,7 @@
   const pose=()=>settings[active]||Classroom.factory(),clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v)),wrap=v=>((Math.round(v)+180)%360+360)%360-180;
   ARTIFACTS.forEach(a=>{const o=document.createElement('option');o.value=a.n;o.textContent=`${String(a.n).padStart(2,'0')} · ${a.name}`;$('artifact-select').append(o);});
   function share(){
-    const url=Classroom.link('scan.html?v=ar-controls-3',settings);$('classroom-link').value=url;$('test-scanner').href=url;$('open-classroom').href=url;$('print-link').textContent=url;
+    const url=Classroom.link('scan.html?v=ar-pose-4',settings);$('classroom-link').value=url;$('test-scanner').href=url;$('open-classroom').href=url;$('print-link').textContent=url;
     try{const qr=qrcode(0,'M');qr.addData(url);qr.make();const svg=qr.createSvgTag({cellSize:4,margin:16,scalable:true});$('classroom-qr').innerHTML=svg;$('print-qr-code').innerHTML=svg;}catch{$('classroom-qr').textContent='QR could not load. Use the classroom link below.';}
     const count=Object.values(settings).filter(p=>p.pitch||p.yaw||p.roll||p.size!==100).length;$('settings-count').textContent=`13 artifacts · ${count} customized starting ${count===1?'view':'views'}`;
   }

@@ -24,7 +24,7 @@
   const pose=n=>({...factory(),...poses[n]});
   function link(path,settings=poses){const url=new URL(path,location.href);url.searchParams.set('setup',encode(settings));return url.href;}
   function frame(T,object){
-    const bounds=new T.Box3().setFromObject(object),center=bounds.getCenter(new T.Vector3()),size=bounds.getSize(new T.Vector3()),pivot=new T.Group();
+    const bounds=new T.Box3().setFromObject(object,true),center=bounds.getCenter(new T.Vector3()),size=bounds.getSize(new T.Vector3()),pivot=new T.Group();
     object.position.sub(center);pivot.position.copy(center);pivot.add(object);pivot.userData={...object.userData,cardHalfSize:{x:size.x/2,y:size.y/2,z:size.z/2}};return pivot;
   }
   // Y extent of a centered box after a YXZ rotation. Keep the bottom above the card,

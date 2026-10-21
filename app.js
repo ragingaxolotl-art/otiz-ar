@@ -21,7 +21,7 @@
     document.querySelectorAll('.artifact-card').forEach((b,k)=>b.classList.toggle('selected',k===i));
     if(!scene)return;const request=++requestId;if(model){scene.remove(model);model=null;}angle=-.55;pitch=.15;dist=3.6;setZoom(1);
     host.setAttribute('aria-busy','true');$('viewer-loading').textContent=`Loading ${a.name.toLowerCase()} model…`;$('viewer-loading').hidden=false;
-    function attach(object){if(request!==requestId)return;model=new T.Group();const pivot=Classroom.frame(T,object);model.add(pivot);model.userData={...object.userData};const p=Classroom.pose(a.n);pivot.rotation.set(...Classroom.rotation(p));model.scale.setScalar(p.size/100);baseModelScale=model.scale.x;modelCenterY=new T.Box3().setFromObject(model).getCenter(new T.Vector3()).y;setZoom(zoom);scene.add(model);host.setAttribute('aria-busy','false');$('viewer-loading').hidden=true;}
+    function attach(object){if(request!==requestId)return;model=new T.Group();const pivot=Classroom.frame(T,object);model.add(pivot);model.userData={...object.userData};const p=Classroom.pose(a.n);pivot.rotation.set(...Classroom.rotation(p));model.scale.setScalar(p.size/100);baseModelScale=model.scale.x;modelCenterY=new T.Box3().setFromObject(model,true).getCenter(new T.Vector3()).y;setZoom(zoom);scene.add(model);host.setAttribute('aria-busy','false');$('viewer-loading').hidden=true;}
     if(a.modelUrl)ArtifactModels.load(T,i).then(attach).catch(err=>{if(request!==requestId)return;console.error(err);host.setAttribute('aria-busy','false');$('viewer-loading').textContent='Model could not load. Check your connection and select the object again to retry.';});
     else attach(ArtifactModels.create(T,i));
   }
