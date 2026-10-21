@@ -39,5 +39,5 @@
   };
   api.ready=api.refresh().catch(error=>{api.error=error.message;return null;});
   api.previewLink=(path,config)=>{const url=new URL(path,location.href);url.searchParams.set('preview',encode(config));return url.href;};
-  api.studentLink=()=>new URL('scan.html?v=ar-capture-1',location.href).href;
+  api.studentLink=()=>new URL('scan.html?v=card-anchor-1',location.href).href;
 })();
