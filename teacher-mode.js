@@ -4,27 +4,27 @@
   if(!Classroom.loaded){$('save-status').textContent='Saved card settings could not load. Refresh to try again.';$('save-cards').disabled=true;return;}
   let published=Classroom.published,settings=Classroom.toPoses(published),markerWidthCm=published.markerWidthCm,active=4,root,pivot,renderer,scene,camera,markerMesh,paper,request=0,pending=null,polling=false,pendingStage='manual',submitting=false,submittedAt=0,lastSaveError='';
   const pose=()=>settings[active]||Classroom.factory(active),clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v)),wrap=v=>((Math.round(v)+180)%360+360)%360-180;
-  const current=()=>Classroom.make(settings,markerWidthCm),fingerprint=c=>JSON.stringify([c.markerWidthCm,c.poses]);
+  const current=()=>Classroom.make(settings,markerWidthCm),fingerprint=c=>JSON.stringify([c.markerWidthCm,c.poses,c.screenZooms]);
   try{const draft=JSON.parse(localStorage.getItem(draftKey));if(draft?.base===published.revision){const config=Classroom.validate(draft.config);settings=Classroom.toPoses(config);markerWidthCm=config.markerWidthCm;}const saved=localStorage.getItem(pendingKey);if(saved){const record=JSON.parse(saved);pending=Classroom.validate(record.config||record);pendingStage=record.stage||'manual';submittedAt=record.submittedAt||0;}}catch{}
   ARTIFACTS.forEach(a=>{const o=document.createElement('option');o.value=a.n;o.textContent=String(a.n).padStart(2,'0')+' · '+a.name;$('artifact-select').append(o);});
   function share(){
-    const url=Classroom.studentLink();$('classroom-link').value=url;$('open-classroom').href=url;$('print-link').textContent=url;$('test-scanner').href=Classroom.previewLink('scan.html?v=keep-explore-1',current());
+    const url=Classroom.studentLink();$('classroom-link').value=url;$('open-classroom').href=url;$('print-link').textContent=url;$('test-scanner').href=Classroom.previewLink('scan.html?v=keep-explore-2',current());
     try{const qr=qrcode(0,'M');qr.addData(url);qr.make();const svg=qr.createSvgTag({cellSize:4,margin:16,scalable:true});$('classroom-qr').innerHTML=svg;$('print-qr-code').innerHTML=svg;}catch{$('classroom-qr').textContent='Use the scanner link below.';}
     const dirty=fingerprint(current())!==fingerprint(published);$('save-cards').disabled=submitting||(!!pending&&pendingStage==='publishing');$('save-cards').textContent=submitting?'Saving to GitHub…':pending&&pendingStage==='publishing'?'Publishing to cards…':'Save to cards';$('finish-save').hidden=!pending||pendingStage!=='manual';$('clear-pending').hidden=!pending;if(pending)$('finish-save').href=Classroom.saveURL(pending);$('connection-status').textContent=GithubTeacherSave.connected?'GitHub connected for this tab. Save to cards writes directly.':'Connect GitHub to save directly from this button.';$('disconnect-github').hidden=!GithubTeacherSave.connected;
     $('settings-count').textContent='13 cards · '+(dirty?'unsaved changes':'matches the saved card settings');
     if(!pending)$('save-status').textContent=dirty?'Unsaved changes. Save to cards to update student devices.':'Saved card settings loaded. All student devices use these after reloading.';
   }
   function sync(){
-    const p=pose();['yaw','pitch','roll','size'].forEach(k=>{$(k).value=p[k];$(k+'-value').textContent=p[k]+(k==='size'?'%':'°');});$('length-cm').value=p.lengthCm;$('marker-width').value=markerWidthCm;$('physical-size').textContent=(p.lengthCm*p.size/100).toFixed(1)+' cm at this starting size';
+    const p=pose();['yaw','pitch','roll','size','screenZoom'].forEach(k=>{$(k).value=p[k];$(k+'-value').textContent=p[k]+(k==='size'||k==='screenZoom'?'%':'°');});$('length-cm').value=p.lengthCm;$('marker-width').value=markerWidthCm;$('physical-size').textContent=(p.lengthCm*p.size/100).toFixed(1)+' cm at this starting size';
     const ref=LIFE_SIZES[active];$('dimension-note').replaceChildren();const text=document.createElement('span');text.textContent=(p.lengthCm===ref.cm?ref.kind:'Teacher-defined reference')+' · '+ref.note;$('dimension-note').append(text);if(ref.url){const link=document.createElement('a');link.href=ref.url;link.target='_blank';link.rel='noopener';link.textContent=' Museum source ↗';$('dimension-note').append(link);}
-    if(pivot)Classroom.apply(pivot,p);if(paper){paper.scale.setScalar(markerWidthCm/100);markerMesh.scale.setScalar(markerWidthCm/100);}share();
+    if(pivot)Classroom.apply(pivot,p);if(camera){camera.zoom=p.screenZoom/100;camera.updateProjectionMatrix();}if(paper){paper.scale.setScalar(markerWidthCm/100);markerMesh.scale.setScalar(markerWidthCm/100);}share();
   }
   function draft(){try{localStorage.setItem(draftKey,JSON.stringify({base:published.revision,config:current()}));}catch{}sync();}
   function change(k,value){settings[active]={...pose(),[k]:value};draft();}
-  ['yaw','pitch','roll','size'].forEach(k=>$(k).oninput=()=>change(k,Number($(k).value)));
+  ['yaw','pitch','roll','size','screenZoom'].forEach(k=>$(k).oninput=()=>change(k,Number($(k).value)));
   $('length-cm').onchange=()=>{const value=Number($('length-cm').value);if(!Number.isFinite(value)||value<1||value>500){$('length-cm').value=pose().lengthCm;return;}change('lengthCm',value);};
   $('marker-width').onchange=()=>{const value=Number($('marker-width').value);if(!Number.isFinite(value)||value<2||value>40){$('marker-width').value=markerWidthCm;return;}markerWidthCm=value;draft();};
-  function fit(){if(!root||!camera)return;const box=new T.Box3().setFromObject(root,true),size=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3()),span=Math.max(size.x,size.y,size.z,markerWidthCm/100*1.8,.12);camera.position.set(center.x+span*.8,center.y+span*.95,center.z+span*1.7);camera.lookAt(center);}
+  function fit(){if(!root||!camera)return;const box=new T.Box3().setFromObject(root,true),size=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3()),span=Math.max(size.x,size.y,size.z,markerWidthCm/100*1.8,.12);camera.position.set(center.x+span*.8,center.y+span*.95,center.z+span*1.7);camera.lookAt(center);camera.zoom=pose().screenZoom/100;camera.updateProjectionMatrix();}
   function select(n){
     active=n;$('artifact-select').value=String(n);const a=ARTIFACTS.find(a=>a.n===n),id=++request;if(root){scene?.remove(root);root=null;pivot=null;}host.setAttribute('aria-label','Starting view preview of '+a.name);sync();if(!T||!scene)return;
     $('preview-status').hidden=false;$('preview-status').textContent='Loading '+a.name.toLowerCase()+'…';

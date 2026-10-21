@@ -1,6 +1,6 @@
 /* Shared card settings published through the repository. No student account is needed. */
 (function(){
-  const factory=n=>({pitch:0,yaw:0,roll:0,size:100,lengthCm:LIFE_SIZES[n]?.cm||50});
+  const factory=n=>({pitch:0,yaw:0,roll:0,size:100,screenZoom:100,lengthCm:LIFE_SIZES[n]?.cm||50});
   function validate(input){
     if(!input||input.version!==2||!Number.isFinite(input.markerWidthCm)||input.markerWidthCm<2||input.markerWidthCm>40||!Array.isArray(input.poses)||input.poses.length>ARTIFACTS.length)throw new Error('Invalid saved settings');
     if(typeof input.revision!=='string'||input.revision.length>100||!Number.isSafeInteger(input.sequence)||input.sequence<0)throw new Error('Invalid save revision');
@@ -11,10 +11,11 @@
       if(!ARTIFACTS.some(a=>a.n===n)||seen.has(n)||[pitch,yaw,roll].some(v=>v< -180||v>180)||size<10||size>800||lengthCm<1||lengthCm>500)throw new Error('Artifact settings out of range');
       seen.add(n);poses[n]={pitch,yaw,roll,size,lengthCm};
     });
-    return {version:2,revision:input.revision,sequence:input.sequence,markerWidthCm:input.markerWidthCm,poses:ARTIFACTS.map(a=>{const p=poses[a.n]||factory(a.n);return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];})};
+    const screen=new Map();if(input.screenZooms!==undefined){if(!Array.isArray(input.screenZooms)||input.screenZooms.length>ARTIFACTS.length)throw new Error('Invalid screen zooms');for(const row of input.screenZooms){if(!Array.isArray(row)||row.length!==2||!ARTIFACTS.some(a=>a.n===row[0])||screen.has(row[0])||!Number.isFinite(row[1])||row[1]<10||row[1]>800)throw new Error('Invalid screen starting zoom');screen.set(row[0],row[1]);}}
+    return {version:2,revision:input.revision,sequence:input.sequence,markerWidthCm:input.markerWidthCm,poses:ARTIFACTS.map(a=>{const p=poses[a.n]||factory(a.n);return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];}),screenZooms:ARTIFACTS.map(a=>[a.n,screen.get(a.n)||100])};
   }
-  function make(settings,markerWidthCm,revision='preview',sequence=0){return validate({version:2,revision,sequence,markerWidthCm,poses:ARTIFACTS.map(a=>{const p={...factory(a.n),...settings[a.n]};return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];})});}
-  const toPoses=config=>Object.fromEntries(config.poses.map(([n,pitch,yaw,roll,size,lengthCm])=>[n,{pitch,yaw,roll,size,lengthCm}]));
+  function make(settings,markerWidthCm,revision='preview',sequence=0){return validate({version:2,revision,sequence,markerWidthCm,poses:ARTIFACTS.map(a=>{const p={...factory(a.n),...settings[a.n]};return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];}),screenZooms:ARTIFACTS.map(a=>[a.n,settings[a.n]?.screenZoom||100])});}
+  const toPoses=config=>Object.fromEntries(config.poses.map(([n,pitch,yaw,roll,size,lengthCm])=>[n,{pitch,yaw,roll,size,lengthCm,screenZoom:config.screenZooms?.find(r=>r[0]===n)?.[1]||100}]));
   function encode(config){return '2.'+btoa(JSON.stringify(validate(config))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
   function decode(value){if(!value||value.length>8000||!/^2\.[A-Za-z0-9_-]+$/.test(value))throw new Error('Invalid preview');return validate(JSON.parse(atob(value.slice(2).replace(/-/g,'+').replace(/_/g,'/'))));}
   function saveDocument(config){config=validate(config);return '---\nsequence: '+config.sequence+'\npayload: '+JSON.stringify(config)+'\n---\n';}
@@ -38,5 +39,5 @@
   };
   api.ready=api.refresh().catch(error=>{api.error=error.message;return null;});
   api.previewLink=(path,config)=>{const url=new URL(path,location.href);url.searchParams.set('preview',encode(config));return url.href;};
-  api.studentLink=()=>new URL('scan.html?v=keep-explore-1',location.href).href;
+  api.studentLink=()=>new URL('scan.html?v=keep-explore-2',location.href).href;
 })();

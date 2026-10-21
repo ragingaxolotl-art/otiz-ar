@@ -24,7 +24,7 @@
     rotate(pitch,yaw,roll=this.roll){this.pitch=pitch;this.yaw=yaw;this.roll=roll;this.object.rotation.set(pitch,yaw,roll,'YXZ');this.render();}
     setZoom(value){if(!Number.isFinite(value)||value<=0)return;this.zoom=Math.max(.02,value);this.camera.zoom=this.zoom;this.camera.updateProjectionMatrix();this.render();}
     fit(){this.setZoom(1);this.resize();}
-    reset(){const p=this.startPose,k=Math.PI/180;this.rotate(p.pitch*k,p.yaw*k,p.roll*k);this.resize();this.setZoom(p.size/100);}
+    reset(){const p=this.startPose,k=Math.PI/180;this.rotate(p.pitch*k,p.yaw*k,p.roll*k);this.resize();this.setZoom((p.screenZoom||100)/100);}
     render(){if(this.active)this.renderer.render(this.scene,this.camera);}
     close(){this.active=false;if(this.presentation)this.scene.remove(this.presentation);this.presentation=null;this.object=null;this.host.hidden=true;this.renderer.clear();}
     dispose(){this.close();this.observer.disconnect();this.renderer.dispose();}
