@@ -21,7 +21,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 - `index.html`: 3D collection and reference photographs
 - `scan.html`, `scan.js`: marker AR scanner, artifact-name reveal, and model-size control
 - `teacher-mode.html`, `teacher-mode.js`, `teacher-mode.css`: starting-pose editor and printable classroom QR
-- `classroom.js`: validated, versioned settings carried in classroom links
+- `classroom.js`: validated shared teacher settings and explicit preview links
 - `teacher.html`: printing, classroom setup, prompts, and troubleshooting
 - `cards.html`: browser-printable floor cards
 - `launch.html`: printable launch QR for the published scanner
@@ -45,7 +45,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 
 ## Accuracy and verification
 
-Models are simplified reconstructions based on the teacher-supplied 12-page artifact PDF. They are not museum scans or measured replicas. The default scanner reads a card once and holds its model on screen over the camera view. This is a screen-held view, not persistent floor anchoring. On the card is a separate marker-tracked view that requires the square to remain visible. Life-size scale is calibrated to teacher reference dimensions and the printed marker width; some reference dimensions are estimates.
+Models are simplified reconstructions based on the teacher-supplied 12-page artifact PDF. They are not museum scans or measured replicas. The default scanner shows live marker-tracked AR above each card. Capture switches the selected model into a screen-held inspection view; Return artifact restores its prior AR pose and size over the same card. Captured models persist after marker loss; live AR requires a visible marker. Life-size scale is calibrated to teacher reference dimensions and the printed marker width; some reference dimensions are estimates.
 
 All twelve markers passed image-based detection checks with AR.js and all twelve model geometries loaded in the browser. Printing was visually reviewed. A live camera trial on the school's iPad hardware is still required.
 
@@ -102,9 +102,13 @@ In On the card view, teacher and student sizes use the same absolute percentage 
 
 `cards.html` defaults to four cards per page with 8 cm markers; `?layout=1` prints the larger single-card layout. In the printer dialog use Actual size / 100% and one page per sheet for the four-card layout.
 
-## Scan once and explore
+## Live AR, Capture and Return artifact
 
-`explore.js` supplies the default scanner view. The first recognized card loads one model, keeps its teacher orientation, and frames its actual posed geometry to approximately 72% of the available screen dimension at 100% view zoom. Paper size and physical reference dimensions do not determine this view’s framing. The model remains after marker loss, including when a GLB is still loading. Nearby detections do not replace it. Drag rotates; pinch, wheel, and Bigger change optical zoom with no 800% ceiling. Fit returns to a complete view. Reset restores the teacher’s orientation and separate screen starting zoom. Existing floor sizes, including 800%, do not magnify the initial screen view; older saves default to a fitted 100% screen view. The optional `screenZooms` array stores each card’s screen start independently of its centimeter-based AR size. Scan next card returns to recognition; On the card restores the calibrated meter-based marker view. The detail panel tucks away automatically and can return.
+The scanner starts in live card tracking, with each model hovering 4 cm above its marker. Saved orientations are retained. When a starting model would be tiny or clipped, a one-time projected-geometry check fits its local display size to roughly 45% of a screen dimension. Fit over card repeats this; Life size and Reset preserve explicit physical-reference and teacher-size controls. Fitting changes only the student session and never publishes teacher edits. The panel starts tucked away, and Capture stays in the floating toolbar.
+
+Capture is explicit and available only when the selected card is visible and its model has loaded. It copies the current AR orientation into `explore.js`, which supports free rotation and optical zoom beyond 800%. Return artifact restores the prior AR pose and size. If the card is absent, it waits for that exact card rather than switching to a nearby marker; Scan another card clears that target. Repeated cycles reuse the same inspection renderer. The separate `screenZooms` field controls captured starting zoom and does not alter physical AR size.
+
+The bundled AR.js 3.4.7 anchor adapter is patched to forward its declared `size` into the tracking controls, including the barcode branch. Upstream code constructed the barcode options without this field, leaving the tracker at its one-unit default despite the page declaring centimeters in meters. The patch is documented in `vendor/ARJS-PATCH.md`. Browser verification checks the actual tracking-controller marker width and the complete live AR → Capture → marker loss → Return artifact → reacquisition cycle.
 
 ## Direct teacher saves
 
