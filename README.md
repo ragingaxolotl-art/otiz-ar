@@ -37,6 +37,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 - `assets/coat.glb`: optimized teacher-supplied coat model for existing card 5
 - `assets/container.glb`: optimized teacher-supplied bark container model for existing card 1
 - `assets/retoucheur.glb`: optimized teacher-supplied pressure flaker model for existing card 8
+- `assets/mat.glb`: optimized teacher-supplied grass mat model for existing card 11
 - `assets/axe.glb`: optimized teacher-supplied axe model for existing card 6
 - `artifacts.js`: artifact names, short notes, and questions
 - `assets/markers/`: ARToolKit 3x3 barcode markers 1–13
@@ -77,6 +78,8 @@ Card 8 now uses the supplied GLB pressure flaker (retoucheur). Its browser copy 
 
 Card 6 now uses the supplied GLB axe. Its browser copy was reduced from 34,184,628 bytes / 1,089,138 triangles to 2,291,884 bytes / 65,344 triangles with an embedded 2048px JPEG texture. Its upright base pose turns a quarter turn around the vertical axis to show the axe head. The source file, card 6 marker, and reference photograph are unchanged. Teacher poses, touch controls, 4× enlargement, and Reset use the shared loader.
 
+Card 11 now uses the supplied GLB grass mat. Its browser copy was reduced from 46,030,320 bytes / 1,404,774 triangles to 3,460,528 bytes / 84,282 triangles with an embedded 2048px JPEG texture. Its upright base pose turns a quarter turn around the vertical axis to show the woven surface. The source file, card 11 marker, and reference photograph are unchanged. Teacher poses, touch controls, 4× enlargement, and Reset use the shared loader.
+
 The original twelve photographs come from the teacher-supplied artifact PDF. Retain its source credits when redistributing. Card 11 is labeled grass mat without treating the disputed cape interpretation as certain.
 
 ## Privacy and libraries
@@ -92,3 +95,11 @@ Open `teacher-mode.html` to choose each artifact’s turn, tilt, roll, and start
 Student size is relative to the teacher’s chosen starting size. Both viewers support pinch enlargement up to 4× and a direct 4× button. Reset restores the starting pose. The scanner stores interaction state per artifact and applies scaling to the model pivot, independently of the tracked A-Frame entity. Another marker entering view does not steal the active controls. The bottom details panel can hide and return.
 
 QR generation uses the bundled MIT-licensed qrcode-generator 1.4.4. Settings links do not upload camera images. Browser tests use a stationary marker fixture; physical Safari/iPad camera and multi-touch behavior still needs a classroom trial.
+
+## AR control and floor-pose corrections
+
+When several markers are visible, the scanner identifies the card being controlled and provides a Control selector, including with details tucked away. Other detections no longer overwrite the active-card status. Size and orientation remain separate for each card. Teacher Mode and the scanner now place each rotated and scaled model just above its card, so Lay flat lowers the model onto the card plane instead of leaving it at its upright height.
+
+The scanner states whether a classroom setup is loaded and shows the active card’s teacher starting size and angles. After a teacher edit on another device, students must scan the updated QR or use the new classroom link; refreshing an older tab retains its older settings. Teacher Mode’s Test in AR and QR use the current scanner version.
+
+Validation for these corrections: ten Node regression checks; all 13 model geometries tested for fourfold enlargement and reset, with all 12 supplied models checked at a flat teacher starting pose; real AR.js image-source tracking of three simultaneous printed-marker images, including the saved card 4 flat / 400% pose, a further fourfold geometry enlargement, selection of the intended card, and Reset. Physical iPhone/iPad camera and native pinch behavior still require a device trial.

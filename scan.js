@@ -10,12 +10,20 @@
     const v=view(n),pivot=el.getObject3D('artifact');
     // Apply size to the model itself, independently of A-Frame / marker transforms.
     el.object3D.scale.setScalar(BASE_SCALE);
-    if(pivot){pivot.scale.setScalar(Classroom.pose(n).size/100*v.size);pivot.rotation.set(v.pitch,v.yaw,v.roll,'YXZ');}
+    if(pivot){pivot.scale.setScalar(Classroom.pose(n).size/100*v.size);pivot.rotation.set(v.pitch,v.yaw,v.roll,'YXZ');Classroom.ground(pivot);}
   }
+  function cardStatus(){if(active!==null)$('status').textContent=`Card ${active} · ${Math.round(view(active).size*100)}% · drag to turn · pinch to resize`;}
+  function syncCardPicker(){
+    const picker=$('active-card');picker.replaceChildren(...[...visible].sort((a,b)=>a-b).map(n=>{const option=document.createElement('option');option.value=String(n);option.textContent=`Card ${n}`;return option;}));
+    picker.value=active===null?'':String(active);$('card-picker').hidden=visible.size<2;
+  }
+  $('active-card').onchange=()=>{const n=Number($('active-card').value);if(visible.has(n))showArtifact(n);};
+  const customized=Object.keys(Classroom.poses).length;
+  $('setup-info').textContent=Classroom.hasSetup?`Teacher settings loaded · ${customized} customized starting ${customized===1?'view':'views'}. After edits, scan the new Teacher Mode QR.`:'Original starting views. To use teacher edits from another device, scan the latest QR in Teacher Mode. Refreshing this link does not import those edits.';
   function setScale(value){
     value=clamp(value,Number($('scale').min),Number($('scale').max));
     $('scale').value=String(value);$('scale-value').textContent=Math.round(Number($('scale').value)*100)+'%';
-    if(active!==null){view(active).size=Number($('scale').value);applyView(active);}
+    if(active!==null){view(active).size=Number($('scale').value);applyView(active);cardStatus();}
   }
   function clearGesture(){
     for(const id of pointers.keys())if(surface.hasPointerCapture(id))surface.releasePointerCapture(id);
@@ -68,13 +76,14 @@
   function error(message){clearTimeout(timeout);$('loading-cover').hidden=true;$('start-screen').hidden=false;$('error').textContent=message;$('error').hidden=false;$('start-camera').textContent='Try camera again';$('start-camera').disabled=false;if(scene){stop();location.hash='camera-error';}}
   function stop(){clearGesture();visible.clear();active=null;document.querySelectorAll('video').forEach(v=>v.srcObject?.getTracks().forEach(t=>t.stop()));if(scene){scene.remove();scene=null;}models.clear();started=false;}
   function showArtifact(n){
-    clearGesture();active=n;['scale','size-4x','reset-model'].forEach(id=>$(id).disabled=n===null);revealed=false;$('target-guide').hidden=n!==null;
+    clearGesture();active=n;syncCardPicker();['scale','size-4x','reset-model'].forEach(id=>$(id).disabled=n===null);revealed=false;$('target-guide').hidden=n!==null;
     if(n===null){$('status').textContent='Point at a floor card · keep the full square visible';$('artifact-label').textContent='YOUR INVESTIGATION';$('artifact-name').textContent='Find the next clue';$('artifact-description').textContent='The model appears while its marker is visible. Move back or lower the iPad if you lose it.';$('reveal').hidden=true;$('artifact-question').hidden=true;return;}
     $('scale').value=String(view(n).size);$('scale-value').textContent=Math.round(view(n).size*100)+'%';
-    const a=ARTIFACTS[n-1];$('status').textContent=`Card ${n} · drag to turn · pinch to resize`;$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
+    const p=Classroom.pose(n);$('setup-summary').textContent=Classroom.hasSetup?`Teacher start: ${p.size}% · tilt ${p.pitch}° · turn ${p.yaw}°. Reset restores this view.`:'Original starting view · scan the latest Teacher Mode QR to load teacher changes.';
+    const a=ARTIFACTS[n-1];cardStatus();$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
   }
   $('reveal').onclick=()=>{if(active===null)return;revealed=!revealed;const a=ARTIFACTS[active-1];$('artifact-name').textContent=revealed?a.name:`Artifact ${active}`;$('artifact-description').textContent=revealed?a.fact:'Look at its shape and construction. What could it be made from? What might it do?';$('reveal').textContent=revealed?'Hide artifact name':'Reveal artifact name';};
-  function ready(){clearTimeout(timeout);$('loading-cover').hidden=true;$('status').textContent='Camera ready · point at a printed floor card';}
+  function ready(){clearTimeout(timeout);$('loading-cover').hidden=true;if(active===null)$('status').textContent='Camera ready · point at a printed floor card';}
   window.addEventListener('camera-init',ready);window.addEventListener('camera-error',e=>{const code=e.detail?.error?.name||e.detail?.name||'';error(code==='NotAllowedError'?'Camera access was blocked. Allow camera access for this site in Safari, then try again.':'The camera could not start. Check Safari camera permission and close other apps using the camera.');});
   $('start-camera').onclick=()=>{
     if(started)return;$('error').hidden=true;
@@ -108,10 +117,10 @@
       const marker=document.createElement('a-marker');marker.setAttribute('type','barcode');marker.setAttribute('value',String(a.n));marker.setAttribute('size','1');marker.setAttribute('emitevents','true');marker.setAttribute('smooth','true');marker.setAttribute('smooth-count','5');marker.setAttribute('smooth-tolerance','0.01');marker.setAttribute('smooth-threshold','2');
       const el=document.createElement('a-entity');models.set(a.n,el);el.setAttribute('artifact-model',`index: ${i}`);el.setAttribute('position','0 0.03 0');marker.append(el);
       el.addEventListener('artifact-loading',()=>{if(active===a.n)$('status').textContent=`Card ${a.n} · loading ${a.name.toLowerCase()} model…`;});
-      el.addEventListener('artifact-loaded',()=>{if(active===a.n)$('status').textContent=`Card ${a.n} · drag to turn · pinch to resize`;});
+      el.addEventListener('artifact-loaded',()=>{if(active===a.n)cardStatus();});
       el.addEventListener('artifact-error',()=>{if(active===a.n)$('status').textContent=`${a.name} could not load · check your connection and scan the card again`;});
-      marker.addEventListener('markerFound',()=>{ready();visible.add(a.n);if(active===null)showArtifact(a.n);el.emit('load-artifact');});
-      marker.addEventListener('markerLost',()=>{visible.delete(a.n);if(active===a.n)showArtifact(visible.size?[...visible].at(-1):null);});scene.append(marker);
+      marker.addEventListener('markerFound',()=>{ready();visible.add(a.n);if(active===null)showArtifact(a.n);else syncCardPicker();el.emit('load-artifact');});
+      marker.addEventListener('markerLost',()=>{visible.delete(a.n);if(active===a.n)showArtifact(visible.size?[...visible].at(-1):null);else syncCardPicker();});scene.append(marker);
     });
     const camera=document.createElement('a-entity');camera.setAttribute('camera','');scene.append(camera);$('scene-host').append(scene);
     timeout=setTimeout(()=>{if(!$('loading-cover').hidden){$('loading-cover').hidden=true;$('status').textContent='Waiting for camera permission · allow access in Safari';}},18000);

@@ -24,11 +24,17 @@
   const pose=n=>({...factory(),...poses[n]});
   function link(path,settings=poses){const url=new URL(path,location.href);url.searchParams.set('setup',encode(settings));return url.href;}
   function frame(T,object){
-    const center=new T.Box3().setFromObject(object).getCenter(new T.Vector3()),pivot=new T.Group();
-    object.position.sub(center);pivot.position.copy(center);pivot.add(object);pivot.userData={...object.userData};return pivot;
+    const bounds=new T.Box3().setFromObject(object),center=bounds.getCenter(new T.Vector3()),size=bounds.getSize(new T.Vector3()),pivot=new T.Group();
+    object.position.sub(center);pivot.position.copy(center);pivot.add(object);pivot.userData={...object.userData,cardHalfSize:{x:size.x/2,y:size.y/2,z:size.z/2}};return pivot;
+  }
+  // Y extent of a centered box after a YXZ rotation. Keep the bottom above the card,
+  // including after a flat pose or a change in size, without using tracked world axes.
+  function ground(pivot){
+    const h=pivot.userData.cardHalfSize,x=pivot.rotation.x,z=pivot.rotation.z;
+    pivot.position.y=(Math.abs(Math.cos(x)*Math.sin(z))*h.x+Math.abs(Math.cos(x)*Math.cos(z))*h.y+Math.abs(Math.sin(x))*h.z)*pivot.scale.x;
   }
   function rotation(p){const k=Math.PI/180;return [p.pitch*k,p.yaw*k,p.roll*k,'YXZ'];}
-  window.Classroom={factory,encode,decode,pose,link,frame,rotation,poses,hasSetup:!!raw&&!invalid,invalid};
+  window.Classroom={factory,encode,decode,pose,link,frame,ground,rotation,poses,hasSetup:!!raw&&!invalid,invalid};
   addEventListener('DOMContentLoaded',()=>{
     if(raw&&!invalid)document.querySelectorAll('a[href]').forEach(a=>{
       const original=a.getAttribute('href');if(original.startsWith('#'))return;

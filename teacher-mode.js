@@ -6,16 +6,16 @@
   const pose=()=>settings[active]||Classroom.factory(),clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v)),wrap=v=>((Math.round(v)+180)%360+360)%360-180;
   ARTIFACTS.forEach(a=>{const o=document.createElement('option');o.value=a.n;o.textContent=`${String(a.n).padStart(2,'0')} · ${a.name}`;$('artifact-select').append(o);});
   function share(){
-    const url=Classroom.link('scan.html',settings);$('classroom-link').value=url;$('test-scanner').href=url;$('open-classroom').href=url;$('print-link').textContent=url;
+    const url=Classroom.link('scan.html?v=ar-controls-3',settings);$('classroom-link').value=url;$('test-scanner').href=url;$('open-classroom').href=url;$('print-link').textContent=url;
     try{const qr=qrcode(0,'M');qr.addData(url);qr.make();const svg=qr.createSvgTag({cellSize:4,margin:16,scalable:true});$('classroom-qr').innerHTML=svg;$('print-qr-code').innerHTML=svg;}catch{$('classroom-qr').textContent='QR could not load. Use the classroom link below.';}
     const count=Object.values(settings).filter(p=>p.pitch||p.yaw||p.roll||p.size!==100).length;$('settings-count').textContent=`13 artifacts · ${count} customized starting ${count===1?'view':'views'}`;
   }
   function sync(){
     const p=pose();['yaw','pitch','roll','size'].forEach(k=>{$(k).value=p[k];$(k+'-value').textContent=p[k]+(k==='size'?'%':'°');});
-    if(pivot){pivot.rotation.set(...Classroom.rotation(p));pivot.scale.setScalar(p.size/100);}share();
+    if(pivot){pivot.rotation.set(...Classroom.rotation(p));pivot.scale.setScalar(p.size/100);Classroom.ground(pivot);}share();
   }
   function save(){
-    try{localStorage.setItem(key,Classroom.encode(settings));$('save-status').textContent='Saved on this device · classroom link and QR updated.';}catch{$('save-status').textContent='Browser storage unavailable. Copy the classroom link to keep your settings.';}
+    try{localStorage.setItem(key,Classroom.encode(settings));$('save-status').textContent='Saved here · use Test in AR or scan the updated QR on the student iPad.';}catch{$('save-status').textContent='Browser storage unavailable. Copy the classroom link to keep your settings.';}
     $('copy-status').textContent='';sync();
   }
   function change(k,value){settings[active]={...pose(),[k]:value};save();}
