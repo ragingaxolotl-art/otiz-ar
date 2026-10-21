@@ -37,6 +37,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 - `assets/coat.glb`: optimized teacher-supplied coat model for existing card 5
 - `assets/container.glb`: optimized teacher-supplied bark container model for existing card 1
 - `assets/retoucheur.glb`: optimized teacher-supplied pressure flaker model for existing card 8
+- `assets/axe.glb`: optimized teacher-supplied axe model for existing card 6
 - `artifacts.js`: artifact names, short notes, and questions
 - `assets/markers/`: ARToolKit 3x3 barcode markers 1–13
 - `vendor/`: pinned A-Frame and AR.js libraries with licenses
@@ -73,6 +74,8 @@ Card 5 now uses the supplied GLB coat fragments. Its browser copy was reduced fr
 Card 1 now uses the supplied GLB bark container. Its browser copy was reduced from 44,581,428 bytes / 1,434,990 triangles to 3,108,260 bytes / 86,098 triangles with an embedded 2048px JPEG texture. It keeps the source’s upright orientation. The original file, card 1 marker, and reference photograph are unchanged. Teacher poses, touch controls, 4× enlargement, and Reset use the shared loader.
 
 Card 8 now uses the supplied GLB pressure flaker (retoucheur). Its browser copy was reduced from 46,910,724 bytes / 1,481,418 triangles to 3,195,856 bytes / 88,884 triangles with an embedded 2048px JPEG texture. Its base pose turns the source upright with its working tip at the top. The original file, card 8 marker, and reference photograph are unchanged. Teacher poses, touch controls, 4× enlargement, and Reset use the shared loader.
+
+Card 6 now uses the supplied GLB axe. Its browser copy was reduced from 34,184,628 bytes / 1,089,138 triangles to 2,291,884 bytes / 65,344 triangles with an embedded 2048px JPEG texture. Its upright base pose turns a quarter turn around the vertical axis to show the axe head. The source file, card 6 marker, and reference photograph are unchanged. Teacher poses, touch controls, 4× enlargement, and Reset use the shared loader.
 
 The original twelve photographs come from the teacher-supplied artifact PDF. Retain its source credits when redistributing. Card 11 is labeled grass mat without treating the disputed cape interpretation as certain.
 
