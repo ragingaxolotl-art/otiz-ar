@@ -6,7 +6,7 @@ A static classroom AR activity for iPads. Place thirteen numbered cards beside a
 
 [Open the activity](https://ragingaxolotl-art.github.io/otiz-ar/) · [Teacher setup](https://ragingaxolotl-art.github.io/otiz-ar/teacher.html)
 
-Publish the `main` branch from `/ (root)` in **Settings → Pages → Deploy from a branch**. No installation, build system, external database, or student account is required. All runtime scripts, reference images, and markers are included in this repository.
+Publish the `main` branch from `/ (root)` in **Settings → Pages → Deploy from a branch**. GitHub Pages runs its built-in Jekyll build to publish saved card settings. No local installation, external database, or student account is required. All runtime scripts, reference images, and markers are included in this repository.
 
 1. Open the published HTTPS address in Safari on an iPad.
 2. Open **Teacher setup**, then use **Print floor cards** and **Print launch QR**.
@@ -45,7 +45,7 @@ Print `cards.html` for the 13 floor cards and `launch.html` for the current laun
 
 ## Accuracy and verification
 
-Models are simplified reconstructions based on the teacher-supplied 12-page artifact PDF. They are not museum scans or measured replicas. The marker must remain visible; this is not persistent tracking after a marker leaves the camera view. Model scale is illustrative.
+Models are simplified reconstructions based on the teacher-supplied 12-page artifact PDF. They are not museum scans or measured replicas. The marker must remain visible; this is not persistent tracking after a marker leaves the camera view. Life-size scale is calibrated to teacher reference dimensions and the printed marker width; some reference dimensions are estimates.
 
 All twelve markers passed image-based detection checks with AR.js and all twelve model geometries loaded in the browser. Printing was visually reviewed. A live camera trial on the school's iPad hardware is still required.
 
@@ -88,20 +88,16 @@ Camera frames are processed in the browser. This application does not record or 
 
 A-Frame 1.6.0 and AR.js 3.4.7 are bundled under their included MIT licenses. Marker images: https://github.com/nicolocarpignoli/artoolkit-barcode-markers-collection/tree/master/3x3. The floor patterns are AR tracking markers; the launch QR separately opens the website.
 
-## Teacher starting views and touch controls
+## Saved starting views and life-size AR
 
-Open `teacher-mode.html` to choose each artifact’s turn, tilt, roll, and starting size (25–400%). A draft saves to local browser storage. Copy its classroom link or print its QR sheet for student iPads; ordinary scanner links use original defaults. Changes require a newly shared link. Settings are carried in a validated `setup` query parameter, with no account or database. Existing floor cards do not change.
+Teacher Mode edits a draft locally. **Save to cards** opens a prefilled GitHub file; the repository owner confirms **Commit changes**. GitHub Pages publishes the latest saved settings to `classroom-defaults.json`. Student devices fetch that shared file without a login. The ordinary scanner URL and existing cards load the latest save after reloading, including older links that previously contained `setup` snapshots. The stable launch QR does not change after a save. Unsaved tests use a clearly labeled `preview` link.
 
-Student size is relative to the teacher’s chosen starting size. Both viewers support pinch enlargement up to 4× and a direct 4× button. Reset restores the starting pose. The scanner stores interaction state per artifact and applies scaling to the model pivot, independently of the tracked A-Frame entity. Another marker entering view does not steal the active controls. The bottom details panel can hide and return.
+Jekyll’s built-in `teacher_saves` collection reads immutable save records in `_teacher_saves/`; the JSON page outputs the record with the largest sequence number. The collection itself has no public output pages. No API credential is embedded in the app. Teacher writes require the repository’s normal GitHub permissions. Git history retains earlier saves. The app reports Saved only after the requested revision is actually published, and keeps pending publication state across reloads.
 
-QR generation uses the bundled MIT-licensed qrcode-generator 1.4.4. Settings links do not upload camera images. Browser tests use a stationary marker fixture; physical Safari/iPad camera and multi-touch behavior still needs a classroom trial.
+At 100%, each object’s longest reference dimension is the configured number of centimeters. AR markers use the measured physical black-square width in meters; model geometry uses the same meter-based units. The default 8.001 cm calibration matches the new four-card print layout at 100%. For older printer-generated four-up cards, measure a black square and enter its actual width. The one-card print layout has 16.002 cm markers. All cards must use the same print scale.
 
-## AR control and floor-pose corrections
+Reference sizes are in `life-size.js`. Museum references cover container height, leggings, axe haft, dagger, pressure flaker, and bow. The other model dimensions are explicitly editable estimates, including the combined two-shoe model’s span. Generated models are illustrative and have not been measured from the museum originals. See the linked South Tyrol Museum equipment and clothing pages in Teacher Mode. Uniform scaling preserves the supplied model’s proportions.
 
-When several markers are visible, the scanner identifies the card being controlled and provides a Control selector, including with details tucked away. Other detections no longer overwrite the active-card status. Size and orientation remain separate for each card. Teacher Mode and the scanner now place each rotated and scaled model just above its card, so Lay flat lowers the model onto the card plane instead of leaving it at its upright height.
+Teacher and student sizes now use the same absolute percentage of reference life size, from 10–800%. Life size returns to 100%; Bigger doubles the current size; Reset restores the saved teacher orientation and percentage. Per-card selection remains available when several markers are visible. Pose grounding and normalization use precise transformed geometry bounds. The original teacher orientations were retained for cards 4, 6, and 11; old arbitrary size percentages were replaced with 100% of the new life-size references.
 
-The scanner states whether a classroom setup is loaded and shows the active card’s teacher starting size and angles. After a teacher edit on another device, students must scan the updated QR or use the new classroom link; refreshing an older tab retains its older settings. Teacher Mode’s Test in AR and QR use the current scanner version.
-
-Validation for these corrections: ten Node regression checks; all 13 model geometries tested for fourfold enlargement and reset, with all 12 supplied models checked at a flat teacher starting pose; real AR.js image-source tracking of three simultaneous printed-marker images, including the saved card 4 flat / 400% pose, a further fourfold geometry enlargement, selection of the intended card, and Reset. Physical iPhone/iPad camera and native pinch behavior still require a device trial.
-
-Supplied model normalization and pose centering use precise vertex bounds after the source rotation. This avoids inflated rotated bounding boxes making narrow artifacts appear smaller or hover above the card. Collection enlargement also preserves the center measured from actual vertices. Shared script versions are refreshed together.
+`cards.html` defaults to four cards per page with 8 cm markers; `?layout=1` prints the larger single-card layout. In the printer dialog use Actual size / 100% and one page per sheet for the four-card layout.

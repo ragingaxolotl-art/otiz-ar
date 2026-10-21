@@ -1,16 +1,19 @@
-(function(){
+(async function(){
   const $=id=>document.getElementById(id);let scene,active=null,started=false,revealed=false;const visible=new Set();let timeout;
-  const BASE_SCALE=.8,models=new Map(),views=new Map(),pointers=new Map(),surface=$('gesture-surface');
+  await Classroom.ready;
+  $('retry-saved').onclick=()=>location.reload();
+  if(!Classroom.loaded&&!Classroom.isPreview){$('setup-info').textContent='Saved card settings could not load. Check your connection and retry.';$('start-camera').disabled=true;$('retry-saved').hidden=false;return;}
+  const BASE_SCALE=1,models=new Map(),views=new Map(),pointers=new Map(),surface=$('gesture-surface');
   let gesture=null;
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
-  function startingView(n){const p=Classroom.pose(n),k=Math.PI/180;return {yaw:p.yaw*k,pitch:p.pitch*k,roll:p.roll*k,size:1};}
+  function startingView(n){const p=Classroom.pose(n),k=Math.PI/180;return {yaw:p.yaw*k,pitch:p.pitch*k,roll:p.roll*k,size:p.size/100};}
   function view(n){if(!views.has(n))views.set(n,startingView(n));return views.get(n);}
   function applyView(n){
     const el=models.get(n);if(!el)return;
     const v=view(n),pivot=el.getObject3D('artifact');
     // Apply size to the model itself, independently of A-Frame / marker transforms.
     el.object3D.scale.setScalar(BASE_SCALE);
-    if(pivot){pivot.scale.setScalar(Classroom.pose(n).size/100*v.size);pivot.rotation.set(v.pitch,v.yaw,v.roll,'YXZ');Classroom.ground(pivot);}
+    if(pivot){const k=180/Math.PI;Classroom.apply(pivot,{...Classroom.pose(n),pitch:v.pitch*k,yaw:v.yaw*k,roll:v.roll*k},v.size*100);}
   }
   function cardStatus(){if(active!==null)$('status').textContent=`Card ${active} · ${Math.round(view(active).size*100)}% · drag to turn · pinch to resize`;}
   function syncCardPicker(){
@@ -18,12 +21,11 @@
     picker.value=active===null?'':String(active);$('card-picker').hidden=visible.size<2;
   }
   $('active-card').onchange=()=>{const n=Number($('active-card').value);if(visible.has(n))showArtifact(n);};
-  const customized=Object.keys(Classroom.poses).length;
-  $('setup-info').textContent=Classroom.hasSetup?`Teacher settings loaded · ${customized} customized starting ${customized===1?'view':'views'}. After edits, scan the new Teacher Mode QR.`:'Original starting views. To use teacher edits from another device, scan the latest QR in Teacher Mode. Refreshing this link does not import those edits.';
+  $('setup-info').textContent=Classroom.isPreview?'Preview of unsaved teacher edits. Use Save to cards to make these the shared starting views.':`Saved card settings loaded · ${Classroom.markerWidthCm.toFixed(2)} cm marker · 100% = reference life size. Teacher saves apply after reloading this scanner.`;
   function setScale(value){
     value=clamp(value,Number($('scale').min),Number($('scale').max));
     $('scale').value=String(value);$('scale-value').textContent=Math.round(Number($('scale').value)*100)+'%';
-    if(active!==null){view(active).size=Number($('scale').value);applyView(active);cardStatus();}
+    if(active!==null){view(active).size=Number($('scale').value);$('dimension-value').textContent=(Classroom.pose(active).lengthCm*view(active).size).toFixed(1)+' cm';applyView(active);cardStatus();}
   }
   function clearGesture(){
     for(const id of pointers.keys())if(surface.hasPointerCapture(id))surface.releasePointerCapture(id);
@@ -55,8 +57,10 @@
   addEventListener('blur',clearGesture);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)clearGesture();});
   $('size-4x').onclick=()=>{clearGesture();setScale(4);};
+  $('size-life').onclick=()=>{clearGesture();setScale(1);};
+  $('size-grow').onclick=()=>{clearGesture();setScale(Number($('scale').value)*2);};
   $('scale').oninput=()=>setScale(Number($('scale').value));
-  $('reset-model').onclick=()=>{clearGesture();if(active!==null){views.set(active,startingView(active));applyView(active);}setScale(1);};
+  $('reset-model').onclick=()=>{clearGesture();if(active!==null){views.set(active,startingView(active));applyView(active);}setScale(active===null?1:view(active).size);};
   surface.addEventListener('keydown',e=>{
     if(active===null)return;const v=view(active);
     if(e.key==='ArrowLeft')v.yaw-=.15;else if(e.key==='ArrowRight')v.yaw+=.15;
@@ -76,10 +80,10 @@
   function error(message){clearTimeout(timeout);$('loading-cover').hidden=true;$('start-screen').hidden=false;$('error').textContent=message;$('error').hidden=false;$('start-camera').textContent='Try camera again';$('start-camera').disabled=false;if(scene){stop();location.hash='camera-error';}}
   function stop(){clearGesture();visible.clear();active=null;document.querySelectorAll('video').forEach(v=>v.srcObject?.getTracks().forEach(t=>t.stop()));if(scene){scene.remove();scene=null;}models.clear();started=false;}
   function showArtifact(n){
-    clearGesture();active=n;syncCardPicker();['scale','size-4x','reset-model'].forEach(id=>$(id).disabled=n===null);revealed=false;$('target-guide').hidden=n!==null;
+    clearGesture();active=n;syncCardPicker();['scale','size-4x','size-life','size-grow','reset-model'].forEach(id=>$(id).disabled=n===null);revealed=false;$('target-guide').hidden=n!==null;
     if(n===null){$('status').textContent='Point at a floor card · keep the full square visible';$('artifact-label').textContent='YOUR INVESTIGATION';$('artifact-name').textContent='Find the next clue';$('artifact-description').textContent='The model appears while its marker is visible. Move back or lower the iPad if you lose it.';$('reveal').hidden=true;$('artifact-question').hidden=true;return;}
     $('scale').value=String(view(n).size);$('scale-value').textContent=Math.round(view(n).size*100)+'%';
-    const p=Classroom.pose(n);$('setup-summary').textContent=Classroom.hasSetup?`Teacher start: ${p.size}% · tilt ${p.pitch}° · turn ${p.yaw}°. Reset restores this view.`:'Original starting view · scan the latest Teacher Mode QR to load teacher changes.';
+    const p=Classroom.pose(n);$('dimension-value').textContent=(p.lengthCm*view(n).size).toFixed(1)+' cm';$('setup-summary').textContent=`${Classroom.isPreview?'Unsaved preview':'Saved teacher start'}: ${p.size}% · life-size reference ${p.lengthCm} cm. Reset restores the teacher’s pose and size.`;
     const a=ARTIFACTS[n-1];cardStatus();$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
   }
   $('reveal').onclick=()=>{if(active===null)return;revealed=!revealed;const a=ARTIFACTS[active-1];$('artifact-name').textContent=revealed?a.name:`Artifact ${active}`;$('artifact-description').textContent=revealed?a.fact:'Look at its shape and construction. What could it be made from? What might it do?';$('reveal').textContent=revealed?'Hide artifact name':'Reveal artifact name';};
@@ -114,8 +118,8 @@
     scene.setAttribute('arjs','sourceType: webcam; debugUIEnabled: false; trackingMethod: best; detectionMode: mono_and_matrix; matrixCodeType: 3x3; cameraParametersUrl: vendor/camera_para.dat; sourceWidth: 1280; sourceHeight: 960; displayWidth: 1280; displayHeight: 960;');
     const amb=document.createElement('a-entity');amb.setAttribute('light','type: ambient; color: #fff4de; intensity: 1.8');scene.append(amb);const light=document.createElement('a-entity');light.setAttribute('light','type: directional; color: #ffffff; intensity: 2.2');light.setAttribute('position','1 4 2');scene.append(light);
     ARTIFACTS.forEach((a,i)=>{
-      const marker=document.createElement('a-marker');marker.setAttribute('type','barcode');marker.setAttribute('value',String(a.n));marker.setAttribute('size','1');marker.setAttribute('emitevents','true');marker.setAttribute('smooth','true');marker.setAttribute('smooth-count','5');marker.setAttribute('smooth-tolerance','0.01');marker.setAttribute('smooth-threshold','2');
-      const el=document.createElement('a-entity');models.set(a.n,el);el.setAttribute('artifact-model',`index: ${i}`);el.setAttribute('position','0 0.03 0');marker.append(el);
+      const marker=document.createElement('a-marker');marker.setAttribute('type','barcode');marker.setAttribute('value',String(a.n));marker.setAttribute('size',String(Classroom.markerWidthCm/100));marker.setAttribute('emitevents','true');marker.setAttribute('smooth','true');marker.setAttribute('smooth-count','5');marker.setAttribute('smooth-tolerance','0.01');marker.setAttribute('smooth-threshold','2');
+      const el=document.createElement('a-entity');models.set(a.n,el);el.setAttribute('artifact-model',`index: ${i}`);el.setAttribute('position','0 0.003 0');marker.append(el);
       el.addEventListener('artifact-loading',()=>{if(active===a.n)$('status').textContent=`Card ${a.n} · loading ${a.name.toLowerCase()} model…`;});
       el.addEventListener('artifact-loaded',()=>{if(active===a.n)cardStatus();});
       el.addEventListener('artifact-error',()=>{if(active===a.n)$('status').textContent=`${a.name} could not load · check your connection and scan the card again`;});

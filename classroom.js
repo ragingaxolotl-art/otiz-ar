@@ -1,46 +1,42 @@
-/* Shared starting poses. Classroom links contain settings; no account or server is needed. */
+/* Shared card settings published through the repository. No student account is needed. */
 (function(){
-  const factory=()=>({pitch:0,yaw:0,roll:0,size:100});
-  function validate(rows){
-    if(!Array.isArray(rows)||rows.length>ARTIFACTS.length)throw new Error('Invalid setup');
-    const result={},seen=new Set();
-    rows.forEach(row=>{
-      if(!Array.isArray(row)||row.length!==5||!row.every(Number.isFinite))throw new Error('Invalid pose');
-      const [n,pitch,yaw,roll,size]=row;
-      if(!ARTIFACTS.some(a=>a.n===n)||seen.has(n)||[pitch,yaw,roll].some(v=>v < -180||v > 180)||size<25||size>400)throw new Error('Invalid pose');
-      seen.add(n);result[n]={pitch,yaw,roll,size};
-    });return result;
+  const factory=n=>({pitch:0,yaw:0,roll:0,size:100,lengthCm:LIFE_SIZES[n]?.cm||50});
+  function validate(input){
+    if(!input||input.version!==2||!Number.isFinite(input.markerWidthCm)||input.markerWidthCm<2||input.markerWidthCm>40||!Array.isArray(input.poses)||input.poses.length>ARTIFACTS.length)throw new Error('Invalid saved settings');
+    if(typeof input.revision!=='string'||input.revision.length>100||!Number.isSafeInteger(input.sequence)||input.sequence<0)throw new Error('Invalid save revision');
+    const poses={},seen=new Set();
+    input.poses.forEach(row=>{
+      if(!Array.isArray(row)||row.length!==6||!row.every(Number.isFinite))throw new Error('Invalid artifact settings');
+      const [n,pitch,yaw,roll,size,lengthCm]=row;
+      if(!ARTIFACTS.some(a=>a.n===n)||seen.has(n)||[pitch,yaw,roll].some(v=>v< -180||v>180)||size<10||size>800||lengthCm<1||lengthCm>500)throw new Error('Artifact settings out of range');
+      seen.add(n);poses[n]={pitch,yaw,roll,size,lengthCm};
+    });
+    return {version:2,revision:input.revision,sequence:input.sequence,markerWidthCm:input.markerWidthCm,poses:ARTIFACTS.map(a=>{const p=poses[a.n]||factory(a.n);return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];})};
   }
-  function encode(poses){
-    const rows=ARTIFACTS.map(a=>{const p=poses[a.n]||factory();return [a.n,p.pitch,p.yaw,p.roll,p.size];}).filter(r=>r.slice(1).some((v,i)=>v!==[0,0,0,100][i]));
-    validate(rows);return '1.'+btoa(JSON.stringify(rows)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
-  }
-  function decode(value){
-    if(!value||value.length>2400||!/^1\.[A-Za-z0-9_-]+$/.test(value))throw new Error('Invalid setup link');
-    return validate(JSON.parse(atob(value.slice(2).replace(/-/g,'+').replace(/_/g,'/'))));
-  }
-  const raw=new URLSearchParams(location.search).get('setup');let poses={},invalid=false;
-  if(raw)try{poses=decode(raw);}catch{invalid=true;}
-  const pose=n=>({...factory(),...poses[n]});
-  function link(path,settings=poses){const url=new URL(path,location.href);url.searchParams.set('setup',encode(settings));return url.href;}
+  function make(settings,markerWidthCm,revision='preview',sequence=0){return validate({version:2,revision,sequence,markerWidthCm,poses:ARTIFACTS.map(a=>{const p={...factory(a.n),...settings[a.n]};return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];})});}
+  const toPoses=config=>Object.fromEntries(config.poses.map(([n,pitch,yaw,roll,size,lengthCm])=>[n,{pitch,yaw,roll,size,lengthCm}]));
+  function encode(config){return '2.'+btoa(JSON.stringify(validate(config))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+  function decode(value){if(!value||value.length>8000||!/^2\.[A-Za-z0-9_-]+$/.test(value))throw new Error('Invalid preview');return validate(JSON.parse(atob(value.slice(2).replace(/-/g,'+').replace(/_/g,'/'))));}
+  function saveDocument(config){config=validate(config);return '---\nsequence: '+config.sequence+'\npayload: '+JSON.stringify(config)+'\n---\n';}
+  function saveURL(config){config=validate(config);const url=new URL('https://github.com/ragingaxolotl-art/otiz-ar/new/main');url.searchParams.set('filename','_teacher_saves/save-'+config.sequence+'-'+config.revision.replace(/[^a-zA-Z0-9-]/g,'').slice(-10)+'.md');url.searchParams.set('value',saveDocument(config));return url.href;}
   function frame(T,object){
     const bounds=new T.Box3().setFromObject(object,true),center=bounds.getCenter(new T.Vector3()),size=bounds.getSize(new T.Vector3()),pivot=new T.Group();
-    object.position.sub(center);pivot.position.copy(center);pivot.add(object);pivot.userData={...object.userData,cardHalfSize:{x:size.x/2,y:size.y/2,z:size.z/2}};return pivot;
+    object.position.sub(center);pivot.position.copy(center);pivot.add(object);pivot.userData={...object.userData,cardHalfSize:{x:size.x/2,y:size.y/2,z:size.z/2},modelLength:Math.max(size.x,size.y,size.z)};return pivot;
   }
-  // Y extent of a centered box after a YXZ rotation. Keep the bottom above the card,
-  // including after a flat pose or a change in size, without using tracked world axes.
-  function ground(pivot){
-    const h=pivot.userData.cardHalfSize,x=pivot.rotation.x,z=pivot.rotation.z;
-    pivot.position.y=(Math.abs(Math.cos(x)*Math.sin(z))*h.x+Math.abs(Math.cos(x)*Math.cos(z))*h.y+Math.abs(Math.sin(x))*h.z)*pivot.scale.x;
-  }
+  function ground(pivot){const h=pivot.userData.cardHalfSize,x=pivot.rotation.x,z=pivot.rotation.z;pivot.position.y=(Math.abs(Math.cos(x)*Math.sin(z))*h.x+Math.abs(Math.cos(x)*Math.cos(z))*h.y+Math.abs(Math.sin(x))*h.z)*pivot.scale.x;}
   function rotation(p){const k=Math.PI/180;return [p.pitch*k,p.yaw*k,p.roll*k,'YXZ'];}
-  window.Classroom={factory,encode,decode,pose,link,frame,ground,rotation,poses,hasSetup:!!raw&&!invalid,invalid};
-  addEventListener('DOMContentLoaded',()=>{
-    if(raw&&!invalid)document.querySelectorAll('a[href]').forEach(a=>{
-      const original=a.getAttribute('href');if(original.startsWith('#'))return;
-      const url=new URL(original,location.href),base=new URL('./',location.href);
-      if(url.origin===base.origin&&url.pathname.startsWith(base.pathname)&&/\/(?:index.html|scan.html|teacher.html|teacher-mode.html)?$/.test(url.pathname)){url.searchParams.set('setup',raw);a.href=url.href;}
-    });
-    if(invalid){const notice=document.createElement('p');notice.className='setup-warning';notice.setAttribute('role','alert');notice.textContent='This classroom setup link is invalid. Original starting views are being used. Ask your teacher for a new link.';document.body.prepend(notice);}
-  });
+  function apply(pivot,p,percent=p.size){pivot.rotation.set(...rotation(p));pivot.scale.setScalar(p.lengthCm/100/pivot.userData.modelLength*percent/100);ground(pivot);}
+  const params=new URLSearchParams(location.search);let preview=null,invalid=false;
+  if(params.has('preview'))try{preview=decode(params.get('preview'));}catch{invalid=true;}
+  const api=window.Classroom={factory,validate,make,toPoses,encode,decode,saveDocument,saveURL,frame,ground,rotation,apply,poses:{},markerWidthCm:8.001,loaded:false,published:null,isPreview:!!preview,invalid,error:'',legacyLink:params.has('setup')};
+  api.pose=n=>({...factory(n),...api.poses[n]});
+  function install(config){api.config=config;api.poses=toPoses(config);api.markerWidthCm=config.markerWidthCm;}
+  if(preview)install(preview);
+  api.refresh=async()=>{
+    const response=await fetch(new URL('classroom-defaults.json?fresh='+Date.now(),location.href),{cache:'no-store'});if(!response.ok)throw new Error('Saved card settings could not be loaded.');
+    const config=validate(await response.json());api.published=config;api.loaded=true;api.error='';if(!preview)install(config);return config;
+  };
+  api.ready=api.refresh().catch(error=>{api.error=error.message;return null;});
+  api.previewLink=(path,config)=>{const url=new URL(path,location.href);url.searchParams.set('preview',encode(config));return url.href;};
+  api.studentLink=()=>new URL('scan.html?v=shared-life-1',location.href).href;
 })();

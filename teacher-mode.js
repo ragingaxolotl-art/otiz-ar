@@ -1,47 +1,55 @@
-(function(){
-  const $=id=>document.getElementById(id),T=window.AFRAME?.THREE,host=$('pose-preview'),key='otzi-teacher-poses-v1';
-  let settings={},active=6,root,pivot,renderer,scene,camera,request=0;
-  if(Classroom.hasSetup)settings={...Classroom.poses};
-  else if(!Classroom.invalid)try{const saved=localStorage.getItem(key);if(saved)settings=Classroom.decode(saved);}catch{}
-  const pose=()=>settings[active]||Classroom.factory(),clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v)),wrap=v=>((Math.round(v)+180)%360+360)%360-180;
-  ARTIFACTS.forEach(a=>{const o=document.createElement('option');o.value=a.n;o.textContent=`${String(a.n).padStart(2,'0')} · ${a.name}`;$('artifact-select').append(o);});
+(async function(){
+  const $=id=>document.getElementById(id),T=window.AFRAME?.THREE,host=$('pose-preview'),draftKey='otzi-teacher-draft-v2',pendingKey='otzi-teacher-publish-v2';
+  await Classroom.ready;
+  if(!Classroom.loaded){$('save-status').textContent='Saved card settings could not load. Refresh to try again.';$('save-cards').disabled=true;return;}
+  let published=Classroom.published,settings=Classroom.toPoses(published),markerWidthCm=published.markerWidthCm,active=4,root,pivot,renderer,scene,camera,markerMesh,paper,request=0,pending=null,polling=false;
+  const pose=()=>settings[active]||Classroom.factory(active),clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v)),wrap=v=>((Math.round(v)+180)%360+360)%360-180;
+  const current=()=>Classroom.make(settings,markerWidthCm),fingerprint=c=>JSON.stringify([c.markerWidthCm,c.poses]);
+  try{const draft=JSON.parse(localStorage.getItem(draftKey));if(draft?.base===published.revision){const config=Classroom.validate(draft.config);settings=Classroom.toPoses(config);markerWidthCm=config.markerWidthCm;}const saved=localStorage.getItem(pendingKey);if(saved)pending=Classroom.validate(JSON.parse(saved));}catch{}
+  ARTIFACTS.forEach(a=>{const o=document.createElement('option');o.value=a.n;o.textContent=String(a.n).padStart(2,'0')+' · '+a.name;$('artifact-select').append(o);});
   function share(){
-    const url=Classroom.link('scan.html?v=ar-pose-4',settings);$('classroom-link').value=url;$('test-scanner').href=url;$('open-classroom').href=url;$('print-link').textContent=url;
-    try{const qr=qrcode(0,'M');qr.addData(url);qr.make();const svg=qr.createSvgTag({cellSize:4,margin:16,scalable:true});$('classroom-qr').innerHTML=svg;$('print-qr-code').innerHTML=svg;}catch{$('classroom-qr').textContent='QR could not load. Use the classroom link below.';}
-    const count=Object.values(settings).filter(p=>p.pitch||p.yaw||p.roll||p.size!==100).length;$('settings-count').textContent=`13 artifacts · ${count} customized starting ${count===1?'view':'views'}`;
+    const url=Classroom.studentLink();$('classroom-link').value=url;$('open-classroom').href=url;$('print-link').textContent=url;$('test-scanner').href=Classroom.previewLink('scan.html?v=shared-life-1',current());
+    try{const qr=qrcode(0,'M');qr.addData(url);qr.make();const svg=qr.createSvgTag({cellSize:4,margin:16,scalable:true});$('classroom-qr').innerHTML=svg;$('print-qr-code').innerHTML=svg;}catch{$('classroom-qr').textContent='Use the scanner link below.';}
+    const dirty=fingerprint(current())!==fingerprint(published);$('save-cards').disabled=!!pending;$('save-cards').textContent=pending?'Waiting for GitHub…':'Save to cards';$('finish-save').hidden=!pending;if(pending)$('finish-save').href=Classroom.saveURL(pending);
+    $('settings-count').textContent='13 cards · '+(dirty?'unsaved changes':'matches the saved card settings');
+    if(!pending)$('save-status').textContent=dirty?'Unsaved changes. Save to cards to update student devices.':'Saved card settings loaded. All student devices use these after reloading.';
   }
   function sync(){
-    const p=pose();['yaw','pitch','roll','size'].forEach(k=>{$(k).value=p[k];$(k+'-value').textContent=p[k]+(k==='size'?'%':'°');});
-    if(pivot){pivot.rotation.set(...Classroom.rotation(p));pivot.scale.setScalar(p.size/100);Classroom.ground(pivot);}share();
+    const p=pose();['yaw','pitch','roll','size'].forEach(k=>{$(k).value=p[k];$(k+'-value').textContent=p[k]+(k==='size'?'%':'°');});$('length-cm').value=p.lengthCm;$('marker-width').value=markerWidthCm;$('physical-size').textContent=(p.lengthCm*p.size/100).toFixed(1)+' cm at this starting size';
+    const ref=LIFE_SIZES[active];$('dimension-note').replaceChildren();const text=document.createElement('span');text.textContent=(p.lengthCm===ref.cm?ref.kind:'Teacher-defined reference')+' · '+ref.note;$('dimension-note').append(text);if(ref.url){const link=document.createElement('a');link.href=ref.url;link.target='_blank';link.rel='noopener';link.textContent=' Museum source ↗';$('dimension-note').append(link);}
+    if(pivot)Classroom.apply(pivot,p);if(paper){paper.scale.setScalar(markerWidthCm/100);markerMesh.scale.setScalar(markerWidthCm/100);}share();
   }
-  function save(){
-    try{localStorage.setItem(key,Classroom.encode(settings));$('save-status').textContent='Saved here · use Test in AR or scan the updated QR on the student iPad.';}catch{$('save-status').textContent='Browser storage unavailable. Copy the classroom link to keep your settings.';}
-    $('copy-status').textContent='';sync();
-  }
-  function change(k,value){settings[active]={...pose(),[k]:value};save();}
+  function draft(){try{localStorage.setItem(draftKey,JSON.stringify({base:published.revision,config:current()}));}catch{}sync();}
+  function change(k,value){settings[active]={...pose(),[k]:value};draft();}
   ['yaw','pitch','roll','size'].forEach(k=>$(k).oninput=()=>change(k,Number($(k).value)));
+  $('length-cm').onchange=()=>{const value=Number($('length-cm').value);if(!Number.isFinite(value)||value<1||value>500){$('length-cm').value=pose().lengthCm;return;}change('lengthCm',value);};
+  $('marker-width').onchange=()=>{const value=Number($('marker-width').value);if(!Number.isFinite(value)||value<2||value>40){$('marker-width').value=markerWidthCm;return;}markerWidthCm=value;draft();};
+  function fit(){if(!root||!camera)return;const box=new T.Box3().setFromObject(root,true),size=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3()),span=Math.max(size.x,size.y,size.z,markerWidthCm/100*1.8,.12);camera.position.set(center.x+span*.8,center.y+span*.95,center.z+span*1.7);camera.lookAt(center);}
   function select(n){
-    active=n;$('artifact-select').value=String(n);const a=ARTIFACTS.find(a=>a.n===n),id=++request;
-    if(root){scene?.remove(root);root=null;pivot=null;}host.setAttribute('aria-label',`Starting view preview of ${a.name}`);sync();
-    if(!T||!scene)return;$('preview-status').hidden=false;$('preview-status').textContent=`Loading ${a.name.toLowerCase()}…`;
-    function attach(object){if(id!==request)return;root=new T.Group();root.scale.setScalar(.8);pivot=Classroom.frame(T,object);root.add(pivot);root.position.y=.03;scene.add(root);$('preview-status').hidden=true;sync();}
-    if(a.modelUrl)ArtifactModels.load(T,n-1).then(attach).catch(()=>{if(id===request)$('preview-status').textContent='Model could not load. Select it again to retry.';});else attach(ArtifactModels.create(T,n-1));
+    active=n;$('artifact-select').value=String(n);const a=ARTIFACTS.find(a=>a.n===n),id=++request;if(root){scene?.remove(root);root=null;pivot=null;}host.setAttribute('aria-label','Starting view preview of '+a.name);sync();if(!T||!scene)return;
+    $('preview-status').hidden=false;$('preview-status').textContent='Loading '+a.name.toLowerCase()+'…';
+    new T.TextureLoader().load('assets/markers/'+n+'.png',texture=>{if(id!==request){texture.dispose();return;}texture.colorSpace=T.SRGBColorSpace;markerMesh.material.map?.dispose();markerMesh.material.map=texture;markerMesh.material.needsUpdate=true;});
+    function attach(object){if(id!==request)return;root=new T.Group();pivot=Classroom.frame(T,object);root.add(pivot);root.position.y=.003;scene.add(root);$('preview-status').hidden=true;sync();fit();}
+    if(a.modelUrl)ArtifactModels.load(T,n-1).then(attach).catch(()=>{if(id===request){$('preview-status').hidden=false;$('preview-status').textContent='Model could not load. Select it again to retry.';}});else attach(ArtifactModels.create(T,n-1));
   }
   $('artifact-select').onchange=()=>select(Number($('artifact-select').value));$('previous').onclick=()=>select(active===1?ARTIFACTS.length:active-1);$('next').onclick=()=>select(active===ARTIFACTS.length?1:active+1);
-  $('lay-flat').onclick=()=>{settings[active]={...pose(),pitch:-90,roll:0};save();};$('teacher-4x').onclick=()=>change('size',400);
-  $('restore-original').onclick=()=>{delete settings[active];save();};$('print-qr').onclick=()=>window.print();
-  $('copy-link').onclick=async()=>{try{await navigator.clipboard.writeText($('classroom-link').value);$('copy-status').textContent='Classroom link copied.';}catch{$('classroom-link').focus();$('classroom-link').select();$('copy-status').textContent='Select and copy the classroom link above.';}};
+  $('lay-flat').onclick=()=>{settings[active]={...pose(),pitch:-90,roll:0};draft();fit();};$('teacher-life').onclick=()=>{change('size',100);fit();};$('teacher-grow').onclick=()=>change('size',clamp(pose().size*2,10,800));$('fit-preview').onclick=fit;
+  $('restore-original').onclick=()=>{settings[active]=Classroom.factory(active);draft();fit();};$('print-qr').onclick=()=>window.print();
+  $('copy-link').onclick=async()=>{try{await navigator.clipboard.writeText($('classroom-link').value);$('copy-status').textContent='Scanner link copied. This link always uses the saved card settings.';}catch{$('classroom-link').focus();$('classroom-link').select();$('copy-status').textContent='Select and copy the scanner link.';}};
+  async function checkSave(){
+    if(polling||!pending)return;polling=true;try{const config=await Classroom.refresh();if(config.revision===pending.revision&&fingerprint(config)===fingerprint(pending)){const same=fingerprint(current())===fingerprint(pending);published=config;pending=null;try{localStorage.removeItem(pendingKey);if(same)localStorage.removeItem(draftKey);else localStorage.setItem(draftKey,JSON.stringify({base:published.revision,config:current()}));}catch{}share();$('save-status').textContent=same?'Saved to all cards. Students reload the usual scanner link to receive these settings.':'Your previous save is published. Your newer edits still need Save to cards.';}else $('save-status').textContent='Waiting for the GitHub save to publish. Confirm Commit changes on GitHub, then return here.';}catch{$('save-status').textContent='Could not check publication. Your draft is kept here; use Check save status to retry.';}finally{polling=false;}
+  }
+  $('save-cards').onclick=()=>{try{const sequence=Date.now();pending=Classroom.make(settings,markerWidthCm,sequence.toString(36)+'-'+Math.random().toString(36).slice(2,8),sequence);try{localStorage.setItem(pendingKey,JSON.stringify(pending));}catch{}window.open(Classroom.saveURL(pending),'_blank','noopener');share();$('save-status').textContent='Finish saving on GitHub: choose Commit changes, confirm, then return here. Student cards update after publication.';}catch(error){pending=null;share();$('save-status').textContent='Save could not start: '+error.message;}};
+  $('check-save').onclick=checkSave;$('load-saved').onclick=async()=>{try{published=await Classroom.refresh();settings=Classroom.toPoses(published);markerWidthCm=published.markerWidthCm;pending=null;localStorage.removeItem(draftKey);localStorage.removeItem(pendingKey);select(active);}catch{$('save-status').textContent='Saved settings could not load. Check the connection and try again.';}};
+  setInterval(()=>{if(!document.hidden)checkSave();},5000);addEventListener('focus',checkSave);
   try{
-    if(!T)throw new Error('3D library unavailable');renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=T.SRGBColorSpace;host.appendChild(renderer.domElement);scene=new T.Scene();camera=new T.PerspectiveCamera(42,1,.01,100);camera.position.set(2.3,3.4,4.7);camera.lookAt(0,.7,0);
+    if(!T)throw new Error('3D library unavailable');renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=T.SRGBColorSpace;host.appendChild(renderer.domElement);scene=new T.Scene();camera=new T.PerspectiveCamera(42,1,.001,100);
     scene.add(new T.HemisphereLight(0xfff7df,0x566044,2.5));const light=new T.DirectionalLight(0xffe8c0,3);light.position.set(3,5,4);scene.add(light);
-    const card=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({color:0xfafaf6,side:T.DoubleSide}));card.rotation.x=-Math.PI/2;scene.add(card);
-    const square=new T.Mesh(new T.RingGeometry(.27,.44,4,1,Math.PI/4),new T.MeshBasicMaterial({color:0x28332a,side:T.DoubleSide}));square.rotation.x=-Math.PI/2;square.position.y=.002;scene.add(square);
+    paper=new T.Mesh(new T.PlaneGeometry(1.2,1.2),new T.MeshBasicMaterial({color:0xfafaf6,side:T.DoubleSide}));paper.rotation.x=-Math.PI/2;scene.add(paper);markerMesh=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({color:0xffffff,side:T.DoubleSide}));markerMesh.rotation.x=-Math.PI/2;markerMesh.position.y=.001;scene.add(markerMesh);
     const resize=()=>{renderer.setSize(host.clientWidth,host.clientHeight,false);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();};new ResizeObserver(resize).observe(host);resize();renderer.setAnimationLoop(()=>renderer.render(scene,camera));
-  }catch{$('preview-status').textContent='3D preview needs WebGL. You can still set the controls and share the classroom link.';}
-  const points=new Map();let gesture=null;
-  function begin(){const p=[...points.values()];gesture=p.length?{...pose(),x:p[0].x,y:p[0].y,d:p.length===2?Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y):0}:null;}
+  }catch{$('preview-status').textContent='3D preview needs WebGL. You can still edit and save the controls.';}
+  const points=new Map();let gesture=null;function begin(){const p=[...points.values()];gesture=p.length?{...pose(),x:p[0].x,y:p[0].y,d:p.length===2?Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y):0}:null;}
   host.addEventListener('pointerdown',e=>{if(points.size===2)return;e.preventDefault();host.setPointerCapture(e.pointerId);points.set(e.pointerId,{x:e.clientX,y:e.clientY});begin();});
-  host.addEventListener('pointermove',e=>{if(!points.has(e.pointerId)||!gesture)return;e.preventDefault();points.set(e.pointerId,{x:e.clientX,y:e.clientY});const p=[...points.values()];if(p.length===1){settings[active]={...pose(),yaw:wrap(gesture.yaw+(p[0].x-gesture.x)*.5),pitch:wrap(gesture.pitch+(p[0].y-gesture.y)*.4)};save();}else if(gesture.d>0)change('size',clamp(Math.round(gesture.size*Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y)/gesture.d),25,400));});
-  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>host.addEventListener(type,e=>{points.delete(e.pointerId);begin();}));
-  addEventListener('blur',()=>{points.clear();gesture=null;});select(active);
+  host.addEventListener('pointermove',e=>{if(!points.has(e.pointerId)||!gesture)return;e.preventDefault();points.set(e.pointerId,{x:e.clientX,y:e.clientY});const p=[...points.values()];if(p.length===1){settings[active]={...pose(),yaw:wrap(gesture.yaw+(p[0].x-gesture.x)*.5),pitch:wrap(gesture.pitch+(p[0].y-gesture.y)*.4)};draft();}else if(gesture.d>0)change('size',clamp(Math.round(gesture.size*Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y)/gesture.d),10,800));});
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>host.addEventListener(type,e=>{points.delete(e.pointerId);begin();}));addEventListener('blur',()=>{points.clear();gesture=null;});select(active);checkSave();
 })();
