@@ -1,0 +1,11 @@
+collections:
+  teacher_saves:
+    output: false
+exclude:
+  - README.md
+  - tests
+  - outputs
+  - preview.html
+  - tracking-preview.html
+  - teacher-inspect.html
+  - .tools
