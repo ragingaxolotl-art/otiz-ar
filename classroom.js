@@ -38,5 +38,5 @@
   };
   api.ready=api.refresh().catch(error=>{api.error=error.message;return null;});
   api.previewLink=(path,config)=>{const url=new URL(path,location.href);url.searchParams.set('preview',encode(config));return url.href;};
-  api.studentLink=()=>new URL('scan.html?v=shared-life-1',location.href).href;
+  api.studentLink=()=>new URL('scan.html?v=keep-explore-1',location.href).href;
 })();
