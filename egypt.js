@@ -1,6 +1,6 @@
 (function(){
   const dialog=document.getElementById('egypt-dialog');let active=1;
-  function show(n){active=(n+5)%6+1;document.getElementById('egypt-dialog-title').textContent='Artifact '+active;document.getElementById('egypt-dialog-number').textContent='EVIDENCE '+String(active).padStart(2,'0')+' / 06';const photo=document.getElementById('egypt-dialog-photo');photo.src='assets/egypt/reference-'+active+'.jpg';photo.alt='Class reference photograph for artifact '+active;}
+  function show(n){active=(n+5)%6+1;document.getElementById('egypt-dialog-title').textContent='Artifact '+active;document.getElementById('egypt-dialog-number').textContent='PHOTO '+String(active).padStart(2,'0')+' / 06';const photo=document.getElementById('egypt-dialog-photo');photo.src='assets/egypt/reference-'+active+'.jpg';photo.alt='Class reference photograph for artifact '+active;}
   document.querySelectorAll('[data-artifact]').forEach(button=>button.addEventListener('click',()=>{show(Number(button.dataset.artifact));dialog.showModal();}));
   document.getElementById('egypt-close').onclick=()=>dialog.close();
   document.getElementById('egypt-previous').onclick=()=>show(active-1);document.getElementById('egypt-next').onclick=()=>show(active+1);

@@ -7,3 +7,5 @@ Existing Ötzi scanner, teacher, card, asset and shared-setting URLs remain at t
 Egypt currently contains enlarged reference photographs and observation/inference prompts. It has no AR scanner or downloadable 3D models yet. The photographs were extracted from pages 12, 14, 16, 18, 20 and 22 of the teacher-supplied assignment, preserving item numbers. Object names/answers stay hidden so students can make their own inferences. No student answers are collected or stored.
 
 The home and Egypt pages do not load Ötzi's `Classroom`, model or marker libraries; Egypt therefore cannot overwrite the saved Ötzi card poses or selected Capture backgrounds. Future investigations can be added as additional cards on the root home with their own entry pages.
+
+Egypt now serves as a resource index rather than a student activity. Its photo viewer keeps the six assignment numbers; external resource links distinguish the Sketchfab viewer (download unconfirmed) from the Griffith headrest archive.
