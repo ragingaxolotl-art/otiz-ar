@@ -12,9 +12,11 @@
       seen.add(n);poses[n]={pitch,yaw,roll,size,lengthCm};
     });
     const screen=new Map();if(input.screenZooms!==undefined){if(!Array.isArray(input.screenZooms)||input.screenZooms.length>ARTIFACTS.length)throw new Error('Invalid screen zooms');for(const row of input.screenZooms){if(!Array.isArray(row)||row.length!==2||!ARTIFACTS.some(a=>a.n===row[0])||screen.has(row[0])||!Number.isFinite(row[1])||row[1]<10||row[1]>800)throw new Error('Invalid screen starting zoom');screen.set(row[0],row[1]);}}
-    return {version:2,revision:input.revision,sequence:input.sequence,markerWidthCm:input.markerWidthCm,poses:ARTIFACTS.map(a=>{const p=poses[a.n]||factory(a.n);return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];}),screenZooms:ARTIFACTS.map(a=>[a.n,screen.get(a.n)||100])};
+    const backgrounds=input.backgrounds===undefined?[]:input.backgrounds;
+    if(!Array.isArray(backgrounds)||backgrounds.length>30||backgrounds.some(id=>typeof id!=='string'||!/^photo-(0[1-9]|[12][0-9]|30)$/.test(id))||new Set(backgrounds).size!==backgrounds.length)throw new Error('Invalid capture backgrounds');
+    return {backgrounds:[...backgrounds].sort(),version:2,revision:input.revision,sequence:input.sequence,markerWidthCm:input.markerWidthCm,poses:ARTIFACTS.map(a=>{const p=poses[a.n]||factory(a.n);return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];}),screenZooms:ARTIFACTS.map(a=>[a.n,screen.get(a.n)||100])};
   }
-  function make(settings,markerWidthCm,revision='preview',sequence=0){return validate({version:2,revision,sequence,markerWidthCm,poses:ARTIFACTS.map(a=>{const p={...factory(a.n),...settings[a.n]};return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];}),screenZooms:ARTIFACTS.map(a=>[a.n,settings[a.n]?.screenZoom||100])});}
+  function make(settings,markerWidthCm,revision='preview',sequence=0,backgrounds=[]){return validate({version:2,revision,sequence,markerWidthCm,backgrounds,poses:ARTIFACTS.map(a=>{const p={...factory(a.n),...settings[a.n]};return [a.n,p.pitch,p.yaw,p.roll,p.size,p.lengthCm];}),screenZooms:ARTIFACTS.map(a=>[a.n,settings[a.n]?.screenZoom||100])});}
   const toPoses=config=>Object.fromEntries(config.poses.map(([n,pitch,yaw,roll,size,lengthCm])=>[n,{pitch,yaw,roll,size,lengthCm,screenZoom:config.screenZooms?.find(r=>r[0]===n)?.[1]||100}]));
   function encode(config){return '2.'+btoa(JSON.stringify(validate(config))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
   function decode(value){if(!value||value.length>8000||!/^2\.[A-Za-z0-9_-]+$/.test(value))throw new Error('Invalid preview');return validate(JSON.parse(atob(value.slice(2).replace(/-/g,'+').replace(/_/g,'/'))));}
@@ -39,5 +41,5 @@
   };
   api.ready=api.refresh().catch(error=>{api.error=error.message;return null;});
   api.previewLink=(path,config)=>{const url=new URL(path,location.href);url.searchParams.set('preview',encode(config));return url.href;};
-  api.studentLink=()=>new URL('scan.html?v=card-anchor-1',location.href).href;
+  api.studentLink=()=>new URL('scan.html?v=capture-photos-1',location.href).href;
 })();

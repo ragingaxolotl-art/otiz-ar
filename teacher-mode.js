@@ -2,13 +2,38 @@
   const $=id=>document.getElementById(id),T=window.AFRAME?.THREE,host=$('pose-preview'),draftKey='otzi-teacher-draft-v2',pendingKey='otzi-teacher-publish-v2';
   await Classroom.ready;
   if(!Classroom.loaded){$('save-status').textContent='Saved card settings could not load. Refresh to try again.';$('save-cards').disabled=true;return;}
-  let published=Classroom.published,settings=Classroom.toPoses(published),markerWidthCm=published.markerWidthCm,active=4,root,pivot,renderer,scene,camera,markerMesh,paper,request=0,pending=null,polling=false,pendingStage='manual',submitting=false,submittedAt=0,lastSaveError='',confirmedRevision='';
+  let published=Classroom.published,settings=Classroom.toPoses(published),markerWidthCm=published.markerWidthCm,backgrounds=[...published.backgrounds],active=4,root,pivot,renderer,scene,camera,markerMesh,paper,request=0,pending=null,polling=false,pendingStage='manual',submitting=false,submittedAt=0,lastSaveError='',confirmedRevision='';
   const pose=()=>settings[active]||Classroom.factory(active),clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v)),wrap=v=>((Math.round(v)+180)%360+360)%360-180;
-  const current=()=>Classroom.make(settings,markerWidthCm),fingerprint=c=>JSON.stringify([c.markerWidthCm,c.poses,c.screenZooms]);
-  try{const draft=JSON.parse(localStorage.getItem(draftKey));if(draft?.base===published.revision){const config=Classroom.validate(draft.config);settings=Classroom.toPoses(config);markerWidthCm=config.markerWidthCm;}const saved=localStorage.getItem(pendingKey);if(saved){const record=JSON.parse(saved);pending=Classroom.validate(record.config||record);pendingStage=record.stage||'manual';submittedAt=record.submittedAt||0;}}catch{}
+  const current=()=>Classroom.make(settings,markerWidthCm,'preview',0,backgrounds),fingerprint=c=>JSON.stringify([c.markerWidthCm,c.poses,c.screenZooms,c.backgrounds||[]]);
+  try{const draft=JSON.parse(localStorage.getItem(draftKey));if(draft?.base===published.revision){const config=Classroom.validate(draft.config);settings=Classroom.toPoses(config);markerWidthCm=config.markerWidthCm;backgrounds=[...config.backgrounds];}const saved=localStorage.getItem(pendingKey);if(saved){const record=JSON.parse(saved);pending=Classroom.validate(record.config||record);pendingStage=record.stage||'manual';submittedAt=record.submittedAt||0;}}catch{}
   ARTIFACTS.forEach(a=>{const o=document.createElement('option');o.value=a.n;o.textContent=String(a.n).padStart(2,'0')+' · '+a.name;$('artifact-select').append(o);});
+  function syncPhotos(){
+    const selected=new Set(backgrounds);
+    document.querySelectorAll('#background-gallery input').forEach(input=>{input.checked=selected.has(input.value);});
+    $('background-count').textContent=backgrounds.length?backgrounds.length+' selected · each Capture randomly chooses one. Repeats are possible.':'No photos selected · captured objects keep the live camera background.';
+    $('try-background').disabled=!backgrounds.length;
+  }
+  function previewBackground(){
+    const photo=CapturePhotos.pick(backgrounds);if(!photo){$('background-preview').hidden=true;return;}
+    $('background-preview').hidden=false;$('background-preview-image').src=photo.url;$('background-preview-image').alt=photo.title;
+    $('background-preview-caption').textContent=photo.title+' · '+photo.credit;$('background-preview-source').href=photo.source;
+  }
+  CapturePhotos.photos.forEach((photo,index)=>{
+    const card=document.createElement('div');card.className='background-card';
+    const label=document.createElement('label'),input=document.createElement('input'),image=document.createElement('img'),title=document.createElement('span'),category=document.createElement('small'),source=document.createElement('a');
+    input.type='checkbox';input.value=photo.id;input.setAttribute('aria-label','Use photo '+(index+1)+': '+photo.title);
+    image.src=photo.url;image.alt='';image.loading='lazy';image.referrerPolicy='no-referrer';image.addEventListener('error',()=>{image.hidden=true;category.textContent=photo.category+' · image unavailable; check source';});
+    title.textContent=(index+1)+'. '+photo.title;category.textContent=photo.category;
+    input.onchange=()=>{backgrounds=CapturePhotos.photos.filter(p=>p.id===photo.id?input.checked:backgrounds.includes(p.id)).map(p=>p.id);syncPhotos();previewBackground();draft();};
+    label.append(input,image,title,category);source.href=photo.source;source.target='_blank';source.rel='noopener noreferrer';source.textContent='Photo source ↗';card.append(label,source);$('background-gallery').append(card);
+  });
+  $('select-all-backgrounds').onclick=()=>{backgrounds=CapturePhotos.photos.map(p=>p.id);syncPhotos();previewBackground();draft();};
+  $('clear-backgrounds').onclick=()=>{backgrounds=[];syncPhotos();previewBackground();draft();};
+  $('try-background').onclick=previewBackground;
+  $('background-preview-image').addEventListener('error',()=>{$('background-preview-caption').textContent='Photo could not load. The captured view will use a plain background if this happens.';});
+  syncPhotos();
   function share(){
-    const url=Classroom.studentLink();$('classroom-link').value=url;$('open-classroom').href=url;$('print-link').textContent=url;$('test-scanner').href=Classroom.previewLink('scan.html?v=card-anchor-1',current());
+    const url=Classroom.studentLink();$('classroom-link').value=url;$('open-classroom').href=url;$('print-link').textContent=url;$('test-scanner').href=Classroom.previewLink('scan.html?v=capture-photos-1',current());
     try{const qr=qrcode(0,'M');qr.addData(url);qr.make();const svg=qr.createSvgTag({cellSize:4,margin:16,scalable:true});$('classroom-qr').innerHTML=svg;$('print-qr-code').innerHTML=svg;}catch{$('classroom-qr').textContent='Use the scanner link below.';}
     const dirty=fingerprint(current())!==fingerprint(published);$('save-cards').disabled=submitting||(!!pending&&pendingStage==='publishing');$('save-cards').textContent=submitting?'Saving to GitHub…':pending&&pendingStage==='publishing'?'Publishing to cards…':'Save to cards';$('finish-save').hidden=!pending||pendingStage!=='manual';$('clear-pending').hidden=!pending;if(pending)$('finish-save').href=Classroom.saveURL(pending);$('connection-status').textContent=GithubTeacherSave.connected?'GitHub connected for this tab. Save to cards writes directly.':'Connect GitHub to save directly from this button.';$('disconnect-github').hidden=!GithubTeacherSave.connected;
     $('settings-count').textContent='13 cards · '+(dirty?'unsaved changes':'matches the saved card settings');
@@ -46,9 +71,9 @@
   $('clear-pending').onclick=()=>{pending=null;rememberPending();share();$('save-status').textContent='Pending check dismissed. Your draft is kept. This does not undo a GitHub commit already made.';};
   $('save-cards').onclick=async()=>{
     if(submitting)return;if(!GithubTeacherSave.connected){$('github-connection').open=true;$('github-connection').scrollIntoView({block:'center',behavior:'smooth'});$('github-key').focus();$('save-status').textContent='Connect GitHub below, then Save to cards will publish directly. Your edits are still kept here.';return;}
-    submitting=true;lastSaveError='';try{if(!pending||fingerprint(current())!==fingerprint(pending)||pendingStage==='manual'){const sequence=Date.now();pending=Classroom.make(settings,markerWidthCm,sequence.toString(36)+'-'+Math.random().toString(36).slice(2,8),sequence);}pendingStage='retry';rememberPending();share();$('save-status').textContent='Saving directly to GitHub…';await GithubTeacherSave.save(pending);pendingStage='publishing';submittedAt=Date.now();rememberPending();$('save-status').textContent=waitingText();}catch(error){lastSaveError=error.message;$('save-status').textContent=lastSaveError;}finally{submitting=false;const message=$('save-status').textContent;share();$('save-status').textContent=message;}checkSave();
+    submitting=true;lastSaveError='';try{if(!pending||fingerprint(current())!==fingerprint(pending)||pendingStage==='manual'){const sequence=Date.now();pending=Classroom.make(settings,markerWidthCm,sequence.toString(36)+'-'+Math.random().toString(36).slice(2,8),sequence,backgrounds);}pendingStage='retry';rememberPending();share();$('save-status').textContent='Saving directly to GitHub…';await GithubTeacherSave.save(pending);pendingStage='publishing';submittedAt=Date.now();rememberPending();$('save-status').textContent=waitingText();}catch(error){lastSaveError=error.message;$('save-status').textContent=lastSaveError;}finally{submitting=false;const message=$('save-status').textContent;share();$('save-status').textContent=message;}checkSave();
   };
-  $('check-save').onclick=checkSave;$('load-saved').onclick=async()=>{try{published=await Classroom.refresh();settings=Classroom.toPoses(published);markerWidthCm=published.markerWidthCm;pending=null;rememberPending();try{localStorage.removeItem(draftKey);}catch{}select(active);}catch{$('save-status').textContent='Saved settings could not load. Check the connection and try again.';}};
+  $('check-save').onclick=checkSave;$('load-saved').onclick=async()=>{try{published=await Classroom.refresh();settings=Classroom.toPoses(published);markerWidthCm=published.markerWidthCm;backgrounds=[...published.backgrounds];syncPhotos();previewBackground();pending=null;rememberPending();try{localStorage.removeItem(draftKey);}catch{}select(active);}catch{$('save-status').textContent='Saved settings could not load. Check the connection and try again.';}};
   setInterval(()=>{if(!document.hidden)checkSave();},5000);addEventListener('focus',checkSave);
   try{
     if(!T)throw new Error('3D library unavailable');renderer=new T.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=T.SRGBColorSpace;host.appendChild(renderer.domElement);scene=new T.Scene();camera=new T.PerspectiveCamera(42,1,.001,100);

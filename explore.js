@@ -8,11 +8,21 @@
       this.scene.add(new T.HemisphereLight(0xfff7df,0x566044,2.5));const sun=new T.DirectionalLight(0xffe8c0,3);sun.position.set(3,5,4);this.scene.add(sun);
       this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(host);
     }
-    open(source,pose){
-      this.close();const T=this.T;this.host.hidden=false;this.active=true;
+    open(source,pose,photo=null){
+      this.close();const T=this.T;this.host.hidden=false;this.active=true;this.setBackground(photo);
       this.object=source.clone(true);this.object.position.set(0,0,0);this.object.scale.setScalar(1/source.userData.modelLength);
       this.presentation=new T.Group();this.presentation.rotation.x=.55;this.presentation.add(this.object);this.scene.add(this.presentation);
       this.startPose={...pose};this.reset();this.resize();
+    }
+    setBackground(photo){
+      this.backgroundImage?.remove();this.backgroundCredit?.remove();this.backgroundImage=null;this.backgroundCredit=null;
+      this.host.style.backgroundColor=photo?'#263b43':'';
+      if(!photo)return;
+      const image=document.createElement('img'),credit=document.createElement('a');this.backgroundImage=image;this.backgroundCredit=credit;
+      image.className='capture-background-image';image.alt='';image.referrerPolicy='no-referrer';
+      credit.className='capture-background-credit';credit.href=photo.source;credit.target='_blank';credit.rel='noopener noreferrer';credit.textContent=photo.title+' · '+photo.credit+' ↗';
+      image.onerror=()=>{image.hidden=true;credit.textContent='Photo unavailable · '+photo.title+' · source ↗';};
+      this.host.prepend(image);document.body.append(credit);image.src=photo.url;
     }
     resize(){
       const w=this.host.clientWidth,h=this.host.clientHeight;if(!w||!h||!this.active)return;
@@ -26,7 +36,7 @@
     fit(){this.setZoom(1);this.resize();}
     reset(){const p=this.startPose,k=Math.PI/180;this.rotate(p.pitch*k,p.yaw*k,p.roll*k);this.resize();this.setZoom((p.screenZoom||100)/100);}
     render(){if(this.active)this.renderer.render(this.scene,this.camera);}
-    close(){this.active=false;if(this.presentation)this.scene.remove(this.presentation);this.presentation=null;this.object=null;this.host.hidden=true;this.renderer.clear();}
+    close(){this.active=false;this.setBackground(null);if(this.presentation)this.scene.remove(this.presentation);this.presentation=null;this.object=null;this.host.hidden=true;this.renderer.clear();}
     dispose(){this.close();this.observer.disconnect();this.renderer.dispose();}
   }
   window.ArtifactExplorer=ArtifactExplorer;

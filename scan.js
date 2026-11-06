@@ -35,7 +35,7 @@
   function exploreZoom(value){if(!explorer||held===null)return;explorer.setZoom(value);$('explore-zoom').textContent=Math.round(explorer.zoom*100)+'%';}
   function openExplorer(n){
     const source=models.get(n)?.getObject3D('artifact');if(!source)return;
-    try{clearGesture();if(!explorer)explorer=new ArtifactExplorer(AFRAME.THREE,$('explore-host'));const v=view(n),k=180/Math.PI;explorer.open(source,{...Classroom.pose(n),pitch:v.pitch*k,yaw:v.yaw*k,roll:v.roll*k});explorer.startPose=Classroom.pose(n);held=n;
+    try{clearGesture();if(!explorer)explorer=new ArtifactExplorer(AFRAME.THREE,$('explore-host'));const v=view(n),k=180/Math.PI;explorer.open(source,{...Classroom.pose(n),pitch:v.pitch*k,yaw:v.yaw*k,roll:v.roll*k},window.CapturePhotos?.pick(Classroom.config?.backgrounds));explorer.startPose=Classroom.pose(n);held=n;
       models.forEach(el=>el.object3D.visible=false);$('hold-toolbar').hidden=false;$('card-controls').hidden=true;$('explore-controls').hidden=false;$('keep-explore').hidden=true;
       $('gesture-help').textContent='Captured: the object stays on screen even when the card leaves view. Drag to rotate, pinch to zoom, or tap Bigger. Fit object brings the whole object back. Tap Release to scan any card again.';
       $('release-capture').hidden=false;$('setup-summary').textContent='Captured for inspection. Release returns to live AR and lets you scan any card.';$('model-note').textContent='Captured · stays on screen until you tap Release';
