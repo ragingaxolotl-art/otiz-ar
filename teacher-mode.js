@@ -20,12 +20,13 @@
   }
   CapturePhotos.photos.forEach((photo,index)=>{
     const card=document.createElement('div');card.className='background-card';
+    const unavailable=document.createElement('span');unavailable.className='background-unavailable';unavailable.textContent='Photo unavailable · open source';unavailable.hidden=true;
     const label=document.createElement('label'),input=document.createElement('input'),image=document.createElement('img'),title=document.createElement('span'),category=document.createElement('small'),source=document.createElement('a');
     input.type='checkbox';input.value=photo.id;input.setAttribute('aria-label','Use photo '+(index+1)+': '+photo.title);
-    image.src=photo.url;image.alt='';image.loading='lazy';image.referrerPolicy='no-referrer';image.addEventListener('error',()=>{image.hidden=true;category.textContent=photo.category+' · image unavailable; check source';});
+    image.src=photo.url;image.alt='';image.loading='lazy';image.referrerPolicy='no-referrer';image.addEventListener('error',()=>{image.hidden=true;unavailable.hidden=false;category.textContent=photo.category+' · image unavailable; check source';});
     title.textContent=(index+1)+'. '+photo.title;category.textContent=photo.category;
     input.onchange=()=>{backgrounds=CapturePhotos.photos.filter(p=>p.id===photo.id?input.checked:backgrounds.includes(p.id)).map(p=>p.id);syncPhotos();previewBackground();draft();};
-    label.append(input,image,title,category);source.href=photo.source;source.target='_blank';source.rel='noopener noreferrer';source.textContent='Photo source ↗';card.append(label,source);$('background-gallery').append(card);
+    label.append(input,image,unavailable,title,category);source.href=photo.source;source.target='_blank';source.rel='noopener noreferrer';source.textContent='Photo source ↗';card.append(label,source);$('background-gallery').append(card);
   });
   $('select-all-backgrounds').onclick=()=>{backgrounds=CapturePhotos.photos.map(p=>p.id);syncPhotos();previewBackground();draft();};
   $('clear-backgrounds').onclick=()=>{backgrounds=[];syncPhotos();previewBackground();draft();};
