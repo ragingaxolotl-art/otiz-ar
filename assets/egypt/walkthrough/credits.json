@@ -1,0 +1,62 @@
+{
+  "purpose": "Noncommercial classroom walkthrough",
+  "derivativeChanges": "Mesh simplification where needed; texture resizing and JPEG compression. Scene removes a modern human figure, changes lighting, places interactive teaching copies, and scales the tomb. Original model links retained. These changes do not establish archaeological accuracy.",
+  "assets": [
+    {
+      "file": "tomb.glb",
+      "title": "Tutankhamun+tomb+with+sarcophagus",
+      "creator": "akurtulus",
+      "source": "https://skfb.ly/ouRUN",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "file": "painted-chest.glb",
+      "title": "Painted Chest of Tutankhamen",
+      "creator": "danderson4",
+      "source": "https://skfb.ly/6DKOn",
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by-nc/4.0/"
+    },
+    {
+      "file": "mask.glb",
+      "title": "Máscara funeraria de Tutankamón",
+      "creator": "Roberto Domínguez",
+      "source": "https://skfb.ly/pOQFF",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "file": "dagger.glb",
+      "title": "Tutankhamun’s Meteoric Dagger 1323 BCE",
+      "creator": "Tom_Bentkowski",
+      "source": "https://skfb.ly/6xKEs",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "file": "canopic.glb",
+      "title": "Canopic Chest of Tutankhamen",
+      "creator": "danderson4",
+      "source": "https://skfb.ly/6yQVJ",
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by-nc/4.0/"
+    },
+    {
+      "file": "sarcophagus.glb",
+      "title": "Tutankhamun’s sarcophagus replica",
+      "creator": "karaman.arman",
+      "source": "https://skfb.ly/pwqAJ",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "file": "throne.glb",
+      "title": "Reproduction of the Throne of King Tutankhamun",
+      "creator": "pmanuelian",
+      "source": "https://skfb.ly/oKr6q",
+      "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-14",
+  "softwareChecks": {
+    "syntax": "pass: tomb.js and tomb-core.js compiled with Node vm.Script",
+    "controllerLogic": "pass: full standard Pro button map, deadzone, missing-pad defaults, directions, normalized diagonal speed, frame-stall limit, step limit and rising-edge actions",
+    "localAssets": "pass: seven optimized GLBs loaded, six interactive objects ready",
+    "artifactInteraction": "pass: visited, picked up, rotated and returned each of six artifacts through browser UI",
+    "doorway": "pass: keyboard movement crossed antechamber-to-burial floor transition via documented teaching ramp",
+    "collision": "pass: continued movement stopped before the far wall",
+    "stereo": "pass: two eye views rendered and exited to landscape",
+    "motionFallback": "pass: desktop no-motion status displayed",
+    "responsive": "pass: Chrome viewport 844x390; additional narrow IAB portrait view tested, including Cardboard exit",
+    "links": "pass: local page and asset references exist"
+  },
+  "notTested": [
+    "Physical iPhone 14 Safari performance and sensor permission",
+    "Bluetooth pairing and physical Nintendo Switch Pro Controller inputs",
+    "Comfort and optical fit in the actual Cardboard viewer"
+  ],
+  "historicalLimits": [
+    "Source mesh not a measured archaeological scan",
+    "Object coordinates and scale approximate",
+    "Examination copies exposed on modern teaching stands",
+    "Missing shrines and other contents listed in reconstruction audit",
+    "No claim to recover original paint colors from modern wall photographs"
+  ]
+}
