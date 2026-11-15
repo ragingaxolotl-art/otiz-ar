@@ -1,0 +1,17 @@
+{
+  "title": "Ancient Egyptian Jewelry",
+  "displayTitle": "Winged scarab pectoral · artistic reconstruction",
+  "creator": "Mayantique",
+  "creatorUrl": "https://sketchfab.com/mayantique",
+  "url": "https://sketchfab.com/3d-models/ancient-egyptian-jewelry-7fc4496e06b74293b23b24afc28b46e6",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "originalSha256": "1137caf8967d053b90c51b16f53eab4534257bf7ccc047cda314d12045903b15",
+  "original": "scarab-pectoral-original.glb",
+  "webModel": "scarab-pectoral.glb",
+  "triangles": 1016,
+  "provenance": "Creator describes a pectoral from Tutankhamun’s tomb. Artistic reconstruction, not a museum scan; precise catalog match and excavation findspot not established.",
+  "historicalReference": "https://www.globalegyptianmuseum.org/detail.aspx?id=14836",
+  "dateAdded": "2026-11-14",
+  "webBytes": 753464,
+  "derivativeChanges": "Textures resized to a maximum of 1024 pixels and JPEG-compressed. No mesh simplification; 1,016 triangles retained."
+}
