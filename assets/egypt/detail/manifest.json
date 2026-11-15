@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "description": "Original artifact texture detail loaded on approach/pickup. At most one artifact uses these textures at a time. Source credits and licenses remain in walkthrough/credits.json.",
+  "artifacts": {
+    "painted-chest": {
+      "materials": {
+        "TutPaintedChest": {
+          "map": {
+            "url": "assets/egypt/detail/1c3f847d807fe293b1cc.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "dagger": {
+      "materials": {
+        "1001": {
+          "map": {
+            "url": "assets/egypt/detail/63035936960e474bfe13.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "throne": {
+      "materials": {
+        "material-0": {
+          "map": {
+            "url": "assets/egypt/detail/bb891196fe686194cbd0.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "mask": {
+      "materials": {
+        "Material_0.001": {
+          "map": {
+            "url": "assets/egypt/detail/b4d7ec2e1597551f024e.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "canopic": {
+      "materials": {
+        "TutsCanopicChest": {
+          "map": {
+            "url": "assets/egypt/detail/05fd3afe39cb1c60dea3.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "coffin-replica": {
+      "materials": {
+        "main.006": {
+          "map": {
+            "url": "assets/egypt/detail/2c926adcec45bf4ac726.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        },
+        "main.007": {
+          "map": {
+            "url": "assets/egypt/detail/ae60911fbbe6c9e0a041.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "anubis-replica": {
+      "materials": {
+        "main.006": {
+          "map": {
+            "url": "assets/egypt/detail/2c926adcec45bf4ac726.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        },
+        "main.007": {
+          "map": {
+            "url": "assets/egypt/detail/ae60911fbbe6c9e0a041.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "scarab-pectoral": {
+      "materials": {
+        "lambert2SG": {
+          "map": {
+            "url": "assets/egypt/detail/75f859494897d0ac0f87.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "lotus-head": {
+      "materials": {
+        "TutLotus": {
+          "map": {
+            "url": "assets/egypt/detail/3f200446827e7f4429f0.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "mannequin": {
+      "materials": {
+        "material-0": {
+          "map": {
+            "url": "assets/egypt/detail/691d6e8ca47355d14c49.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "funerary-bed": {
+      "materials": {
+        "Gold": {
+          "map": {
+            "url": "assets/egypt/detail/ba859371a22cab996ef3.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    }
+  }
+}

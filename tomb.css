@@ -2,3 +2,5 @@
 
 #exhibit-jump{position:fixed;top:128px;left:18px;pointer-events:auto;font-size:12px}#exhibit-jump label{margin-right:6px}#exhibit-select{font-size:12px;max-width:210px;background:#211b15db}@media(max-width:850px){#exhibit-jump{top:108px;left:12px;font-size:10px}#exhibit-jump label{display:none}#exhibit-select{max-width:155px;padding:6px;min-height:36px;font-size:11px}}
 .controller-map{width:100%;border-collapse:collapse;font-size:14px}.controller-map th,.controller-map td{text-align:left;padding:10px;border-bottom:1px solid #8d784e55}.controller-map th{color:#ebc66a}#rotate-hint{pointer-events:none}#vr-controls{z-index:10}@media(max-width:500px) and (orientation:portrait){#locations{max-width:calc(100vw - 24px);overflow-x:auto}#locations button{white-space:nowrap;padding:8px}#toast{top:210px;max-width:92vw;font-size:12px}#controller-status{max-width:150px}#target-status{bottom:108px}}
+/* Keep collection controls below the movement and detail indicators. */
+#detail-status,#movement-status{margin:3px 0;color:#e3d2b2;max-width:390px}#exhibit-jump{top:154px}@media(max-width:850px){#detail-status,#movement-status{max-width:220px}#exhibit-jump{top:146px}}

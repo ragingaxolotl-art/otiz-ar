@@ -16,7 +16,8 @@
     "crouch": "pass: touch and C lower body; standing blocked at Treasury and Annexe doorways; crouched passage succeeds; standing beneath Treasury lintel is refused",
     "wallCleanup": "Removed 1,833 coincident opaque faces; geometry audit now finds zero duplicate groups",
     "heldObjectDepth": "pass: separate depth pass preserves self-occlusion and keeps held copies visible in front of sarcophagus rim; return restores normal scene layers",
-    "doubleTapForward": "pass: within 300 ms, hold second forward for 2×; release, reverse, precision, blur and pause reset. W browser test moved from x=3.00 to x=1.40 with 80 ms first tap and 800 ms second hold; speed returned to 1× after release. Touch/controller paths share the tested detector."
+    "doubleTapForward": "pass: within 300 ms, hold second forward for 2×; release, reverse, precision, blur and pause reset. W browser test moved from x=3.00 to x=1.40 with 80 ms first tap and 800 ms second hold; speed returned to 1× after release. Touch/controller paths share the tested detector.",
+    "artifactDetail": "pass: source color maps 2048–4096 exported for all eleven exhibits; all eleven browser detail loads succeeded; painted chest pickup rendered with source detail. Manager tests cover UV orientation, material restoration, stale async loads and texture release."
   },
   "notTested": [
     "Physical iPhone 14 Safari performance and sensor permission",
