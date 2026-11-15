@@ -1,6 +1,6 @@
 {
   "purpose": "Noncommercial classroom walkthrough",
-  "derivativeChanges": "Mesh simplification where needed; texture resizing and JPEG compression. Scene removes a modern human figure, changes lighting, places interactive teaching copies, and scales the tomb. Original model links retained. These changes do not establish archaeological accuracy.",
+  "derivativeChanges": "Mesh simplification where needed; texture resizing and JPEG compression. Scene removes a modern human figure, changes lighting, places interactive teaching copies, and scales the tomb. Original model links retained. These changes do not establish archaeological accuracy. Removed 1,833 coincident opaque faces from the tomb mesh, retaining photographed surfaces to prevent flicker. Added modern teaching ramps for floor transitions. Wall textures retain original author-supplied resolution (up to 2048 pixels), recompressed for web use.",
   "assets": [
     {
       "file": "tomb.glb",

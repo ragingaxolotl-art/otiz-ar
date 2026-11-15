@@ -4,15 +4,17 @@
     "syntax": "pass: tomb.js and tomb-core.js compiled with Node vm.Script",
     "controllerLogic": "pass: full standard Pro button map, deadzone, missing-pad defaults, directions, normalized diagonal speed, frame-stall limit, step limit and rising-edge actions",
     "localAssets": "pass: ten optimized GLBs loaded, nine interactive objects ready",
-    "artifactInteraction": "pass: original six artifacts plus three uploads visited, picked up and returned through browser UI",
-    "doorway": "pass: keyboard movement crossed antechamber-to-burial floor transition via documented teaching ramp",
-    "collision": "pass: continued movement stopped before the far wall",
+    "artifactInteraction": "pass: all nine artifact visits and pickup/return after correcting floor-layer selection",
+    "doorway": "pass: standing/crouched burial ramp; crouched Annexe ramp; crouched Treasury doorway",
+    "collision": "pass: swept capsule against actual triangles; thin walls, corners, doorway edges, headroom and diagonal movement covered by tests",
     "stereo": "pass: two eye views rendered and exited to landscape",
     "motionFallback": "pass: desktop no-motion status displayed",
     "responsive": "pass: Chrome viewport 844x390; additional narrow IAB portrait view tested, including Cardboard exit",
     "links": "pass: local page and asset references exist",
     "jump": "pass: touch starts airborne state then lands; Space starts jump; gravity, apex, landing, ceiling limit and Nintendo X mapping covered by logic tests",
-    "coffinDisplay": "added cylinder removed; source display supports rest on floor; replica rotated to fit burial-chamber aisle"
+    "coffinDisplay": "added cylinder removed; source display supports rest on floor; replica rotated to fit burial-chamber aisle",
+    "crouch": "pass: touch and C lower body; standing blocked at Treasury and Annexe doorways; crouched passage succeeds; standing beneath Treasury lintel is refused",
+    "wallCleanup": "Removed 1,833 coincident opaque faces; geometry audit now finds zero duplicate groups"
   },
   "notTested": [
     "Physical iPhone 14 Safari performance and sensor permission",
