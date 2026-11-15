@@ -31,7 +31,7 @@
    }return true;
   }
   function move(start,dx,dz,options={}){
-   const radius=options.radius||.24,height=options.height||1.75,jump=options.jump||0,floorAt=options.floorAt||(()=>start.feet),stepLimit=options.stepLimit??.42,result={...start},count=Math.max(1,Math.ceil(Math.hypot(dx,dz)/(radius*.25)));for(let i=0;i<count;i++)for(const [sx,sz]of [[dx/count,0],[0,dz/count]]){if(!sx&&!sz)continue;const x=result.x+sx,z=result.z+sz,f=floorAt(x,z,result.feet);if(!Number.isFinite(f)||Math.abs(f-result.feet)>stepLimit)continue;if(clear(x,z,f+jump,height,radius)){result.x=x;result.z=z;result.feet=f}}return result;
+   const radius=options.radius||.24,height=options.height||1.75,jump=options.jump||0,floorAt=options.floorAt||(()=>start.feet),stepLimit=options.stepLimit??.42,result={...start},count=Math.max(1,Math.ceil(Math.hypot(dx,dz)/(radius*.25)));for(let i=0;i<count;i++)for(const [sx,sz]of [[dx/count,0],[0,dz/count]]){if(!sx&&!sz)continue;const x=result.x+sx,z=result.z+sz,f=floorAt(x,z,result.feet);let feet=result.feet;if(!options.airborne){if(Number.isFinite(f)&&Math.abs(f-result.feet)<=stepLimit)feet=f;else if(!options.allowDrop||f>result.feet+stepLimit)continue;}if(clear(x,z,feet+jump,height,radius)){result.x=x;result.z=z;result.feet=feet}}return result;
   }
   return{clear,move,triangles:triangles.length};
  }

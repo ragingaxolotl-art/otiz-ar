@@ -12,5 +12,12 @@
   }
   function walkableStep(current,next,maxStep=.42){return Number.isFinite(next)&&Math.abs(next-current)<=maxStep;}
   function jumpStep(state,dt,ceiling=Infinity){const step=Math.min(Math.max(dt,0),.05);let velocity=state.velocity-8*step,height=state.height+state.velocity*step-4*step*step;if(height>ceiling){height=Math.max(0,ceiling);velocity=Math.min(0,velocity)}if(height<=0)return{height:0,velocity:0};return{height,velocity};}
-  return{deadzone,input,movement,rising,forwardSprint,walkableStep,jumpStep};
+  function verticalStep(state,dt,support=-Infinity){
+    const step=Math.min(Math.max(dt,0),.05),feet=state.feet;
+    if(state.grounded&&Number.isFinite(support)&&Math.abs(feet-support)<.07)return{feet:support,velocity:0,grounded:true,origin:support,height:0};
+    const velocity=state.velocity-8*step,next=feet+state.velocity*step-4*step*step,origin=state.origin??feet;
+    if(velocity<=0&&Number.isFinite(support)&&feet>=support-.07&&next<=support)return{feet:support,velocity:0,grounded:true,origin:support,height:0};
+    return{feet:next,velocity,grounded:false,origin,height:Math.max(0,next-origin)};
+  }
+  return{deadzone,input,movement,rising,forwardSprint,walkableStep,jumpStep,verticalStep};
 });

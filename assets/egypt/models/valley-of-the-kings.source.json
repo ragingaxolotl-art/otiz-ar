@@ -1,0 +1,13 @@
+{
+  "title": "Valley of the Kings Tombs – Luxor, Egypt",
+  "creator": "Nate Loper",
+  "source_url": "https://sketchfab.com/3d-models/valley-of-the-kings-tombs-luxor-egypt-f139edcc7b764f6ebde27be77ce53eca",
+  "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "file": "valley-of-the-kings-original.glb",
+  "saved_date": "2026-11-14",
+  "classification": "Location / landscape reference, not an object excavated from Tutankhamun’s tomb.",
+  "provenance_check": "Creator describes the Valley of the Kings and several pharaohs, including Tutankhamun. The description does not establish which individual tomb entrances are visible or identify KV62 within the model.",
+  "status": "Published as outdoor terrain linked to the tomb; approximate KV62 marker, not a surveyed geographic fit.",
+  "placementRecord": "assets/egypt/walkthrough/valley-placement.json"
+}

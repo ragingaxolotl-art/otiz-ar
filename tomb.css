@@ -4,3 +4,9 @@
 .controller-map{width:100%;border-collapse:collapse;font-size:14px}.controller-map th,.controller-map td{text-align:left;padding:10px;border-bottom:1px solid #8d784e55}.controller-map th{color:#ebc66a}#rotate-hint{pointer-events:none}#vr-controls{z-index:10}@media(max-width:500px) and (orientation:portrait){#locations{max-width:calc(100vw - 24px);overflow-x:auto}#locations button{white-space:nowrap;padding:8px}#toast{top:210px;max-width:92vw;font-size:12px}#controller-status{max-width:150px}#target-status{bottom:108px}}
 /* Keep collection controls below the movement and detail indicators. */
 #detail-status,#movement-status{margin:3px 0;color:#e3d2b2;max-width:390px}#exhibit-jump{top:154px}@media(max-width:850px){#detail-status,#movement-status{max-width:220px}#exhibit-jump{top:146px}}
+
+#place-status{color:#edcf82;margin:3px 0;max-width:390px}.outdoors #locations,.outdoors #exhibit-jump{display:none}#exhibit-jump{top:172px}@media(max-width:850px){#place-status{max-width:220px}#exhibit-jump{top:166px}}
+
+@media(max-width:850px) and (orientation:landscape){.outdoors #mode-controls{display:grid;grid-template-columns:repeat(2,max-content);gap:4px}}
+
+.outdoors #asset-status,.outdoors #pick,.outdoors #put-back,.outdoors #spin-left,.outdoors #spin-right{display:none}

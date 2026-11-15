@@ -5,11 +5,11 @@
     "controllerLogic": "pass: full standard Pro button map, deadzone, missing-pad defaults, directions, normalized diagonal speed, frame-stall limit, step limit and rising-edge actions",
     "localAssets": "pass: tomb and all eleven interactive objects loaded; shared replica-parts GLB cached and selected by named component",
     "artifactInteraction": "pass: all eleven artifact visits, pickup, touch rotation and return, including pectoral, coffin and Anubis shrine",
-    "doorway": "pass: standing/crouched burial ramp; crouched Annexe ramp; crouched Treasury doorway",
+    "doorway": "Earlier standing/crouched doorway checks retained; access ramps now optional and off by default.",
     "collision": "pass: swept capsule against actual triangles; thin walls, corners, doorway edges, headroom and diagonal movement covered by tests",
     "stereo": "pass: both eye views show the held pectoral; return to landscape verified",
     "motionFallback": "pass: desktop no-motion status displayed",
-    "responsive": "pass: Chrome viewport 844x390; additional narrow IAB portrait view tested, including Cardboard exit",
+    "responsive": "pass: exact 844×390 iframe viewport verified by DOM dimensions; outdoor controls and overview render within the frame. Physical device remains untested.",
     "links": "pass: local page and asset references exist",
     "jump": "pass: touch starts airborne state then lands; Space starts jump; gravity, apex, landing, ceiling limit and Nintendo X mapping covered by logic tests",
     "coffinDisplay": "Combined souvenir display separated; modern coffin supports trimmed; coffin inside existing stone sarcophagus with head west; Anubis shrine near Treasury entrance, facing west; unidentified chair/vessel not placed",
@@ -17,7 +17,11 @@
     "wallCleanup": "Removed 1,833 coincident opaque faces; geometry audit now finds zero duplicate groups",
     "heldObjectDepth": "pass: separate depth pass preserves self-occlusion and keeps held copies visible in front of sarcophagus rim; return restores normal scene layers",
     "doubleTapForward": "pass: within 300 ms, hold second forward for 2×; release, reverse, precision, blur and pause reset. W browser test moved from x=3.00 to x=1.40 with 80 ms first tap and 800 ms second hold; speed returned to 1× after release. Touch/controller paths share the tested detector.",
-    "artifactDetail": "pass: source color maps 2048–4096 exported for all eleven exhibits; all eleven browser detail loads succeeded; painted chest pickup rendered with source detail. Manager tests cover UV orientation, material restoration, stale async loads and texture release."
+    "artifactDetail": "pass: source color maps 2048–4096 exported for all eleven exhibits; all eleven browser detail loads succeeded; painted chest pickup rendered with source detail. Manager tests cover UV orientation, material restoration, stale async loads and texture release.",
+    "ledgeMovement": "pass: actual un-ramped drop from floor 0.60 to 0.00 at x=-1.75,z=-5.50, followed by jump back to floor 0.60 at x=-0.70; unit tests cover raised landings, drops below launch height, unsupported edges and airborne horizontal clearance.",
+    "outdoorEntry": "pass locally: walk from valley marker into new stair landing, down stairs and along corridor to x=2.45,z=-7.83, floor 0.68; source roof removed only in entry opening, with UV interpolation tested.",
+    "outdoorReturn": "pass: stepping back off the entry landing returns to the valley; outdoor Cardboard two-eye rendering and exit to landscape verified locally.",
+    "entryGeometry": "Runtime roof opening tested for retained outside area/UVs; 16-tread connector tested by walking from top landing through corridor to floor 0.68."
   },
   "notTested": [
     "Physical iPhone 14 Safari performance and sensor permission",
@@ -29,6 +33,7 @@
     "Object coordinates and scale approximate",
     "Examination copies exposed on modern teaching stands",
     "Missing shrines and other contents listed in reconstruction audit",
-    "No claim to recover original paint colors from modern wall photographs"
+    "No claim to recover original paint colors from modern wall photographs",
+    "Valley has no geographic metadata; entrance marker is a visual approximation. Shelter and new entry stair connector are teaching adaptations."
   ]
 }

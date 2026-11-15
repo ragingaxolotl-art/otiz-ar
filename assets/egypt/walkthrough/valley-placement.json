@@ -1,0 +1,31 @@
+{
+  "anchor": [
+    96.39687395095825,
+    199.88553524017334,
+    -75.60246777534485
+  ],
+  "sourceUV": [
+    0.529541015625,
+    0.540283203125
+  ],
+  "registration": "Approximate visual alignment to the KV62/KV9 covered approach west of the rest area, compared with the Theban Mapping Project detail plan. The source terrain has no GPS/geographic metadata; this is not a surveyed fit.",
+  "surveyReference": {
+    "N": 99572.277,
+    "E": 94069.638,
+    "elevation": 170.55,
+    "grid": "TMP local survey grid; reference point printed on KV62 plan, not latitude/longitude."
+  },
+  "sources": [
+    "https://thebanmappingproject.com/sites/default/files/plans/KV62_1.pdf",
+    "https://thebanmappingproject.com/sites/default/files/plans/Valley%20of%20the%20Kings.pdf"
+  ],
+  "creator": "Nate Loper",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "sourceModel": "https://sketchfab.com/3d-models/valley-of-the-kings-tombs-luxor-egypt-f139edcc7b764f6ebde27be77ce53eca",
+  "bytes": 11331960,
+  "triangles": 8192,
+  "texture": [
+    8192,
+    4096
+  ]
+}
