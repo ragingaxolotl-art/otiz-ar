@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),C=require('../tomb-core.js');
+let s=C.forwardSprint(null,1,0);assert.equal(s.multiplier,1);
+s=C.forwardSprint(s,1,100);assert.equal(s.multiplier,1,'Holding is not a second tap');
+s=C.forwardSprint(s,0,120);s=C.forwardSprint(s,1,220);assert.equal(s.multiplier,2);
+s=C.forwardSprint(s,1,3000);assert.equal(s.multiplier,2,'Second press stays fast while held');
+s=C.forwardSprint(s,.3,3010);assert.equal(s.multiplier,2,'Stick hysteresis avoids jitter');
+s=C.forwardSprint(s,0,3020);assert.equal(s.multiplier,1,'Release stops boost');
+s=C.forwardSprint(s,1,3100);assert.equal(s.multiplier,1,'Boost consumes the tap pair');
+s=C.forwardSprint(s,0,3150);s=C.forwardSprint(s,1,3501);assert.equal(s.multiplier,1,'Slow taps do not boost');
+s=C.forwardSprint(s,0,3520);s=C.forwardSprint(s,1,3600);assert.equal(s.multiplier,2);
+s=C.forwardSprint(s,-1,3620);assert.equal(s.multiplier,1,'Reverse cancels boost');
+s=C.forwardSprint(s,1,3650,true);assert.equal(s.multiplier,1,'Precision, pause and blur reset boost');
+s=C.forwardSprint(s,1,3660);assert.equal(s.multiplier,1,'Reset cannot leave a stale double tap');
+const normal=C.movement(1,1,0,.95,.05),fast=C.movement(1,1,0,1.9,.05);assert(Math.abs(Math.hypot(fast.x,fast.z)/Math.hypot(normal.x,normal.z)-2)<1e-9);
