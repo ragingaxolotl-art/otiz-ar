@@ -1,0 +1,64 @@
+{
+  "title": "Separated parts of the modern replica display",
+  "creator": "karaman.arman",
+  "source": "https://sketchfab.com/3d-models/tutankhamuns-sarcophagus-replica-6c235c8f6e4148b1a4f467fbd64b8c7c",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "originalWebModel": "assets/egypt/models/sarcophagus-replica.glb",
+  "derivative": "assets/egypt/walkthrough/replica-parts.glb",
+  "date": "2026-11-15",
+  "changes": "Connected components separated; axes standardized; lower modern coffin supports clipped at source height 0.35 m. Meshes are replicas scanned at the Cairo (Giza) Papyrus center, not scans of excavated objects.",
+  "parts": [
+    {
+      "name": "replica-coffin",
+      "sourceMesh": 0,
+      "sourceComponent": 0,
+      "trianglesBefore": 12498,
+      "trianglesAfter": 9659,
+      "minimum": [
+        -0.21023881912231446,
+        0.35,
+        -0.18048881530761718
+      ],
+      "maximum": [
+        1.2940705871582032,
+        0.9931507110595703,
+        0.3681988525390625
+      ]
+    },
+    {
+      "name": "replica-display",
+      "sourceMesh": 0,
+      "sourceComponent": 1,
+      "trianglesBefore": 8036,
+      "trianglesAfter": 8036,
+      "minimum": [
+        -1.6276515197753907,
+        0.02844895362854004,
+        -0.37814807891845703
+      ],
+      "maximum": [
+        -0.270380859375,
+        0.9811004638671875,
+        0.19779014587402344
+      ]
+    },
+    {
+      "name": "replica-anubis",
+      "sourceMesh": 1,
+      "sourceComponent": 0,
+      "trianglesBefore": 9464,
+      "trianglesAfter": 9464,
+      "minimum": [
+        -1.0921708679199218,
+        0.4541722869873047,
+        -0.26217620849609374
+      ],
+      "maximum": [
+        -0.3973326110839844,
+        1.066670150756836,
+        0.06676183700561523
+      ]
+    }
+  ],
+  "unverified": "replica-display contains a chair and vessel not identified by the creator; retained as reference, excluded from the historical room arrangement."
+}

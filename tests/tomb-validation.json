@@ -1,20 +1,21 @@
 {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "softwareChecks": {
     "syntax": "pass: tomb.js and tomb-core.js compiled with Node vm.Script",
     "controllerLogic": "pass: full standard Pro button map, deadzone, missing-pad defaults, directions, normalized diagonal speed, frame-stall limit, step limit and rising-edge actions",
-    "localAssets": "pass: ten optimized GLBs loaded, nine interactive objects ready",
-    "artifactInteraction": "pass: all nine artifact visits and pickup/return after correcting floor-layer selection",
+    "localAssets": "pass: tomb and all eleven interactive objects loaded; shared replica-parts GLB cached and selected by named component",
+    "artifactInteraction": "pass: all eleven artifact visits, pickup, touch rotation and return, including pectoral, coffin and Anubis shrine",
     "doorway": "pass: standing/crouched burial ramp; crouched Annexe ramp; crouched Treasury doorway",
     "collision": "pass: swept capsule against actual triangles; thin walls, corners, doorway edges, headroom and diagonal movement covered by tests",
-    "stereo": "pass: two eye views rendered and exited to landscape",
+    "stereo": "pass: both eye views show the held pectoral; return to landscape verified",
     "motionFallback": "pass: desktop no-motion status displayed",
     "responsive": "pass: Chrome viewport 844x390; additional narrow IAB portrait view tested, including Cardboard exit",
     "links": "pass: local page and asset references exist",
     "jump": "pass: touch starts airborne state then lands; Space starts jump; gravity, apex, landing, ceiling limit and Nintendo X mapping covered by logic tests",
-    "coffinDisplay": "added cylinder removed; source display supports rest on floor; replica rotated to fit burial-chamber aisle",
+    "coffinDisplay": "Combined souvenir display separated; modern coffin supports trimmed; coffin inside existing stone sarcophagus with head west; Anubis shrine near Treasury entrance, facing west; unidentified chair/vessel not placed",
     "crouch": "pass: touch and C lower body; standing blocked at Treasury and Annexe doorways; crouched passage succeeds; standing beneath Treasury lintel is refused",
-    "wallCleanup": "Removed 1,833 coincident opaque faces; geometry audit now finds zero duplicate groups"
+    "wallCleanup": "Removed 1,833 coincident opaque faces; geometry audit now finds zero duplicate groups",
+    "heldObjectDepth": "pass: separate depth pass preserves self-occlusion and keeps held copies visible in front of sarcophagus rim; return restores normal scene layers"
   },
   "notTested": [
     "Physical iPhone 14 Safari performance and sensor permission",

@@ -1,6 +1,6 @@
 {
   "purpose": "Noncommercial classroom walkthrough",
-  "derivativeChanges": "Mesh simplification where needed; texture resizing and JPEG compression. Scene removes a modern human figure, changes lighting, places interactive teaching copies, and scales the tomb. Original model links retained. These changes do not establish archaeological accuracy. Removed 1,833 coincident opaque faces from the tomb mesh, retaining photographed surfaces to prevent flicker. Added modern teaching ramps for floor transitions. Wall textures retain original author-supplied resolution (up to 2048 pixels), recompressed for web use.",
+  "derivativeChanges": "Mesh simplification where needed; texture resizing and JPEG compression. Scene removes a modern human figure, changes lighting, places interactive teaching copies, and scales the tomb. Original model links retained. These changes do not establish archaeological accuracy. Removed 1,833 coincident opaque faces from the tomb mesh, retaining photographed surfaces to prevent flicker. Added modern teaching ramps for floor transitions. Wall textures retain original author-supplied resolution (up to 2048 pixels), recompressed for web use. Separated the combined karaman.arman souvenir display into named components, standardized their axes, and clipped the lower modern coffin supports. Coffin and Anubis shrine are independently interactive replicas; unidentified chair/vessel geometry is not placed. Pectoral is a labeled teaching copy with unverified findspot.",
   "assets": [
     {
       "file": "tomb.glb",
@@ -48,7 +48,8 @@
       "creator": "karaman.arman",
       "source": "https://skfb.ly/pwqAJ",
       "license": "https://creativecommons.org/licenses/by/4.0/",
-      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/"
+      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/",
+      "role": "Combined source reference; replaced in the walkthrough by the independently placed replica-parts.glb components."
     },
     {
       "file": "throne.glb",
@@ -81,6 +82,28 @@
       "source": "https://sketchfab.com/3d-models/funerary-bed-of-tutankamon-9e5f87248ca940e98c9053c84b8b8b60",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "file": "replica-parts.glb",
+      "title": "Separated coffin and Anubis shrine replicas",
+      "creator": "karaman.arman",
+      "source": "https://skfb.ly/pwqAJ",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/",
+      "nodes": {
+        "replica-coffin": "Placed inside the stone sarcophagus; lower modern supports trimmed.",
+        "replica-anubis": "Placed near the Treasury entrance, facing west, offset for access.",
+        "replica-display": "Unverified connected chair/vessel; reference only, not placed."
+      }
+    },
+    {
+      "file": "../models/scarab-pectoral.glb",
+      "title": "Ancient Egyptian Jewelry · scarab pectoral artistic reconstruction",
+      "creator": "Mayantique",
+      "source": "https://sketchfab.com/3d-models/ancient-egyptian-jewelry-7fc4496e06b74293b23b24afc28b46e6",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "derivativeLicense": "https://creativecommons.org/licenses/by/4.0/",
+      "placement": "Modern teaching stand in Treasury; precise catalog match and findspot unverified."
     }
   ]
 }
