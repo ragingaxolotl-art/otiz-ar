@@ -14,9 +14,7 @@
   for(const el of document.querySelectorAll('[data-view-swap]'))el.textContent=settings.swap?'Eyes swapped · change':'Swap eyes';
   try{localStorage.setItem('tomb-viewer-fit',JSON.stringify(settings))}catch{}
  }
- const eyes=Array.from(document.querySelectorAll('.fit-eye'));
- function edgeKey(el){return eyes.indexOf(el.closest('.fit-eye'))+':'+el.dataset.edge;}
- function edgeStatus(){for(const el of document.querySelectorAll('[data-edge]'))el.setAttribute('aria-pressed',String(checked.has(edgeKey(el))));for(const [index,eye]of eyes.entries()){const count=[1,2,3,4].filter(n=>checked.has(index+':'+n)).length;eye.querySelector('.edge-result').textContent=count+' / 4 buttons tested in this eye';}}
+ function edgeStatus(){for(const el of document.querySelectorAll('[data-edge]'))el.setAttribute('aria-pressed',String(checked.has(el.dataset.edge)));for(const el of document.querySelectorAll('.edge-result'))el.textContent=checked.size+' / 4 controls checked';}
 
  function set(value){const next=root.TombCore.viewerSettings(value);if(next.insetX!==settings.insetX||next.insetY!==settings.insetY){checked.clear();edgeStatus();}settings=next;apply();}
  function setMode(value){mode=value;document.body.dataset.fitMode=mode;test(open?mode:'room');for(const el of document.querySelectorAll('[data-fit-mode]'))el.setAttribute('aria-pressed',String(el.dataset.fitMode===mode));}
@@ -24,7 +22,7 @@
  for(const el of document.querySelectorAll('[data-view-toggle]'))el.onclick=()=>toggle();
  for(const el of document.querySelectorAll('[data-view-adjust]'))el.onclick=()=>set({...settings,[el.dataset.viewAdjust]:settings[el.dataset.viewAdjust]+Number(el.dataset.viewStep)});
  for(const el of document.querySelectorAll('[data-fit-mode]'))el.onclick=()=>{if(!open)toggle(true);setMode(el.dataset.fitMode===mode?'room':el.dataset.fitMode);};
- for(const el of document.querySelectorAll('[data-edge]'))el.onclick=()=>{checked.add(edgeKey(el));edgeStatus();};
+ for(const el of document.querySelectorAll('[data-edge]'))el.onclick=()=>{checked.add(el.dataset.edge);edgeStatus();};
  for(const el of document.querySelectorAll('[data-view-swap]'))el.onclick=()=>set({...settings,swap:!settings.swap});
  for(const el of document.querySelectorAll('[data-view-reset]'))el.onclick=()=>{set(root.TombCore.viewerSettings());checked.clear();edgeStatus();recenter();};
  apply();setMode('room');return{set,toggle,close:()=>toggle(false),get open(){return open;}};

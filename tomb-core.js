@@ -20,6 +20,8 @@
     if(event==='up')return{state:null,action:held?'crouch':state.wasCrouched||crouched?'stand':'jump'};
     return{state,action:null};
   }
+  // Shared inverse mapping: a displayed eye coordinate to the undistorted room/HUD.
+  function viewerSample(x,y,eye,value){const v=viewerSettings(value),sign=eye?1:-1,px=(x+sign*v.horizontal-.5)*2,py=(y+sign*v.balance*.5-.5)*2,r=px*px+py*py,k=1+v.lens*r+.1*v.lens*r*r;return{x:.5+.5*px*k,y:.5+.5*py*k+v.vertical};}
   function viewerSettings(value){const v=value||{},limit=(key,def,min,max)=>Number.isFinite(v[key])?Math.max(min,Math.min(max,v[key])):def;return{lens:limit('lens',.12,0,.3),fov:limit('fov',85,55,110),eye:limit('eye',.064,0,.08),vertical:limit('vertical',0,-.15,.15),horizontal:limit('horizontal',0,-.15,.15),balance:limit('balance',0,-.1,.1),insetX:limit('insetX',.12,.06,.23),insetY:limit('insetY',.08,.04,.25),swap:v.swap===true};}
   function mouseWalk(press,time,holding=false){return press?.button===0&&press.walkEligible&&!holding&&time-press.since>=280?1:0;}
   function mouseTap(press,time){return !!press&&!press.moved&&!press.walked&&time-press.since<280;}
@@ -34,5 +36,5 @@
     if(velocity<=0&&Number.isFinite(support)&&feet>=support-.07&&next<=support)return{feet:support,velocity:0,grounded:true,origin:support,height:0};
     return{feet:next,velocity,grounded:false,origin,height:Math.max(0,next-origin)};
   }
-  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,viewerSettings,mouseWalk,mouseTap,inspectionClearance,inspectionDistance,walkableStep,jumpStep,verticalStep};
+  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,viewerSettings,viewerSample,mouseWalk,mouseTap,inspectionClearance,inspectionDistance,walkableStep,jumpStep,verticalStep};
 });

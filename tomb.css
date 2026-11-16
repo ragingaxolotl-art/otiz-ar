@@ -39,3 +39,10 @@
 #vr-controls [data-fit-mode][aria-pressed="true"]{border-color:#b6ffe6;color:#b6ffe6}
 /* Fitting uses a compact panel below the center target, with scrolling on short screens. */
 [data-fit-mode="dots"] .vr-tuning .view-reset,[data-fit-mode="edges"] .vr-tuning .view-reset{display:none}
+/* The DOM supplies one accessible control set. Its image is composited into both
+   eyes with the room's exact lens/alignment mapping; clicks use the same map. */
+.cardboard #vr-controls{opacity:0;pointer-events:none!important}.cardboard #vr-controls *{pointer-events:none!important}.cardboard #viewport canvas{cursor:none}
+[data-fit-mode="dots"] .vr-eye-panel{margin-bottom:calc(var(--fit-bottom,8vh) + 6px)!important}
+[data-fit-mode="dots"].viewer-tuning .vr-eye-panel{max-height:calc(50vh - var(--fit-bottom,8vh) - 14px)!important}
+[data-fit-mode="dots"] .fit-dots p{display:none}
+[data-fit-mode="dots"] .fit-tabs{margin:3px 0}
