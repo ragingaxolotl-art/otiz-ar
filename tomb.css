@@ -22,3 +22,20 @@
 
 /* Mouse-only actions and live fit controls are available within both eyes. */
 .mouse-actions{display:none;justify-content:center;gap:5px;margin-top:5px;pointer-events:auto}.mouse-input .mouse-actions{display:flex}.mouse-actions button{padding:4px 7px;min-height:27px;font-size:10px;background:#211b15e8}.vr-utility{flex-wrap:wrap}#vr-controls .vr-utility button{min-height:28px}.vr-tuning{display:none;pointer-events:auto}.viewer-tuning .vr-tuning{display:block}.viewer-tuning .vr-target,.viewer-tuning .vr-shortcuts,.viewer-tuning .vr-hints-toggle{display:none!important}.vr-tuning strong{font-size:12px}.vr-tuning p{font-size:10px;margin:3px 0 5px;line-height:1.3}.view-row{display:grid;grid-template-columns:minmax(70px,1fr) 28px 58px 28px;align-items:center;gap:4px;margin:4px 0;text-align:left}.view-row output{text-align:center;font-size:11px;font-variant-numeric:tabular-nums}#vr-controls .view-row button{padding:2px;min-height:27px;font-size:15px}.view-reset{display:flex;justify-content:center;gap:5px;margin-top:6px}#vr-controls .view-reset button{min-height:27px;padding:4px 9px;font-size:10px}.viewer-tuning .vr-eye-panel{max-height:85vh;overflow:auto}.viewer-tuning .vr-utility{margin-top:6px}@media(max-height:430px){.view-row{grid-template-columns:minmax(66px,1fr) 27px 52px 27px;gap:3px;margin:3px 0}.vr-tuning p{font-size:9px}#vr-controls .view-row button{min-height:26px}.mouse-actions{margin-top:3px}.mouse-actions button{min-height:25px}.vr-eye-panel{width:80%}}
+/* The same saved boundary contains the test markers and every in-viewer control. */
+.fit-eye{position:relative;height:100%;display:flex;align-items:flex-end;justify-content:center;min-width:0}
+#vr-controls .vr-eye-panel{width:var(--fit-width,76%);box-sizing:border-box;margin-bottom:calc(var(--fit-bottom,8vh) + 6px);max-width:470px}
+.viewer-tuning #vr-controls .vr-eye-panel{max-height:calc(var(--fit-height,84vh) - 12px)}
+.fit-frame{display:none;position:absolute;width:var(--fit-width,76%);height:var(--fit-height,84vh);bottom:var(--fit-bottom,8vh);box-sizing:border-box;border:1px dashed #8fffe1;border-radius:8px;pointer-events:none}
+.fit-dots,.fit-edges{display:none}.fit-tabs{display:flex;justify-content:center;gap:5px;margin:6px 0}#vr-controls .fit-tabs button,#vr-controls .fit-dots>button{padding:4px 8px;min-height:27px;font-size:10px}
+[data-fit-mode="dots"] .fit-main,[data-fit-mode="edges"] .fit-main{display:none}
+[data-fit-mode="dots"] .fit-dots,[data-fit-mode="edges"] .fit-edges{display:block}
+[data-fit-mode="edges"] .fit-frame{display:block}
+[data-fit-mode="dots"] .vr-eye-panel,[data-fit-mode="edges"] .vr-eye-panel{margin-bottom:calc(var(--fit-bottom,8vh) + 40px)!important}
+[data-fit-mode="dots"].viewer-tuning .vr-eye-panel,[data-fit-mode="edges"].viewer-tuning .vr-eye-panel{max-height:calc(var(--fit-height,84vh) - 80px)!important}
+#vr-controls .edge-check{position:absolute;pointer-events:auto;border-radius:50%;width:29px;height:29px;padding:0;font:bold 13px system-ui;color:#152822;background:#b6ffe6;border:2px solid #f3fff9}
+.edge-1{top:0;left:0}.edge-2{top:0;right:0}.edge-3{bottom:0;right:0}.edge-4{bottom:0;left:0}
+#vr-controls .edge-check[aria-pressed="true"]{background:#43c68c;color:#07180d}.edge-result{display:block;font-size:10px;color:#b6ffe6;margin-top:4px}
+#vr-controls [data-fit-mode][aria-pressed="true"]{border-color:#b6ffe6;color:#b6ffe6}
+/* Fitting uses a compact panel below the center target, with scrolling on short screens. */
+[data-fit-mode="dots"] .vr-tuning .view-reset,[data-fit-mode="edges"] .vr-tuning .view-reset{display:none}

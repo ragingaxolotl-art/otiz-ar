@@ -20,7 +20,7 @@
     if(event==='up')return{state:null,action:held?'crouch':state.wasCrouched||crouched?'stand':'jump'};
     return{state,action:null};
   }
-  function viewerSettings(value){const v=value||{},limit=(key,def,min,max)=>Number.isFinite(v[key])?Math.max(min,Math.min(max,v[key])):def;return{lens:limit('lens',.12,0,.3),fov:limit('fov',85,55,110),eye:limit('eye',.064,0,.08),vertical:limit('vertical',0,-.15,.15),swap:v.swap===true};}
+  function viewerSettings(value){const v=value||{},limit=(key,def,min,max)=>Number.isFinite(v[key])?Math.max(min,Math.min(max,v[key])):def;return{lens:limit('lens',.12,0,.3),fov:limit('fov',85,55,110),eye:limit('eye',.064,0,.08),vertical:limit('vertical',0,-.15,.15),horizontal:limit('horizontal',0,-.15,.15),balance:limit('balance',0,-.1,.1),insetX:limit('insetX',.12,.06,.23),insetY:limit('insetY',.08,.04,.25),swap:v.swap===true};}
   function mouseWalk(press,time,holding=false){return press?.button===0&&press.walkEligible&&!holding&&time-press.since>=280?1:0;}
   function mouseTap(press,time){return !!press&&!press.moved&&!press.walked&&time-press.since<280;}
   function inspectionClearance(frontOffset,near=.08){return Math.max(.12,frontOffset+near+.05);}
