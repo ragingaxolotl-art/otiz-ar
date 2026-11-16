@@ -21,13 +21,15 @@
     "ledgeMovement": "pass: actual un-ramped drop from floor 0.60 to 0.00 at x=-1.75,z=-5.50, followed by jump back to floor 0.60 at x=-0.70; unit tests cover raised landings, drops below launch height, unsupported edges and airborne horizontal clearance.",
     "entryGeometry": "Runtime roof opening tested for retained outside area/UVs; 16-tread connector tested by walking from top landing through corridor to floor 0.68.",
     "stairStart": "pass locally: fresh landscape starts on landing at x=2.45,z=-21.25, floor 4.96; forward 14 seconds reaches corridor x=2.45,z=-7.95, floor 0.70. Return to stairs restores landing; backward movement stops at z=-21.36, floor 4.96. Outdoor UI, script load and automatic transition removed; legacy outside query no longer activates outdoor terrain.",
-    "keyboardMouse": "pass locally: held Space 600 ms remains crouched after release; 60 ms tap stands without jumping; separate 60 ms tap jumps (height 0.75 captured). Left click picked up Painted chest; right click returned it. Drag changed the view. Pointer capture rejected by preview browser and drag fallback displayed. Wheel zoom showed 1.1x; middle click reset view; right click then returned the artifact. Unit tests cover threshold, repeat, stalled frames, cancellation and zoom bounds."
+    "keyboardMouse": "pass locally: held Space 600 ms remains crouched after release; 60 ms tap stands without jumping; separate 60 ms tap jumps (height 0.75 captured). Left click picked up Painted chest; right click returned it. Drag changed the view. Pointer capture rejected by preview browser and drag fallback displayed. Wheel zoom showed 1.1x; middle click reset view; right click then returned the artifact. Unit tests cover threshold, repeat, stalled frames, cancellation and zoom bounds.",
+    "screenControls": "pass locally: H hides HUD, toolbar and action buttons while retaining direction arrows and screen toggles; button restores interface. F enters and exits browser full screen. 844×390 iframe layout checked in both states. A fixture that denies fullscreen permissions displays Home Screen web-app instructions, with close restoring the walkthrough. Keyboard C, Space, E, Q and Z/X badges remain after label updates; E pickup and Q return tested on the mask. Standalone manifest and Apple web-app metadata added; physical Home Screen installation not tested."
   },
   "notTested": [
     "Physical iPhone 14 Safari performance and sensor permission",
     "Bluetooth pairing and physical Nintendo Switch Pro Controller inputs",
     "Comfort and optical fit in the actual Cardboard viewer",
-    "Physical Bluetooth keyboard/mouse on iPhone; captured mouse movement on browsers supporting pointer lock"
+    "Physical Bluetooth keyboard/mouse on iPhone; captured mouse movement on browsers supporting pointer lock",
+    "Physical iPhone Home Screen web-app installation and actual browser-bar behavior"
   ],
   "historicalLimits": [
     "Source mesh not a measured archaeological scan",

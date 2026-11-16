@@ -1,0 +1,11 @@
+{
+  "id": "./tomb.html",
+  "name": "Tut’s Tomb · Field Lab",
+  "short_name": "Tut’s Tomb",
+  "start_url": "./tomb.html?launch=app",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#17120c",
+  "theme_color": "#17120c",
+  "orientation": "landscape"
+}
