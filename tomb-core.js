@@ -20,7 +20,8 @@
     if(event==='up')return{state:null,action:held?'crouch':state.wasCrouched||crouched?'stand':'jump'};
     return{state,action:null};
   }
-  function inspectionDistance(distance,delta){return Math.max(.65,Math.min(1.8,distance+Math.max(-.12,Math.min(.12,delta*.0015))));}
+  function inspectionClearance(frontOffset,near=.08){return Math.max(.12,frontOffset+near+.05);}
+  function inspectionDistance(distance,delta,minDistance=.65,maxDistance=1.8){return Math.max(minDistance,Math.min(Math.max(minDistance,maxDistance),distance+Math.max(-.12,Math.min(.12,delta*.0015))));}
   function walkableStep(current,next,maxStep=.42){return Number.isFinite(next)&&Math.abs(next-current)<=maxStep;}
   function jumpStep(state,dt,ceiling=Infinity){const step=Math.min(Math.max(dt,0),.05);let velocity=state.velocity-8*step,height=state.height+state.velocity*step-4*step*step;if(height>ceiling){height=Math.max(0,ceiling);velocity=Math.min(0,velocity)}if(height<=0)return{height:0,velocity:0};return{height,velocity};}
   function verticalStep(state,dt,support=-Infinity){
@@ -30,5 +31,5 @@
     if(velocity<=0&&Number.isFinite(support)&&feet>=support-.07&&next<=support)return{feet:support,velocity:0,grounded:true,origin:support,height:0};
     return{feet:next,velocity,grounded:false,origin,height:Math.max(0,next-origin)};
   }
-  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,inspectionDistance,walkableStep,jumpStep,verticalStep};
+  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,inspectionClearance,inspectionDistance,walkableStep,jumpStep,verticalStep};
 });

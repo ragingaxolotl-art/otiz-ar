@@ -1,0 +1,4 @@
+const assert=require('node:assert/strict'),C=require('../tomb-core.js');
+for(const depth of [.01,.3,.6]){const limit=C.inspectionClearance(depth,.08);assert(limit-depth>=.13-1e-9,'Nearest surface remains beyond near plane plus clearance');let distance=1.03;for(let i=0;i<30;i++)distance=C.inspectionDistance(distance,-10000,limit);assert.equal(distance,limit);assert(distance>.08);}
+assert(C.inspectionClearance(.01)<.65,'Thin objects can be inspected closer than the old fixed limit');let near=C.inspectionDistance(.2,0,C.inspectionClearance(.45));assert(near>=.58,'Rotating a deep side toward the eye pushes the copy out before it clips');assert.equal(C.inspectionDistance(1.7,10000,.2),1.8);assert.equal(C.inspectionDistance(.1,0,2),2,'An unexpectedly large minimum still wins over the maximum');
+console.log('PASS: surface clearance, close inspection, rotation limits and zoom bounds.');
