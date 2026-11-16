@@ -20,6 +20,9 @@
     if(event==='up')return{state:null,action:held?'crouch':state.wasCrouched||crouched?'stand':'jump'};
     return{state,action:null};
   }
+  function viewerSettings(value){const v=value||{},limit=(key,def,min,max)=>Number.isFinite(v[key])?Math.max(min,Math.min(max,v[key])):def;return{lens:limit('lens',.12,0,.3),fov:limit('fov',85,55,110),eye:limit('eye',.064,0,.08),vertical:limit('vertical',0,-.15,.15),swap:v.swap===true};}
+  function mouseWalk(press,time,holding=false){return press?.button===0&&press.walkEligible&&!holding&&time-press.since>=280?1:0;}
+  function mouseTap(press,time){return !!press&&!press.moved&&!press.walked&&time-press.since<280;}
   function inspectionClearance(frontOffset,near=.08){return Math.max(.12,frontOffset+near+.05);}
   function inspectionDistance(distance,delta,minDistance=.65,maxDistance=1.8){return Math.max(minDistance,Math.min(Math.max(minDistance,maxDistance),distance+Math.max(-.12,Math.min(.12,delta*.0015))));}
   function walkableStep(current,next,maxStep=.42){return Number.isFinite(next)&&Math.abs(next-current)<=maxStep;}
@@ -31,5 +34,5 @@
     if(velocity<=0&&Number.isFinite(support)&&feet>=support-.07&&next<=support)return{feet:support,velocity:0,grounded:true,origin:support,height:0};
     return{feet:next,velocity,grounded:false,origin,height:Math.max(0,next-origin)};
   }
-  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,inspectionClearance,inspectionDistance,walkableStep,jumpStep,verticalStep};
+  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,viewerSettings,mouseWalk,mouseTap,inspectionClearance,inspectionDistance,walkableStep,jumpStep,verticalStep};
 });
