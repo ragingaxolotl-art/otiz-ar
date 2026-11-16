@@ -8,6 +8,6 @@
   "saved_date": "2026-11-14",
   "classification": "Location / landscape reference, not an object excavated from Tutankhamun’s tomb.",
   "provenance_check": "Creator describes the Valley of the Kings and several pharaohs, including Tutankhamun. The description does not establish which individual tomb entrances are visible or identify KV62 within the model.",
-  "status": "Published as outdoor terrain linked to the tomb; approximate KV62 marker, not a surveyed geographic fit.",
+  "status": "Saved as a separate terrain resource; removed from the tomb walkthrough. The walkthrough now starts at the entrance stairs.",
   "placementRecord": "assets/egypt/walkthrough/valley-placement.json"
 }
