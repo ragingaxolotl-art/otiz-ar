@@ -5,3 +5,8 @@
 /* Keep collection controls below the movement and detail indicators. */
 #detail-status,#movement-status{margin:3px 0;color:#e3d2b2;max-width:390px}#exhibit-jump{top:154px}@media(max-width:850px){#detail-status,#movement-status{max-width:220px}#exhibit-jump{top:146px}}
 
+
+/* Leave room for keyboard stance hints and four mouse/view controls. */
+#stance-status{margin:3px 0;color:#edcf82;max-width:390px}#exhibit-jump{top:172px}#mode-controls{display:grid;grid-template-columns:repeat(2,max-content)}@media(max-width:850px){#stance-status{max-width:210px}#exhibit-jump{top:162px}#mode-controls{display:flex;flex-direction:column}}
+@media(pointer:coarse) and (any-pointer:coarse){#mouse-look{display:none}}
+@media(any-pointer:fine){#mouse-look{display:block}}

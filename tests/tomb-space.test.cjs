@@ -1,0 +1,9 @@
+const assert=require('node:assert/strict'),C=require('../tomb-core.js');
+let r=C.spaceGesture(null,'down',0,false);assert.equal(r.action,null,'No jump occurs before a tap can be distinguished from a hold');r=C.spaceGesture(r.state,'tick',279,false);assert.equal(r.action,null);r=C.spaceGesture(r.state,'tick',280,false);assert.equal(r.action,'crouch');r=C.spaceGesture(r.state,'tick',500,true);assert.equal(r.action,null,'A held key does not repeatedly toggle crouch');r=C.spaceGesture(r.state,'up',700,true);assert.equal(r.action,'crouch','Releasing a hold never jumps or stands');assert.equal(r.state,null);
+r=C.spaceGesture(null,'down',1000,true);r=C.spaceGesture(r.state,'up',1050,true);assert.equal(r.action,'stand','First short tap from crouch only asks to stand');r=C.spaceGesture(null,'down',1500,false);r=C.spaceGesture(r.state,'up',1550,false);assert.equal(r.action,'jump','A separate tap while standing can jump');
+r=C.spaceGesture(null,'down',2000,false);r=C.spaceGesture(r.state,'down',2150,false);assert.equal(r.state.since,2000,'Keyboard repeat cannot reset the hold timer');r=C.spaceGesture(r.state,'up',2400,false);assert.equal(r.action,'crouch','A long release crouches even if rendering stalled');
+r=C.spaceGesture(null,'down',3000,false);r=C.spaceGesture(r.state,'cancel',3100,false);r=C.spaceGesture(r.state,'up',3150,false);assert.equal(r.action,null,'Blur or opening controls cancels a pending tap');
+r=C.spaceGesture(null,'down',4000,true);r=C.spaceGesture(r.state,'up',4050,false);assert.equal(r.action,'stand','A press started crouched cannot turn into a jump');
+console.log('PASS: Space holds, stand-before-jump, repeats, stalled frames and cancellation.');
+
+assert.equal(C.inspectionDistance(1.03,-100),.91);assert.equal(C.inspectionDistance(.66,-1000),.65);assert.equal(C.inspectionDistance(1.79,1000),1.8);assert.equal(C.inspectionDistance(1.03,0),1.03);

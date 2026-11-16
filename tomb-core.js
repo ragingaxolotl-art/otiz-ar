@@ -10,6 +10,17 @@
     else if(forward>=.55&&!down){down=true;boost=time-lastTap>=0&&time-lastTap<=300;lastTap=boost?-Infinity:time;}
     return{down,lastTap,boost,multiplier:boost?2:1};
   }
+  // Space distinguishes a crouch hold from a jump tap; release never jumps after a hold.
+  function spaceGesture(state,event,time,crouched,holdMs=280){
+    if(event==='cancel')return{state:null,action:null};
+    if(event==='down')return{state:state?.down?state:{down:true,since:time,held:false,wasCrouched:!!crouched},action:null};
+    if(!state?.down)return{state:null,action:null};
+    const held=state.held||time-state.since>=holdMs;
+    if(event==='tick')return{state:{...state,held},action:held&&!state.held?'crouch':null};
+    if(event==='up')return{state:null,action:held?'crouch':state.wasCrouched||crouched?'stand':'jump'};
+    return{state,action:null};
+  }
+  function inspectionDistance(distance,delta){return Math.max(.65,Math.min(1.8,distance+Math.max(-.12,Math.min(.12,delta*.0015))));}
   function walkableStep(current,next,maxStep=.42){return Number.isFinite(next)&&Math.abs(next-current)<=maxStep;}
   function jumpStep(state,dt,ceiling=Infinity){const step=Math.min(Math.max(dt,0),.05);let velocity=state.velocity-8*step,height=state.height+state.velocity*step-4*step*step;if(height>ceiling){height=Math.max(0,ceiling);velocity=Math.min(0,velocity)}if(height<=0)return{height:0,velocity:0};return{height,velocity};}
   function verticalStep(state,dt,support=-Infinity){
@@ -19,5 +30,5 @@
     if(velocity<=0&&Number.isFinite(support)&&feet>=support-.07&&next<=support)return{feet:support,velocity:0,grounded:true,origin:support,height:0};
     return{feet:next,velocity,grounded:false,origin,height:Math.max(0,next-origin)};
   }
-  return{deadzone,input,movement,rising,forwardSprint,walkableStep,jumpStep,verticalStep};
+  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,inspectionDistance,walkableStep,jumpStep,verticalStep};
 });
