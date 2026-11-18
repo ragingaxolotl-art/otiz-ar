@@ -19,11 +19,12 @@
  function set(value){const next=root.TombCore.viewerSettings(value);if(next.insetX!==settings.insetX||next.insetY!==settings.insetY){checked.clear();edgeStatus();}settings=next;apply();}
  function setMode(value){mode=value;document.body.dataset.fitMode=mode;test(open?mode:'room');for(const el of document.querySelectorAll('[data-fit-mode]'))el.setAttribute('aria-pressed',String(el.dataset.fitMode===mode));}
  function toggle(next=!open){if(next===open)return;open=next;document.body.classList.toggle('viewer-tuning',open);setMode('room');for(const el of document.querySelectorAll('[data-view-toggle]')){el.textContent=open?'Save fit':'View & lenses';el.setAttribute('aria-pressed',String(open));}if(open)pause();else{resume();focus();}}
+ function wheel(e,key){if(!open||e.ctrlKey||e.metaKey)return false;set(root.TombCore.viewerWheel(settings,key||(mode==='dots'?'horizontal':mode==='edges'?'insetX':'fov'),e.deltaY,e.deltaMode,innerHeight));e.preventDefault();return true;}
  for(const el of document.querySelectorAll('[data-view-toggle]'))el.onclick=()=>toggle();
  for(const el of document.querySelectorAll('[data-view-adjust]'))el.onclick=()=>set({...settings,[el.dataset.viewAdjust]:settings[el.dataset.viewAdjust]+Number(el.dataset.viewStep)});
  for(const el of document.querySelectorAll('[data-fit-mode]'))el.onclick=()=>{if(!open)toggle(true);setMode(el.dataset.fitMode===mode?'room':el.dataset.fitMode);};
  for(const el of document.querySelectorAll('[data-edge]'))el.onclick=()=>{checked.add(el.dataset.edge);edgeStatus();};
  for(const el of document.querySelectorAll('[data-view-swap]'))el.onclick=()=>set({...settings,swap:!settings.swap});
  for(const el of document.querySelectorAll('[data-view-reset]'))el.onclick=()=>{set(root.TombCore.viewerSettings());checked.clear();edgeStatus();recenter();};
- apply();setMode('room');return{set,toggle,close:()=>toggle(false),get open(){return open;}};
+ apply();setMode('room');return{set,toggle,wheel,close:()=>toggle(false),get open(){return open;}};
 }};})(window);

@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-16",
+  "date": "2026-11-18",
   "softwareChecks": {
     "syntax": "pass: tomb.js and tomb-core.js compiled with Node vm.Script",
     "controllerLogic": "pass: full standard Pro button map, deadzone, missing-pad defaults, directions, normalized diagonal speed, frame-stall limit, step limit and rising-edge actions",
@@ -29,7 +29,10 @@
     "viewerAdjustments": "pass locally: fit panel opens in both Cardboard eyes without exiting viewer. Lens .13, FOV 90 degrees, 62 mm eye spacing and -1 percent image position updated both panels; eye swap, Done and reset tested. A newly loaded 844\u00d7390 iframe restored saved settings, and controls fit. Reset restored .12/85/64 mm/0 percent. Opening adjustments pauses movement. Mouse-only Crouch/Stand tested; Back/Jump buttons share existing tested movement/jump handlers.",
     "stereoRendering": "pass: corrected double application of device pixel ratio to render-target viewports/scissors. Both eyes now display matching room contents in the browser. Regression test checks complete non-overlapping physical rectangles at standard, doubled and odd target sizes.",
     "viewerAlignment": "pass: target source is (0.5, 0.5), at the center of each eye at neutral settings. Shared HUD, scene and target use the same lens and screen-alignment transform. One DOM control set supplies both eye images; a corrected cursor and hit mapping allow either displayed copy to operate the same action. Centered dots remain unobscured in 844\u00d7390 layout. Physical fusion/comfort still needs the real viewer.",
-    "peripheralControls": "pass: one shared four-control edge test, shown binocularly through the same lens mapping as the room. In the 844\u00d7390 browser fixture, clicks alternated between left/right rendered images and completed the same 4/4 counter; no per-eye task. Tested right-image spacing adjustment, mouse hit mapping and saved settings. Old independent-eye counters removed."
+    "peripheralControls": "pass: one shared four-control edge test, shown binocularly through the same lens mapping as the room. In the 844\u00d7390 browser fixture, clicks alternated between left/right rendered images and completed the same 4/4 counter; no per-eye task. Tested right-image spacing adjustment, mouse hit mapping and saved settings. Old independent-eye counters removed.",
+    "wheelViewAdjustments": "pass: wheel over the dots changed saved shared screen spacing from 0.0 to 0.8 percent; wheel over Lens correction changed .12 to .10. Empty-handed landscape scroll reported 69 degrees from 72; artifact scroll reported 1.1x zoom instead. Unit tests cover pixel/line/page units, direction, settings isolation, invalid input and limits. Viewer menu scrolling remains available in panel gaps when it overflows.",
+    "rightClickJump": "pass: short right-click in Burial chamber set the Jump control to airborne and position readout captured height .07. While holding Funerary mask, right-click returned it. Pure action tests cover short tap versus drag/hold, and holding exclusion. Existing headroom and crouch rules still apply.",
+    "viewerMenuReadability": "pass locally at 844x390: increased viewer text and adjustment buttons, opaque dark background, minimum 2x HUD raster density (up to 3x) and UI colors composited after room exposure. Controls highlight using the same corrected cursor/hit mapping. Simplified dot-mode footer keeps center dots unobscured. View & lenses, Align dots, Save fit and hover/scroll adjustment routes tested in the browser."
   },
   "notTested": [
     "Physical iPhone 14 Safari performance and sensor permission",

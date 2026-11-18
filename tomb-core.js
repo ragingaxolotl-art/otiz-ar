@@ -22,6 +22,9 @@
   }
   // Shared inverse mapping: a displayed eye coordinate to the undistorted room/HUD.
   function viewerSample(x,y,eye,value){const v=viewerSettings(value),sign=eye?1:-1,px=(x+sign*v.horizontal-.5)*2,py=(y+sign*v.balance*.5-.5)*2,r=px*px+py*py,k=1+v.lens*r+.1*v.lens*r*r;return{x:.5+.5*px*k,y:.5+.5*py*k+v.vertical};}
+  function wheelPixels(delta,mode=0,height=800){if(!Number.isFinite(delta))return 0;return delta*(mode===1?16:mode===2?height:1);}
+  function viewerWheel(value,key,delta,mode=0,height=800){const v=viewerSettings(value),rates={fov:.025,lens:.0001,eye:.00002,vertical:.00005,horizontal:-.00005,balance:.00005,insetX:.0001,insetY:.0001};if(!(key in rates))return v;const pixels=Math.max(-240,Math.min(240,wheelPixels(delta,mode,height)));return viewerSettings({...v,[key]:v[key]+pixels*rates[key]});}
+  function mouseReleaseAction(press,time,holding=false){if(!mouseTap(press,time))return null;return press.button===0?'pick':press.button===2?(holding?'return':'jump'):null;}
   function viewerSettings(value){const v=value||{},limit=(key,def,min,max)=>Number.isFinite(v[key])?Math.max(min,Math.min(max,v[key])):def;return{lens:limit('lens',.12,0,.3),fov:limit('fov',85,55,110),eye:limit('eye',.064,0,.08),vertical:limit('vertical',0,-.15,.15),horizontal:limit('horizontal',0,-.15,.15),balance:limit('balance',0,-.1,.1),insetX:limit('insetX',.12,.06,.23),insetY:limit('insetY',.08,.04,.25),swap:v.swap===true};}
   function mouseWalk(press,time,holding=false){return press?.button===0&&press.walkEligible&&!holding&&time-press.since>=280?1:0;}
   function mouseTap(press,time){return !!press&&!press.moved&&!press.walked&&time-press.since<280;}
@@ -36,5 +39,5 @@
     if(velocity<=0&&Number.isFinite(support)&&feet>=support-.07&&next<=support)return{feet:support,velocity:0,grounded:true,origin:support,height:0};
     return{feet:next,velocity,grounded:false,origin,height:Math.max(0,next-origin)};
   }
-  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,viewerSettings,viewerSample,mouseWalk,mouseTap,inspectionClearance,inspectionDistance,walkableStep,jumpStep,verticalStep};
+  return{deadzone,input,movement,rising,forwardSprint,spaceGesture,viewerSettings,viewerSample,wheelPixels,viewerWheel,mouseWalk,mouseTap,mouseReleaseAction,inspectionClearance,inspectionDistance,walkableStep,jumpStep,verticalStep};
 });

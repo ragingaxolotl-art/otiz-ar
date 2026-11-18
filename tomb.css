@@ -46,3 +46,21 @@
 [data-fit-mode="dots"].viewer-tuning .vr-eye-panel{max-height:calc(50vh - var(--fit-bottom,8vh) - 14px)!important}
 [data-fit-mode="dots"] .fit-dots p{display:none}
 [data-fit-mode="dots"] .fit-tabs{margin:3px 0}
+/* Readable viewer controls: opaque contrast, larger type and broad targets. */
+#vr-controls .vr-eye-panel{background:#101510;color:#fff6dd;text-shadow:none;border-color:#b8c5b0;font-size:12px;padding:7px 9px}
+#vr-controls .vr-tuning strong{font-size:13px}#vr-controls .vr-tuning p{font-size:11px;line-height:1.35}
+#vr-controls .vr-utility{gap:6px}#vr-controls .vr-utility button,#vr-controls .fit-tabs button,#vr-controls .view-reset button,#vr-controls .mouse-actions button{min-height:34px;padding:6px 9px;font-size:12px;background:#202a21;color:#fff6dd;border-color:#9cab92}
+#vr-controls .view-row{grid-template-columns:minmax(70px,1fr) 36px 62px 36px;gap:5px;margin:5px 0;font-size:12px}
+#vr-controls .view-row output{font-size:12px}#vr-controls .view-row button{min-height:34px;font-size:18px;background:#202a21;color:#fff6dd;border-color:#9cab92}
+#vr-controls .edge-check{width:38px;height:38px;font-size:16px}#vr-controls .edge-result{font-size:12px}
+#vr-controls .fit-main>p{display:none}.dot-room{display:none}
+/* Keep the center dots unobscured; the wheel also adjusts spacing over the dots. */
+[data-fit-mode="dots"] #vr-controls .fit-tabs,[data-fit-mode="dots"] #vr-controls .vr-utility button:not([data-view-toggle]):not(.dot-room){display:none}
+[data-fit-mode="dots"] #vr-controls .dot-room{display:block}
+[data-fit-mode="dots"] #vr-controls .vr-eye-panel{padding:4px 8px}
+[data-fit-mode="dots"] #vr-controls .view-row{margin:2px 0;gap:4px;grid-template-columns:minmax(70px,1fr) 34px 60px 34px}
+[data-fit-mode="dots"] #vr-controls .vr-tuning strong{font-size:12px}
+[data-fit-mode="dots"] #vr-controls .vr-utility{margin-top:3px}
+#vr-controls .vr-shortcuts{font-size:11px}.mouse-input #vr-controls #vr-recenter{display:none}
+#vr-controls .fit-edges>p{display:none}
+#vr-controls button.vr-hover{background:#38553d!important;border-color:#d9ffe0!important}
