@@ -1,0 +1,79 @@
+{
+  "title": "Girl explorer",
+  "author": "EvgeshQa",
+  "source": "https://skfb.ly/o8NMr",
+  "canonicalSource": "https://sketchfab.com/3d-models/girl-explorer-42a16fe957fc48949fc2e79825eeb608",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "intendedUse": "Active first-person player body and height reference in the tomb.",
+  "localOriginalFile": "girl-explorer-original.glb",
+  "file": "girl-explorer-body.glb",
+  "originalSha256": "9f73ae6a49699c3eded5703b69cf8da21dfd1c03bc57a90fc027a719fc85417d",
+  "originalInspection": {
+    "fileBytes": 12967032,
+    "rigged": true,
+    "skinCount": 1,
+    "exportedJointCount": 1051,
+    "jointsWithNonzeroVertexWeights": 159,
+    "skinnedMeshCount": 15,
+    "vertexCount": 101396,
+    "triangleCount": 193165,
+    "animations": [
+      {
+        "name": "rig|Attack",
+        "durationSeconds": 0.958
+      },
+      {
+        "name": "rig|Idel",
+        "durationSeconds": 0.667
+      },
+      {
+        "name": "rig|Jump",
+        "durationSeconds": 0.958
+      },
+      {
+        "name": "rig|Run",
+        "durationSeconds": 0.667
+      },
+      {
+        "name": "rig|Walk",
+        "durationSeconds": 1.0
+      }
+    ],
+    "crouchIncluded": false,
+    "status": "Original retained locally without modification. Source export has detached/skewed parts caused by inconsistent body bind scale.",
+    "preview": "../../tmp/explorer-source-preview.jpg"
+  },
+  "playerBodyInspection": {
+    "fileBytes": 892972,
+    "meshCount": 3,
+    "triangleCount": 8724,
+    "jointCount": 71,
+    "nodeCount": 110,
+    "animationChannels": {
+      "rig|Idel": 139,
+      "rig|Jump": 152,
+      "rig|Run": 123,
+      "rig|Walk": 140
+    }
+  },
+  "integration": {
+    "active": true,
+    "firstPerson": true,
+    "referenceHeightMeters": 1.75,
+    "eyeHeightMeters": 1.6,
+    "crouchedHeightMeters": 1.0,
+    "physics": "Existing player collider and movement retained; model is a visual body reference.",
+    "camera": "Fixed first-person eye position; native body animation does not bob the camera.",
+    "headAndHairVisible": false,
+    "clothingAdaptation": "Source shirt and pouch retained. Detached accessory/clothing meshes omitted; brown vertex colors approximate shorts and boots on the coherent body mesh.",
+    "crouch": "No source crouch clip; body reference lowers/compresses with the existing crouch height.",
+    "modifications": [
+      "Corrected shared head bind-scale on body vertices",
+      "Cropped unseen malformed neck tip",
+      "Retained body, shirt and pouch; excluded head, hair and damaged accessories",
+      "Added brown shorts/boot coloring",
+      "Retained native idle, walk, run and jump clips; removed attack and unused rig nodes"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-19",
+  "fixture": "tests/tomb-player.html",
+  "sampledPoses": [
+    {
+      "mode": "Walk",
+      "clip": "rig|Walk",
+      "ready": true,
+      "feet": 0,
+      "soleError": 0,
+      "width": 0.54,
+      "depth": 0.5,
+      "height": 1.295
+    },
+    {
+      "mode": "Run",
+      "clip": "rig|Run",
+      "ready": true,
+      "feet": 0,
+      "soleError": 0,
+      "width": 0.436,
+      "depth": 1.46,
+      "height": 1.148
+    },
+    {
+      "mode": "Jump",
+      "clip": "rig|Jump",
+      "ready": true,
+      "feet": 0.802,
+      "soleError": 0,
+      "width": 0.538,
+      "depth": 0.926,
+      "height": 1.145
+    },
+    {
+      "mode": "Crouch",
+      "clip": "rig|Idel",
+      "ready": true,
+      "feet": 0,
+      "soleError": 0,
+      "width": 0.681,
+      "depth": 0.568,
+      "height": 0.789
+    },
+    {
+      "mode": "Idle",
+      "clip": "rig|Idel",
+      "ready": true,
+      "feet": 0,
+      "soleError": 0,
+      "width": 0.688,
+      "depth": 0.558,
+      "height": 1.408
+    }
+  ],
+  "walkAdditionalSoleError": -0.0045,
+  "tomb": {
+    "modelLoaded": true,
+    "artifactPickupAndWheel": true,
+    "rightClickReturn": true,
+    "crouchAndStand": true,
+    "bodyVisibilityToggle": true,
+    "cardboardBothEyes": true
+  },
+  "physicalPhoneTested": false
+}
