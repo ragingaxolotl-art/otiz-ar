@@ -1,6 +1,6 @@
 (async function(){
   const $=id=>document.getElementById(id);let scene,active=null,started=false,revealed=false;const visible=new Set();let timeout;
-  let explorer=null,held=null;
+  let explorer=null,held=null,detail=null;
   await Classroom.ready;
   $('retry-saved').onclick=()=>location.reload();
   if(!Classroom.loaded&&!Classroom.isPreview){$('setup-info').textContent='Saved card settings could not load. Check your connection and retry.';$('start-camera').disabled=true;$('retry-saved').hidden=false;return;}
@@ -33,16 +33,25 @@
     v.framed=true;models.get(n).setAttribute('data-ar-framed','true');if(active===n){$('scale').value=String(v.size);$('scale-value').textContent=Math.round(v.size*100)+'%';$('dimension-value').textContent=(Classroom.pose(n).lengthCm*v.size).toFixed(1)+' cm';cardStatus();}
   }
   function exploreZoom(value){if(!explorer||held===null)return;explorer.setZoom(value);$('explore-zoom').textContent=Math.round(explorer.zoom*100)+'%';}
+  function artifactCredit(n){
+    const host=$('artifact-credit');if(!host)return;host.replaceChildren();host.hidden=n===null;if(n===null)return;const a=ARTIFACTS[n-1];
+    const source=document.createElement('a'),license=document.createElement('a');source.href=a.source;source.textContent=a.name+' — '+a.creator;license.href=a.license;license.textContent=a.license.includes('by-nc-sa')?'CC BY-NC-SA 4.0':a.license.includes('by-nc')?'CC BY-NC 4.0':'CC BY 4.0';
+    for(const link of [source,license]){link.target='_blank';link.rel='noopener noreferrer';}host.append(source,document.createTextNode(' · '),license,document.createElement('br'),document.createTextNode(a.fact+' Mobile derivative: textures resized/compressed; some meshes simplified. Reference size is approximate.'));
+  }
   function openExplorer(n){
     const source=models.get(n)?.getObject3D('artifact');if(!source)return;
     try{clearGesture();if(!explorer)explorer=new ArtifactExplorer(AFRAME.THREE,$('explore-host'));const v=view(n),k=180/Math.PI;explorer.open(source,{...Classroom.pose(n),pitch:v.pitch*k,yaw:v.yaw*k,roll:v.roll*k},window.CapturePhotos?.pick(Classroom.config?.backgrounds));explorer.startPose=Classroom.pose(n);held=n;
       models.forEach(el=>el.object3D.visible=false);$('hold-toolbar').hidden=false;$('card-controls').hidden=true;$('explore-controls').hidden=false;$('keep-explore').hidden=true;
       $('gesture-help').textContent='Captured: the object stays on screen even when the card leaves view. Drag to rotate, pinch to zoom, or tap Bigger. Fit object brings the whole object back. Tap Release to scan any card again.';
       $('release-capture').hidden=false;$('setup-summary').textContent='Captured for inspection. Release returns to live AR and lets you scan any card.';$('model-note').textContent='Captured · stays on screen until you tap Release';
+      if(window.AR_COLLECTION?.id==='egypt'&&window.ArtifactDetail){
+        if(!detail)detail=ArtifactDetail.create({manifest:fetch('assets/egypt/detail/manifest.json').then(r=>{if(!r.ok)throw Error('Detail unavailable');return r.json();}),loadTexture:url=>new AFRAME.THREE.TextureLoader().loadAsync(url),anisotropy:Math.min(4,explorer.renderer.capabilities.getMaxAnisotropy())});
+        detail.focus({def:ARTIFACTS[n-1],group:explorer.object}).then(()=>{if(held===n)explorer.render();});
+      }
       exploreZoom(explorer.zoom);syncCardPicker();cardStatus();setPanel(true);
     }catch(error){closeExplorer();$('status').textContent='Capture could not open. Live AR is still available.';console.error(error);}
   }
-  function closeExplorer(){clearGesture();explorer?.close();held=null;models.forEach(el=>el.object3D.visible=true);$('card-controls').hidden=false;$('explore-controls').hidden=true;$('keep-explore').hidden=false;$('release-capture').hidden=true;captureReady();}
+  function closeExplorer(){detail?.clear();clearGesture();explorer?.close();held=null;models.forEach(el=>el.object3D.visible=true);$('card-controls').hidden=false;$('explore-controls').hidden=true;$('keep-explore').hidden=false;$('release-capture').hidden=true;captureReady();}
   $('release-capture').onclick=()=>{
     if(held===null)return;
     const n=held;closeExplorer();setPanel(true);
@@ -74,7 +83,7 @@
   }
   surface.addEventListener('pointerdown',e=>{
     if(active===null||!started||(e.pointerType==='mouse'&&e.button!==0)||pointers.size===2)return;
-    e.preventDefault();surface.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});beginGesture();
+    e.preventDefault();try{surface.setPointerCapture?.(e.pointerId);}catch{}pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});beginGesture();
   });
   surface.addEventListener('pointermove',e=>{
     if(!pointers.has(e.pointerId)||!gesture||gesture.n!==active)return;
@@ -116,10 +125,10 @@
   function error(message){clearTimeout(timeout);$('loading-cover').hidden=true;$('start-screen').hidden=false;$('error').textContent=message;$('error').hidden=false;$('start-camera').textContent='Try camera again';$('start-camera').disabled=false;if(scene){stop();location.hash='camera-error';}}
   function stop(){closeExplorer();explorer?.dispose();explorer=null;visible.clear();active=null;$('hold-toolbar').hidden=true;document.querySelectorAll('video').forEach(v=>v.srcObject?.getTracks().forEach(t=>t.stop()));if(scene){scene.remove();scene=null;}models.clear();started=false;}
   function showArtifact(n){
-    clearGesture();active=n;syncCardPicker();['scale','size-4x','size-life','size-grow','reset-model','fit-ar'].forEach(id=>$(id).disabled=n===null);revealed=false;$('target-guide').hidden=n!==null;
+    clearGesture();active=n;artifactCredit(n);syncCardPicker();['scale','size-4x','size-life','size-grow','reset-model','fit-ar'].forEach(id=>$(id).disabled=n===null);revealed=false;$('target-guide').hidden=n!==null;
     if(n===null){$('status').textContent='Live AR · point at any floor card';$('artifact-label').textContent='YOUR INVESTIGATION';$('artifact-name').textContent='Find the next clue';$('artifact-description').textContent='Point at a card to see its object. Tap Capture while it is visible to keep it on screen for inspection.';$('reveal').hidden=true;$('artifact-question').hidden=true;return;}
     $('scale').value=String(view(n).size);$('scale-value').textContent=Math.round(view(n).size*100)+'%';
-    const p=Classroom.pose(n);$('dimension-value').textContent=(p.lengthCm*view(n).size).toFixed(1)+' cm';$('setup-summary').textContent='Live objects start fitted to their own cards. Capture opens a large inspection view. Life size and Reset use your teacher’s saved dimensions.';$('gesture-help').textContent='Live AR: keep the square visible and move around the object. Tap Capture to keep it on screen while you inspect it. Drag to rotate and pinch to zoom. Release returns to live tracking for any card.';$('model-note').textContent='Live card tracking · Capture keeps the object on screen · Release resumes scanning';
+    const p=Classroom.pose(n);$('dimension-value').textContent=(p.lengthCm*view(n).size).toFixed(1)+' cm';$('setup-summary').textContent=window.AR_COLLECTION?.id==='egypt'?'Objects start fitted to their cards. Reference size uses an approximate teaching span, not a verified museum measurement. Capture opens a larger inspection view.':'Live objects start fitted to their own cards. Capture opens a large inspection view. Life size and Reset use your teacher’s saved dimensions.';$('gesture-help').textContent='Live AR: keep the square visible and move around the object. Tap Capture to keep it on screen while you inspect it. Drag to rotate and pinch to zoom. Release returns to live tracking for any card.';$('model-note').textContent='Live card tracking · Capture keeps the object on screen · Release resumes scanning';
     const a=ARTIFACTS[n-1];cardStatus();$('artifact-label').textContent=`EVIDENCE ${String(n).padStart(2,'0')}`;$('artifact-name').textContent=`Artifact ${n}`;$('artifact-description').textContent='Look at its shape and construction. What could it be made from? What might it do?';$('artifact-question').textContent=a.question;$('artifact-question').hidden=false;$('reveal').hidden=false;$('reveal').textContent='Reveal artifact name';
   }
   $('reveal').onclick=()=>{if(active===null)return;revealed=!revealed;const a=ARTIFACTS[active-1];$('artifact-name').textContent=revealed?a.name:`Artifact ${active}`;$('artifact-description').textContent=revealed?a.fact:'Look at its shape and construction. What could it be made from? What might it do?';$('reveal').textContent=revealed?'Hide artifact name':'Reveal artifact name';};

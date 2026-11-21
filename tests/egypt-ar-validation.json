@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-21",
+  "checks": {
+    "unitRegressions": 15,
+    "markerDetection": "All 12 existing barcode marker images recognized through AR.js image input",
+    "models": "12 loaded through shared ArtifactModels loader; two replica components isolated",
+    "capture": "All 12 persist after marker loss; zoom, Fit and Release pass",
+    "settings": "Egypt JSON independent of Otzi shared saves; 8.001 and 16.002 cm selections pass",
+    "print": "3 four-card sheets or 12 single-card pages; all marker PNGs load; card contents fit at desktop layout",
+    "responsive": "390 x 844 phone viewport: no horizontal overflow; scanner size selection visible",
+    "qr": "Bundled qrcode library renders scanner QR with matching paper-size query"
+  },
+  "limits": [
+    "No physical iPhone camera, printer or paper marker test in this session"
+  ],
+  "testFixture": "Run python3 scripts/make-egypt-ar-preview.py, serve the repository and open tests/egypt-ar.html."
+}

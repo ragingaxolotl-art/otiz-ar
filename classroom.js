@@ -36,10 +36,10 @@
   function install(config){api.config=config;api.poses=toPoses(config);api.markerWidthCm=config.markerWidthCm;}
   if(preview)install(preview);
   api.refresh=async()=>{
-    const response=await fetch(new URL('classroom-defaults.json?fresh='+Date.now(),location.href),{cache:'no-store'});if(!response.ok)throw new Error('Saved card settings could not be loaded.');
+    const response=await fetch(new URL((window.AR_COLLECTION?.settingsUrl||'classroom-defaults.json')+'?fresh='+Date.now(),location.href),{cache:'no-store'});if(!response.ok)throw new Error('Saved card settings could not be loaded.');
     const config=validate(await response.json());api.published=config;api.loaded=true;api.error='';if(!preview)install(config);return config;
   };
   api.ready=api.refresh().catch(error=>{api.error=error.message;return null;});
   api.previewLink=(path,config)=>{const url=new URL(path,location.href);url.searchParams.set('preview',encode(config));return url.href;};
-  api.studentLink=()=>new URL('scan.html?v=capture-photos-1',location.href).href;
+  api.studentLink=()=>new URL(window.AR_COLLECTION?.scannerUrl||'scan.html?v=capture-photos-1',location.href).href;
 })();

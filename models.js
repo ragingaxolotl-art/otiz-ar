@@ -133,7 +133,9 @@
       request.catch(()=>files.delete(artifact.modelUrl));
     }
     return files.get(artifact.modelUrl).then(gltf=>{
-      const g=new T.Group(),content=gltf.scene.clone(true);
+      const source=artifact.modelNode?gltf.scene.getObjectByName(artifact.modelNode):gltf.scene;
+      if(!source)throw new Error('Missing model component: '+artifact.modelNode);
+      const g=new T.Group(),content=source.clone(true);
       content.rotation.set(...(artifact.modelRotation||[0,0,0]));content.updateMatrixWorld(true);
       const bounds=new T.Box3().setFromObject(content,true),size=bounds.getSize(new T.Vector3()),center=bounds.getCenter(new T.Vector3());
       if(!Number.isFinite(size.y)||Math.max(size.x,size.y,size.z)<=0)throw new Error('The model contains no visible geometry.');
