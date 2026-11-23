@@ -1,0 +1,12 @@
+{
+  "title": "Outer coffin \u00b7 AI reconstruction",
+  "sourceUpload": "Meshy_AI_Golden_Pharaoh_of_Egy_1123190427_texture.glb",
+  "creator": "Teacher-supplied Meshy AI",
+  "originalSha256": "824c3568de9506b7cd62f5695008ebe144c17349a7f8d207905fdd8d414df8e9",
+  "webBytes": 2856244,
+  "triangles": 59998,
+  "derivativeChanges": "Geometry simplified, textures reduced to 1024 px; original preserved locally.",
+  "nestingStatus": "Closed single mesh. No lid separation or fitted interior yet; requires the second coffin model.",
+  "licenseStatus": "No Creative Commons license asserted.",
+  "dateAdded": "2026-11-23"
+}
