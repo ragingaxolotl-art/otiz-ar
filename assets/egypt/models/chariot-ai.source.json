@@ -1,0 +1,15 @@
+{
+  "title": "Chariot · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Twin_Thrones_1123183354_texture.glb",
+  "originalFile": "chariot-ai-original.glb",
+  "originalSha256": "e765c5417d49ec28c26c1c07394764e7b70915343ef9062b2468f98a7715e789",
+  "webModel": "chariot-ai.glb",
+  "webBytes": 2099164,
+  "triangles": 39978,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction of a two-wheeled chariot. It includes generated display supports; details, proportions and the exact ancient catalog match are unverified.",
+  "placement": "Modern antechamber examination copy; exact excavation position not claimed.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color up to 2048 px available on approach/capture."
+}

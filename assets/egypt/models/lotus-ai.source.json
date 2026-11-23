@@ -1,0 +1,16 @@
+{
+  "title": "Alabaster perfume jars · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Golden_Egyptian_Lotus_1123180004_texture.glb",
+  "originalSha256": "27e49ada3102288e417a0570d89b2ca0699d889573dca47f2c10d6c101135667",
+  "originalFile": "lotus-ai-original.glb",
+  "webModel": "lotus-ai.glb",
+  "webBytes": 2167752,
+  "triangles": 39998,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction labeled alabaster perfume jars. The model currently has a gold-toned texture rather than translucent calcite/alabaster. Its exact ancient catalog match remains unverified.",
+  "historicalComparison": "https://www-griffith.ames.ox.ac.uk/gri/carter/210-c210-1.html",
+  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach."
+}

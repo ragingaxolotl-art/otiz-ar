@@ -1,0 +1,15 @@
+{
+  "title": "Sandals · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Golden_Echoes_1123181024_texture.glb",
+  "originalSha256": "42c11dd61290c6603522a9e41c9e7c5aaac4d043f6cdb867b8877f8da178b755",
+  "originalFile": "sandals-ai-original.glb",
+  "webModel": "sandals-ai.glb",
+  "webBytes": 1499940,
+  "triangles": 29998,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction of a pair of sandals. Shape, surface material and exact match to an ancient Tutankhamun object are unverified.",
+  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Mesh simplified; embedded textures reduced to 1024 px. Source color detail available at up to 4096 px on approach/capture."
+}

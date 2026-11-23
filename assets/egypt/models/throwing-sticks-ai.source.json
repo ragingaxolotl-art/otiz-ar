@@ -1,0 +1,16 @@
+{
+  "title": "Throwing sticks · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Ancient_Curved_Horns_1123174502_texture.glb",
+  "originalSha256": "3ca8d2aa8df343514926e64754e3094904b0b90c471c43289424fe157c76e141",
+  "originalFile": "throwing-sticks-ai-original.glb",
+  "webModel": "throwing-sticks-ai.glb",
+  "webBytes": 1755204,
+  "triangles": 24998,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction of a decorated pair of throwing sticks. Compare the side profile and curvature with the assignment photograph; archaeological accuracy is not established.",
+  "historicalComparison": "https://www.griffith.ox.ac.uk/gri/carter/050-099.html",
+  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach."
+}

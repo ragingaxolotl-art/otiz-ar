@@ -146,6 +146,138 @@ window.ARTIFACTS=[
     "creator": "Ioan / ioancroitor",
     "source": "https://sketchfab.com/3d-models/funerary-bed-of-tutankamon-9e5f87248ca940e98c9053c84b8b8b60",
     "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "n": 13,
+    "id": "fan-ai",
+    "name": "Fan · AI reconstruction",
+    "modelUrl": "assets/egypt/models/fan-ai.glb",
+    "lengthCm": 105,
+    "fact": "Teacher-supplied AI reconstruction based on the decorated fan reference. It is not a scan of the ancient object; exact dimensions, side thickness and catalog match remain unverified.",
+    "question": "What might the decorated fan reveal about royalty and ceremony?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/fan-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 14,
+    "id": "throwing-sticks-ai",
+    "name": "Throwing sticks · AI reconstruction",
+    "modelUrl": "assets/egypt/models/throwing-sticks-ai.glb",
+    "lengthCm": 60,
+    "fact": "Teacher-supplied AI reconstruction of a decorated pair of throwing sticks. Compare the side profile and curvature with the assignment photograph; archaeological accuracy is not established.",
+    "question": "How could the shapes help these objects function when thrown?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/throwing-sticks-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 15,
+    "id": "lotus-ai",
+    "name": "Alabaster perfume jars · AI reconstruction",
+    "modelUrl": "assets/egypt/models/lotus-ai.glb",
+    "lengthCm": 70,
+    "fact": "Teacher-supplied AI reconstruction labeled alabaster perfume jars. The model currently has a gold-toned texture rather than translucent calcite/alabaster. Its exact ancient catalog match remains unverified.",
+    "question": "How might the shape and decoration relate to storing scented oils?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/lotus-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 16,
+    "id": "headrest-ai",
+    "name": "Ivory headrest · AI reconstruction",
+    "modelUrl": "assets/egypt/models/headrest-ai.glb",
+    "lengthCm": 30,
+    "fact": "Teacher-supplied AI reconstruction of the ivory headrest reference with a supporting central figure and two reclining lions. This is distinct from the Harvard headrest. Details and proportions are approximate.",
+    "question": "Which parts support the head, and which appear symbolic?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/headrest-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 17,
+    "id": "sandals-ai",
+    "name": "Sandals · AI reconstruction",
+    "modelUrl": "assets/egypt/models/sandals-ai.glb",
+    "lengthCm": 40,
+    "fact": "Teacher-supplied AI reconstruction of a pair of sandals. Shape, surface material and exact match to an ancient Tutankhamun object are unverified.",
+    "question": "What clues suggest how these were worn and what they were made from?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/sandals-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 18,
+    "id": "model-boat-ai",
+    "name": "Model boat · AI reconstruction",
+    "modelUrl": "assets/egypt/models/model-boat-ai.glb",
+    "lengthCm": 80,
+    "fact": "Teacher-supplied AI reconstruction. Model boat teaching copy; precise ancient object and findspot unverified.",
+    "question": "Which features suggest this object’s function, and what details need checking against an original?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/model-boat-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 19,
+    "id": "model-boat-2-ai",
+    "name": "Model boat 2 · AI reconstruction",
+    "modelUrl": "assets/egypt/models/model-boat-2-ai.glb",
+    "lengthCm": 80,
+    "fact": "Teacher-supplied AI reconstruction. Second model boat teaching copy; retained separately from the first boat. Precise ancient object and findspot unverified.",
+    "question": "Which features suggest this object’s function, and what details need checking against an original?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/model-boat-2-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 20,
+    "id": "crook-staff-ai",
+    "name": "Crook and staff · AI reconstruction",
+    "modelUrl": "assets/egypt/models/crook-staff-ai.glb",
+    "lengthCm": 100,
+    "fact": "Teacher-supplied AI reconstruction. Teacher identifies this pair as a crook and staff. Shapes and exact ancient catalog match are unverified.",
+    "question": "Which features suggest this object’s function, and what details need checking against an original?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/crook-staff-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 21,
+    "id": "pectoral-ai",
+    "name": "Scarab pectoral · AI reconstruction (alternate)",
+    "modelUrl": "assets/egypt/models/pectoral-ai.glb",
+    "lengthCm": 30,
+    "fact": "Teacher-supplied AI reconstruction. Additional scarab pectoral teaching copy. The earlier licensed pectoral remains available for comparison; precise ancient identification and findspot are unverified.",
+    "question": "Which features suggest this object’s function, and what details need checking against an original?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/pectoral-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 22,
+    "id": "shield-ai",
+    "name": "Shield · AI reconstruction",
+    "modelUrl": "assets/egypt/models/shield-ai.glb",
+    "lengthCm": 85,
+    "fact": "Teacher-supplied AI reconstruction. Shield teaching copy; decoration, dimensions and exact ancient catalog match are unverified.",
+    "question": "Which features suggest this object’s function, and what details need checking against an original?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/shield-ai.source.json",
+    "license": null
+  },
+  {
+    "n": 23,
+    "id": "chariot-ai",
+    "name": "Chariot · AI reconstruction",
+    "modelUrl": "assets/egypt/models/chariot-ai.glb",
+    "lengthCm": 130,
+    "fact": "Teacher-supplied AI reconstruction of a two-wheeled chariot. It includes generated display supports; details, proportions and the exact ancient catalog match are unverified.",
+    "question": "Which parts relate to movement, carrying a rider, or displaying royal identity?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/chariot-ai.source.json",
+    "license": null
   }
 ];
 window.LIFE_SIZES=Object.fromEntries(ARTIFACTS.map(a=>[a.n,{cm:a.lengthCm,kind:"Approximate teaching span",note:"Display scale only; not a verified museum measurement."}]));

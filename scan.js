@@ -35,7 +35,7 @@
   function exploreZoom(value){if(!explorer||held===null)return;explorer.setZoom(value);$('explore-zoom').textContent=Math.round(explorer.zoom*100)+'%';}
   function artifactCredit(n){
     const host=$('artifact-credit');if(!host)return;host.replaceChildren();host.hidden=n===null;if(n===null)return;const a=ARTIFACTS[n-1];
-    const source=document.createElement('a'),license=document.createElement('a');source.href=a.source;source.textContent=a.name+' — '+a.creator;license.href=a.license;license.textContent=a.license.includes('by-nc-sa')?'CC BY-NC-SA 4.0':a.license.includes('by-nc')?'CC BY-NC 4.0':'CC BY 4.0';
+    const source=document.createElement('a'),license=document.createElement('a');source.href=a.source;source.textContent=a.name+' — '+a.creator;license.href=a.license||a.source;license.textContent=!a.license?'Teacher-supplied AI model':a.license.includes('by-nc-sa')?'CC BY-NC-SA 4.0':a.license.includes('by-nc')?'CC BY-NC 4.0':'CC BY 4.0';
     for(const link of [source,license]){link.target='_blank';link.rel='noopener noreferrer';}host.append(source,document.createTextNode(' · '),license,document.createElement('br'),document.createTextNode(a.fact+' Mobile derivative: textures resized/compressed; some meshes simplified. Reference size is approximate.'));
   }
   function openExplorer(n){

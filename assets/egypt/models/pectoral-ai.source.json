@@ -1,0 +1,15 @@
+{
+  "title": "Scarab pectoral · AI reconstruction (alternate)",
+  "sourceUpload": "Meshy_AI_Ancient_Egyptian_Scar_1123181912_texture.glb",
+  "originalFile": "pectoral-ai-original.glb",
+  "originalSha256": "679d7184bc6b18d6ca77a2ae7c38ee87e99ec8b112edf3324814eaf6a44e620c",
+  "webModel": "pectoral-ai.glb",
+  "webBytes": 2279576,
+  "triangles": 40000,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction. Additional scarab pectoral teaching copy. The earlier licensed pectoral remains available for comparison; precise ancient identification and findspot are unverified.",
+  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+}

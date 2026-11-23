@@ -1,0 +1,15 @@
+{
+  "title": "Model boat 2 · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Ancient_Egyptian_Mode_1123181801_texture.glb",
+  "originalFile": "model-boat-2-ai-original.glb",
+  "originalSha256": "82334b44eb33400d32560aa29f5e32c292028e1526c2253c8cea7b5081e120c6",
+  "webModel": "model-boat-2-ai.glb",
+  "webBytes": 2200084,
+  "triangles": 39994,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction. Second model boat teaching copy; retained separately from the first boat. Precise ancient object and findspot unverified.",
+  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+}

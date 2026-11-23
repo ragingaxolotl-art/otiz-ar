@@ -1,0 +1,15 @@
+{
+  "title": "Model boat · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Sacred_Nile_Barque_1123181545_texture.glb",
+  "originalFile": "model-boat-ai-original.glb",
+  "originalSha256": "3eaa3305f491c66909c60b62eeef16fa15ddb7d535c7159cafdb9521d7ffe306",
+  "webModel": "model-boat-ai.glb",
+  "webBytes": 2165184,
+  "triangles": 40000,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction. Model boat teaching copy; precise ancient object and findspot unverified.",
+  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+}

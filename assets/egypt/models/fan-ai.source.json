@@ -1,0 +1,16 @@
+{
+  "title": "Fan · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Pharaohs_Sacred_Scept_1123174953_texture.glb",
+  "originalSha256": "07427d3d9574754539989c59ef43fbbe22f45337d1129be828332539824f2693",
+  "originalFile": "fan-ai-original.glb",
+  "webModel": "fan-ai.glb",
+  "webBytes": 2615048,
+  "triangles": 40000,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction based on the decorated fan reference. It is not a scan of the ancient object; exact dimensions, side thickness and catalog match remain unverified.",
+  "historicalComparison": "https://www-griffith.ames.ox.ac.uk/gri/carter/200-249.html",
+  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach."
+}

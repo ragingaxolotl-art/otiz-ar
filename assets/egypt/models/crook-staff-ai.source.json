@@ -1,0 +1,15 @@
+{
+  "title": "Crook and staff · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Pharaoh_s_Shepherd_Cr_1123181242_texture (1).glb",
+  "originalFile": "crook-staff-ai-original.glb",
+  "originalSha256": "4ffb00ec5c8e43d12a50f9bcb82cbfeb133751c8c8d6f209b91809a1dee5c257",
+  "webModel": "crook-staff-ai.glb",
+  "webBytes": 1923044,
+  "triangles": 39998,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction. Teacher identifies this pair as a crook and staff. Shapes and exact ancient catalog match are unverified.",
+  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+}

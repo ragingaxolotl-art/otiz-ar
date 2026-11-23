@@ -136,6 +136,127 @@
           }
         }
       }
+    },
+    "fan-ai": {
+      "materials": {
+        "fan-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/fan-ai-color.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "throwing-sticks-ai": {
+      "materials": {
+        "throwing-sticks-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/throwing-sticks-ai-color.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "lotus-ai": {
+      "materials": {
+        "lotus-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/lotus-ai-color.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "headrest-ai": {
+      "materials": {
+        "headrest-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/headrest-ai-color.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "sandals-ai": {
+      "materials": {
+        "sandals-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/sandals-ai-color.jpg",
+            "width": 4096,
+            "height": 4096
+          }
+        }
+      }
+    },
+    "model-boat-ai": {
+      "materials": {
+        "model-boat-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/model-boat-ai-color.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "model-boat-2-ai": {
+      "materials": {
+        "model-boat-2-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/model-boat-2-ai-color.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "crook-staff-ai": {
+      "materials": {
+        "crook-staff-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/crook-staff-ai-color.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "pectoral-ai": {
+      "materials": {
+        "pectoral-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/pectoral-ai-color.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "shield-ai": {
+      "materials": {
+        "shield-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/shield-ai-color.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "chariot-ai": {
+      "materials": {
+        "chariot-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/chariot-ai-color.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
     }
   }
 }
