@@ -1,41 +1,44 @@
-/* Egypt has its own catalog and settings; card numbers do not match the six assignment photos. */
+/* Egypt has its own catalog and settings; cards 1–6 match the six assignment photos. */
 window.AR_COLLECTION={id:"egypt",settingsUrl:"egypt-ar-settings.json",scannerUrl:"egypt-scan.html",sizeLabel:"Reference size"};
 window.ARTIFACTS=[
   {
     "n": 1,
-    "id": "mask",
-    "name": "Funerary mask",
-    "modelUrl": "assets/egypt/walkthrough/mask.glb",
-    "lengthCm": 54,
-    "fact": "The original covered Tutankhamun’s head inside his coffins. This is a digital teaching reconstruction.",
-    "question": "Which details might communicate royal identity?",
-    "creator": "Roberto Domínguez",
-    "source": "https://skfb.ly/pOQFF",
-    "license": "https://creativecommons.org/licenses/by/4.0/"
+    "id": "throwing-sticks-ai",
+    "name": "Throwing sticks · AI reconstruction",
+    "modelUrl": "assets/egypt/models/throwing-sticks-ai.glb",
+    "lengthCm": 60,
+    "fact": "Teacher-supplied AI reconstruction of a decorated pair of throwing sticks. Compare the side profile and curvature with the assignment photograph; archaeological accuracy is not established.",
+    "question": "How could the shapes help these objects function when thrown?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/throwing-sticks-ai.source.json",
+    "license": null,
+    "assignmentPhoto": 1
   },
   {
     "n": 2,
-    "id": "painted-chest",
-    "name": "Painted chest",
-    "modelUrl": "assets/egypt/walkthrough/painted-chest.glb",
-    "lengthCm": 61,
-    "fact": "A model made from photographs of Tutankhamun’s painted chest. Examine its decorated surfaces.",
-    "question": "What can the painted scenes tell you about how the king was represented?",
-    "creator": "danderson4",
-    "source": "https://skfb.ly/6DKOn",
-    "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+    "id": "headrest-ai",
+    "name": "Ivory headrest · AI reconstruction",
+    "modelUrl": "assets/egypt/models/headrest-ai.glb",
+    "lengthCm": 30,
+    "fact": "Teacher-supplied AI reconstruction of the ivory headrest reference with a supporting central figure and two reclining lions. This is distinct from the Harvard headrest. Details and proportions are approximate.",
+    "question": "Which parts support the head, and which appear symbolic?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/headrest-ai.source.json",
+    "license": null,
+    "assignmentPhoto": 2
   },
   {
     "n": 3,
-    "id": "dagger",
-    "name": "Meteoric dagger",
-    "modelUrl": "assets/egypt/walkthrough/dagger.glb",
-    "lengthCm": 34.5,
-    "fact": "A reconstruction of Tutankhamun’s meteoric iron dagger. The original was inside the mummy wrappings.",
-    "question": "What clues distinguish the blade from the handle?",
-    "creator": "Tom_Bentkowski",
-    "source": "https://skfb.ly/6xKEs",
-    "license": "https://creativecommons.org/licenses/by/4.0/"
+    "id": "fan-ai",
+    "name": "Fan · AI reconstruction",
+    "modelUrl": "assets/egypt/models/fan-ai.glb",
+    "lengthCm": 105,
+    "fact": "Teacher-supplied AI reconstruction based on the decorated fan reference. It is not a scan of the ancient object; exact dimensions, side thickness and catalog match remain unverified.",
+    "question": "What might the decorated fan reveal about royalty and ceremony?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/fan-ai.source.json",
+    "license": null,
+    "assignmentPhoto": 3
   },
   {
     "n": 4,
@@ -47,10 +50,61 @@ window.ARTIFACTS=[
     "question": "How might you work out how this game was played?",
     "creator": "Fisherowski",
     "source": "https://skfb.ly/6WSrP",
-    "license": "https://creativecommons.org/licenses/by/4.0/"
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "assignmentPhoto": 4
   },
   {
     "n": 5,
+    "id": "painted-chest",
+    "name": "Painted chest",
+    "modelUrl": "assets/egypt/walkthrough/painted-chest.glb",
+    "lengthCm": 61,
+    "fact": "A model made from photographs of Tutankhamun’s painted chest. Examine its decorated surfaces.",
+    "question": "What can the painted scenes tell you about how the king was represented?",
+    "creator": "danderson4",
+    "source": "https://skfb.ly/6DKOn",
+    "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "assignmentPhoto": 5
+  },
+  {
+    "n": 6,
+    "id": "chariot-ai",
+    "name": "Chariot · AI reconstruction",
+    "modelUrl": "assets/egypt/models/chariot-ai.glb",
+    "lengthCm": 130,
+    "fact": "Teacher-supplied AI reconstruction of a two-wheeled chariot. It includes generated display supports; details, proportions and the exact ancient catalog match are unverified.",
+    "question": "Which parts relate to movement, carrying a rider, or displaying royal identity?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/chariot-ai.source.json",
+    "license": null,
+    "assignmentPhoto": 6
+  },
+  {
+    "n": 7,
+    "id": "mask",
+    "name": "Funerary mask",
+    "modelUrl": "assets/egypt/walkthrough/mask.glb",
+    "lengthCm": 54,
+    "fact": "The original covered Tutankhamun’s head inside his coffins. This is a digital teaching reconstruction.",
+    "question": "Which details might communicate royal identity?",
+    "creator": "Roberto Domínguez",
+    "source": "https://skfb.ly/pOQFF",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "n": 8,
+    "id": "dagger",
+    "name": "Meteoric dagger",
+    "modelUrl": "assets/egypt/walkthrough/dagger.glb",
+    "lengthCm": 34.5,
+    "fact": "A reconstruction of Tutankhamun’s meteoric iron dagger. The original was inside the mummy wrappings.",
+    "question": "What clues distinguish the blade from the handle?",
+    "creator": "Tom_Bentkowski",
+    "source": "https://skfb.ly/6xKEs",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "n": 9,
     "id": "throne",
     "name": "Throne · reproduction",
     "modelUrl": "assets/egypt/walkthrough/throne.glb",
@@ -62,7 +116,7 @@ window.ARTIFACTS=[
     "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
   },
   {
-    "n": 6,
+    "n": 10,
     "id": "canopic",
     "name": "Canopic chest",
     "modelUrl": "assets/egypt/walkthrough/canopic.glb",
@@ -74,7 +128,7 @@ window.ARTIFACTS=[
     "license": "https://creativecommons.org/licenses/by-nc/4.0/"
   },
   {
-    "n": 7,
+    "n": 11,
     "id": "coffin-replica",
     "name": "Anthropoid coffin · replica",
     "modelUrl": "assets/egypt/walkthrough/replica-parts.glb",
@@ -87,7 +141,7 @@ window.ARTIFACTS=[
     "modelNode": "replica-coffin"
   },
   {
-    "n": 8,
+    "n": 12,
     "id": "anubis-replica",
     "name": "Anubis shrine · replica",
     "modelUrl": "assets/egypt/walkthrough/replica-parts.glb",
@@ -100,7 +154,7 @@ window.ARTIFACTS=[
     "modelNode": "replica-anubis"
   },
   {
-    "n": 9,
+    "n": 13,
     "id": "scarab-pectoral",
     "name": "Scarab pectoral · study copy",
     "modelUrl": "assets/egypt/models/scarab-pectoral.glb",
@@ -112,7 +166,7 @@ window.ARTIFACTS=[
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
-    "n": 10,
+    "n": 14,
     "id": "lotus-head",
     "name": "Head emerging from a lotus",
     "modelUrl": "assets/egypt/walkthrough/lotus-head.glb",
@@ -124,7 +178,7 @@ window.ARTIFACTS=[
     "license": "https://creativecommons.org/licenses/by-nc/4.0/"
   },
   {
-    "n": 11,
+    "n": 15,
     "id": "mannequin",
     "name": "Mannequin · AI approximation",
     "modelUrl": "assets/egypt/walkthrough/mannequin.glb",
@@ -136,7 +190,7 @@ window.ARTIFACTS=[
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
-    "n": 12,
+    "n": 16,
     "id": "funerary-bed",
     "name": "Funerary bed · study reconstruction",
     "modelUrl": "assets/egypt/walkthrough/funerary-bed.glb",
@@ -148,31 +202,7 @@ window.ARTIFACTS=[
     "license": "https://creativecommons.org/licenses/by/4.0/"
   },
   {
-    "n": 13,
-    "id": "fan-ai",
-    "name": "Fan · AI reconstruction",
-    "modelUrl": "assets/egypt/models/fan-ai.glb",
-    "lengthCm": 105,
-    "fact": "Teacher-supplied AI reconstruction based on the decorated fan reference. It is not a scan of the ancient object; exact dimensions, side thickness and catalog match remain unverified.",
-    "question": "What might the decorated fan reveal about royalty and ceremony?",
-    "creator": "Teacher-supplied Meshy AI",
-    "source": "assets/egypt/models/fan-ai.source.json",
-    "license": null
-  },
-  {
-    "n": 14,
-    "id": "throwing-sticks-ai",
-    "name": "Throwing sticks · AI reconstruction",
-    "modelUrl": "assets/egypt/models/throwing-sticks-ai.glb",
-    "lengthCm": 60,
-    "fact": "Teacher-supplied AI reconstruction of a decorated pair of throwing sticks. Compare the side profile and curvature with the assignment photograph; archaeological accuracy is not established.",
-    "question": "How could the shapes help these objects function when thrown?",
-    "creator": "Teacher-supplied Meshy AI",
-    "source": "assets/egypt/models/throwing-sticks-ai.source.json",
-    "license": null
-  },
-  {
-    "n": 15,
+    "n": 17,
     "id": "lotus-ai",
     "name": "Alabaster perfume jars · AI reconstruction",
     "modelUrl": "assets/egypt/models/lotus-ai.glb",
@@ -184,19 +214,7 @@ window.ARTIFACTS=[
     "license": null
   },
   {
-    "n": 16,
-    "id": "headrest-ai",
-    "name": "Ivory headrest · AI reconstruction",
-    "modelUrl": "assets/egypt/models/headrest-ai.glb",
-    "lengthCm": 30,
-    "fact": "Teacher-supplied AI reconstruction of the ivory headrest reference with a supporting central figure and two reclining lions. This is distinct from the Harvard headrest. Details and proportions are approximate.",
-    "question": "Which parts support the head, and which appear symbolic?",
-    "creator": "Teacher-supplied Meshy AI",
-    "source": "assets/egypt/models/headrest-ai.source.json",
-    "license": null
-  },
-  {
-    "n": 17,
+    "n": 18,
     "id": "sandals-ai",
     "name": "Sandals · AI reconstruction",
     "modelUrl": "assets/egypt/models/sandals-ai.glb",
@@ -208,7 +226,7 @@ window.ARTIFACTS=[
     "license": null
   },
   {
-    "n": 18,
+    "n": 19,
     "id": "model-boat-ai",
     "name": "Model boat · AI reconstruction",
     "modelUrl": "assets/egypt/models/model-boat-ai.glb",
@@ -220,7 +238,7 @@ window.ARTIFACTS=[
     "license": null
   },
   {
-    "n": 19,
+    "n": 20,
     "id": "model-boat-2-ai",
     "name": "Model boat 2 · AI reconstruction",
     "modelUrl": "assets/egypt/models/model-boat-2-ai.glb",
@@ -232,19 +250,19 @@ window.ARTIFACTS=[
     "license": null
   },
   {
-    "n": 20,
+    "n": 21,
     "id": "crook-staff-ai",
-    "name": "Crook and staff · AI reconstruction",
+    "name": "Crook and flail · AI reconstruction",
     "modelUrl": "assets/egypt/models/crook-staff-ai.glb",
     "lengthCm": 100,
-    "fact": "Teacher-supplied AI reconstruction. Teacher identifies this pair as a crook and staff. Shapes and exact ancient catalog match are unverified.",
+    "fact": "Teacher-supplied AI reconstruction of a crook and flail. Shapes and exact ancient catalog match are unverified.",
     "question": "Which features suggest this object’s function, and what details need checking against an original?",
     "creator": "Teacher-supplied Meshy AI",
     "source": "assets/egypt/models/crook-staff-ai.source.json",
     "license": null
   },
   {
-    "n": 21,
+    "n": 22,
     "id": "pectoral-ai",
     "name": "Scarab pectoral · AI reconstruction (alternate)",
     "modelUrl": "assets/egypt/models/pectoral-ai.glb",
@@ -256,7 +274,7 @@ window.ARTIFACTS=[
     "license": null
   },
   {
-    "n": 22,
+    "n": 23,
     "id": "shield-ai",
     "name": "Shield · AI reconstruction",
     "modelUrl": "assets/egypt/models/shield-ai.glb",
@@ -265,18 +283,6 @@ window.ARTIFACTS=[
     "question": "Which features suggest this object’s function, and what details need checking against an original?",
     "creator": "Teacher-supplied Meshy AI",
     "source": "assets/egypt/models/shield-ai.source.json",
-    "license": null
-  },
-  {
-    "n": 23,
-    "id": "chariot-ai",
-    "name": "Chariot · AI reconstruction",
-    "modelUrl": "assets/egypt/models/chariot-ai.glb",
-    "lengthCm": 130,
-    "fact": "Teacher-supplied AI reconstruction of a two-wheeled chariot. It includes generated display supports; details, proportions and the exact ancient catalog match are unverified.",
-    "question": "Which parts relate to movement, carrying a rider, or displaying royal identity?",
-    "creator": "Teacher-supplied Meshy AI",
-    "source": "assets/egypt/models/chariot-ai.source.json",
     "license": null
   },
   {

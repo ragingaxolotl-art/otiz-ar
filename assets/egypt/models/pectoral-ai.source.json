@@ -9,7 +9,13 @@
   "creator": "Teacher-supplied Meshy AI reconstruction",
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction. Additional scarab pectoral teaching copy. The earlier licensed pectoral remains available for comparison; precise ancient identification and findspot are unverified.",
-  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "placement": "Treasury · alternate AI pectoral study beside the jewellery collection. Pectorals are documented in Treasury containers, but this mesh has no secure catalog match; this is a teaching placement, not a claimed findspot.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture.",
+  "placementRoom": "treasury",
+  "placementEvidence": [
+    "https://www.griffith.ox.ac.uk/discoveringTut/burton5/burtoncolour.html",
+    "https://www.globalegyptianmuseum.org/detail.aspx?id=14836"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

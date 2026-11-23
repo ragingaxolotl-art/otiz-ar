@@ -9,7 +9,13 @@
   "creator": "Teacher-supplied Meshy AI reconstruction",
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction of a pair of sandals. Shape, surface material and exact match to an ancient Tutankhamun object are unverified.",
-  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "placement": "Burial chamber · AI golden-footwear study. Gold funerary sandals were on the mummy’s feet inside the coffins. This exposed teaching copy is not a verified match to those sandals or a separate floor find.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Mesh simplified; embedded textures reduced to 1024 px. Source color detail available at up to 4096 px on approach/capture."
+  "derivativeChanges": "Mesh simplified; embedded textures reduced to 1024 px. Source color detail available at up to 4096 px on approach/capture.",
+  "placementRoom": "burial",
+  "placementEvidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/250-299.html",
+    "https://tutankhamun.griffith.ox.ac.uk/stories/unwrapping-tutankhamuns-mummified-body-november-1925"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

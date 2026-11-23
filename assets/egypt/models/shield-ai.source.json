@@ -9,7 +9,13 @@
   "creator": "Teacher-supplied Meshy AI reconstruction",
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction. Shield teaching copy; decoration, dimensions and exact ancient catalog match are unverified.",
-  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "placement": "Annexe · AI ceremonial-shield comparison in the weapons room. Shields 379 and 488b belong to the Annexe group. This mesh’s exact catalog match is unverified; stand and precise position are modern teaching choices.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture.",
+  "placementRoom": "annexe",
+  "placementEvidence": [
+    "https://tutankhamun.griffith.ox.ac.uk/object-records/379",
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/488b-c488b.html"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

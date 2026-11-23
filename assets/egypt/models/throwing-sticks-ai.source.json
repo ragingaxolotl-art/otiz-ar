@@ -10,7 +10,13 @@
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction of a decorated pair of throwing sticks. Compare the side profile and curvature with the assignment photograph; archaeological accuracy is not established.",
   "historicalComparison": "https://www.griffith.ox.ac.uk/gri/carter/050-099.html",
-  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "placement": "Annexe · AI teaching copy near the weapons group. Carter recorded throw sticks below the doorway; this pair has no verified object-number match. Stand and exact position are modern teaching choices.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach."
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach.",
+  "placementRoom": "annexe",
+  "placementEvidence": [
+    "https://tutankhamun.griffith.ox.ac.uk/journals-and-diaries/taa-i2428-51-6th-season/taa-i2439",
+    "https://tutankhamun.griffith.ox.ac.uk/rooms/annexe"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

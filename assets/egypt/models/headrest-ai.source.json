@@ -10,7 +10,13 @@
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction of the ivory headrest reference with a supporting central figure and two reclining lions. This is distinct from the Harvard headrest. Details and proportions are approximate.",
   "historicalComparison": "https://www.griffith.ox.ac.uk/gri/carter/403c.html",
-  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "placement": "Annexe · AI comparison for the Shu-and-lions headrest, Carter 403c. The original was in a cabinet containing four headrests. Shown separately on a teaching stand; cabinet and exact position are not reconstructed.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach."
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach.",
+  "placementRoom": "annexe",
+  "placementEvidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/403c-c403c-1.html",
+    "https://tutankhamun.griffith.ox.ac.uk/journals-and-diaries/taa-i2428-51-6th-season/taa-i2439"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

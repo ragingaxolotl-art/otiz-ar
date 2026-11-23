@@ -10,7 +10,13 @@
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction based on the decorated fan reference. It is not a scan of the ancient object; exact dimensions, side thickness and catalog match remain unverified.",
   "historicalComparison": "https://www-griffith.ames.ox.ac.uk/gri/carter/200-249.html",
-  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "placement": "Burial chamber · AI comparison for decorated fan 245, recorded on the south side between the two inner shrines, feathers east. Teaching stand offsets it for inspection; missing feathers, shrines and exact geometry are not reconstructed.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach."
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach.",
+  "placementRoom": "burial",
+  "placementEvidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/245-c245-1.html",
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/245-c245-2.html"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

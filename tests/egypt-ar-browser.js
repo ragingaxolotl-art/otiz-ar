@@ -2,7 +2,7 @@ document.getElementById('run').onclick=async function(){
   this.disabled=true;const out=document.getElementById('result'),report=[],frame=document.getElementById('app'),w=frame.contentWindow,d=w.document;
   const assert=(ok,msg)=>{if(!ok)throw Error(msg)},wait=fn=>new Promise((yes,no)=>{let tries=0;function tick(){if(fn())return yes();if(tries++>2400)return no(Error('Timed out: '+String(fn)));requestAnimationFrame(tick)}tick()});
   try{
-    await w.Classroom.ready;assert(w.Classroom.loaded,'Egypt settings did not load');assert(w.ARTIFACTS.length===24,'Wrong Egypt catalog');assert(w.Classroom.published.revision==='egypt-ai-twelve-1','Loaded another collection settings');
+    await w.Classroom.ready;assert(w.Classroom.loaded,'Egypt settings did not load');assert(w.ARTIFACTS.length===24,'Wrong Egypt catalog');assert(w.Classroom.published.revision==='egypt-teacher-first-1','Loaded another collection settings');
     const selector=d.getElementById('egypt-marker-size');selector.value='16';selector.dispatchEvent(new Event('change'));assert(w.Classroom.markerWidthCm===16.002,'Large card width not applied');selector.value='8';selector.dispatchEvent(new Event('change'));assert(w.Classroom.markerWidthCm===8.001,'Small card width not applied');
     d.getElementById('start-camera').click();await wait(()=>d.getElementById('arjs-video')?.complete&&d.querySelector('a-scene')?.hasLoaded);
     const source=d.getElementById('arjs-video');source.onload=null;assert(source.tagName==='IMG','Fixture requested real camera');

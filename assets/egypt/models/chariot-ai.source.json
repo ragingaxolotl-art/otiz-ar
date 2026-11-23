@@ -9,7 +9,12 @@
   "creator": "Teacher-supplied Meshy AI reconstruction",
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction of a two-wheeled chariot. It includes generated display supports; details, proportions and the exact ancient catalog match are unverified.",
-  "placement": "Modern antechamber examination copy; exact excavation position not claimed.",
+  "placement": "Antechamber · AI chariot comparison in the southern equipment area. Burial photographs show disassembled chariots here. This assembled study copy retains generated display supports; exact chariot identity and ancient position are unverified.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color up to 2048 px available on approach/capture."
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color up to 2048 px available on approach/capture.",
+  "placementRoom": "antechamber",
+  "placementEvidence": [
+    "https://www.griffith.ox.ac.uk/discoveringTut/burton5/burtoncolour.html"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

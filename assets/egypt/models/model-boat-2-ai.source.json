@@ -9,7 +9,12 @@
   "creator": "Teacher-supplied Meshy AI reconstruction",
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction. Second model boat teaching copy; retained separately from the first boat. Precise ancient object and findspot unverified.",
-  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "placement": "Treasury · second AI model-boat comparison, retained separately. Boats are documented in this room and also in the Annexe. No specific Carter number or exact findspot is assigned to this mesh; teaching position is approximate.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture.",
+  "placementRoom": "treasury",
+  "placementEvidence": [
+    "https://www.griffith.ox.ac.uk/discoveringTut/burton5/burtoncolour.html"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

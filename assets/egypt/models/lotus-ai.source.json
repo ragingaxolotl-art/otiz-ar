@@ -10,7 +10,12 @@
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction labeled alabaster perfume jars. The model currently has a gold-toned texture rather than translucent calcite/alabaster. Its exact ancient catalog match remains unverified.",
   "historicalComparison": "https://www-griffith.ames.ox.ac.uk/gri/carter/210-c210-1.html",
-  "placement": "Modern examination stand in the antechamber; not an excavated findspot.",
+  "placement": "Burial chamber · AI perfume-vessel comparison for Carter 210, recorded inside the outer shrine before the next shrine’s north door. Exact model match is unverified; its gold-toned texture differs from calcite. Teaching stand and position are approximate.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach."
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach.",
+  "placementRoom": "burial",
+  "placementEvidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/210-c210-1.html"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
 }

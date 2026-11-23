@@ -1,5 +1,5 @@
 {
-  "title": "Crook and staff · AI reconstruction",
+  "title": "Crook and flail · AI reconstruction",
   "sourceUpload": "Meshy_AI_Pharaoh_s_Shepherd_Cr_1123181242_texture (1).glb",
   "originalFile": "crook-staff-ai-original.glb",
   "originalSha256": "4ffb00ec5c8e43d12a50f9bcb82cbfeb133751c8c8d6f209b91809a1dee5c257",
@@ -9,7 +9,13 @@
   "creator": "Teacher-supplied Meshy AI reconstruction",
   "licenseStatus": "No Creative Commons license supplied or asserted.",
   "provenance": "Teacher-supplied AI reconstruction. Teacher identifies this pair as a crook and staff. Shapes and exact ancient catalog match are unverified.",
-  "placement": "Modern teaching stand; not an archaeological findspot.",
+  "placement": "Burial chamber · AI crook-and-flail comparison. Carter described a crook and flail held by the gold hands on the mummy’s wrappings. This is a separate teaching copy; exact dimensions and object match are unverified.",
   "dateAdded": "2026-11-23",
-  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture."
+  "derivativeChanges": "Mesh simplified; embedded maps resized to 1024 px. Source color detail up to 2048 px is loaded on approach/capture.",
+  "placementRoom": "burial",
+  "placementEvidence": [
+    "https://tutankhamun.griffith.ox.ac.uk/sites/default/files/2026-03/Carter_The_Tomb_of_Tut.ankh_.amen_Volume_II.pdf"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position",
+  "originalTeacherLabel": "crook and staff"
 }

@@ -2,10 +2,10 @@
   "date": "2026-11-23",
   "newModels": 12,
   "newCards": [
-    13,
-    14,
-    15,
-    16,
+    1,
+    2,
+    3,
+    6,
     17,
     18,
     19,
@@ -16,14 +16,17 @@
     24
   ],
   "totalCards": 24,
-  "totalTombExhibits": 23,
+  "totalTombExhibits": 24,
   "checks": {
     "catalogAndSettingsUnitTests": 3,
     "OtziSettingsRegressionTests": 7,
     "markerLayoutRegressionTests": 3,
-    "realBarcodeImageInput": "The first 22 markers/models passed browser image-input detection, capture, zoom, fit and Release. Cards 23\u201324 use the same encoding and are file-validated but not browser-retested.",
-    "tomb": "Ten copies passed reachability, pickup, source detail and return checks. The appended chariot and second shield were file-validated and shape-rendered offline; later browser/phone checks required.",
-    "binaryPublication": "All published GLB, texture and marker blobs verified by Git SHA-1 against local bytes."
+    "realBarcodeImageInput": "Before reordering, 22 marker/model pairs passed browser image-input detection, capture, zoom, fit and Release. The chariot and second shield were file-validated but not browser-tested. The new teacher-first order requires a fresh browser/phone run.",
+    "tomb": "Ten teaching copies passed pickup/source-detail/return checks at their previous positions. All revised room coordinates and the added Senet comparison now pass native floor/stand/viewpoint checks; browser interaction checks at the new positions remain pending.",
+    "binaryPublication": "All published GLB, texture and marker blobs verified by Git SHA-1 against local bytes.",
+    "revisedRoomPositions": "Pass: 13 study placements have source references, supported pedestals and at least one body-clear standing inspection viewpoint in actual tomb geometry. Browser/phone checks pending.",
+    "teacherOrderAndPrinting": "Pass: assignment objects occupy cards 1\u20136; matching reference dimensions preserved by object identity; six-card print subset and individual chariot card rendering checked with the actual print script.",
+    "currentNativeChecks": "17 card/settings/layout/order/placement checks and 6 tomb regression suites pass."
   },
   "notes": [
     "All new uploads are labeled AI reconstructions.",
@@ -33,5 +36,7 @@
     "Original full-size uploads preserved locally; mobile copies published.",
     "No physical iPhone camera or printer test performed.",
     "Browser automation became unavailable before the chariot and second shield were appended."
-  ]
+  ],
+  "cardOrder": "Teacher photos 1\u20136: throwing sticks, headrest, fan, Senet, painted chest, chariot. Additional objects 7\u201324.",
+  "placementRevision": "egypt-teacher-first-1"
 }
