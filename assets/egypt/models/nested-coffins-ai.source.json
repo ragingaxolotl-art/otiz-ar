@@ -1,0 +1,41 @@
+{
+  "title": "Three nested coffins \u00b7 teaching assembly",
+  "sources": [
+    "outer-coffin-ai.source.json",
+    "middle-coffin-ai.source.json",
+    "inner-coffin-ai.source.json"
+  ],
+  "fitChecks": [
+    {
+      "coffin": "outer",
+      "childScale": 0.886,
+      "childTranslation": [
+        0.0001974027156829834,
+        0.00023434311151504517,
+        -0.3497896723151207
+      ],
+      "innerFloor": -0.8108258707298638,
+      "lidPlane": -0.08,
+      "sideClearance": 0.012,
+      "verifiedChildVertices": 35383
+    },
+    {
+      "coffin": "middle",
+      "childScale": 0.91,
+      "childTranslation": [
+        -0.00024070456624031067,
+        0.00032622784376144413,
+        -0.2672336161434651
+      ],
+      "innerFloor": -0.47278351965546617,
+      "lidPlane": -0.08,
+      "sideClearance": 0.012,
+      "verifiedChildVertices": 41798
+    }
+  ],
+  "fit": "Every child mesh vertex checked against its containing cavity with side clearance. Both child assemblies lie below their enclosing lid and above their case floor.",
+  "construction": "Outer and middle decorated lids cut from supplied meshes. Hollow cases, hidden surfaces, wall thickness and relative scale are constructed teaching geometry, not verified archaeological measurements. Innermost mesh retained.",
+  "dateAdded": "2026-11-23",
+  "webBytes": 8547964,
+  "openWebBytes": 8548048
+}

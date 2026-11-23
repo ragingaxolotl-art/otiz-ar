@@ -6,7 +6,8 @@
   "webBytes": 2856244,
   "triangles": 59998,
   "derivativeChanges": "Geometry simplified, textures reduced to 1024 px; original preserved locally.",
-  "nestingStatus": "Closed single mesh. No lid separation or fitted interior yet; requires the second coffin model.",
+  "nestingStatus": "Three-coffin assembly available in nested-coffins-ai.glb and nested-coffins-open-ai.glb. Constructed hollow cases and teaching scale documented in nested-coffins-ai.source.json.",
   "licenseStatus": "No Creative Commons license asserted.",
   "dateAdded": "2026-11-23"
 }
+
