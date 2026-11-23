@@ -75,5 +75,6 @@
       "Added brown shorts/boot coloring",
       "Retained native idle, walk, run and jump clips; removed attack and unused rig nodes"
     ]
-  }
+  },
+  "runtimePresentation": "2026-11-23: first-person body and clothing baked together from the authored idle pose at load; fixed reference pose follows physical feet. Native clips preserved but not played in first person. No vertical squash for crouch."
 }

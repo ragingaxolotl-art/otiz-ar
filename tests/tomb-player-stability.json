@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-23",
+  "fixture": "tests/tomb-player.html",
+  "presentation": "Stable first-person body reference; native walking/running clips no longer played",
+  "posesChecked": 180,
+  "maxShapeErrorMeters": 2.17e-15,
+  "maxSoleErrorMeters": 0,
+  "checks": [
+    "Walking and running translation",
+    "Crouch height without nonuniform scale",
+    "Jump and drop foot positions",
+    "Yaw and camera roll",
+    "FOV 55, 72, 85, 110",
+    "Camera position and quaternion unchanged",
+    "Body visibility off/on",
+    "Original GLB rig and clips retained"
+  ],
+  "physicalPhoneTested": false
+}
