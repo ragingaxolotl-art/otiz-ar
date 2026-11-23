@@ -278,6 +278,18 @@ window.ARTIFACTS=[
     "creator": "Teacher-supplied Meshy AI",
     "source": "assets/egypt/models/chariot-ai.source.json",
     "license": null
+  },
+  {
+    "n": 24,
+    "id": "shield-2-ai",
+    "name": "Shield 2 · AI reconstruction",
+    "modelUrl": "assets/egypt/models/shield-2-ai.glb",
+    "lengthCm": 85,
+    "fact": "Teacher-supplied AI reconstruction of an openwork shield with a royal figure and animal motifs. Retained separately from the first shield. Details, dimensions and exact ancient catalog match are unverified.",
+    "question": "Which features suggest a shield, and how does this design compare with the other shield?",
+    "creator": "Teacher-supplied Meshy AI",
+    "source": "assets/egypt/models/shield-2-ai.source.json",
+    "license": null
   }
 ];
 window.LIFE_SIZES=Object.fromEntries(ARTIFACTS.map(a=>[a.n,{cm:a.lengthCm,kind:"Approximate teaching span",note:"Display scale only; not a verified museum measurement."}]));

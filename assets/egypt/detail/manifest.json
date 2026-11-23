@@ -257,6 +257,17 @@
           }
         }
       }
+    },
+    "shield-2-ai": {
+      "materials": {
+        "shield-2-ai-material": {
+          "map": {
+            "url": "assets/egypt/detail/shield-2-ai-color.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
     }
   }
 }

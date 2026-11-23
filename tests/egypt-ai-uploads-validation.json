@@ -1,6 +1,6 @@
 {
   "date": "2026-11-23",
-  "newModels": 11,
+  "newModels": 12,
   "newCards": [
     13,
     14,
@@ -12,25 +12,26 @@
     20,
     21,
     22,
-    23
+    23,
+    24
   ],
-  "totalCards": 23,
-  "totalTombExhibits": 22,
+  "totalCards": 24,
+  "totalTombExhibits": 23,
   "checks": {
     "catalogAndSettingsUnitTests": 3,
     "OtziSettingsRegressionTests": 7,
     "markerLayoutRegressionTests": 3,
-    "realBarcodeImageInput": "The first 22 markers/models passed browser image-input detection, capture, zoom, fit and Release. Card 23 uses the same encoding; it is file-validated but not browser-retested.",
-    "tomb": "Ten copies passed reachability, pickup, source detail and return checks. The appended chariot was file-validated and its shape rendered offline; later browser/phone check required.",
+    "realBarcodeImageInput": "The first 22 markers/models passed browser image-input detection, capture, zoom, fit and Release. Cards 23\u201324 use the same encoding and are file-validated but not browser-retested.",
+    "tomb": "Ten copies passed reachability, pickup, source detail and return checks. The appended chariot and second shield were file-validated and shape-rendered offline; later browser/phone checks required.",
     "binaryPublication": "All published GLB, texture and marker blobs verified by Git SHA-1 against local bytes."
   },
   "notes": [
     "All new uploads are labeled AI reconstructions.",
     "No exact catalog matches or ancient findspots claimed. Modern teaching stands are used.",
-    "Two boats and two pectoral versions retained separately.",
+    "Two boats, two pectoral versions and two shields retained separately.",
     "Perfume model gold-toned texture mismatch disclosed.",
     "Original full-size uploads preserved locally; mobile copies published.",
     "No physical iPhone camera or printer test performed.",
-    "Browser automation became unavailable before the chariot was appended."
+    "Browser automation became unavailable before the chariot and second shield were appended."
   ]
 }
