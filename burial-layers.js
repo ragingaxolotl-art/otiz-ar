@@ -70,6 +70,7 @@
   function open(id){if(id)setStage(stageFor(id));opened=true;ui();}
   function update(near,active){
    if(coffinsActive!==active){coffinsActive=active;visibility();ui();}
+   if(opened&&(!near||coffinsActive)){opened=false;ui();}
    start.hidden=!ready||!near||opened||coffinsActive;
   }
   return {attach,open,update,reveal:id=>setStage(stageFor(id)),reset:()=>setStage(0),get stage(){return stage;},get coffinsVisible(){return ready&&stage===5;},get ready(){return ready;},get layers(){return layers;},get stoneObjects(){return stone.map(s=>s.object);}};
