@@ -1,0 +1,87 @@
+[
+  {
+    "key": "coffin-scrape",
+    "prompt": "Heavy gilded wooden coffin lid sliding slowly across a wooden rim, dry gritty scraping and low wood creaks, one short 1.3 second movement in a small stone chamber, no voices or music.",
+    "generation": "tQn4XCGwAkToJegB4L7E",
+    "duration": 2,
+    "provider": "ElevenLabs",
+    "model": "eleven_text_to_sound_v2",
+    "file": "coffin-scrape.mp3",
+    "usage": "Used for lid sliding"
+  },
+  {
+    "key": "coffin-set-down",
+    "prompt": "One heavy wooden coffin gently set down on a dusty limestone floor, deep soft wooden thud with a little grit and short stone-room resonance, no smashing, no voices or music.",
+    "generation": "jsfRaESMcFN2UPnDxn0u",
+    "duration": 1,
+    "provider": "ElevenLabs",
+    "model": "eleven_text_to_sound_v2",
+    "file": "coffin-set-down.mp3",
+    "usage": "Generated fallback; free CC0 sample used by default"
+  },
+  {
+    "key": "footstep",
+    "prompt": "One isolated boot footstep on dusty limestone, soft sole impact with a tiny sandy crunch and short indoor stone-room resonance, no voices or music.",
+    "generation": "aQFrHPD6AnWGovW2ejbK",
+    "duration": 2,
+    "provider": "ElevenLabs",
+    "model": "eleven_text_to_sound_v2",
+    "file": "footstep.mp3",
+    "usage": "Generated fallback; free CC0 sample used by default"
+  },
+  {
+    "file": "footstep-0.wav",
+    "creator": "Kenney",
+    "pack": "Impact Sounds",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "downloadMirror": "https://github.com/Mcamento8/open-game-sfx-index/tree/main/audio/impact-sounds",
+    "originalFile": "footstep_concrete_000.ogg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Converted from OGG to PCM WAV for browser compatibility."
+  },
+  {
+    "file": "footstep-1.wav",
+    "creator": "Kenney",
+    "pack": "Impact Sounds",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "downloadMirror": "https://github.com/Mcamento8/open-game-sfx-index/tree/main/audio/impact-sounds",
+    "originalFile": "footstep_concrete_001.ogg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Converted from OGG to PCM WAV for browser compatibility."
+  },
+  {
+    "file": "footstep-2.wav",
+    "creator": "Kenney",
+    "pack": "Impact Sounds",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "downloadMirror": "https://github.com/Mcamento8/open-game-sfx-index/tree/main/audio/impact-sounds",
+    "originalFile": "footstep_concrete_002.ogg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Converted from OGG to PCM WAV for browser compatibility."
+  },
+  {
+    "file": "coffin-drop-0.wav",
+    "creator": "Kenney",
+    "pack": "Impact Sounds",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "downloadMirror": "https://github.com/Mcamento8/open-game-sfx-index/tree/main/audio/impact-sounds",
+    "originalFile": "impactWood_heavy_000.ogg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Converted from OGG to PCM WAV for browser compatibility."
+  },
+  {
+    "file": "coffin-drop-1.wav",
+    "creator": "Kenney",
+    "pack": "Impact Sounds",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "downloadMirror": "https://github.com/Mcamento8/open-game-sfx-index/tree/main/audio/impact-sounds",
+    "originalFile": "impactWood_heavy_001.ogg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Converted from OGG to PCM WAV for browser compatibility."
+  }
+]
