@@ -4,3 +4,8 @@ let press={button:0,since:100,walkEligible:true,moved:false,walked:false};assert
 console.log('PASS: viewer fit limits and mouse tap/hold separation, stop, return and rotation rules.');
 
 assert.equal(C.viewerSettings({horizontal:4}).horizontal,.15);assert.equal(C.viewerSettings({balance:-4}).balance,-.1);assert.equal(C.viewerSettings({insetX:4}).insetX,.23);assert.equal(C.viewerSettings({insetY:-2}).insetY,.04);assert.equal(C.viewerSettings({horizontal:NaN}).horizontal,0);
+
+assert.equal(C.mouseWalk({button:0,since:0,walkEligible:true},1000,false,'landscape'),0,'Landscape mouse hold cannot move the player');
+assert.equal(C.mouseWalk({button:0,since:0,walkEligible:true},1000,false,'cardboard'),1,'Cardboard retains hold-to-walk');
+assert.equal(C.mouseWalk({button:0,since:0,walkEligible:true},1000,true,'cardboard'),0,'Held objects never enable walking');
+assert.equal(C.mouseRotationAllowed(1,'mouse'),true);assert.equal(C.mouseRotationAllowed(0,'mouse'),true);assert.equal(C.mouseRotationAllowed(0,'touch'),true);assert.equal(C.mouseReleaseAction({button:1,since:0,moved:true},100,true),null,'Middle drag cannot return or drop the object');

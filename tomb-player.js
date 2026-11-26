@@ -4,17 +4,24 @@
  function motion(speed,grounded,crouched){return !grounded?'jump':speed>1.4&&!crouched?'run':speed>.08?'walk':'idle';}
  function create({THREE:T,scene,camera,renderer,status=()=>{}}){
   const pivot=new T.Group(),stance=new T.Group(),direction=new T.Vector3(),point=new T.Vector3(),clip=new T.Plane(new T.Vector3(0,-1,0),0);pivot.name='Explorer player body';pivot.add(stance);pivot.visible=false;scene.add(pivot);renderer.localClippingEnabled=true;
-  let ready=false,enabled=true,footSamples=[],last=null,metrics=null,lastStatus='',mixer=null,actions={},currentState='idle',activeAction=null,modelRoot=null,hipBone=null,hipRest=null;
+  let ready=false,enabled=true,footSamples=[],last=null,metrics=null,lastStatus='',mixer=null,actions={},currentState='idle',activeAction=null,modelRoot=null,hipBone=null,hipRest=null,neutralUpper=[],upperBlend=0,jumpArmMeshes=[];
   async function load(){try{
    status('Loading explorer body…');const g=await new T.GLTFLoader().loadAsync('assets/characters/girl-explorer-body.glb?v=2'),model=g.scene;stance.add(model);
    // Keep the source skin and rig live so the supplied gait deforms body and clothing together.
    modelRoot=model;mixer=new T.AnimationMixer(model);
    for(const [state,pattern]of Object.entries({idle:/idel|idle/i,walk:/walk/i,run:/run/i,jump:/jump/i})){const clip=g.animations.find(c=>pattern.test(c.name));if(!clip)throw Error('Explorer '+state+' clip is missing');actions[state]=mixer.clipAction(clip);}
-   activeAction=actions.idle;activeAction.play();mixer.update(.01);model.updateMatrixWorld(true);hipBone=model.getObjectByName('DEF-spine_021');hipRest=hipBone?.position.clone();
+   activeAction=actions.idle;activeAction.play();mixer.update(.01);model.updateMatrixWorld(true);hipBone=model.getObjectByName('DEF-spine_021');hipRest=hipBone?.position.clone();model.traverse(bone=>{if(bone!==model&&!bone.isMesh&&!/pelvis|thigh|shin|foot|toe/i.test(bone.name))neutralUpper.push({bone,position:bone.position.clone(),quaternion:bone.quaternion.clone(),scale:bone.scale.clone()});});
    const skins=[];model.traverse(o=>{if(o.isSkinnedMesh)skins.push(o);});
    for(const body of skins){
     if(body.name!=='Object_42')continue;const p=body.geometry.attributes.position,j=body.geometry.attributes.skinIndex,w=body.geometry.attributes.skinWeight;
     for(let i=0;i<p.count;i++){let foot=0;for(let k=0;k<4;k++)if(/DEF-(foot|toe)/.test(body.skeleton.bones[j.getComponent(i,k)]?.name||''))foot+=w.getComponent(i,k);if(foot>.5)footSamples.push({mesh:body,index:i});}
+   }
+   // Hands do not interact with exhibits. Omit their source jump deformation
+   // from the first-person jump view while keeping the leg rig live.
+   for(const body of skins){if(body.name!=='Object_42')continue;const geometry=body.geometry.clone(),ids=geometry.index,j=geometry.attributes.skinIndex,w=geometry.attributes.skinWeight,kept=[];
+    const armVertex=i=>{let weight=0;for(let k=0;k<4;k++)if(/arm|hand|palm|thumb|DEF-f_/i.test(body.skeleton.bones[j.getComponent(i,k)]?.name||''))weight+=w.getComponent(i,k);return weight>.15;};
+    for(let i=0;i<ids.count;i+=3){const a=ids.getX(i),b=ids.getX(i+1),c=ids.getX(i+2);if(!armVertex(a)&&!armVertex(b)&&!armVertex(c))kept.push(a,b,c);}geometry.setIndex(kept);
+    const lower=body.clone();lower.geometry=geometry;lower.skeleton=body.skeleton;lower.name='Jump lower-body view';lower.visible=false;body.parent.add(lower);jumpArmMeshes.push({body,lower});
    }
    model.updateMatrixWorld(true);
    const box=new T.Box3().setFromObject(model,true),size=box.getSize(new T.Vector3()),hip=model.getObjectByName('DEF-spine_021');if(!Number.isFinite(size.y)||size.y<.1)throw Error('Invalid body bounds');const center=hip?hip.getWorldPosition(new T.Vector3()):box.getCenter(new T.Vector3()),scale=profile.visibleBodyTop/size.y;
@@ -24,7 +31,7 @@
   }catch(error){status('Explorer body could not load; walking and artifact controls remain available.');console.warn('Explorer body unavailable',error);}}
   function update(dt,{x,z,feet,height,grounded,crouched,started,paused=false}){
    pivot.visible=ready&&enabled&&started;if(!pivot.visible){last={x,z};return;}
-   const distance=last?Math.hypot(x-last.x,z-last.z):0,speed=dt>0&&distance<.5?distance/dt:0;last={x,z};const state=motion(paused?0:speed,grounded,crouched);if(state!==currentState){const next=actions[state];next.reset().play();activeAction.crossFadeTo(next,.16,false);activeAction=next;currentState=state;}mixer.timeScale=state==='walk'?Math.max(.55,Math.min(1.5,speed/.95)):state==='run'?Math.max(.7,Math.min(1.35,speed/1.9)):1;if(!paused)mixer.update(Math.min(dt,.05));if(hipBone&&hipRest){hipBone.position.x=hipRest.x;hipBone.position.z=hipRest.z;}const description=crouched?'crouched · '+state:state;if(description!==lastStatus){lastStatus=description;status('Girl explorer body active · '+description+' · '+profile.height.toFixed(2)+' m reference height');}
+   const distance=last?Math.hypot(x-last.x,z-last.z):0,speed=dt>0&&distance<.5?distance/dt:0;last={x,z};const state=motion(paused?0:speed,grounded,crouched);if(state!==currentState){const next=actions[state];next.reset().play();activeAction.crossFadeTo(next,.16,false);activeAction=next;currentState=state;}mixer.timeScale=state==='walk'?Math.max(.55,Math.min(1.5,speed/.95)):state==='run'?Math.max(.7,Math.min(1.35,speed/1.9)):1;if(!paused)mixer.update(Math.min(dt,.05));upperBlend+=(Number(state==='jump')-upperBlend)*Math.min(1,dt*16);if(upperBlend>.001)for(const pose of neutralUpper){pose.bone.position.lerp(pose.position,upperBlend);pose.bone.quaternion.slerp(pose.quaternion,upperBlend);pose.bone.scale.lerp(pose.scale,upperBlend);}if(hipBone&&hipRest){hipBone.position.x=hipRest.x;hipBone.position.z=hipRest.z;}for(const pair of jumpArmMeshes){pair.body.visible=state!=='jump';pair.lower.visible=state==='jump';}const description=crouched?'crouched · '+state:state;if(description!==lastStatus){lastStatus=description;status('Girl explorer body active · '+description+' · '+profile.height.toFixed(2)+' m reference height');}
    camera.getWorldDirection(direction);const heading=Math.atan2(-direction.x,-direction.z);pivot.rotation.y=heading+Math.PI;pivot.position.set(x+Math.sin(heading)*.44,feet,z+Math.cos(heading)*.44);stance.scale.setScalar(1);clip.constant=camera.position.y-.18;pivot.updateMatrixWorld(true);modelRoot.traverse(o=>{if(o.isSkinnedMesh)o.skeleton.update();});
    // Pin the lowest sole sample to the physical feet, including drops/jumps.
    // Sample the animated soles so gait and jumps remain aligned with the physical floor.
