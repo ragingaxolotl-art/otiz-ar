@@ -29,7 +29,7 @@
  ];
  window.EgyptTombPlacements.apply(defs);
  // This pair now belongs on the wrapped mummy inside the inner coffin.
- const crookDisplay=defs.findIndex(d=>d.id==='crook-staff-ai');if(crookDisplay>=0)defs.splice(crookDisplay,1);
+ for(const id of ['crook-staff-ai','mask']){const i=defs.findIndex(d=>d.id===id);if(i>=0)defs.splice(i,1);}
  for(const d of defs){const option=document.createElement('option');option.value=d.id;option.textContent=d.name;$('exhibit-select').append(option)}
  const credits=[{name:'Tomb reconstruction',credit:'akurtulus',url:'https://skfb.ly/ouRUN',license:'CC BY 4.0',licenseUrl:'https://creativecommons.org/licenses/by/4.0/'},{name:'Girl explorer · first-person body derivative',credit:'EvgeshQa',url:'https://skfb.ly/o8NMr',license:'CC BY 4.0',licenseUrl:'https://creativecommons.org/licenses/by/4.0/'},...defs];
  for(const d of credits){const li=document.createElement('li'),a=document.createElement('a'),l=document.createElement('a');a.href=d.url;a.textContent=d.name;a.target='_blank';a.rel='noopener';l.href=d.licenseUrl;l.textContent=d.license;l.target='_blank';l.rel='noopener';li.append(a,document.createTextNode(' — '+d.credit+' · '),l);$('credits').append(li)}

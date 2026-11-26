@@ -9,5 +9,8 @@
     "https://www-griffith.ames.ox.ac.uk/gri/carter/256b%281%29-c256-2.html"
   ],
   "implementation": "wrapped-mummy.js",
-  "dateAdded": "2026-11-25"
+  "dateAdded": "2026-11-25",
+  "goldMaskSource": "../walkthrough/mask.glb",
+  "goldMaskCredit": "Roberto Domínguez · CC BY 4.0; existing walkthrough/credits.json attribution retained",
+  "goldMaskPlacement": "Over the wrapped head and shoulders inside the inner coffin. Display fit is approximate."
 }

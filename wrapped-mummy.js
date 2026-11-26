@@ -1,6 +1,6 @@
 /* Constructed classroom reconstruction, not a scan of Tutankhamun's remains. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.WrappedMummy=api;})(typeof window==='object'?window:globalThis,function(){
- function createInner(T,closed,crookSource){
+ function createInner(T,closed,crookSource,maskSource){
   const group=new T.Group();group.name='innermost-coffin';group.position.copy(closed.position);group.quaternion.copy(closed.quaternion);group.scale.copy(closed.scale);
   const geometry=closed.geometry,positions=geometry.attributes.position,index=geometry.index,attributes=Object.keys(geometry.attributes).filter(k=>!['skinIndex','skinWeight'].includes(k)),values=Object.fromEntries(attributes.map(k=>[k,[]])),plane=-.08;
   function vertex(i){return Object.fromEntries(attributes.map(k=>{const a=geometry.attributes[k];return[k,Array.from({length:a.itemSize},(_,c)=>a.getComponent(i,c))];}));}
@@ -21,6 +21,7 @@
   wrapped('linen-covered-head',0,.67,-.18,.11,.145,.085);wrapped('wrapped-shoulders-and-torso',0,.18,-.185,.17,.39,.095);wrapped('wrapped-legs',0,-.4,-.2,.115,.39,.075);wrapped('wrapped-feet',0,-.77,-.19,.11,.11,.065);
   for(const side of [-1,1]){const palm=new T.Mesh(new T.SphereGeometry(1,16,12),gold);palm.name='gold-hand-'+(side<0?'left':'right');palm.scale.set(.032,.065,.018);const handX=side<0?-.135:.06,handY=side<0?.27:.25;palm.position.set(handX,handY,-.055);palm.rotation.z=side*.7;mummy.add(palm);for(let i=0;i<4;i++){const finger=new T.Mesh(new T.CapsuleGeometry(.006,.037,3,6),gold);finger.position.set(handX+(i-1.5)*.011,handY+.05,-.042);finger.rotation.z=side*.7;mummy.add(finger);}}
   if(crookSource){const root=new T.Group(),copy=crookSource.clone(true);root.add(copy);copy.rotation.x=Math.PI/2;root.updateMatrixWorld(true);const box=new T.Box3().setFromObject(root),size=box.getSize(new T.Vector3()),scale=.48/Math.max(size.x,size.y,size.z),center=box.getCenter(new T.Vector3());copy.position.sub(center);root.scale.setScalar(scale);root.position.set(.025,.24,-.025);root.name='crook-and-flail-on-wrappings';mummy.add(root);}
+  if(maskSource){const root=new T.Group(),copy=maskSource.clone(true);root.add(copy);root.updateMatrixWorld(true);const box=new T.Box3().setFromObject(root),size=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3()),scale=.43/size.y;copy.position.sub(center);root.scale.setScalar(scale);root.position.set(0,.61,-.055);root.name='gold-mask-over-wrapped-head-and-shoulders';mummy.add(root);}
   group.userData.teachingReconstruction=true;group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});return group;
  }
  return{createInner};
