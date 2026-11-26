@@ -2,7 +2,7 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.EgyptTombPlacements=api;})(typeof window!=='undefined'?window:globalThis,function(){
  'use strict';
  const data={
-  "revision": "floor-findspots-1",
+  "revision": "guardians-chest-1",
   "teacherOrder": [
     "throwing-sticks-ai",
     "headrest-ai",
@@ -13,6 +13,65 @@
   ],
   "notice": "Objects rest on the room floor or documented burial support without modern exhibit stands. Room associations follow the cited evidence; exact coordinates and unverified model matches remain approximate.",
   "entries": [
+{
+    "id": "guardian-statue-ai",
+    "room": "antechamber",
+    "display": {
+        "pos": [
+            -0.65,
+            -5.3
+        ],
+        "size": 1.9,
+        "floor": 0.6,
+        "stand": false,
+        "yaw": 0
+    },
+    "evidence": [
+        "https://gem.eg/en/collection/artefacts/guardian-statue-with-nemes-headcloth",
+        "https://www.griffith.ox.ac.uk/discoveringTut/burton5/burtoncolour.html"
+    ],
+    "confidence": "Documented comparison/type room; approximate teaching position",
+    "note": "Antechamber · AI comparison for Tutankhamun’s guardian (ka) statue with nemes headcloth, mace and staff. The original pair flanked the sealed burial-chamber doorway. Shown near the burial entrance at an approximate teaching position; this generated mesh is not a verified catalog match and its all-gold finish differs from the originals’ black-and-gold surfaces."
+},
+{
+    "id": "guardian-khat-ai",
+    "room": "antechamber",
+    "display": {
+        "pos": [
+            -0.65,
+            -3.4
+        ],
+        "size": 1.9,
+        "floor": 0.6,
+        "stand": false,
+        "yaw": 3.141592653589793
+    },
+    "evidence": [
+        "https://gem.eg/en/collection/artefacts/guardian-statue-with-khat-headdress",
+        "https://www.griffith.ox.ac.uk/discoveringTut/burton5/burtoncolour.html"
+    ],
+    "confidence": "Documented comparison/type room; approximate teaching position",
+    "note": "Antechamber · AI comparison for Tutankhamun’s guardian statue with khat headdress, mace and staff. The original pair flanked the sealed burial-chamber doorway. This companion faces the nemes guardian near the burial entrance; coordinates are approximate teaching positions. The generated all-gold finish differs from the originals’ black-and-gold surfaces; exact catalog match is unverified."
+},
+{
+    "id": "painted-chest",
+    "room": "antechamber",
+    "comparison": "21",
+    "display": {
+        "pos": [
+            -0.65,
+            -6.1
+        ],
+        "size": 0.61,
+        "floor": 0.6,
+        "stand": false
+    },
+    "evidence": [
+        "https://www-griffith.ames.ox.ac.uk/gri/carter/021-c021-1.html"
+    ],
+    "confidence": "Documented near guardian 22; approximate display coordinate",
+    "note": "Antechamber · painted chest, Carter 21, close to the nemes guardian (Carter 22). Carter recorded its north–south orientation and believed ancient robbers had displaced it; the displayed coordinate is approximate."
+},
     {
       "id": "throwing-sticks-ai",
       "room": "annexe",
@@ -303,3 +362,4 @@
  }
  return {...data,apply};
 });
+

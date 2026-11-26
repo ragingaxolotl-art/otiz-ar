@@ -1,0 +1,21 @@
+{
+  "title": "Guardian statue with nemes headcloth · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Golden_Pharaoh_Statue_20261126_texture.glb",
+  "originalFile": "guardian-statue-ai-original.glb",
+  "originalSha256": "e06970913b8bbe59295f32e18778d72d74d0ea7dbb0f2b4ecb4647191c22c053",
+  "webModel": "guardian-statue-ai.glb",
+  "webBytes": 4401252,
+  "triangles": 39996,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Antechamber · AI comparison for Tutankhamun’s guardian (ka) statue with nemes headcloth, mace and staff. The original pair flanked the sealed burial-chamber doorway. Shown near the burial entrance at an approximate teaching position; this generated mesh is not a verified catalog match and its all-gold finish differs from the originals’ black-and-gold surfaces.",
+  "placement": "Antechamber · AI comparison for Tutankhamun’s guardian (ka) statue with nemes headcloth, mace and staff. The original pair flanked the sealed burial-chamber doorway. Shown near the burial entrance at an approximate teaching position; this generated mesh is not a verified catalog match and its all-gold finish differs from the originals’ black-and-gold surfaces.",
+  "placementRoom": "antechamber",
+  "placementEvidence": [
+    "https://gem.eg/en/collection/artefacts/guardian-statue-with-nemes-headcloth",
+    "https://www.griffith.ox.ac.uk/discoveringTut/burton5/burtoncolour.html"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position",
+  "dateAdded": "2026-11-25",
+  "derivativeChanges": "Attribute-aware simplification to 39,996 triangles; embedded textures resized to 1024 px; original retained and 2048 px source color available for inspection."
+}

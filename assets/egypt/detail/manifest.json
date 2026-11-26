@@ -268,6 +268,28 @@
           }
         }
       }
+    },
+    "guardian-statue-ai": {
+      "materials": {
+        "material-0": {
+          "map": {
+            "url": "assets/egypt/detail/guardian-statue-ai.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "guardian-khat-ai": {
+      "materials": {
+        "material-0": {
+          "map": {
+            "url": "assets/egypt/detail/guardian-khat-ai.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
     }
   }
 }

@@ -1,0 +1,21 @@
+{
+  "title": "Guardian statue with khat headdress · AI reconstruction",
+  "sourceUpload": "Meshy_AI_Golden_Pharaoh_20261126_texture.glb",
+  "originalFile": "guardian-khat-ai-original.glb",
+  "originalSha256": "753eec3203980020fbb0a4580360ecac97b17ae4cc708f05f0a5cbe63f2e975b",
+  "webModel": "guardian-khat-ai.glb",
+  "webBytes": 4276496,
+  "triangles": 40000,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Antechamber · AI comparison for Tutankhamun’s guardian statue with khat headdress, mace and staff. The original pair flanked the sealed burial-chamber doorway. This companion faces the nemes guardian near the burial entrance; coordinates are approximate teaching positions. The generated all-gold finish differs from the originals’ black-and-gold surfaces; exact catalog match is unverified.",
+  "placement": "Antechamber · AI comparison for Tutankhamun’s guardian statue with khat headdress, mace and staff. The original pair flanked the sealed burial-chamber doorway. This companion faces the nemes guardian near the burial entrance; coordinates are approximate teaching positions. The generated all-gold finish differs from the originals’ black-and-gold surfaces; exact catalog match is unverified.",
+  "placementRoom": "antechamber",
+  "placementEvidence": [
+    "https://gem.eg/en/collection/artefacts/guardian-statue-with-khat-headdress",
+    "https://www.griffith.ox.ac.uk/discoveringTut/burton5/burtoncolour.html"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position",
+  "dateAdded": "2026-11-25",
+  "derivativeChanges": "Attribute-aware simplification to 40,000 triangles; embedded maps resized to 1024 px; original retained with 2048 px color for inspection."
+}
