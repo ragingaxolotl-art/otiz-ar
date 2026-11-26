@@ -1,0 +1,10 @@
+#burial-layer-start{position:fixed;right:14px;bottom:190px;z-index:35;max-width:260px;box-shadow:0 6px 24px #0009}
+#burial-layer-panel{position:fixed;right:14px;bottom:65px;z-index:45;width:min(430px,calc(100vw - 28px));box-sizing:border-box;border:1px solid #9f8652;border-radius:12px;padding:18px;background:rgba(24,18,10,.97);color:#fff0d0;box-shadow:0 10px 36px #000b}
+#burial-layer-panel[hidden],#burial-layer-start[hidden]{display:none}
+#burial-layer-panel h2{font:600 21px/1.2 system-ui;margin:0 0 12px}
+#burial-layer-status{color:#efc873;font-weight:600}
+#burial-layer-panel p{font:14px/1.5 system-ui;margin:10px 0}
+#burial-layer-panel .burial-layer-actions{display:flex;flex-wrap:wrap;gap:8px}
+#burial-layer-panel button{min-height:42px;flex:1 1 auto}
+#burial-layer-close{position:absolute;top:8px;right:10px;min-width:36px}
+@media(max-height:560px){#burial-layer-panel{bottom:12px;right:12px;padding:13px;width:min(400px,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow:auto}#burial-layer-panel h2{font-size:18px}#burial-layer-panel p{font-size:12px;margin:7px 0}#burial-layer-start{bottom:130px}}

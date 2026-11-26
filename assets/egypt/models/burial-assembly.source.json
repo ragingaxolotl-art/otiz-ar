@@ -1,0 +1,38 @@
+{
+  "title": "Nested burial assembly — four Meshy shrines, stone sarcophagus, three coffins",
+  "orderOutsideToInside": [
+    "207",
+    "237",
+    "238",
+    "239",
+    "240",
+    "253",
+    "254",
+    "255",
+    "wrapped teaching mummy"
+  ],
+  "shrineTaskIds": {
+    "207": "01a215fa-0cf1-7566-932f-89d2ecc64edb",
+    "237": "01a215fb-36c3-7183-8b0b-8fece4d1f790",
+    "238": "01a215fc-2396-77c3-afd8-7300bb6d8f0f",
+    "239": "01a215fd-4491-72a4-8b38-1ea161fce994"
+  },
+  "generation": "Meshy smart topology, meshy-t2 geometry and meshy-n1 textures; four generated color reconstruction references based on artifact photographs. 60 Meshy credits total.",
+  "shrineDimensions": "Maximum cornice extents from Carter records guide display size; the second shrine's maximum roof height is an approximate display value. Generated roof profiles, inscriptions, unseen sides and wall thickness are not measured replicas.",
+  "displayCenterXZ": [
+    -3.3765,
+    -3.3678
+  ],
+  "sarcophagusAdjustment": "Only the existing stone sarcophagus surfaces are reparented, turned 90 degrees to a west–east long axis, and fitted to a 2.76 × 1.62 × 1.48 m display envelope. Original tomb geometry and all wall assets remain unchanged.",
+  "sarcophagusDimensionsReference": "https://www.factum-arte.com/resources/files/ff/Media/Luxor_installation_PR_April_2014_FINAL_ENG.pdf",
+  "sarcophagusDimensionsLimit": "The cited dimensions describe the recorded facsimile. Fitting the older simplified stone model to that envelope is a teaching adjustment, not a new scan or verified reconstruction of its interior.",
+  "coffinAssembly": "nested-coffins-ai.glb — existing three teacher-supplied Meshy coffin models; same constructed cavities and lids, with the wrapped mummy, mask, crook and flail inserted at runtime. Placed with the head west and a display base at y=0.64 m.",
+  "gameInteraction": "Burial layers reveals the four enclosing shrines, then the stone sarcophagus, then the three nested coffins. Explore nested coffins opens the existing full-size teaching copies. The fixed coffin assembly is temporarily hidden during that activity to avoid a duplicate display. Enclosed objects retain their nested transforms but are culled until revealed, avoiding unseen-surface artifacts in the generated shells.",
+  "removedFromGame": "The old anthropoid souvenir coffin replica. Its shared source file remains because the Anubis shrine uses another component from it.",
+  "notIncluded": "The separate pall and its framework (208–209) are not modeled in this assembly. Other objects placed between shrines are not reconstructed.",
+  "accuracy": "Illustrative game reconstruction. Enclosure bounds and visibility order are checked; exact ancient joinery, hollow interiors and inscriptions are not established.",
+  "catalogue": "https://www-griffith.ames.ox.ac.uk/gri/carter/200-249.html",
+  "coffinCatalogue": "https://www.griffith.ox.ac.uk/gri/carter/250-299.html",
+  "dateAdded": "2026-11-25",
+  "coffinDepthFit": "A common 0.6636799694 vertical depth factor is applied to the fixed three-coffin assembly and every lift-out copy so they fit above the stone interior floor and below its upper rim. Original Meshy files remain unchanged."
+}

@@ -8,7 +8,7 @@
   if(action==='lift'&&state.placed&&state.open&&state.stage<2)return{stage:state.stage+1,placed:false,open:false};
   return state;
  }
- function create({THREE:T,scene,camera,loader,floorAt,clearAt,playerPosition,onStart=()=>{},sound=()=>{},message=()=>{}}){
+ function create({THREE:T,scene,camera,loader,depthScale=1,floorAt,clearAt,playerPosition,onStart=()=>{},sound=()=>{},message=()=>{}}){
   const panel=document.getElementById('coffin-exploration'),start=document.getElementById('coffin-explore-start'),status=document.getElementById('coffin-explore-status'),place=document.getElementById('coffin-place'),slide=document.getElementById('coffin-slide'),lift=document.getElementById('coffin-lift'),reset=document.getElementById('coffin-reset'),close=document.getElementById('coffin-explore-close');
   let active=false,busy=false,asset=null,task=null,state=transition({},'reset'),current=null,copies=[],animations=[];const lengths=[2.24,2.04,1.88];
   function ui(){panel.hidden=!active;place.hidden=state.placed;slide.hidden=!state.placed;slide.disabled=busy||state.open;lift.hidden=!state.open||state.stage===2;for(const b of [place,lift,reset,close])b.disabled=busy;slide.textContent=['Slide outer lid aside','Slide middle lid aside','Slide inner lid aside'][state.stage];status.textContent=busy?'Moving the lid…':!state.placed?'Carry the '+stages[state.stage]+' coffin to a clear floor area, then choose Place down.':state.stage===2&&state.open?'A fully wrapped teaching mummy wearing the gold mask over its head and shoulders, with gold hands holding the crook and flail across the chest. No unwrapped remains are shown.':state.open?'The next coffin is visible. Choose Lift next coffin to take it out.':'Slide the '+stages[state.stage]+' lid aside to reveal the next coffin.';}
@@ -16,7 +16,7 @@
   function makeCopy(stage){
    const source=asset.getObjectByName(['coffin-assembly','middle-coffin-group','innermost-coffin'][stage]);if(!source)throw Error('Coffin component missing');
    const group=new T.Group(),oriented=new T.Group(),model=source.clone(true);model.position.set(0,0,0);model.quaternion.identity();model.scale.set(1,1,1);oriented.add(model);oriented.rotation.x=-Math.PI/2;group.add(oriented);scene.add(group);
-   let box=bounds(group),size=box.getSize(new T.Vector3());group.scale.setScalar(lengths[stage]/Math.max(size.x,size.y,size.z));box=bounds(group);const center=box.getCenter(new T.Vector3());group.position.set(-center.x,-box.min.y,-center.z);const holder=new T.Group();scene.add(holder);holder.attach(group);copies.push(holder);return{holder,model,lid:model.getObjectByName(['outer-lid','middle-lid','inner-lid'][stage])};
+   let box=bounds(group),size=box.getSize(new T.Vector3());group.scale.setScalar(lengths[stage]/Math.max(size.x,size.y,size.z));group.scale.y*=depthScale;box=bounds(group);const center=box.getCenter(new T.Vector3());group.position.set(-center.x,-box.min.y,-center.z);const holder=new T.Group();scene.add(holder);holder.attach(group);copies.push(holder);return{holder,model,lid:model.getObjectByName(['outer-lid','middle-lid','inner-lid'][stage])};
   }
   function setAt(copy,x,y,z,yaw){copy.holder.position.set(x,y,z);copy.holder.rotation.y=yaw;}
   function preview(){if(!current||state.placed)return;const p=playerPosition(),dir=new T.Vector3();camera.getWorldDirection(dir);dir.y=0;if(dir.lengthSq()<.01)dir.set(0,0,-1);dir.normalize();setAt(current,p.x+dir.x*1.6,p.y+.65,p.z+dir.z*1.6,Math.atan2(dir.x,dir.z));}
@@ -42,3 +42,4 @@
  }
  return{transition,create};
 });
+

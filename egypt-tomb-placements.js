@@ -2,7 +2,7 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.EgyptTombPlacements=api;})(typeof window!=='undefined'?window:globalThis,function(){
  'use strict';
  const data={
-  "revision": "guardians-chest-1",
+  "revision": "burial-layers-1",
   "teacherOrder": [
     "throwing-sticks-ai",
     "headrest-ai",
@@ -13,6 +13,142 @@
   ],
   "notice": "Objects rest on the room floor or documented burial support without modern exhibit stands. Room associations follow the cited evidence; exact coordinates and unverified model matches remain approximate.",
   "entries": [
+{
+  "id": "burial-shrine-207-ai",
+  "room": "burial",
+  "comparison": "207",
+  "display": {
+    "pos": [
+      -3.3765,
+      -3.3678
+    ],
+    "floor": 0,
+    "size": 5.265,
+    "displayDimensions": [
+      3.63,
+      2.98,
+      5.265
+    ],
+    "yaw": 1.5707963267948966,
+    "stand": false,
+    "interaction": "burial-layer"
+  },
+  "evidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/207.html",
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/207-c207-01.html"
+  ],
+  "confidence": "Documented nesting order; approximate model fit and shared display center",
+  "note": "Burial chamber · Carter 207, nested around the sarcophagus and three coffins. Meshy teaching reconstruction; decoration, hidden surfaces and exact fit are approximate."
+},
+{
+  "id": "burial-shrine-237-ai",
+  "room": "burial",
+  "comparison": "237",
+  "display": {
+    "pos": [
+      -3.3765,
+      -3.3678
+    ],
+    "floor": 0,
+    "size": 4.03,
+    "displayDimensions": [
+      2.75,
+      2.35,
+      4.03
+    ],
+    "yaw": 1.5707963267948966,
+    "stand": false,
+    "interaction": "burial-layer"
+  },
+  "evidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/237.html",
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/237-c237-01.html"
+  ],
+  "confidence": "Documented nesting order; approximate model fit and shared display center",
+  "note": "Burial chamber · Carter 237, nested around the sarcophagus and three coffins. Meshy teaching reconstruction; decoration, hidden surfaces and exact fit are approximate."
+},
+{
+  "id": "burial-shrine-238-ai",
+  "room": "burial",
+  "comparison": "238",
+  "display": {
+    "pos": [
+      -3.3765,
+      -3.3678
+    ],
+    "floor": 0,
+    "size": 3.565,
+    "displayDimensions": [
+      2.29,
+      2.08,
+      3.565
+    ],
+    "yaw": 1.5707963267948966,
+    "stand": false,
+    "interaction": "burial-layer"
+  },
+  "evidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/238.html",
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/238-c238-01.html"
+  ],
+  "confidence": "Documented nesting order; approximate model fit and shared display center",
+  "note": "Burial chamber · Carter 238, nested around the sarcophagus and three coffins. Meshy teaching reconstruction; decoration, hidden surfaces and exact fit are approximate."
+},
+{
+  "id": "burial-shrine-239-ai",
+  "room": "burial",
+  "comparison": "239",
+  "display": {
+    "pos": [
+      -3.3765,
+      -3.3678
+    ],
+    "floor": 0,
+    "size": 3.09,
+    "displayDimensions": [
+      1.81,
+      1.92,
+      3.09
+    ],
+    "yaw": 1.5707963267948966,
+    "stand": false,
+    "interaction": "burial-layer"
+  },
+  "evidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/239.html",
+    "https://www.griffith.ox.ac.uk/gri/4tutshr23.html"
+  ],
+  "confidence": "Documented nesting order; approximate model fit and shared display center",
+  "note": "Burial chamber · Carter 239, nested around the sarcophagus and three coffins. Meshy teaching reconstruction; decoration, hidden surfaces and exact fit are approximate."
+},
+{
+  "id": "nested-coffins-ai",
+  "room": "burial",
+  "comparison": "253–255",
+  "display": {
+    "pos": [
+      -3.3765,
+      -3.3678
+    ],
+    "size": 2.24,
+    "yaw": 1.5707963267948966,
+    "floor": 0,
+    "baseY": 0.64,
+    "depthScale": 0.6636799694,
+    "restRotation": [
+      -1.5707963267948966,
+      0,
+      0
+    ],
+    "stand": false,
+    "interaction": "burial-layer"
+  },
+  "evidence": [
+    "https://www.griffith.ox.ac.uk/gri/carter/250-299.html"
+  ],
+  "confidence": "Documented nesting order; approximate reconstructed fit",
+  "note": "Burial chamber · the existing three-coffin teaching assembly, Carter 253–255, inside the stone sarcophagus with its head west. Includes the wrapped teaching mummy, mask, crook and flail. The old souvenir coffin replica has been removed from this game."
+},
 {
     "id": "guardian-statue-ai",
     "room": "antechamber",
@@ -362,4 +498,5 @@
  }
  return {...data,apply};
 });
+
 

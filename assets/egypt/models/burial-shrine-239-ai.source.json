@@ -1,0 +1,27 @@
+{
+  "title": "Innermost burial shrine · Carter 239 · Meshy reconstruction",
+  "carterNumber": "239",
+  "creator": "Meshy AI, generated for this collection",
+  "taskId": "01a215fd-4491-72a4-8b38-1ea161fce994",
+  "geometryModel": "meshy-t2",
+  "textureModel": "meshy-n1",
+  "originalFile": "burial-shrine-239-ai-original.glb",
+  "webModel": "burial-shrine-239-ai.glb",
+  "originalSha256": "765faa0b336d4d5eac0261a3ec1a6c2cfdcdd1b83b97331fc1d8765f49af3d5f",
+  "webBytes": 3678012,
+  "triangles": 8700,
+  "referenceImage": "tmp/burial-shrines/references/239-clean.png",
+  "referenceMethod": "AI-cleaned and reconstructed color view based on artifact photographs. Hidden surfaces, exact inscriptions and some decoration are inferred.",
+  "catalogue": "https://www-griffith.ames.ox.ac.uk/gri/carter/239.html",
+  "dimensionsEvidence": "https://www.griffith.ox.ac.uk/gri/4tutshr23.html",
+  "displayDimensionsLengthHeightWidthM": [
+    3.09,
+    1.92,
+    1.81
+  ],
+  "placement": "Burial chamber, nested around the sarcophagus and three coffins. Shared center and approximate fit to the existing tomb reconstruction; doors face east.",
+  "accuracy": "Teaching reconstruction, not a museum scan. Maximum reference dimensions guide the display; generated wall thickness and shape are not measured interiors.",
+  "licenseStatus": "Generated in the connected Meshy account; no Creative Commons license asserted.",
+  "derivativeChanges": "Original Meshy geometry and embedded textures preserved. Game applies dimension fitting and material lighting settings at load time.",
+  "dateAdded": "2026-11-25"
+}

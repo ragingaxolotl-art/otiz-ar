@@ -1,0 +1,27 @@
+{
+  "title": "Outermost burial shrine · Carter 207 · Meshy reconstruction",
+  "carterNumber": "207",
+  "creator": "Meshy AI, generated for this collection",
+  "taskId": "01a215fa-0cf1-7566-932f-89d2ecc64edb",
+  "geometryModel": "meshy-t2",
+  "textureModel": "meshy-n1",
+  "originalFile": "burial-shrine-207-ai-original.glb",
+  "webModel": "burial-shrine-207-ai.glb",
+  "originalSha256": "574e618e3f177acfa34073ca7048d329261f801678a6a769245b1ec5995591e3",
+  "webBytes": 5500300,
+  "triangles": 7800,
+  "referenceImage": "tmp/burial-shrines/references/207-clean.png",
+  "referenceMethod": "AI-cleaned and reconstructed color view based on artifact photographs. Hidden surfaces, exact inscriptions and some decoration are inferred.",
+  "catalogue": "https://www-griffith.ames.ox.ac.uk/gri/carter/207.html",
+  "dimensionsEvidence": "https://www-griffith.ames.ox.ac.uk/gri/carter/207-c207-01.html",
+  "displayDimensionsLengthHeightWidthM": [
+    5.265,
+    2.98,
+    3.63
+  ],
+  "placement": "Burial chamber, nested around the sarcophagus and three coffins. Shared center and approximate fit to the existing tomb reconstruction; doors face east.",
+  "accuracy": "Teaching reconstruction, not a museum scan. Maximum reference dimensions guide the display; generated wall thickness and shape are not measured interiors.",
+  "licenseStatus": "Generated in the connected Meshy account; no Creative Commons license asserted.",
+  "derivativeChanges": "Original Meshy geometry and embedded textures preserved. Game applies dimension fitting and material lighting settings at load time.",
+  "dateAdded": "2026-11-25"
+}
