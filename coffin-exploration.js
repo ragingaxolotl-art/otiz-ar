@@ -1,22 +1,22 @@
-/* Full-size teaching copies; the innermost coffin never opens. */
+/* Full-size teaching copies; the final lid reveals only a fully wrapped teaching mummy. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.CoffinExploration=api;})(typeof window==='object'?window:globalThis,function(){
  const stages=['outer','middle','inner'];
  function transition(state,action){
   if(action==='reset')return{stage:0,placed:false,open:false};
   if(action==='place'&&!state.placed)return{...state,placed:true};
-  if(action==='slide'&&state.placed&&!state.open&&state.stage<2)return{...state,open:true};
+  if(action==='slide'&&state.placed&&!state.open&&state.stage<=2)return{...state,open:true};
   if(action==='lift'&&state.placed&&state.open&&state.stage<2)return{stage:state.stage+1,placed:false,open:false};
   return state;
  }
  function create({THREE:T,scene,camera,loader,floorAt,clearAt,playerPosition,onStart=()=>{},sound=()=>{},message=()=>{}}){
   const panel=document.getElementById('coffin-exploration'),start=document.getElementById('coffin-explore-start'),status=document.getElementById('coffin-explore-status'),place=document.getElementById('coffin-place'),slide=document.getElementById('coffin-slide'),lift=document.getElementById('coffin-lift'),reset=document.getElementById('coffin-reset'),close=document.getElementById('coffin-explore-close');
   let active=false,busy=false,asset=null,task=null,state=transition({},'reset'),current=null,copies=[],animations=[];const lengths=[2.24,2.04,1.88];
-  function ui(){panel.hidden=!active;place.hidden=state.placed;slide.hidden=!state.placed||state.stage===2;slide.disabled=busy||state.open;lift.hidden=!state.open||state.stage===2;for(const b of [place,lift,reset,close])b.disabled=busy;slide.textContent=state.stage===0?'Slide outer lid aside':'Slide middle lid aside';status.textContent=busy?'Moving the lid…':!state.placed?'Carry the '+stages[state.stage]+' coffin to a clear floor area, then choose Place down.':state.stage===2?'Innermost coffin revealed. It stays sealed; no mummy is shown.':state.open?'The next coffin is visible. Choose Lift next coffin to take it out.':'Slide the '+stages[state.stage]+' lid aside to reveal the next coffin.';}
+  function ui(){panel.hidden=!active;place.hidden=state.placed;slide.hidden=!state.placed;slide.disabled=busy||state.open;lift.hidden=!state.open||state.stage===2;for(const b of [place,lift,reset,close])b.disabled=busy;slide.textContent=['Slide outer lid aside','Slide middle lid aside','Slide inner lid aside'][state.stage];status.textContent=busy?'Moving the lid…':!state.placed?'Carry the '+stages[state.stage]+' coffin to a clear floor area, then choose Place down.':state.stage===2&&state.open?'A fully wrapped teaching mummy, with gold hands holding the crook and flail across the chest. No unwrapped remains are shown.':state.open?'The next coffin is visible. Choose Lift next coffin to take it out.':'Slide the '+stages[state.stage]+' lid aside to reveal the next coffin.';}
   function bounds(o){o.updateWorldMatrix(true,true);return new T.Box3().setFromObject(o);}
   function makeCopy(stage){
    const source=asset.getObjectByName(['coffin-assembly','middle-coffin-group','innermost-coffin'][stage]);if(!source)throw Error('Coffin component missing');
    const group=new T.Group(),oriented=new T.Group(),model=source.clone(true);model.position.set(0,0,0);model.quaternion.identity();model.scale.set(1,1,1);oriented.add(model);oriented.rotation.x=-Math.PI/2;group.add(oriented);scene.add(group);
-   let box=bounds(group),size=box.getSize(new T.Vector3());group.scale.setScalar(lengths[stage]/Math.max(size.x,size.y,size.z));box=bounds(group);const center=box.getCenter(new T.Vector3());group.position.set(-center.x,-box.min.y,-center.z);const holder=new T.Group();scene.add(holder);holder.attach(group);copies.push(holder);return{holder,model,lid:stage<2?model.getObjectByName(stage===0?'outer-lid':'middle-lid'):null};
+   let box=bounds(group),size=box.getSize(new T.Vector3());group.scale.setScalar(lengths[stage]/Math.max(size.x,size.y,size.z));box=bounds(group);const center=box.getCenter(new T.Vector3());group.position.set(-center.x,-box.min.y,-center.z);const holder=new T.Group();scene.add(holder);holder.attach(group);copies.push(holder);return{holder,model,lid:model.getObjectByName(['outer-lid','middle-lid','inner-lid'][stage])};
   }
   function setAt(copy,x,y,z,yaw){copy.holder.position.set(x,y,z);copy.holder.rotation.y=yaw;}
   function preview(){if(!current||state.placed)return;const p=playerPosition(),dir=new T.Vector3();camera.getWorldDirection(dir);dir.y=0;if(dir.lengthSq()<.01)dir.set(0,0,-1);dir.normalize();setAt(current,p.x+dir.x*1.6,p.y+.65,p.z+dir.z*1.6,Math.atan2(dir.x,dir.z));}
@@ -29,7 +29,7 @@
     if(safe&&copies.every(c=>c===current.holder||!box.intersectsBox(bounds(c))))return{x,y,z,yaw};
    }preview();return null;
   }
-  async function begin(){if(active||busy)return;busy=true;start.disabled=true;message('Loading the three coffins…');try{onStart();if(!task)task=loader.loadAsync('assets/egypt/models/nested-coffins-ai.glb').catch(e=>{task=null;throw e;});asset=(await task).scene;active=true;state=transition({},'reset');current=makeCopy(0);preview();message('Full-size teaching copy: outer coffin about 2.24 m long. Place it on a clear floor area.');}catch(e){message('The coffins could not load. Try again.');console.error(e);}finally{busy=false;start.disabled=false;ui();}}
+  async function begin(){if(active||busy)return;busy=true;start.disabled=true;message('Loading the three coffins…');try{onStart();if(!task)task=Promise.all([loader.loadAsync('assets/egypt/models/nested-coffins-ai.glb'),loader.loadAsync('assets/egypt/models/crook-staff-ai.glb')]).then(([g,crook])=>{const inner=g.scene.getObjectByName('innermost-coffin'),replacement=window.WrappedMummy.createInner(T,inner,crook.scene);inner.parent.add(replacement);inner.removeFromParent();return g;}).catch(e=>{task=null;throw e;});asset=(await task).scene;active=true;state=transition({},'reset');current=makeCopy(0);preview();message('Full-size teaching copy: outer coffin about 2.24 m long. Place it on a clear floor area.');}catch(e){message('The coffins could not load. Try again.');console.error(e);}finally{busy=false;start.disabled=false;ui();}}
   start.onclick=begin;
   place.onclick=()=>{if(busy||state.placed)return;const spot=freeSpot();if(!spot){message('No clear floor space ahead. Move to a more open part of the room and try again.');return;}setAt(current,spot.x,spot.y,spot.z,spot.yaw);state=transition(state,'place');sound('drop',state.stage);ui();};
   slide.onclick=()=>{const next=transition(state,'slide');if(next===state||busy||!current.lid)return;state=next;busy=true;sound('scrape',state.stage);const lid=current.lid,from=lid.position.clone(),to=from.clone();to.x+=1.1;to.z+=.10;animations.push({object:lid,from,to,start:performance.now(),duration:1300,done:()=>{busy=false;ui();}});ui();};

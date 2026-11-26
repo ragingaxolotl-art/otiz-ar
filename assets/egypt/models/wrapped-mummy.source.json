@@ -1,0 +1,13 @@
+{
+  "title": "Fully wrapped mummy · classroom reconstruction",
+  "creator": "Field Lab procedural teaching geometry",
+  "construction": "Linen-covered head and body forms, bandage shading and gold hands are constructed approximations. No scan or depiction of unwrapped human remains. Open inner case and hidden surfaces are teaching geometry.",
+  "crookAndFlailSource": "crook-staff-ai.source.json",
+  "coffinSource": "inner-coffin-ai.source.json",
+  "placement": "Crook and flail are shown held by gold hands over the chest on the outer mummy wrappings, inside the innermost coffin. Dimensions and exact visual match remain approximate.",
+  "evidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/256b%281%29-c256-2.html"
+  ],
+  "implementation": "wrapped-mummy.js",
+  "dateAdded": "2026-11-25"
+}
