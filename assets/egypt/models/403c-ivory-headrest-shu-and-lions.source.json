@@ -1,0 +1,22 @@
+{
+  "title": "Carter 403c \u00b7 ivory headrest shu and lions",
+  "sourceUpload": "Meshy_AI_Ivory_Crescent_Offeri_1123180320_texture.glb",
+  "originalSha256": "729b0f0e2b3ab4b296204863c2ca08fe8033326fdee72d8419b751380abd2bd8",
+  "originalFile": "headrest-ai-original.glb",
+  "webModel": "403c-ivory-headrest-shu-and-lions.glb",
+  "webBytes": 1728244,
+  "triangles": 35000,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "No Creative Commons license supplied or asserted.",
+  "provenance": "Teacher-supplied AI reconstruction of the ivory headrest reference with a supporting central figure and two reclining lions. This is distinct from the Harvard headrest. Details and proportions are approximate.",
+  "historicalComparison": "https://www.griffith.ox.ac.uk/gri/carter/403c.html",
+  "placement": "Annexe \u00b7 AI comparison for the Shu-and-lions headrest, Carter 403c. The original was in a cabinet containing four headrests. Shown separately on a teaching stand; cabinet and exact position are not reconstructed.",
+  "dateAdded": "2026-11-23",
+  "derivativeChanges": "Attribute-aware mesh simplification; three embedded textures reduced to 1024 px. Original file preserved locally. 4096 px source color detail available on capture/approach.",
+  "placementRoom": "annexe",
+  "placementEvidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/403c-c403c-1.html",
+    "https://tutankhamun.griffith.ox.ac.uk/journals-and-diaries/taa-i2428-51-6th-season/taa-i2439"
+  ],
+  "placementConfidence": "Documented comparison/type room; approximate teaching position"
+}

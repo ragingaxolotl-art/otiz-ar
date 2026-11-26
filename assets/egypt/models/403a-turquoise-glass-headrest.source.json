@@ -1,0 +1,13 @@
+{
+  "title": "Carter 403a \u00b7 turquoise glass headrest",
+  "sourceUpload": "Meshy_AI_Ancient_Egyptian_Blue_Headrest_20261126_texture.glb",
+  "originalFile": "headrest-blue-original.glb",
+  "originalSha256": "8a5e3742d271a7d3f5ee1fbbe96f115341b8e40020199034376d15f0dac9c8d9",
+  "webModel": "403a-turquoise-glass-headrest.glb",
+  "webBytes": 17450504,
+  "comparison": "Carter 403a",
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "Teacher supplied for public classroom use; no separate license asserted for the upload.",
+  "geometry": "Original mesh, UV coordinates and animations unchanged; embedded preview textures limited to 2048px. Original source colour available on inspection.",
+  "preservedGeometryBufferViews": 4
+}

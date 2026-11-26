@@ -1,0 +1,13 @@
+{
+  "title": "Carter 403 \u00b7 headrest cabinet",
+  "sourceUpload": "cabinet-opening.glb",
+  "originalFile": "headrest-cabinet-original.glb",
+  "originalSha256": "b57001a8bc13d7dd40a9a413dfdfbee5d034ba433d7a1fbf6c1f1f7b378f7e85",
+  "webModel": "403-headrest-cabinet.glb",
+  "webBytes": 25568704,
+  "comparison": "Carter 403",
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "Teacher supplied for public classroom use; no separate license asserted for the upload.",
+  "geometry": "Original mesh, UV coordinates and animations unchanged; embedded preview textures limited to 2048px. Original source colour available on inspection.",
+  "preservedGeometryBufferViews": 21
+}

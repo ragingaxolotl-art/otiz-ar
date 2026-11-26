@@ -1,0 +1,13 @@
+{
+  "title": "Carter 403b \u00b7 dark blue faience headrest",
+  "sourceUpload": "Meshy_AI_Azure_Crescent_Headrest_20261126_texture.glb",
+  "originalFile": "headrest-azure-original.glb",
+  "originalSha256": "8ae4545479d5fd0898779435fc22399baa6645a79b8be441a80b8fe3e8a3b20a",
+  "webModel": "403b-dark-blue-faience-headrest.glb",
+  "webBytes": 17696472,
+  "comparison": "Carter 403b",
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "Teacher supplied for public classroom use; no separate license asserted for the upload.",
+  "geometry": "Original mesh, UV coordinates and animations unchanged; embedded preview textures limited to 2048px. Original source colour available on inspection.",
+  "preservedGeometryBufferViews": 4
+}

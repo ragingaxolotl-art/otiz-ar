@@ -290,6 +290,42 @@
           }
         }
       }
+    },
+    "headrest-cabinet": {
+      "materials": {
+        "headrest-cabinet-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/headrest-cabinet-source-color-0.jpg"
+          }
+        }
+      }
+    },
+    "headrest-blue": {
+      "materials": {
+        "headrest-blue-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/headrest-blue-source-color-0.jpg"
+          }
+        }
+      }
+    },
+    "headrest-azure": {
+      "materials": {
+        "headrest-azure-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/headrest-azure-source-color-0.jpg"
+          }
+        }
+      }
+    },
+    "headrest-folding": {
+      "materials": {
+        "headrest-folding-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/headrest-folding-source-color-0.jpg"
+          }
+        }
+      }
     }
   }
 }

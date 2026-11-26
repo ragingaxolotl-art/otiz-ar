@@ -1,0 +1,13 @@
+{
+  "title": "Carter 403d \u00b7 folding ivory headrest",
+  "sourceUpload": "Meshy_AI_Serpent_Guardian_Chair_20261126_texture.glb",
+  "originalFile": "headrest-folding-original.glb",
+  "originalSha256": "74b7123d1ee820b3b92f22e81da776ee55a246a75f9e986d38883535e75756f9",
+  "webModel": "403d-folding-ivory-headrest.glb",
+  "webBytes": 34818284,
+  "comparison": "Carter 403d",
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "Teacher supplied for public classroom use; no separate license asserted for the upload.",
+  "geometry": "Original mesh, UV coordinates and animations unchanged; embedded preview textures limited to 2048px. Original source colour available on inspection.",
+  "preservedGeometryBufferViews": 4
+}
