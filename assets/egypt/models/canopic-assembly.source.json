@@ -1,0 +1,101 @@
+{
+  "title": "Tutankhamun’s canopic equipment · Carter 266, 266a and 266b",
+  "room": "Treasury",
+  "outerCanopy": {
+    "title": "Canopy on sledge with Isis, Nephthys, Neith and Selket",
+    "carter": "266",
+    "creator": "Teacher-supplied Meshy AI",
+    "sourceUpload": "Meshy_AI_Golden_Shrine_of_Sekhmet_20261127_texture (1).glb",
+    "sourcePath": "/Users/guardh/Downloads/Meshy_AI_Golden_Shrine_of_Sekhmet_20261127_texture (1).glb",
+    "sourceSha256": "72b76f83401e079abfdd6d77b021458661c9773c04e424a06682eabf0c1a10d3",
+    "webModel": "canopic-shrine-ai.glb",
+    "catalogue": "https://www-griffith.ames.ox.ac.uk/gri/carter/266-c266a-05.html",
+    "dimensionSource": "https://gem.eg/en/collection/artefacts/canopic-shrine-on-a-sledge",
+    "displayDimensionsWidthHeightLengthM": [
+      1.22,
+      1.98,
+      1.65
+    ]
+  },
+  "woodenShrine": {
+    "carter": "266a",
+    "description": "Bottomless gilded wooden shrine, concealing the calcite box. Lifted away, not opened on a hinge.",
+    "dimensionsWidthHeightDepthM": [
+      0.9,
+      1.36,
+      0.9
+    ],
+    "source": "https://www-griffith.ames.ox.ac.uk/gri/carter/266a-c266a-01.html"
+  },
+  "calciteChest": {
+    "carter": "266b",
+    "creator": "danderson4",
+    "source": "https://skfb.ly/6yQVJ",
+    "license": "CC BY-NC 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "originalWebModel": "assets/egypt/walkthrough/canopic.glb",
+    "derivative": "canopic-chest-opening.glb",
+    "changes": "Detached calcite lid separated from modern display stand; stand omitted. Head stoppers seated beneath lid for closed display and raised for analysis. Original colour image and UVs retained.",
+    "openingSource": "https://www-griffith.ames.ox.ac.uk/gri/carter/266b-c266b-01.html"
+  },
+  "teachingAssembly": "Enclosures nested at a shared centre near the Treasury’s east wall. Pick up to remove outer canopy, lift the bottomless wooden shrine, and lift off the stone lid. Exploded offsets, interior fit and generated surface details are approximate. No sarcophagus or body coffin is placed in the canopic assembly.",
+  "parts": [
+    {
+      "name": "canopic-canopy",
+      "triangles": 135881,
+      "min": [
+        -0.7832739949226379,
+        -0.9521369934082031,
+        -0.7103109955787659
+      ],
+      "max": [
+        0.7361519932746887,
+        0.9536790251731873,
+        0.7028130292892456
+      ]
+    },
+    {
+      "name": "canopic-wooden-shrine",
+      "triangles": 24105,
+      "min": [
+        -0.5393710136413574,
+        -0.8618659973144531,
+        -0.5115060210227966
+      ],
+      "max": [
+        0.4875679910182953,
+        0.48095399141311646,
+        0.5095310211181641
+      ]
+    }
+  ],
+  "dateAdded": "2026-11-26",
+  "displayAnchorXZ": [
+    -4.509,
+    -10.124
+  ],
+  "coordinateDirections": {
+    "north": "-X",
+    "east": "-Z",
+    "south": "+X",
+    "west": "+Z"
+  },
+  "placementEvidence": [
+    {
+      "source": "https://www-griffith.ames.ox.ac.uk/gri/carter/266-c266-01.html",
+      "establishes": "Centre of Treasury east wall; west-facing; canopy, wooden shrine, calcite box and four internal receptacles nested."
+    },
+    {
+      "source": "https://www-griffith.ames.ox.ac.uk/gri/carter/266-p1144.html",
+      "establishes": "Burton 1144: canopy, goddesses, sledge and nearby wall relationship."
+    },
+    {
+      "source": "https://www-griffith.ames.ox.ac.uk/gri/carter/266-p1169.html",
+      "establishes": "Burton 1169: canopic assembly behind Anubis, seen through Treasury doorway."
+    },
+    {
+      "source": "https://www-griffith.ames.ox.ac.uk/gri/carter/261-c261-1.html",
+      "establishes": "Anubis facing west near doorway; existing replica retains a teaching clearance offset."
+    }
+  ]
+}

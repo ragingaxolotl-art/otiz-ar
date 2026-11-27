@@ -7,7 +7,7 @@
   'throne':['91','Golden throne'],
   'dagger':['256k','Iron dagger and gold sheath'],
   'mask':['256a','Gold funerary mask'],
-  'canopic':['266b','Calcite canopic chest'],
+  'canopic':['266–266b','Canopic shrine and nested calcite chest'],
   'anubis-replica':['261','Anubis shrine'],
   'lotus-head':['8','Head of Tutankhamun emerging from a lotus'],
   'mannequin':['116','Wooden portrait bust of Tutankhamun'],

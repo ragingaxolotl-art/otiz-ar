@@ -28,7 +28,7 @@
       "materials": {
         "material-0": {
           "map": {
-            "url": "assets/egypt/detail/bb891196fe686194cbd0.jpg",
+            "url": "assets/egypt/detail/8032a41caca0def0e7de.jpg",
             "width": 4096,
             "height": 4096
           }
@@ -53,6 +53,13 @@
             "url": "assets/egypt/detail/05fd3afe39cb1c60dea3.jpg",
             "width": 4096,
             "height": 4096
+          }
+        },
+        "canopic-upload-1": {
+          "map": {
+            "url": "assets/egypt/detail/canopic-upload-1.jpg",
+            "width": 2048,
+            "height": 2048
           }
         }
       }
@@ -291,11 +298,11 @@
         }
       }
     },
-    "headrest-cabinet": {
+    "headrest-azure": {
       "materials": {
-        "headrest-cabinet-material-0": {
+        "headrest-azure-material-0": {
           "map": {
-            "url": "assets/egypt/detail/headrest-cabinet-source-color-0.jpg"
+            "url": "assets/egypt/detail/headrest-azure-source-color-0.jpg"
           }
         }
       }
@@ -309,11 +316,11 @@
         }
       }
     },
-    "headrest-azure": {
+    "headrest-cabinet": {
       "materials": {
-        "headrest-azure-material-0": {
+        "headrest-cabinet-material-0": {
           "map": {
-            "url": "assets/egypt/detail/headrest-azure-source-color-0.jpg"
+            "url": "assets/egypt/detail/headrest-cabinet-source-color-0.jpg"
           }
         }
       }
@@ -323,6 +330,17 @@
         "headrest-folding-material-0": {
           "map": {
             "url": "assets/egypt/detail/headrest-folding-source-color-0.jpg"
+          }
+        }
+      }
+    },
+    "burial-shrine-207-ai": {
+      "materials": {
+        "canopic-upload-0": {
+          "map": {
+            "url": "assets/egypt/detail/canopic-upload-0.jpg",
+            "width": 4096,
+            "height": 4096
           }
         }
       }

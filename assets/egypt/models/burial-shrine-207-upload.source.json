@@ -1,0 +1,78 @@
+{
+  "title": "Outermost burial shrine · Carter 207",
+  "creator": "Teacher-supplied Meshy AI",
+  "sourceUpload": "Meshy_AI_Golden_Shrine_of_Sekhmet_20261127_texture.glb",
+  "sourcePath": "/Users/guardh/Downloads/Meshy_AI_Golden_Shrine_of_Sekhmet_20261127_texture.glb",
+  "sourceSha256": "0be68ad0fb519f1710de1286cfc2cb324a4472646814a656751673d9e36d9f5b",
+  "webModel": "burial-shrine-207-upload.glb",
+  "identification": "Comparison with Tutankhamun’s outermost burial shrine: repeating gold djed pillars and tyet knots against blue faience. Not a shrine of Sekhmet. Generated proportions and details differ.",
+  "catalogue": "https://www-griffith.ames.ox.ac.uk/gri/carter/207-c207-01.html",
+  "displayDimensionsWidthHeightLengthM": [
+    3.63,
+    2.98,
+    5.265
+  ],
+  "placement": "Burial chamber, east-facing double doors; around shrines 237, 238 and 239, the stone sarcophagus and three coffins.",
+  "changes": "Attribute-aware simplification; axis and reference dimensions fitted; textured door leaves separated, geometry clipped with interpolated UVs. Source base color retained at 4096 pixels; no AI retexturing.",
+  "parts": [
+    {
+      "name": "shrine-shell",
+      "triangles": 100997,
+      "min": [
+        -1.815000057220459,
+        0.0,
+        -2.632499933242798
+      ],
+      "max": [
+        1.815000057220459,
+        2.9800000190734863,
+        2.632499933242798
+      ]
+    },
+    {
+      "name": "shrine-door-left",
+      "triangles": 10981,
+      "min": [
+        -1.5700000524520874,
+        0.07999999821186066,
+        2.359999895095825
+      ],
+      "max": [
+        1.1920928955078125e-07,
+        2.569999933242798,
+        2.5642342567443848
+      ]
+    },
+    {
+      "name": "shrine-door-right",
+      "triangles": 10768,
+      "min": [
+        -2.9802322387695312e-08,
+        0.07999999821186066,
+        2.359999895095825
+      ],
+      "max": [
+        1.5700000524520874,
+        2.569999933242798,
+        2.5643656253814697
+      ]
+    }
+  ],
+  "license": "Teacher-supplied generation; no Creative Commons licence asserted.",
+  "dateAdded": "2026-11-26",
+  "placementPhotos": [
+    "https://www-griffith.ames.ox.ac.uk/gri/carter/207-p0592.html",
+    "https://www.griffith.ox.ac.uk/learning/look/burial-chamber-plan.html"
+  ],
+  "coordinateDirections": {
+    "north": "-X",
+    "east": "-Z",
+    "south": "+X",
+    "west": "+Z"
+  },
+  "gameYawRadians": 3.141592653589793,
+  "displayAnchorXZ": [
+    -3.3765,
+    -3.3678
+  ]
+}
