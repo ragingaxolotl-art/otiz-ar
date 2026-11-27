@@ -1,0 +1,14 @@
+{
+  "id": "shawabti-nedjem",
+  "title": "Shawabti of Nedjem",
+  "creator": "The Egypt Centre",
+  "source": "https://sketchfab.com/3d-models/shabti-of-nedjem-w760-f975e1e56d6744cfb5963367b0160253",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "file": "shawabti-nedjem.glb",
+  "originalFile": "shawabti-nedjem-original.glb",
+  "modifications": "Attribute-aware mesh simplification for classroom display; supplied 1k textures retained. Legacy specular/glossiness materials converted to metallic/roughness where present. Original download preserved.",
+  "sourceTriangles": 600936,
+  "webTriangles": 53850,
+  "webBytes": 2327324,
+  "identification": "Different ancient owner; used as a labeled teaching stand-in for shawabti groups, not an actual Tutankhamun find."
+}

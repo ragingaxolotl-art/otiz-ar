@@ -1,0 +1,14 @@
+{
+  "id": "shawabti-ramose",
+  "title": "Shawabti of Ramose",
+  "creator": "Fitzwilliam Museum",
+  "source": "https://sketchfab.com/3d-models/shabti-of-ramose-37128a12fc4d4c5e842a872f4085664d",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "file": "shawabti-ramose.glb",
+  "originalFile": "shawabti-ramose-original.glb",
+  "modifications": "Attribute-aware mesh simplification for classroom display; supplied 1k textures retained. Legacy specular/glossiness materials converted to metallic/roughness where present. Original download preserved.",
+  "sourceTriangles": 180000,
+  "webTriangles": 16174,
+  "webBytes": 1046676,
+  "identification": "Different ancient owner; used as a labeled teaching stand-in for shawabti groups, not an actual Tutankhamun find."
+}

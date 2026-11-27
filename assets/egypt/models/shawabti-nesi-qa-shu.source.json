@@ -1,0 +1,14 @@
+{
+  "id": "shawabti-nesi-qa-shu",
+  "title": "Shawabti of Nesi-qa-Shu",
+  "creator": "The Watt Institution",
+  "source": "https://sketchfab.com/3d-models/shabti-figure-8161d0bfc36348ecaa5a59fcb38e8644",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "file": "shawabti-nesi-qa-shu.glb",
+  "originalFile": "shawabti-nesi-qa-shu-original.glb",
+  "modifications": "Attribute-aware mesh simplification for classroom display; supplied 1k textures retained. Legacy specular/glossiness materials converted to metallic/roughness where present. Original download preserved. Added a root rotation so the default view faces the figure.",
+  "sourceTriangles": 99457,
+  "webTriangles": 8951,
+  "webBytes": 1402180,
+  "identification": "Different ancient owner; used as a labeled teaching stand-in for shawabti groups, not an actual Tutankhamun find."
+}

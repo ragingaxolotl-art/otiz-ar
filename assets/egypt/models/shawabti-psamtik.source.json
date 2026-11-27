@@ -1,0 +1,14 @@
+{
+  "id": "shawabti-psamtik",
+  "title": "Shawabti of Psamtik",
+  "creator": "The Egypt Centre",
+  "source": "https://sketchfab.com/3d-models/shabti-of-psamtik-hargm3632-932aa55171b04c33ba0e803f555896e4",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "file": "shawabti-psamtik.glb",
+  "originalFile": "shawabti-psamtik-original.glb",
+  "modifications": "Attribute-aware mesh simplification for classroom display; supplied 1k textures retained. Legacy specular/glossiness materials converted to metallic/roughness where present. Original download preserved. Added a root rotation so the default view faces the figure.",
+  "sourceTriangles": 601588,
+  "webTriangles": 53664,
+  "webBytes": 2309816,
+  "identification": "Different ancient owner; used as a labeled teaching stand-in for shawabti groups, not an actual Tutankhamun find."
+}

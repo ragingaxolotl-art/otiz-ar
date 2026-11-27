@@ -1,0 +1,14 @@
+{
+  "id": "shawabti-horudja",
+  "title": "Shawabti of Horudja",
+  "creator": "The Egypt Centre",
+  "source": "https://sketchfab.com/3d-models/shabti-of-horudja-hargm7373-160c00aa5abb4f8aa1ac6af07796eb53",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "file": "shawabti-horudja.glb",
+  "originalFile": "shawabti-horudja-original.glb",
+  "modifications": "Attribute-aware mesh simplification for classroom display; supplied 1k textures retained. Legacy specular/glossiness materials converted to metallic/roughness where present. Original download preserved. Added a root rotation so the default view faces the figure.",
+  "sourceTriangles": 600870,
+  "webTriangles": 53623,
+  "webBytes": 2379364,
+  "identification": "Different ancient owner; used as a labeled teaching stand-in for shawabti groups, not an actual Tutankhamun find."
+}
