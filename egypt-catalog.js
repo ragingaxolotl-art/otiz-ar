@@ -1,6 +1,8 @@
 /* Display names use excavation numbers only when the object comparison is established. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.EgyptCatalog=api;})(typeof window==='object'?window:globalThis,function(){
  const names={
+  'shabti-nemes-ai':[null,'Royal shabti with nemes headcloth'],
+  'shabti-khepresh-ai':[null,'Royal shabti with blue crown (khepresh)'],
   'guardian-statue-ai':['22','Guardian statue with nemes headcloth'],
   'guardian-khat-ai':['29','Guardian statue with khat headdress'],
   'painted-chest':['21','Painted wooden chest'],
@@ -38,3 +40,4 @@
  function apply(defs){for(const d of defs){const entry=names[d.id];if(entry){d.carterNumber=entry[0];d.name=(entry[0]?'Carter '+entry[0]+' · ':'')+entry[1];}else d.name=d.name.replace(/\s*·\s*AI (?:reconstruction|approximation)/gi,'');}return defs;}
  return{names,apply};
 });
+

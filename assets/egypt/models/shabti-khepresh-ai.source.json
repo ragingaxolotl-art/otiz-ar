@@ -1,0 +1,25 @@
+{
+  "title": "Royal shabti with blue crown (khepresh)",
+  "sourceUpload": "Meshy_AI_Golden_Pharaoh_Guardian_20261127_texture.glb",
+  "originalFile": "shabti-khepresh-ai-original.glb",
+  "originalSha256": "90e23c6a957cce3b768bfbe82ba947a3f2e32b5fdf65fca230f06d637af403ff",
+  "webModel": "shabti-khepresh-ai.glb",
+  "webBytes": 2738836,
+  "triangles": 60000,
+  "sourceTriangles": 464228,
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "User-supplied for this classroom project; no separate Creative Commons license supplied or asserted.",
+  "identification": "Royal shabti / shawabti funerary figure; descriptive type identification, not a doorway guardian.",
+  "specificObjectMatch": "Unverified; no Carter number assigned to this generated mesh.",
+  "referenceHeightM": 0.48,
+  "sizeBasis": "Reference height for a comparable royal shabti; the generated mesh itself is not a measured scan.",
+  "placementRoom": "treasury",
+  "placement": "Treasury · AI teaching reconstruction of a royal shabti funerary figure. Khepresh (blue) crown, crossed arms, crook and flail identify the intended type. Shabtis were stored in containers in this room and in the Annexe. This accessible floor arrangement is approximate; a specific ancient object, inscription and exact findspot are not established for the generated mesh.",
+  "placementEvidence": [
+    "https://www-griffith.ames.ox.ac.uk/gri/4tutshaw.html",
+    "https://tutankhamun.griffith.ox.ac.uk/rooms/treasury",
+    "https://globalegyptianmuseum.org/detail.aspx?id=14815"
+  ],
+  "derivativeChanges": "Reduced to 60,000 triangles with UV-aware simplification; embedded maps resized to 1024 px and JPEG-compressed. Source upload preserved locally; 2048 px base-color detail available on inspection.",
+  "dateAdded": "2026-11-27"
+}

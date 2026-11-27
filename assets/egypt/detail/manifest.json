@@ -344,6 +344,28 @@
           }
         }
       }
+    },
+    "shabti-nemes-ai": {
+      "materials": {
+        "shabti-nemes-ai-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/shabti-nemes-ai.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
+    },
+    "shabti-khepresh-ai": {
+      "materials": {
+        "shabti-khepresh-ai-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/shabti-khepresh-ai.jpg",
+            "width": 2048,
+            "height": 2048
+          }
+        }
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.EgyptTombPlacements=api;})(typeof window!=='undefined'?window:globalThis,function(){
  'use strict';
  const data={
-  "revision": "canopic-opening-1",
+  "revision": "shabti-pair-1",
   "teacherOrder": [
     "throwing-sticks-ai",
     "headrest-ai",
@@ -13,6 +13,9 @@
   ],
   "notice": "Objects rest on the room floor or documented burial support without modern exhibit stands. Room associations follow the cited evidence; exact coordinates and unverified model matches remain approximate.",
   "entries": [
+    {"id": "shabti-nemes-ai", "room": "treasury", "display": {"pos": [-5.9, -8.85], "size": 0.52, "floor": 0, "stand": false, "yaw": 1.5707963267948966}, "evidence": ["https://www-griffith.ames.ox.ac.uk/gri/4tutshaw.html", "https://tutankhamun.griffith.ox.ac.uk/rooms/treasury", "https://www-griffith.ames.ox.ac.uk/gri/carter/330i-c330i-1.html"], "confidence": "Documented object type in room; approximate teaching position and size, exact object match unverified", "note": "Treasury · AI teaching reconstruction of a royal shabti funerary figure. Nemes headcloth, crossed arms, crook and flail identify the intended type. Shabtis were stored in containers in this room and in the Annexe. This accessible floor arrangement is approximate; a specific ancient object, inscription and exact findspot are not established for the generated mesh."},
+    {"id": "shabti-khepresh-ai", "room": "treasury", "display": {"pos": [-5.9, -9.2], "size": 0.48, "floor": 0, "stand": false, "yaw": 1.5707963267948966}, "evidence": ["https://www-griffith.ames.ox.ac.uk/gri/4tutshaw.html", "https://tutankhamun.griffith.ox.ac.uk/rooms/treasury", "https://globalegyptianmuseum.org/detail.aspx?id=14815"], "confidence": "Documented object type in room; approximate teaching position and size, exact object match unverified", "note": "Treasury · AI teaching reconstruction of a royal shabti funerary figure. Khepresh (blue) crown, crossed arms, crook and flail identify the intended type. Shabtis were stored in containers in this room and in the Annexe. This accessible floor arrangement is approximate; a specific ancient object, inscription and exact findspot are not established for the generated mesh."},
+
     {
       "id": "burial-shrine-207-ai",
       "room": "burial",
@@ -525,3 +528,4 @@
  }
  return {...data,apply};
 });
+
