@@ -34,7 +34,7 @@ const wearableItems={
 };
 const equipmentSlots=[['head','Head'],['neck','Neck'],['wrist','Wrist']];
 function cleanEquipment(){const prior=state.equipped||{};state.equipped=Object.fromEntries(equipmentSlots.map(([slot])=>[slot,state.found.includes(prior[slot])&&wearableItems[prior[slot]]?.slot===slot?prior[slot]:null]));}
-function itemCategory(item){const n=(item.name+' '+item.kind).toLowerCase();return /chest|cabinet|shrine|enclosure/.test(n)?'Boxes & chests':/vase|jar|vessel|stopper|calcite chest lid/.test(n)?'Jars & vessels':wearableItems[item.id]||/mask|pectoral|diadem|bracelet/.test(n)?'Jewellery':/dagger|stick|shield|crook|flail/.test(n)?'Weapons':/shabti|shawabti|head emerging|bust|guardian|ankhesenamun/.test(n)?'Figures':/headrest|couch|throne|bed/.test(n)?'Furniture':'Other';}
+function itemCategory(item){const n=(item.name+' '+item.kind).toLowerCase();return /chest|cabinet|shrine|enclosure/.test(n)?'Boxes & chests':/vase|jar|vessel|stopper|calcite chest lid/.test(n)?'Jars & vessels':wearableItems[item.id]||/\b(?:mask|pectoral|diadem|bracelet|ring)\b/.test(n)?'Jewellery':/dagger|stick|shield|crook|flail/.test(n)?'Weapons':/shabti|shawabti|head emerging|bust|guardian|ankhesenamun/.test(n)?'Figures':/headrest|couch|throne|bed/.test(n)?'Furniture':'Other';}
 
 const STORAGE = GAME_MODE?'tomb-pixel-book:v1':'paper-inventory-preview:v1';
 let state;

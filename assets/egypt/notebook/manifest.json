@@ -1,6 +1,6 @@
 {
   "summary": {
-    "image_count": 51,
+    "image_count": 52,
     "size": [
       128,
       128
@@ -1071,6 +1071,22 @@
       "sha256": "0d2c39e569851d2ad111be3f000024020b901a9f532ade5673615aaef1a5afdb",
       "audit_status": "Code-drawn teaching illustration",
       "audit_note": "Code-drawn icon of the project-created Carter 175 trumpet or painted wooden protective insert. Surface details are approximate."
+    },
+    {
+      "id": "scarab-ring-ai",
+      "name": "Scarab ring \u00b7 Egyptian-style reconstruction",
+      "image": "scarab-ring-ai.png",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "creator": "PixelLab",
+      "method": "Pixen pixel-art illustration",
+      "pixellab_job_id": "1027f813-a7f2-420e-826a-ea98aa19cb8c",
+      "pixellab_asset_id": "1af378a0-759c-568a-8917-6e9eb7f41fb5",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/1027f813-a7f2-420e-826a-ea98aa19cb8c/download",
+      "sha256": "e4ced38e3149c52ebb9ef14a1ba68c6cf5ddedc5ca774460817f7046d7e2f6ec",
+      "audit_status": "Teaching illustration \u2014 exact ancient match unverified",
+      "audit_note": "PixelLab inventory illustration of the supplied gold-colored ring with a large blue scarab and raised petal setting. No exact match or excavation findspot asserted."
     }
   ]
 }

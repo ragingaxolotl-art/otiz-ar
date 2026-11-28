@@ -13,7 +13,7 @@
  function sync(){button.textContent='Pixel book ('+count()+'/'+entries.size+')';send({kind:'tomb-book-sync',entries:[...entries.values()].map(e=>({id:e.id,name:e.name,room:e.room,note:e.collected?e.note:undefined,collected:e.collected,analysisRotation:e.analysisRotation}))});}
  // Sources never travel through postMessage. Only collected originals can be inspected.
  root.TombBookBridge={getSource(id){const e=entries.get(id);return e?.collected?e.source?.():null;}};
- function open(id){pending=entries.has(id)?id:null;if(!dialog.open){onOpen();dialog.showModal();}if(!frame.getAttribute('src'))frame.src='paper-inventory/?tomb=1&v=pixel-book-game-20261128-1';sync();send({kind:'tomb-book-open',id:pending});if(ready)pending=null;frame.focus();}
+ function open(id){pending=entries.has(id)?id:null;if(!dialog.open){onOpen();dialog.showModal();}if(!frame.getAttribute('src'))frame.src='paper-inventory/?tomb=1&v=scarab-ring-20261128-1';sync();send({kind:'tomb-book-open',id:pending});if(ready)pending=null;frame.focus();}
  function close(){if(dialog.open)dialog.close();}
  root.addEventListener('message',event=>{if(event.origin!==origin||event.source!==frame.contentWindow)return;const kind=event.data?.kind;if(kind==='tomb-book-ready'){ready=true;$('pixel-book-loading').hidden=true;sync();send({kind:dialog.open?'tomb-book-open':'tomb-book-hide',id:pending});pending=null;}else if(kind==='tomb-book-close')close();});
  dialog.addEventListener('close',()=>{send({kind:'tomb-book-hide'});onClose();});

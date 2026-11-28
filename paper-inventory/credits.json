@@ -690,6 +690,17 @@
       "credit": "amirfiala1",
       "source": "https://sketchfab.com/3d-models/kingtutchair-21cd6cb690c744a6a9f3f54b736c2caa",
       "license": "CC BY 4.0"
+    },
+    {
+      "id": "scarab-ring-ai",
+      "name": "Scarab ring \u00b7 Egyptian-style reconstruction",
+      "kind": "Jewellery",
+      "note": "Treasury jewellery teaching display \u00b7 Gold-colored finger ring with a deep blue scarab and raised decorative setting. User-supplied Egyptian-style reconstruction. Tutankhamun had scarab jewellery and elaborate rings, but this design has no verified match to a specific object from his tomb. Displayed enlarged for examination; this position is not a claimed ancient findspot.",
+      "file": "assets/egypt/models/scarab-ring-ai.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Teacher-supplied Meshy AI reconstruction",
+      "license": "Upload record"
     }
   ],
   "icons": [
@@ -1194,6 +1205,12 @@
       "pixellab_download": "https://api.pixellab.ai/mcp/images/398cc192-603d-49bb-bfa7-8cdf60a57d2c/download",
       "audit_status": "Teaching illustration \u2014 exact match unverified",
       "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "scarab-ring-ai",
+      "name": "Scarab ring \u00b7 Egyptian-style reconstruction",
+      "audit_note": "Treasury jewellery teaching display \u00b7 Gold-colored finger ring with a deep blue scarab and raised decorative setting. User-supplied Egyptian-style reconstruction. Tutankhamun had scarab jewellery and elaborate rings, but this design has no verified match to a specific object from his tomb. Displayed enlarged for examination; this position is not a claimed ancient findspot.",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/1027f813-a7f2-420e-826a-ea98aa19cb8c/download"
     }
   ]
 }

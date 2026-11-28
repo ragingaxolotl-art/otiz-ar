@@ -1,0 +1,12 @@
+{
+  "title": "Scarab ring \u00b7 Egyptian-style reconstruction",
+  "sourceUpload": "Meshy_AI_Scarab_Splendor_PBR_20250903_texture.glb",
+  "sourceSha256": "8b73b2f5462a2a68d951aff9965c8e9c4e90a84b1227c7f7232c9a82929192d4",
+  "webModel": "scarab-ring-ai.glb",
+  "creator": "Teacher-supplied Meshy AI reconstruction",
+  "licenseStatus": "User-supplied project asset; no Creative Commons license asserted.",
+  "changes": "None. Original geometry, PBR materials and embedded texture bytes preserved. Game display scale is separate.",
+  "archaeologicalIdentification": "Egyptian-style teaching reconstruction; no exact match to a catalogued Tutankhamun ring asserted.",
+  "placement": "Treasury jewellery teaching display; not a claimed excavation findspot.",
+  "comparison": "https://tutankhamun.griffith.ox.ac.uk/object-cards/taa-i1256ff3"
+}

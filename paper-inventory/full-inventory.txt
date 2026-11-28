@@ -1,5 +1,5 @@
 EGYPT COLLECTION INVENTORY
-65 catalog entries; 125 local GLB files reconciled.
+66 catalog entries; 126 local GLB files reconciled.
 Originals and alternate exports are mapped to their entries, not counted as new excavated finds.
 
 ENTRANCE
@@ -51,6 +51,7 @@ TREASURY
   Shawabti of Nesi-qa-Shu, comparison [shawabti-nesi-qa-shu]
   Shawabti of Psamtik, comparison [shawabti-psamtik]
   Shawabti of Ramose, comparison [shawabti-ramose]
+  Scarab ring · Egyptian-style reconstruction [scarab-ring-ai]
   Gilded wooden canopic shrine [canopic-wooden-shrine]
   Calcite canopic chest [canopic-calcite-chest]
   Calcite chest lid [canopic-calcite-lid]
