@@ -1,5 +1,6 @@
 'use strict';
-// This prototype has its own storage and no connection to tomb.js or the game.
+// The standalone preview and the embedded tomb collection have separate state.
+const GAME_MODE=!!(window.parent&&window.parent!==window&&window.location&&new URLSearchParams(window.location.search).get('tomb')==='1');
 const $ = id => document.getElementById(id);
 const ASSETS = window.PAPER_PREVIEW_ASSETS;
 for (const [name, value] of Object.entries(ASSETS.images)) document.documentElement.style.setProperty(`--${name}`, `url("${value}")`);
@@ -16,13 +17,14 @@ const legacyCatalog = [
 ];
 const aliases={'pectoral':'scarab-pectoral','sandals':'sandals-ai','boat':'model-boat-ai','fan':'fan-ai','boat-2':'model-boat-2-ai','bracelet':'scarab-bracelet'};
 const legacyById=new Map(legacyCatalog.map(e=>[aliases[e.id]||e.id,e]));
-const catalog=ASSETS.catalog.map(e=>({...e,...legacyById.get(e.id),id:e.id,name:e.name,kind:e.kind||(e.room==='reference'?'Comparison reference':e.room==='burial'?'Burial equipment':'Artifact'),model:e.model||legacyById.get(e.id)?.model,icon:e.id,credit:legacyById.get(e.id)?.credit||e.credit||e.source_credit||'PixelLab notebook illustration',note:legacyById.get(e.id)?.note||e.note||e.audit_note,source:legacyById.get(e.id)?.source||e.source||e.source_url}));
+let catalog=ASSETS.catalog.map(e=>({...e,...legacyById.get(e.id),id:e.id,name:e.name,kind:e.kind||(e.room==='reference'?'Comparison reference':e.room==='burial'?'Burial equipment':'Artifact'),model:e.model||legacyById.get(e.id)?.model,icon:e.id,credit:legacyById.get(e.id)?.credit||e.credit||e.source_credit||'PixelLab notebook illustration',note:legacyById.get(e.id)?.note||e.note||e.audit_note,source:legacyById.get(e.id)?.source||e.source||e.source_url}));
 
 const rooms=[['entrance','Entrance'],['antechamber','Antechamber'],['burial','Burial chamber'],['treasury','Treasury'],['annexe','Annexe'],['reference','References']];
 const spreads=[{room:'explorer',name:'Your explorer',items:[]}];
 for(const [room,name]of rooms){const items=catalog.filter(e=>e.room===room).map(e=>e.id);for(let i=0;i<items.length;i+=6)spreads.push({room,name,items:items.slice(i,i+6),part:Math.floor(i/6)+1});}
 const sampleIds=legacyCatalog.slice(0,7).map(e=>aliases[e.id]||e.id);
 const byId = new Map(catalog.map(item => [item.id, item]));
+if(GAME_MODE){catalog=[];spreads.splice(1);}
 
 const wearableItems={
  'diadem-ai':{slot:'head',label:'Royal diadem'},
@@ -34,16 +36,17 @@ const equipmentSlots=[['head','Head'],['neck','Neck'],['wrist','Wrist']];
 function cleanEquipment(){const prior=state.equipped||{};state.equipped=Object.fromEntries(equipmentSlots.map(([slot])=>[slot,state.found.includes(prior[slot])&&wearableItems[prior[slot]]?.slot===slot?prior[slot]:null]));}
 function itemCategory(item){const n=(item.name+' '+item.kind).toLowerCase();return /chest|cabinet|shrine|enclosure/.test(n)?'Boxes & chests':/vase|jar|vessel|stopper|calcite chest lid/.test(n)?'Jars & vessels':wearableItems[item.id]||/mask|pectoral|diadem|bracelet/.test(n)?'Jewellery':/dagger|stick|shield|crook|flail/.test(n)?'Weapons':/shabti|shawabti|head emerging|bust|guardian|ankhesenamun/.test(n)?'Figures':/headrest|couch|throne|bed/.test(n)?'Furniture':'Other';}
 
-const STORAGE = 'paper-inventory-preview:v1';
+const STORAGE = GAME_MODE?'tomb-pixel-book:v1':'paper-inventory-preview:v1';
 let state;
 try { state = JSON.parse(localStorage.getItem(STORAGE)); } catch (_) {}
-if (!state || !Array.isArray(state.found)) state = {found:sampleIds,seen:[],spread:0};
+if (!state || !Array.isArray(state.found)) state = {found:GAME_MODE?[]:sampleIds,seen:[],spread:0};
+if(GAME_MODE)state.found=[];
 state.found = [...new Set(state.found.map(id=>aliases[id]||id))].filter(id=>byId.has(id));
 state.seen = Array.isArray(state.seen) ? state.seen.map(id=>aliases[id]||id).filter(id=>byId.has(id)) : [];
 // Always open on the character page; collection and inspected markers still persist.
 state.spread = 0;
 cleanEquipment();
-const LAST_SPREAD = spreads.length-1;
+let LAST_SPREAD = spreads.length-1;
 let turning = false;
 const save = () => { try { localStorage.setItem(STORAGE, JSON.stringify(state)); } catch (_) {} };
 
@@ -71,7 +74,7 @@ function render() {
    const item=byId.get(spread.items[offset+i]);if(!item){const slot=document.createElement('div');slot.className='empty-slot';slot.innerHTML='<span>End of this room’s page</span>';target.append(slot);continue;}
    const collected=state.found.includes(item.id),wearable=wearableItems[item.id],button=document.createElement('button');button.className='find-card'+(collected?'':' is-locked');button.dataset.item=item.id;button.disabled=!collected;
    button.setAttribute('aria-label',`${item.name}, ${collected?(wearable?'collected, wear on book character':'collected, inspect'):'not collected'}`);
-   const hasModel=!!ASSETS.models[item.model]||!!item.studyUrl;
+   const hasModel=!!ASSETS.models[item.model]||!!item.studyUrl||!!item.gameSource;
    button.innerHTML=`<span class="icon-wrap">${icon(item.icon)}</span><span><span class="kind">${item.kind}</span><h3>${item.name}</h3><span class="inspect-hint">${collected?(wearable?'Click to wear · '+wearable.slot:hasModel?'Inspect in 3D':'Examine illustration'):'Not collected yet'}</span>${collected&&!state.seen.includes(item.id)?'<span class="new-tag">NEW</span>':''}</span>`;
    button.onclick=()=>{if(state.found.includes(item.id)){if(wearable)equipItem(item.id);else openInspector(item);}};target.append(button);
   }
@@ -93,6 +96,7 @@ function turn(direction) {
 let toastTimer;
 function announce(text){clearTimeout(toastTimer);$('announcement').textContent=text;$('announcement').classList.add('show');toastTimer=setTimeout(()=>$('announcement').classList.remove('show'),3500);}
 function recordDiscovery(id) {
+ if(GAME_MODE)return false;
  id=aliases[id]||id;if(!byId.has(id)||state.found.includes(id))return false;
  state.found.push(id);state.spread=spreads.findIndex(s=>s.items.includes(id));render();announce(`${byId.get(id).name} added to your collection.`);return true;
 }
@@ -162,24 +166,26 @@ async function openInspector(item) {
  if(!state.found.includes(item.id))return;
  lastButton=document.activeElement;const token=++loadToken;
  state.seen=[...new Set([...state.seen,item.id])];save();
+ $('book-observation-wrap').hidden=!GAME_MODE;if(GAME_MODE){$('book-observation').value=localStorage.getItem('tomb-observation:'+item.id)||'';$('book-observation').oninput=e=>{try{localStorage.setItem('tomb-observation:'+item.id,e.target.value);}catch{}};}
  $('inspect-title').textContent=item.name;$('model-note').textContent=item.note;
  $('model-credit').replaceChildren(document.createTextNode(`3D model: ${item.credit}`));
  if(item.source){const a=document.createElement('a');a.href=item.source;a.target='_blank';a.rel='noopener';a.textContent=` · Source${item.license?` · ${item.license}`:''}`;$('model-credit').append(a);}
  $('model-status').hidden=false;$('model-status').textContent='Opening object…';$('inspector').showModal();
  const illustration=$('inspect-illustration');illustration.hidden=true;$('study-frame').hidden=true;
- if(item.studyUrl){cancelAnimationFrame(raf);disposeModel();if(renderer)renderer.domElement.hidden=true;const frame=$('study-frame');frame.hidden=false;frame.src=item.studyUrl;$('inspect-view-controls').hidden=false;$('inspect-view-hint').hidden=false;return;}
+ if(item.studyUrl&&!item.gameSource){cancelAnimationFrame(raf);disposeModel();if(renderer)renderer.domElement.hidden=true;const frame=$('study-frame');frame.hidden=false;frame.src=item.studyUrl;$('inspect-view-controls').hidden=false;$('inspect-view-hint').hidden=false;return;}
  if(renderer)renderer.domElement.hidden=false;
- const hasModel=!!ASSETS.models[item.model]||!!item.studyUrl;$('inspect-view-controls').hidden=!hasModel;$('inspect-view-hint').hidden=!hasModel;
+ const hasModel=!!ASSETS.models[item.model]||!!item.studyUrl||!!item.gameSource;$('inspect-view-controls').hidden=!hasModel;$('inspect-view-hint').hidden=!hasModel;
  if(!hasModel){cancelAnimationFrame(raf);disposeModel();if(renderer)renderer.domElement.hidden=true;illustration.src=ASSETS.icons[item.id];illustration.alt=item.name;illustration.hidden=false;$('model-status').hidden=true;return;}
 
  try {
   initializeViewer();cancelAnimationFrame(raf);disposeModel();resizeViewer();draw();
   // Yield a frame so the opening state paints before decoding the embedded GLB.
   await new Promise(resolve=>requestAnimationFrame(resolve));
-  const gltf=await loadStudyModel(item.model);
+  const gltf=item.gameSource?{scene:cloneCollectedModel(item.id)}:await loadStudyModel(item.model);
   if(token!==loadToken||!$('inspector').open){gltf.scene.traverse(o=>{if(o.isMesh)o.geometry.dispose();});return;}
   modelRoot=new T.Group();let object=gltf.scene;object.updateMatrixWorld(true);
-  if(item.part){const part=new T.Group(),meshes=[];object.traverse(o=>{if(o.isMesh&&o.name.startsWith(item.part))meshes.push(o);});meshes.forEach(o=>part.attach(o));object=part;}
+  if(item.part&&!item.gameSource){const part=new T.Group(),meshes=[];object.traverse(o=>{if(o.isMesh&&o.name.startsWith(item.part))meshes.push(o);});meshes.forEach(o=>part.attach(o));object=part;}
+  object.traverse(o=>o.layers.set(0));
   const box=new T.Box3().setFromObject(object),size=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3());
   const scale=2/Math.max(size.x,size.y,size.z);object.scale.multiplyScalar(scale);object.position.sub(center.multiplyScalar(scale));modelRoot.add(object);group.add(modelRoot);
   defaultDistance=3.8/Math.min(1,camera.aspect);resetView();$('model-status').hidden=true;
@@ -190,7 +196,7 @@ $('inspector').addEventListener('close',()=>{$('study-frame').src='about:blank';
 function studyCommand(command){const frame=$('study-frame');if(!frame.hidden){frame.contentWindow.postMessage({kind:'book-study-command',command},'*');return;}if(command==='zoom-in')zoom(.85);else if(command==='zoom-out')zoom(1.18);else resetView();}
 $('zoom-in').onclick=()=>studyCommand('zoom-in');$('zoom-out').onclick=()=>studyCommand('zoom-out');$('reset-view').onclick=()=>studyCommand('reset');
 window.addEventListener('message',e=>{if(e.source!==$('study-frame').contentWindow||!$('inspector').open)return;if(e.data?.kind==='book-study-ready')$('model-status').hidden=true;if(e.data?.kind==='book-study-close')$('inspector').close();if(e.data?.kind==='book-study-error'){$('model-status').hidden=false;$('model-status').textContent='This model could not be opened.';}});
-// Deliberately preview-only; future integration must be explicitly requested.
+// Shared book API. Tomb discoveries arrive only from the parent collection.
 window.paperInventoryPreview={recordDiscovery,getCollection:()=>[...state.found],equipItem,getEquipment:()=>({...state.equipped})};
 
 // Portrait equipment is confined to this separate book scene.
@@ -328,6 +334,7 @@ $('character-left').onclick=()=>{if(characterPivot)characterPivot.rotation.y-=Ma
 $('character-right').onclick=()=>{if(characterPivot)characterPivot.rotation.y+=Math.PI/6;};
 document.addEventListener('visibilitychange',syncCharacterViewer);
 function showBook(show){
+ if(GAME_MODE&&!show){window.parent.postMessage({kind:'tomb-book-close'},window.location.origin);return;}
  if(!show&&$('inspector').open)$('inspector').close();
  $('inventory-root').hidden=!show;$('open-inventory').hidden=show;
  if(show){render();$('close-inventory').focus({preventScroll:true});}
@@ -342,4 +349,42 @@ document.addEventListener('keydown',e=>{
 });
 window.paperInventoryPreview.openBook=()=>showBook(true);
 window.paperInventoryPreview.closeBook=()=>showBook(false);
+
+// A viewer owns its resources: disposing it must never dispose the live tomb model.
+function cloneCollectedModel(id){
+ const source=window.parent.TombBookBridge.getSource(id);if(!source)throw Error('Collected model unavailable: '+id);
+ const copy=source.clone(true),geometries=new Map(),materials=new Map(),textures=new Map();
+ // WebGL checks typed-array constructors in its own window. Re-home buffers from
+ // the parent window as well as cloning them, including indices and morph data.
+ const arrayTypes={Float32Array,Float64Array,Int8Array,Uint8Array,Uint8ClampedArray,Int16Array,Uint16Array,Int32Array,Uint32Array};
+ const rehome=attribute=>{if(attribute.isInterleavedBufferAttribute){const data=attribute.data;data.array=new arrayTypes[data.array.constructor.name](data.array);}else attribute.array=new arrayTypes[attribute.array.constructor.name](attribute.array);};
+ const cloneGeometry=geometry=>{const c=geometry.clone();for(const a of Object.values(c.attributes))rehome(a);if(c.index)rehome(c.index);for(const attributes of Object.values(c.morphAttributes))for(const a of attributes)rehome(a);return c;};
+ const cloneMaterial=m=>{if(!materials.has(m)){const c=m.clone();for(const [key,value]of Object.entries(m))if(value?.isTexture){if(!textures.has(value))textures.set(value,value.clone());c[key]=textures.get(value);}materials.set(m,c);}return materials.get(m);};
+ copy.traverse(o=>{o.layers.set(0);if(!o.isMesh)return;if(!geometries.has(o.geometry))geometries.set(o.geometry,cloneGeometry(o.geometry));o.geometry=geometries.get(o.geometry);o.material=Array.isArray(o.material)?o.material.map(cloneMaterial):cloneMaterial(o.material);});
+ return copy;
+}
+function syncTombCollection(entries){
+ if(!GAME_MODE||!Array.isArray(entries))return;
+ const base=new Map(ASSETS.catalog.map(e=>[e.id,e]));
+ const mapped={'canopic-heads':'canopic-head-stoppers','canopic-chest':'canopic-calcite-chest','canopic-wood':'canopic-wooden-shrine'};
+ catalog=entries.map(e=>{const id=mapped[e.id]||e.id,original=byId.get(id)||base.get(id)||{};return {...original,...e,icon:id,kind:original.kind||'Burial equipment',gameSource:!!e.collected};});
+ for(const item of catalog)byId.set(item.id,item);
+ spreads.splice(1);for(const [room,name]of rooms){const items=catalog.filter(e=>e.room===room).map(e=>e.id);for(let i=0;i<items.length;i+=6)spreads.push({room,name,items:items.slice(i,i+6),part:Math.floor(i/6)+1});}
+ LAST_SPREAD=spreads.length-1;state.found=catalog.filter(e=>e.collected).map(e=>e.id);state.spread=Math.min(state.spread,LAST_SPREAD);cleanEquipment();render();
+}
+if(GAME_MODE){
+ document.body.classList.add('tomb-book');$('demo-toggle').hidden=true;$('demo-tools').hidden=true;
+ document.querySelector('.preview-bar b').textContent='MY TOMB FINDS';document.querySelector('.preview-label').textContent='Collected in the tomb';
+ for(const id of ['find-next','sample','empty','wearable-finds','all-finds'])$(id).onclick=null;
+ // The native stone sarcophagus has no separate model-file illustration in the preview.
+ // This small pixel drawing is explicitly game UI, not a substituted coffin model.
+ ASSETS.icons['stone-sarcophagus']='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" shape-rendering="crispEdges"><path fill="#57452e" d="M12 42h96v58H12z"/><path fill="#ad8960" d="m12 42 26-20h78l-8 20z"/><path fill="#d8b78b" d="M12 42h76v58H12z"/><path fill="#98764e" d="m88 42 28-20v58l-28 20z"/><path fill="#705437" d="M20 50h60v6H20zm0 34h60v7H20zM28 60h6v20h-6zm18 0h6v20h-6zm18 0h6v20h-6z"/><path fill="#ead2a5" d="M12 38h76v8H12z"/></svg>');
+ window.addEventListener('message',e=>{
+  if(e.source!==window.parent||e.origin!==window.location.origin)return;
+  if(e.data?.kind==='tomb-book-sync')syncTombCollection(e.data.entries);
+  if(e.data?.kind==='tomb-book-open'){showBook(true);const item=byId.get(e.data.id);if(item&&catalog.some(x=>x.id===item.id)){state.spread=spreads.findIndex(s=>s.items.includes(item.id));render();if(state.found.includes(item.id))openInspector(item);}}
+  if(e.data?.kind==='tomb-book-hide'){if($('inspector').open)$('inspector').close();$('inventory-root').hidden=true;syncCharacterViewer();}
+ });
+ window.parent.postMessage({kind:'tomb-book-ready'},window.location.origin);
+}
 render();

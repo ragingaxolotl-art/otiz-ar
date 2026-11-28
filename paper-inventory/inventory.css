@@ -24,3 +24,7 @@
 @media(max-width:699px){.equipment-choices{flex-direction:column}.equipment-choice{padding:5px 3px}.equipment-choice .item-icon{width:25px;height:25px}.equipment-choice span{font-size:9px}.equipment-choice small{font-size:8px}.equipment-slot{padding:9px 0}.equipment-intro{font-size:10px}#catalog-results{grid-template-columns:1fr}.index-tools{flex-direction:column}.equipment-slot h3{font-size:10px}}
 .equipment-choice-wrap{flex:1;min-width:0;display:flex;flex-direction:column}.inspect-choice{align-self:flex-end;font:9px system-ui;min-height:20px;padding:2px 5px;background:transparent;border:0;text-decoration:underline;color:#526e56}.equipment-choice-wrap .equipment-choice{flex:1}
 #study-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}#study-frame[hidden]{display:none}
+
+.tomb-book .inventory-header-actions{padding-right:34px}.tomb-book #demo-tools,.tomb-book #demo-toggle{display:none}
+
+#book-observation-wrap{display:block;margin:12px 0}#book-observation-wrap[hidden]{display:none}#book-observation{display:block;box-sizing:border-box;width:100%;margin-top:6px;padding:10px;font:inherit;color:#30271b;background:#f2e6cd;border:1px solid #92764b}

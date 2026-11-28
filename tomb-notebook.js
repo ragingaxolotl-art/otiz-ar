@@ -1,35 +1,24 @@
-/* Room pages: unknown artifacts remain solid gray until discovered. */
+/* The game's collection is authoritative; the shared pixel book displays it. */
 (function(root){'use strict';
- const rooms=[['entrance','Entrance'],['antechamber','Antechamber'],['burial','Burial chamber'],['treasury','Treasury'],['annexe','Annexe']];
  const coffins=[['outer-coffin-ai','Outermost coffin'],['middle-coffin-ai','Middle coffin'],['inner-coffin-ai','Innermost gold coffin']].map(([id,name])=>({id,name,room:'burial'}));
- function roomOf(e){if(rooms.some(([id])=>id===e.room))return e.room;if(e.placement?.room)return e.placement.room;const n=(e.note||'').toLowerCase();return n.startsWith('burial')?'burial':n.startsWith('treasury')?'treasury':n.startsWith('annexe')?'annexe':n.startsWith('antechamber')?'antechamber':'entrance';}
- root.TombNotebook={coffins,create({THREE:T,catalog=[],onOpen,onClose}){
- const $=id=>document.getElementById(id),dialog=$('field-notebook'),list=$('notebook-entries'),tabs=$('notebook-rooms'),title=$('notebook-title'),note=$('notebook-note'),photo=$('notebook-photo'),art=$('notebook-art'),viewport=$('notebook-view'),empty=$('notebook-empty'),button=$('notebook-open'),observation=$('notebook-observation'),status=$('notebook-collection-status');
- const entries=new Map();let selected=null,room='antechamber',renderer=null,scene,camera,model=null,drag=null,zoom=3.1;
- function register(e){if(!entries.has(e.id))entries.set(e.id,{...e,room:roomOf(e),collected:false});}
- catalog.forEach(register);
- function ensureViewer(){if(renderer)return;renderer=new T.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.outputColorSpace=T.SRGBColorSpace;renderer.setClearColor(0x211c16);viewport.append(renderer.domElement);renderer.domElement.setAttribute('aria-label','3D analysis view. Drag to rotate; scroll to zoom.');scene=new T.Scene();camera=new T.PerspectiveCamera(42,1,.01,30);scene.add(new T.HemisphereLight(0xfff3da,0x4b4942,2.5));const lamp=new T.DirectionalLight(0xffffff,3);lamp.position.set(3,4,5);scene.add(lamp);
- const canvas=renderer.domElement;canvas.addEventListener('pointerdown',e=>{drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId||!model)return;model.rotation.y+=(e.clientX-drag.x)*.009;model.rotation.x+=(e.clientY-drag.y)*.009;drag.x=e.clientX;drag.y=e.clientY;draw();});for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,()=>drag=null);canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(1.7,Math.min(6,zoom+e.deltaY*.002));draw()},{passive:false});}
- function draw(){if(!renderer||!dialog.open)return;const w=Math.max(200,viewport.clientWidth),h=Math.max(220,viewport.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.position.set(0,0,zoom);camera.updateProjectionMatrix();renderer.render(scene,camera);}
- function show(id){const e=entries.get(id);if(!e)return;selected=id;room=e.room;title.textContent=e.name;status.textContent=e.collected?'Collected':'Not collected yet';note.textContent=e.collected?(e.note||''):'Find and examine this item in the tomb to reveal it in your notebook.';
- art.src='assets/egypt/notebook/'+e.id+'.png';art.alt=e.collected?e.name:'Uncollected '+e.name+' silhouette';art.classList.toggle('is-locked',!e.collected);art.hidden=false;art.onerror=()=>{art.hidden=true;};
- photo.hidden=!e.collected||!e.photo;if(e.collected&&e.photo)photo.src=e.photo;else photo.removeAttribute('src');
- observation.disabled=!e.collected;observation.value=e.collected?readObservation(id):'';
- if(model){scene.remove(model);model=null;}
- const source=e.collected&&e.source?.();viewport.hidden=!source;
- for(const name of ['notebook-zoom-in','notebook-zoom-out','notebook-reset-view'])$(name).hidden=!source;
- document.querySelector('#field-notebook .notebook-hint').hidden=!source;
- if(source){ensureViewer();model=new T.Group();const copy=source.clone(true);model.add(copy);model.updateMatrixWorld(true);const box=new T.Box3().setFromObject(model),size=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3()),scale=1.7/Math.max(size.x,size.y,size.z,0.001);copy.position.sub(center);copy.position.multiplyScalar(scale);copy.scale.multiplyScalar(scale);copy.traverse(o=>{o.layers.set(0);if(o.isMesh){o.castShadow=false;o.receiveShadow=false;}});if(e.analysisRotation)model.rotation.set(...e.analysisRotation);scene.add(model);}
- zoom=3.1;refresh();draw();}
- function readObservation(id){try{return localStorage.getItem('tomb-observation:'+id)||'';}catch{return '';}}
- observation.addEventListener('input',e=>{if(selected&&entries.get(selected)?.collected)try{localStorage.setItem('tomb-observation:'+selected,e.target.value);}catch{}});
- for(const [id,amount]of [['notebook-zoom-in',-.35],['notebook-zoom-out',.35]])$(id).onclick=()=>{zoom=Math.max(1.7,Math.min(6,zoom+amount));draw();};
+ const canopic=[['canopic-heads','Four head-shaped canopic stoppers'],['canopic-chest','Calcite canopic chest and lid'],['canopic-wood','Gilded wooden canopic shrine']].map(([id,name])=>({id,name,room:'treasury'}));
+ function roomOf(e){if(e.room)return e.room;if(e.placement?.room)return e.placement.room;const n=(e.note||'').toLowerCase();return ['burial','treasury','annexe','antechamber'].find(room=>n.startsWith(room))||'entrance';}
+ root.TombNotebook={coffins,canopic,create({catalog=[],onOpen=()=>{},onClose=()=>{}}){
+ const $=id=>document.getElementById(id),dialog=$('field-notebook'),button=$('notebook-open'),frame=$('pixel-book-frame');
+ const entries=new Map();let ready=false,pending=null;
+ for(const entry of [...catalog,...canopic])if(!entries.has(entry.id))entries.set(entry.id,{...entry,room:roomOf(entry),collected:false});
+ const origin=root.location.origin;
+ const send=data=>{if(ready)frame.contentWindow.postMessage(data,origin);};
  function count(){return [...entries.values()].filter(e=>e.collected).length;}
- function refresh(){list.replaceChildren();tabs.replaceChildren();empty.hidden=entries.size>0;button.textContent='Field notebook ('+count()+'/'+entries.size+')';
- for(const [id,name]of rooms){const items=[...entries.values()].filter(e=>e.room===id);if(!items.length)continue;const b=document.createElement('button');b.type='button';b.textContent=name+' '+items.filter(e=>e.collected).length+'/'+items.length;b.setAttribute('aria-pressed',String(room===id));b.onclick=()=>{room=id;show(items.find(e=>e.collected)?.id||items[0].id);};tabs.append(b);}
- for(const [id,e]of entries){if(e.room!==room)continue;const b=document.createElement('button');b.type='button';b.className='notebook-item'+(e.collected?'':' is-locked');b.setAttribute('aria-pressed',String(id===selected));b.setAttribute('aria-label',e.name+(e.collected?', collected':', not collected'));const img=document.createElement('img');img.src='assets/egypt/notebook/'+id+'.png';img.alt='';img.width=128;img.height=128;img.onerror=()=>{img.hidden=true;};const name=document.createElement('span');name.textContent=e.name;const state=document.createElement('small');state.textContent=e.collected?'Collected':'Not collected';b.append(img,name,state);b.onclick=()=>show(id);list.append(b);}}
- function add(entry){register(entry);const e=entries.get(entry.id),fresh=!e.collected;Object.assign(e,entry,{room:e.room,collected:true});if(selected===e.id&&dialog.open)show(e.id);else refresh();return fresh;}
- button.onclick=()=>{onOpen();dialog.showModal();const items=[...entries.values()];if(items.length)show(selected||items.find(e=>e.room===room)?.id||items[0].id);};$('notebook-close').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{drag=null;onClose();});$('notebook-reset-view').onclick=()=>{if(selected)show(selected);};window.addEventListener('resize',draw);
- refresh();return{add,open(id){onOpen();if(!dialog.open)dialog.showModal();if(entries.has(id))show(id);},get count(){return count();},get total(){return entries.size;}};
+ function sync(){button.textContent='Pixel book ('+count()+'/'+entries.size+')';send({kind:'tomb-book-sync',entries:[...entries.values()].map(e=>({id:e.id,name:e.name,room:e.room,note:e.collected?e.note:undefined,collected:e.collected,analysisRotation:e.analysisRotation}))});}
+ // Sources never travel through postMessage. Only collected originals can be inspected.
+ root.TombBookBridge={getSource(id){const e=entries.get(id);return e?.collected?e.source?.():null;}};
+ function open(id){pending=entries.has(id)?id:null;if(!dialog.open){onOpen();dialog.showModal();}if(!frame.getAttribute('src'))frame.src='paper-inventory/?tomb=1&v=pixel-book-game-20261128-1';sync();send({kind:'tomb-book-open',id:pending});if(ready)pending=null;frame.focus();}
+ function close(){if(dialog.open)dialog.close();}
+ root.addEventListener('message',event=>{if(event.origin!==origin||event.source!==frame.contentWindow)return;const kind=event.data?.kind;if(kind==='tomb-book-ready'){ready=true;$('pixel-book-loading').hidden=true;sync();send({kind:dialog.open?'tomb-book-open':'tomb-book-hide',id:pending});pending=null;}else if(kind==='tomb-book-close')close();});
+ dialog.addEventListener('close',()=>{send({kind:'tomb-book-hide'});onClose();});
+ button.onclick=()=>open();$('notebook-close').onclick=close;
+ document.addEventListener('keydown',e=>{if(e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.code==='KeyB'&&!document.querySelector('dialog[open]:not(#field-notebook)')){e.preventDefault();if(dialog.open)close();else open();}});
+ sync();return{add(entry){const prior=entries.get(entry.id),fresh=!prior?.collected;entries.set(entry.id,{...prior,...entry,room:prior?.room||roomOf(entry),collected:true});sync();return fresh;},open,get count(){return count();},get total(){return entries.size;}};
  }};
 })(window);
