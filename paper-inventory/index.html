@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My finds · Paper inventory preview</title>
+<link rel="stylesheet" href="inventory.css?v=book-lights-1">
+</head>
+<body>
+<button id="open-inventory" class="inventory-launcher" hidden>Open book · B</button>
+<div id="inventory-root">
+<header class="preview-bar"><span><b>INVENTORY STUDY</b><span class="preview-label">Separate preview · saved locally</span></span><div class="inventory-header-actions"><button id="demo-toggle" aria-expanded="false" aria-controls="demo-tools">Preview controls</button><button id="close-inventory">Close book · B</button></div></header>
+<aside id="demo-tools" hidden><p>Try a discovery without entering the game. These controls affect this preview only.</p><div><button id="find-next">Simulate next find</button><button id="sample">Show sample collection</button><button id="empty">Empty preview</button><button id="wearable-finds">Add wearable finds</button><button id="all-finds">Show all finds</button></div><small>Collected items reveal their artwork. Uncollected items remain solid dark gray. “Show all finds” is a preview shortcut.</small></aside>
+<main>
+ <div class="title-block"><span class="eyebrow">YOUR EXPLORER'S COLLECTION</span><h1>Every discovery, kept.</h1><p>Open your collection. Turn a page. Take a closer look.</p></div>
+ <section class="inventory" aria-label="Collected items">
+  <div class="book-top"><span class="collection-label">MY FINDS</span><span id="total"></span></div>
+  <details id="catalog-index"><summary id="catalog-summary">All objects · index</summary><div class="index-tools"><input id="catalog-search" type="search" placeholder="Find a chest, jar, lotus head…" aria-label="Search all objects"><select id="catalog-filter" aria-label="Filter object type"><option value="">All types</option><option>Boxes &amp; chests</option><option>Jars &amp; vessels</option><option>Jewellery</option><option>Weapons</option><option>Figures</option><option>Furniture</option></select></div><div id="catalog-results"></div></details>
+  <nav id="room-pages" aria-label="Collection room pages"></nav><div class="book-shell">
+   <div class="cover"></div>
+   <div id="spread" class="spread" aria-label="Inventory pages">
+    <section class="paper left-page"><div class="page-inner"><div class="page-heading"><h2 id="left-title">Your explorer</h2><span id="left-range">CHARACTER</span></div>
+     <div id="character-page"><div id="character-stage" role="img" aria-label="Rotatable Adventurer character"><p id="character-status" role="status">Opening character…</p></div><div class="character-controls"><button id="character-left" aria-label="Rotate character left">Turn left</button><button id="character-view">Jewellery view</button><button id="character-right" aria-label="Rotate character right">Turn right</button></div><p class="character-credit">Adventurer · user-provided Meshy/Mixamo character</p></div>
+     <div id="left-items" class="items" hidden></div><footer class="page-foot"><span id="left-footnote">Your explorer, from every side.</span><b id="left-number">01</b></footer></div></section>
+    <section class="paper right-page"><div class="page-inner"><div class="page-heading"><h2 id="right-title">Wearable finds</h2><span id="right-kicker">NOTHING EQUIPPED</span></div>
+     <div id="equipment-page"><p class="equipment-intro">Click a found piece to wear it on your book character.</p><div id="equipment-slots" class="equipment-slots" aria-label="Head, neck and wrist equipment"></div><p class="equipment-note">Your book portrait keeps this outfit.</p></div>
+     <div id="right-items" class="items" hidden></div><footer class="page-foot"><span id="right-footnote">Turn the page to browse your finds.</span><b id="right-number">02</b></footer></div></section>
+   </div>
+   <div class="binding" aria-hidden="true"></div><div id="turn-sheet" class="turn-sheet" aria-hidden="true"></div>
+   <span class="bookmark" aria-hidden="true"></span>
+  </div>
+  <nav class="page-controls" aria-label="Turn inventory pages"><button id="previous">Previous pages</button><span id="page-status" aria-live="polite"></span><button id="next">Next pages</button></nav>
+ </section>
+ <p class="bottom-note">A place for everything you discover.<span class="diamond">◆</span>Paper UI by HumblePixel</p>
+</main>
+</div>
+<div id="announcement" class="toast" role="status"></div>
+<dialog id="inspector" aria-labelledby="inspect-title">
+ <div class="inspect-header"><div><span class="eyebrow">FROM YOUR COLLECTION</span><h2 id="inspect-title"></h2></div><button id="close-inspector" autofocus>Close</button></div>
+ <div id="model-stage"><iframe id="study-frame" title="Object 3D study" hidden></iframe><img id="inspect-illustration" alt="" width="256" height="256" hidden><p id="model-status" role="status">Opening object…</p></div>
+ <div class="inspect-footer"><p id="inspect-view-hint">Drag to rotate · Scroll or pinch to zoom</p><div id="inspect-view-controls"><button id="zoom-in" aria-label="Zoom in">Zoom in</button><button id="zoom-out" aria-label="Zoom out">Zoom out</button><button id="reset-view">Reset view</button></div><p id="model-note"></p><p id="model-credit"></p></div>
+</dialog>
+<script src="assets.js?v=book-lights-1"></script>
+<script src="../vendor/aframe.min.js"></script>
+<script src="inventory.js?v=book-lights-1"></script>
+</body></html>

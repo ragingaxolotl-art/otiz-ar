@@ -1,0 +1,85 @@
+EGYPT COLLECTION INVENTORY
+63 catalog entries; 122 local GLB files reconciled.
+Originals and alternate exports are mapped to their entries, not counted as new excavated finds.
+
+ENTRANCE
+  Head emerging from a lotus [lotus-head]
+
+ANTECHAMBER
+  Chariot [chariot-ai]
+  Cow-headed funerary couch [funerary-bed-ai]
+  Funerary couch [funerary-bed]
+  Guardian with khat headdress [guardian-khat-ai]
+  Guardian with nemes headcloth [guardian-statue-ai]
+  Wooden portrait bust [mannequin]
+  Painted wooden chest [painted-chest]
+  Golden throne [throne]
+
+BURIAL
+  Outermost burial shrine [burial-shrine-207-ai]
+  Second burial shrine [burial-shrine-237-ai]
+  Third burial shrine [burial-shrine-238-ai]
+  Innermost burial shrine [burial-shrine-239-ai]
+  Anthropoid coffin [coffin-replica]
+  Crook and flail [crook-staff-ai]
+  Iron dagger and gold sheath [dagger]
+  Royal diadem [diadem-ai]
+  Ceremonial fan [fan-ai]
+  Innermost gold coffin [inner-coffin-ai]
+  Calcite perfume vessel [lotus-ai]
+  Gold funerary mask [mask]
+  Middle coffin [middle-coffin-ai]
+  Three nested coffins [nested-coffins-ai]
+  Outermost coffin [outer-coffin-ai]
+  Sandals [sandals-ai]
+
+TREASURY
+  Arched-lid chest [ankhesenamun-chest]
+  Anubis shrine [anubis-replica]
+  Canopic shrine [canopic]
+  Model boat, second example [model-boat-2-ai]
+  Model boat [model-boat-ai]
+  Scarab pectoral, alternate [pectoral-ai]
+  Scarab bracelet [scarab-bracelet]
+  Winged scarab pectoral [scarab-pectoral]
+  Royal shabti with blue crown [shabti-khepresh-ai]
+  Royal shabti with nemes headcloth [shabti-nemes-ai]
+  Shawabti of Horudja, comparison [shawabti-horudja]
+  Shawabti of Nedjem, comparison [shawabti-nedjem]
+  Shawabti of Nesi-qa-Shu, comparison [shawabti-nesi-qa-shu]
+  Shawabti of Psamtik, comparison [shawabti-psamtik]
+  Shawabti of Ramose, comparison [shawabti-ramose]
+  Gilded wooden canopic shrine [canopic-wooden-shrine]
+  Calcite canopic chest [canopic-calcite-chest]
+  Calcite chest lid [canopic-calcite-lid]
+  Four head-shaped canopic stoppers [canopic-head-stoppers]
+
+ANNEXE
+  Ivory headrest with Shu and lions [headrest-ai]
+  Dark-blue faience headrest [headrest-azure]
+  Turquoise glass headrest [headrest-blue]
+  Table-shaped headrest cabinet [headrest-cabinet]
+  Folding ivory headrest [headrest-folding]
+  Senet board and pieces [senet]
+  Openwork ceremonial shield [shield-2-ai]
+  Ceremonial shield [shield-ai]
+  Decorated throwing sticks [throwing-sticks-ai]
+
+REFERENCE
+  Ankh · key of life [ankh-key]
+  Decorated throwing sticks · second model [decorated-throwing-sticks]
+  Headrest · Harvard reference [harvard-headrest]
+  Vase 9 · KV54 cache [kv54-vase]
+  Vase 8 · KV54 cache [kv54-vase8]
+  Canopic chest of Thuya [thuya-canopic-chest]
+  Canopic jar and lid of Userhat [userhat-canopic-jar]
+  Tutankhamen and Ankhesenamun · reference [tutankhamen-and-ankhesenamun]
+  Chair and vessel · replica display [replica-display]
+  Golden throne · alternate reconstruction [king-tut-chair]
+
+Entries count catalog records, not individual excavated objects. Sets and nested assemblies are labeled explicitly.
+Model variants and retained originals map to the same records; they are not counted as new excavated finds.
+KV54, KV46, Userhat and other-owner references stay in References, without invented KV62 findspots.
+The modern replica includes an unidentified chair/vessel set; it is retained only as a comparison.
+Wrapped mummy geometry belongs to the nested-coffin teaching assembly. Separate mask, crook/flail, and coffin records already exist.
+The older meshy-sceptre upload is an earlier crook/staff model variant; retained source, no separate archaeological identity asserted.

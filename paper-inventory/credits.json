@@ -1,0 +1,1169 @@
+{
+  "paper": "Humble Gift - Paper UI System \u00b7 HumblePixel",
+  "character": "User-provided Adventurer / Mixamo character, original rig and materials retained.",
+  "models": [
+    {
+      "id": "ankhesenamun-chest",
+      "name": "Arched-lid chest",
+      "file": "assets/egypt/models/ankhesenamun-chest.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Wieslaw Kruczala",
+      "source": "https://skfb.ly/oLPyn",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "anubis-replica",
+      "name": "Anubis shrine",
+      "file": "assets/egypt/walkthrough/replica-parts.glb",
+      "part": "replica-anubis",
+      "room": "treasury",
+      "credit": "karaman.arman",
+      "source": "https://skfb.ly/pwqAJ",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "burial-shrine-207-ai",
+      "name": "Outermost burial shrine",
+      "file": "assets/egypt/models/burial-shrine-207-upload.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Meshy AI reconstruction",
+      "source": null,
+      "license": "Generation record"
+    },
+    {
+      "id": "burial-shrine-237-ai",
+      "name": "Second burial shrine",
+      "file": "assets/egypt/models/burial-shrine-237-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Meshy AI reconstruction",
+      "source": null,
+      "license": "Generation record"
+    },
+    {
+      "id": "burial-shrine-238-ai",
+      "name": "Third burial shrine",
+      "file": "assets/egypt/models/burial-shrine-238-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Meshy AI reconstruction",
+      "source": null,
+      "license": "Generation record"
+    },
+    {
+      "id": "burial-shrine-239-ai",
+      "name": "Innermost burial shrine",
+      "file": "assets/egypt/models/burial-shrine-239-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Meshy AI reconstruction",
+      "source": null,
+      "license": "Generation record"
+    },
+    {
+      "id": "canopic",
+      "name": "Canopic shrine",
+      "file": "assets/egypt/models/canopic-shrine-ai.glb",
+      "part": "canopic-canopy",
+      "room": "treasury",
+      "credit": "Teacher-supplied Meshy shrine; calcite chest by danderson4",
+      "source": "https://skfb.ly/6yQVJ",
+      "license": "Mixed model records; calcite chest CC BY-NC 4.0"
+    },
+    {
+      "id": "chariot-ai",
+      "name": "Chariot",
+      "file": "assets/egypt/models/chariot-ai.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "coffin-replica",
+      "name": "Anthropoid coffin",
+      "file": "assets/egypt/walkthrough/replica-parts.glb",
+      "part": "replica-coffin",
+      "room": "burial",
+      "credit": "karaman.arman",
+      "source": "https://skfb.ly/pwqAJ",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "crook-staff-ai",
+      "name": "Crook and flail",
+      "file": "assets/egypt/models/crook-staff-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "dagger",
+      "name": "Iron dagger and gold sheath",
+      "file": "assets/egypt/walkthrough/dagger.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Tom_Bentkowski",
+      "source": "https://skfb.ly/6xKEs",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "diadem-ai",
+      "name": "Royal diadem",
+      "file": "assets/egypt/models/diadem-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": "https://gem.eg/en/collection/artefacts/royal-diadem",
+      "license": "Upload record"
+    },
+    {
+      "id": "fan-ai",
+      "name": "Ceremonial fan",
+      "file": "assets/egypt/models/fan-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "funerary-bed-ai",
+      "name": "Cow-headed funerary couch",
+      "file": "assets/egypt/models/funerary-bed-ai.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "funerary-bed",
+      "name": "Funerary couch",
+      "file": "assets/egypt/walkthrough/funerary-bed.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "Ioan / ioancroitor",
+      "source": "https://sketchfab.com/3d-models/funerary-bed-of-tutankamon-9e5f87248ca940e98c9053c84b8b8b60",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "guardian-khat-ai",
+      "name": "Guardian with khat headdress",
+      "file": "assets/egypt/models/guardian-khat-ai.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "guardian-statue-ai",
+      "name": "Guardian with nemes headcloth",
+      "file": "assets/egypt/models/guardian-statue-ai.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "headrest-ai",
+      "name": "Ivory headrest with Shu and lions",
+      "file": "assets/egypt/models/headrest-ai.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": "https://gem.eg/en/collection/artefacts/lions-headrest",
+      "license": "Upload record"
+    },
+    {
+      "id": "headrest-azure",
+      "name": "Dark-blue faience headrest",
+      "file": "assets/egypt/models/headrest-azure.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Project teaching model",
+      "source": null,
+      "license": null
+    },
+    {
+      "id": "headrest-blue",
+      "name": "Turquoise glass headrest",
+      "file": "assets/egypt/models/headrest-blue.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Project teaching model",
+      "source": null,
+      "license": null
+    },
+    {
+      "id": "headrest-cabinet",
+      "name": "Table-shaped headrest cabinet",
+      "file": "assets/egypt/models/headrest-cabinet.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Project teaching model",
+      "source": null,
+      "license": null
+    },
+    {
+      "id": "headrest-folding",
+      "name": "Folding ivory headrest",
+      "file": "assets/egypt/models/headrest-folding.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Project teaching model",
+      "source": null,
+      "license": null
+    },
+    {
+      "id": "inner-coffin-ai",
+      "name": "Innermost gold coffin",
+      "file": "assets/egypt/models/inner-coffin-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Project teaching model",
+      "source": null,
+      "license": null
+    },
+    {
+      "id": "lotus-ai",
+      "name": "Calcite perfume vessel",
+      "file": "assets/egypt/models/lotus-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": "https://www.griffith.ox.ac.uk/gri/carter/210-p0667.html",
+      "license": "Upload record"
+    },
+    {
+      "id": "lotus-head",
+      "name": "Head emerging from a lotus",
+      "file": "assets/egypt/walkthrough/lotus-head.glb",
+      "part": null,
+      "room": "entrance",
+      "credit": "danderson4",
+      "source": "https://sketchfab.com/3d-models/tutankhamen-emerging-from-a-lotus-762c33df947e4f57862634a2771e2f56",
+      "license": "CC BY-NC 4.0"
+    },
+    {
+      "id": "mannequin",
+      "name": "Wooden portrait bust",
+      "file": "assets/egypt/walkthrough/mannequin.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "Roberto Dom\u00ednguez",
+      "source": "https://sketchfab.com/3d-models/tutankhamun-mannequin-1c402508d14c411ab6adca42542ae76f",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "mask",
+      "name": "Gold funerary mask",
+      "file": "assets/egypt/walkthrough/mask.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Roberto Dom\u00ednguez",
+      "source": "https://skfb.ly/pOQFF",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "middle-coffin-ai",
+      "name": "Middle coffin",
+      "file": "assets/egypt/models/middle-coffin-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Project teaching model",
+      "source": null,
+      "license": null
+    },
+    {
+      "id": "model-boat-2-ai",
+      "name": "Model boat, second example",
+      "file": "assets/egypt/models/model-boat-2-ai.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "model-boat-ai",
+      "name": "Model boat",
+      "file": "assets/egypt/models/model-boat-ai.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "nested-coffins-ai",
+      "name": "Three nested coffins",
+      "file": "assets/egypt/models/nested-coffins-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Teacher-supplied Meshy AI; Field Lab nesting assembly",
+      "source": null,
+      "license": "Generation and assembly record"
+    },
+    {
+      "id": "outer-coffin-ai",
+      "name": "Outermost coffin",
+      "file": "assets/egypt/models/outer-coffin-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Project teaching model",
+      "source": null,
+      "license": null
+    },
+    {
+      "id": "painted-chest",
+      "name": "Painted wooden chest",
+      "file": "assets/egypt/walkthrough/painted-chest.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "danderson4",
+      "source": "https://skfb.ly/6DKOn",
+      "license": "CC BY-NC 4.0"
+    },
+    {
+      "id": "pectoral-ai",
+      "name": "Scarab pectoral, alternate",
+      "file": "assets/egypt/models/pectoral-ai.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "sandals-ai",
+      "name": "Sandals",
+      "file": "assets/egypt/models/sandals-ai.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "scarab-bracelet",
+      "name": "Scarab bracelet",
+      "file": "assets/egypt/models/scarab-bracelet.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Project teaching model",
+      "source": "https://skfb.ly/pxoON",
+      "license": null
+    },
+    {
+      "id": "scarab-pectoral",
+      "name": "Winged scarab pectoral",
+      "file": "assets/egypt/models/scarab-pectoral.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Mayantique",
+      "source": "https://sketchfab.com/3d-models/ancient-egyptian-jewelry-7fc4496e06b74293b23b24afc28b46e6",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "senet",
+      "name": "Senet board and pieces",
+      "file": "assets/egypt/models/senet.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Fisherowski",
+      "source": "https://skfb.ly/6WSrP",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "shabti-khepresh-ai",
+      "name": "Royal shabti with blue crown",
+      "file": "assets/egypt/models/shabti-khepresh-ai.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "shabti-nemes-ai",
+      "name": "Royal shabti with nemes headcloth",
+      "file": "assets/egypt/models/shabti-nemes-ai.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "shawabti-horudja",
+      "name": "Shawabti of Horudja, comparison",
+      "file": "assets/egypt/models/shawabti-horudja.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "The Egypt Centre",
+      "source": "https://sketchfab.com/3d-models/shabti-of-horudja-hargm7373-160c00aa5abb4f8aa1ac6af07796eb53",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "shawabti-nedjem",
+      "name": "Shawabti of Nedjem, comparison",
+      "file": "assets/egypt/models/shawabti-nedjem.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "The Egypt Centre",
+      "source": "https://sketchfab.com/3d-models/shabti-of-nedjem-w760-f975e1e56d6744cfb5963367b0160253",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "shawabti-nesi-qa-shu",
+      "name": "Shawabti of Nesi-qa-Shu, comparison",
+      "file": "assets/egypt/models/shawabti-nesi-qa-shu.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "The Watt Institution",
+      "source": "https://sketchfab.com/3d-models/shabti-figure-8161d0bfc36348ecaa5a59fcb38e8644",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "shawabti-psamtik",
+      "name": "Shawabti of Psamtik, comparison",
+      "file": "assets/egypt/models/shawabti-psamtik.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "The Egypt Centre",
+      "source": "https://sketchfab.com/3d-models/shabti-of-psamtik-hargm3632-932aa55171b04c33ba0e803f555896e4",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "shawabti-ramose",
+      "name": "Shawabti of Ramose, comparison",
+      "file": "assets/egypt/models/shawabti-ramose.glb",
+      "part": null,
+      "room": "treasury",
+      "credit": "Fitzwilliam Museum",
+      "source": "https://sketchfab.com/3d-models/shabti-of-ramose-37128a12fc4d4c5e842a872f4085664d",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "shield-2-ai",
+      "name": "Openwork ceremonial shield",
+      "file": "assets/egypt/models/shield-2-ai.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "shield-ai",
+      "name": "Ceremonial shield",
+      "file": "assets/egypt/models/shield-ai.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": "Upload record"
+    },
+    {
+      "id": "throne",
+      "name": "Golden throne",
+      "file": "assets/egypt/walkthrough/throne.glb",
+      "part": null,
+      "room": "antechamber",
+      "credit": "pmanuelian",
+      "source": "https://skfb.ly/oIWXX",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "id": "throwing-sticks-ai",
+      "name": "Decorated throwing sticks",
+      "file": "assets/egypt/models/throwing-sticks-ai.glb",
+      "part": null,
+      "room": "annexe",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": "https://www.griffith.ox.ac.uk/gri/carter/054d-p0483.html",
+      "license": "Upload record"
+    },
+    {
+      "id": "ankh-key",
+      "name": "Ankh \u00b7 key of life",
+      "room": "reference",
+      "kind": "Reference object",
+      "file": "assets/egypt/models/ankh-key.glb",
+      "part": null,
+      "note": "Creator title only; no verified Tutankhamun findspot.",
+      "credit": "\u062d\u064f\u0633\u0627\u0645\u0640",
+      "source": "https://skfb.ly/pDxZ8",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "originalOnly": false
+    },
+    {
+      "id": "decorated-throwing-sticks",
+      "name": "Decorated throwing sticks \u00b7 second model",
+      "room": "reference",
+      "kind": "Comparison model",
+      "file": "assets/egypt/models/decorated-throwing-sticks.glb",
+      "part": null,
+      "note": "Separate generated model; source identity and archaeological match unverified.",
+      "credit": "Project reference model",
+      "source": null,
+      "license": null,
+      "originalOnly": false
+    },
+    {
+      "id": "harvard-headrest",
+      "name": "Headrest \u00b7 Harvard reference",
+      "room": "reference",
+      "kind": "Museum reference",
+      "file": "assets/egypt/models/harvard-headrest.glb",
+      "part": null,
+      "note": "Separate Harvard collection reference; not identified as Tutankhamun\u2019s headrest.",
+      "credit": "Harvard Museum of the Ancient Near East",
+      "source": "https://sketchfab.com/3d-models/headrest-efa0fa04da23480f82baa263d54858ee",
+      "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+      "originalOnly": false
+    },
+    {
+      "id": "kv54-vase",
+      "name": "Vase 9 \u00b7 KV54 cache",
+      "room": "reference",
+      "kind": "Jar / vase",
+      "file": "assets/egypt/models/kv54-vase.glb",
+      "part": null,
+      "note": "KV54 embalming-cache reference, separate from the burial tomb KV62.",
+      "credit": "Karolina K Bie\u0144kowska",
+      "source": "https://skfb.ly/ooZxD",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "originalOnly": false
+    },
+    {
+      "id": "kv54-vase8",
+      "name": "Vase 8 \u00b7 KV54 cache",
+      "room": "reference",
+      "kind": "Jar / vase",
+      "file": "assets/egypt/models/kv54-vase8.glb",
+      "part": null,
+      "note": "KV54 embalming-cache reference; no position assigned within KV62.",
+      "credit": "Karolina K Bie\u0144kowska",
+      "source": "https://skfb.ly/ooZwP",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "originalOnly": false
+    },
+    {
+      "id": "thuya-canopic-chest",
+      "name": "Canopic chest of Thuya",
+      "room": "reference",
+      "kind": "Chest / box",
+      "file": "assets/egypt/models/thuya-canopic-chest.glb",
+      "part": null,
+      "note": "Comparison object from Thuya\u2019s burial, KV46; not Tutankhamun\u2019s chest.",
+      "credit": "danderson4",
+      "source": "https://skfb.ly/6R6JQ",
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "originalOnly": false
+    },
+    {
+      "id": "userhat-canopic-jar",
+      "name": "Canopic jar and lid of Userhat",
+      "room": "reference",
+      "kind": "Canopic jar",
+      "file": "assets/egypt/models/userhat-canopic-jar.glb",
+      "part": null,
+      "note": "Comparison object belonging to Userhat; not a Tutankhamun find.",
+      "credit": "pmanuelian",
+      "source": "https://skfb.ly/oIXM8",
+      "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "originalOnly": false
+    },
+    {
+      "id": "tutankhamen-and-ankhesenamun",
+      "name": "Tutankhamen and Ankhesenamun \u00b7 reference",
+      "room": "reference",
+      "kind": "Collection reference",
+      "file": "assets/egypt/models/tutankhamen-and-ankhesenamun.glb",
+      "part": null,
+      "note": "Virtual Curation Lab reference. Specific object identity and tomb findspot unverified. Original model retained unchanged.",
+      "credit": "Virtual Curation Lab",
+      "source": "https://skfb.ly/YVTU",
+      "license": "CC Attribution-NonCommercial-NoDerivs 4.0",
+      "originalOnly": true
+    },
+    {
+      "id": "replica-display",
+      "name": "Chair and vessel \u00b7 replica display",
+      "room": "reference",
+      "kind": "Unidentified comparison",
+      "file": "assets/egypt/walkthrough/replica-parts.glb",
+      "part": "replica-display",
+      "note": "Unidentified chair and vessel from a modern replica display. Excluded from the historical tomb arrangement.",
+      "credit": "karaman.arman",
+      "source": "https://skfb.ly/pwqAJ",
+      "license": "CC BY 4.0",
+      "originalOnly": false
+    },
+    {
+      "id": "canopic-wooden-shrine",
+      "name": "Gilded wooden canopic shrine",
+      "room": "treasury",
+      "kind": "Nested enclosure",
+      "file": "assets/egypt/models/canopic-shrine-ai.glb",
+      "part": "canopic-wooden-shrine",
+      "note": "Carter 266a. Bottomless wooden shrine lifts away from the calcite chest. Teaching reconstruction.",
+      "credit": "Teacher-supplied Meshy AI",
+      "source": null,
+      "license": null,
+      "originalOnly": false
+    },
+    {
+      "id": "canopic-calcite-chest",
+      "name": "Calcite canopic chest",
+      "room": "treasury",
+      "kind": "Chest / box",
+      "file": "assets/egypt/models/canopic-chest-opening.glb",
+      "part": "calcite-chest-body",
+      "note": "Carter 266b. Stone chest body, separate from its lift-off lid and four head-shaped stoppers.",
+      "credit": "danderson4",
+      "source": "https://skfb.ly/6yQVJ",
+      "license": "CC BY-NC 4.0",
+      "originalOnly": false
+    },
+    {
+      "id": "canopic-calcite-lid",
+      "name": "Calcite chest lid",
+      "room": "treasury",
+      "kind": "Lift-off lid",
+      "file": "assets/egypt/models/canopic-chest-opening.glb",
+      "part": "calcite-chest-lid",
+      "note": "Carter 266b. Lid lifts off; it is not hinged. Display stand has been omitted.",
+      "credit": "danderson4",
+      "source": "https://skfb.ly/6yQVJ",
+      "license": "CC BY-NC 4.0",
+      "originalOnly": false
+    },
+    {
+      "id": "canopic-head-stoppers",
+      "name": "Four head-shaped canopic stoppers",
+      "room": "treasury",
+      "kind": "Canopic contents",
+      "file": "assets/egypt/models/canopic-chest-opening.glb",
+      "part": "canopic-head-stoppers",
+      "note": "Carter 266b. Four stoppers close the chest\u2019s compartments; this is a grouped set, not four separate jar models.",
+      "credit": "danderson4",
+      "source": "https://skfb.ly/6yQVJ",
+      "license": "CC BY-NC 4.0",
+      "originalOnly": false
+    },
+    {
+      "id": "king-tut-chair",
+      "name": "Golden throne \u00b7 alternate reconstruction",
+      "room": "reference",
+      "kind": "Furniture reference",
+      "file": "assets/egypt/models/king-tut-chair-original.glb",
+      "part": null,
+      "note": "Separate amirfiala1 reconstruction of the golden throne. Retained resource; not a museum scan or a second excavated throne.",
+      "credit": "amirfiala1",
+      "source": "https://sketchfab.com/3d-models/kingtutchair-21cd6cb690c744a6a9f3f54b736c2caa",
+      "license": "CC BY 4.0"
+    }
+  ],
+  "icons": [
+    {
+      "id": "ankhesenamun-chest",
+      "name": "Arched-lid chest",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed arched lid and pale panels. Project explicitly identifies this as a different-object stand-in; not a verified Treasury find or exact ancient chest.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/c719a5f0-51f3-4531-a397-1b68eaf79969/download"
+    },
+    {
+      "id": "anubis-replica",
+      "name": "Anubis shrine",
+      "audit_status": "Reference-based",
+      "audit_note": "Rejected seated jackal and unsuccessful first edit; regenerated from GEM photograph with reclining body, extended forelegs and carrying poles.",
+      "source_url": "https://gem.eg/en/collection/artefacts/anubis-on-a-chest",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/1295798e-0fc1-4221-a898-3d5c0303284b/download"
+    },
+    {
+      "id": "burial-shrine-207-ai",
+      "name": "Outermost burial shrine",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Replaced open box with closed broad double-door enclosure, cornice, bolts and repeating panels. Fine blue faience colors are muted at this scale.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/4b8d126b-1dca-4176-a365-0bbb7eadd31e/download"
+    },
+    {
+      "id": "burial-shrine-237-ai",
+      "name": "Second burial shrine",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Matched the project\u2019s reconstruction reference: broad double doors, standing figures, low cornice and bolts. Fine inscriptions are not verified.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/ef71295d-4432-453b-932a-4cb800d2a712/download"
+    },
+    {
+      "id": "burial-shrine-238-ai",
+      "name": "Third burial shrine",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Removed invented pyramid roof; matched the project\u2019s reconstruction reference for the low cornice and double doors.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/32369c2b-f9fb-455e-95fd-c17c3aa57133/download"
+    },
+    {
+      "id": "burial-shrine-239-ai",
+      "name": "Innermost burial shrine",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Replaced arched-lid treasure chest with the upright double-door shrine and winged protective figure in the reconstruction reference.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/37bbaf26-04e8-43fe-87da-4052a5c8bcc8/download"
+    },
+    {
+      "id": "canopic",
+      "name": "Canopic shrine",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Replaced fabricated exposed coffinette arrangement with shrine posts, cobra frieze and protective goddess. This is an exterior shrine icon, not a diagram of its internal chest.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/72357d7d-bbff-4946-800b-8baf5f29a3a4/download"
+    },
+    {
+      "id": "chariot-ai",
+      "name": "Chariot",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed two-wheel chariot form with pole and open body. Wheel-spoke count, decoration and exact chariot identity remain illustrative.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/f2a8ba7b-1e65-4c5f-b7a2-bc989ee2ecb8/download"
+    },
+    {
+      "id": "coffin-replica",
+      "name": "Anthropoid coffin",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed anthropoid outline as a generic modern replica icon. Do not identify this stylized image as a fourth original coffin or assign it a Carter number.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/6c53fe75-83e6-4d0b-b270-e6191ee84085/download"
+    },
+    {
+      "id": "crook-staff-ai",
+      "name": "Crook and flail",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Removed second hooked handle. One hooked crook and one straight flail with three strands; stray left-side tassel removed by guarded exact pixel edits. Type-level teaching icon.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/pixel-tools/77be5900-1b65-4474-b99e-5651b317195b/image.png"
+    },
+    {
+      "id": "dagger",
+      "name": "Iron dagger and gold sheath",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Changed the incorrectly green pommel to pale rock crystal. Iron blade and separate gold sheath retained. Decoration is illustrative, not an exact tracing.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/f938308d-60a3-44c6-bdc8-e58e5c18a01e/download"
+    },
+    {
+      "id": "diadem-ai",
+      "name": "Royal diadem",
+      "audit_status": "Reference-based",
+      "audit_note": "Replaced generic band with GEM photograph-based cobra/vulture insignia and hanging appendages. The museum photo crops the ends of some ribbons; they are not independently restored.",
+      "source_url": "https://gem.eg/en/collection/artefacts/royal-diadem",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/3c0015b3-cb52-45d2-8551-a58e3c60e0c5/download"
+    },
+    {
+      "id": "fan-ai",
+      "name": "Ceremonial fan",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed feather-fan type and handle. Full feathers are a reconstruction; exact feather count, ornament and surviving condition are not verified against a specific original.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/4139d2a6-813e-4bce-bb9e-c6b28d2f6aa5/download"
+    },
+    {
+      "id": "funerary-bed-ai",
+      "name": "Cow-headed funerary couch",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed intended cow-headed couch type and horned sun disks. Broad form and display base remain a teaching reconstruction, not a verified copy of Carter 73.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/dee6b211-483b-4dc6-aa35-985c9e7d1bfb/download"
+    },
+    {
+      "id": "funerary-bed",
+      "name": "Funerary couch",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed lion-couch type. Source project already notes problems with the older couch reconstruction; leg count and ornament are not independently verified. Keep labeled study reconstruction.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/b6d5ae5d-e654-48cf-9715-04cb34906789/download"
+    },
+    {
+      "id": "guardian-khat-ai",
+      "name": "Guardian with khat headdress",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Replaced nemes-like striped headwear with the smooth khat reference; restored black body, long gold kilt, staff and mace.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/592146c0-6958-4937-80f5-d3fccb02ab48/download"
+    },
+    {
+      "id": "guardian-statue-ai",
+      "name": "Guardian with nemes headcloth",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Replaced bright blue ornament and short kilt with the reference\u2019s restrained black-and-gold finish, long kilt and regalia.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/658f180d-e366-468d-a387-b64397305ad9/download"
+    },
+    {
+      "id": "headrest-ai",
+      "name": "Ivory headrest with Shu and lions",
+      "audit_status": "Reference-based",
+      "audit_note": "Removed invented blue and gold ornament and human-faced lions; used the museum photograph of the ivory crescent, Shu and reclining lions.",
+      "source_url": "https://gem.eg/en/collection/artefacts/lions-headrest",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/0ee7e337-5a4f-4605-b740-4265ba53c8ae/download"
+    },
+    {
+      "id": "headrest-azure",
+      "name": "Dark-blue faience headrest",
+      "audit_status": "Reference-based",
+      "audit_note": "Added missing separate 403b icon from the project\u2019s reference photograph. Dark-blue glaze appears light/desaturated under the photograph\u2019s lighting.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/bf0f6969-3bbb-4157-a1cd-e232e49c6c9c/download"
+    },
+    {
+      "id": "headrest-blue",
+      "name": "Turquoise glass headrest",
+      "audit_status": "Reference-based",
+      "audit_note": "Added missing separate 403a icon from the project\u2019s reference photograph. Surface colors and wear follow that image, not a measured material rendering.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/0ed5f71b-0830-4155-bd4b-db99c4bc49d9/download"
+    },
+    {
+      "id": "headrest-cabinet",
+      "name": "Table-shaped headrest cabinet",
+      "audit_status": "Reference-based",
+      "audit_note": "Added missing cabinet icon from museum reference: solid box, flat lid and table-like legs. Tiny inlay details simplified.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/385271bc-a4d8-4aee-8854-8171768790dc/download"
+    },
+    {
+      "id": "headrest-folding",
+      "name": "Folding ivory headrest",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Added missing separate 403d icon using the project\u2019s generated reference view; crossing supports and carved ends preserved. Reconstruction, not independent museum-photo verification.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/bb4225ab-89a7-4018-9d19-87c1364c1489/download"
+    },
+    {
+      "id": "inner-coffin-ai",
+      "name": "Innermost gold coffin",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Separate Carter 255 icon using the project\u2019s reconstruction front: slender gold metal coffin, gold headcloth, crossed arms and closed foot end.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/2c88aa6b-52b8-4f2a-8e29-a7f3188467bd/download"
+    },
+    {
+      "id": "lotus-ai",
+      "name": "Calcite perfume vessel",
+      "audit_status": "Reference-based",
+      "audit_note": "Replaced generic amphora with Carter 210\u2019s elaborate sculptural vessel and trellis pedestal. Monochrome archival source; small carved details remain simplified.",
+      "source_url": "https://www.griffith.ox.ac.uk/gri/carter/210-p0667.html",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/8f754eab-1935-4576-9ffb-e606d230fb4a/download"
+    },
+    {
+      "id": "lotus-head",
+      "name": "Head emerging from a lotus",
+      "audit_status": "Reference-based",
+      "audit_note": "Replaced the broad open flower and invented hair with the source model\u2019s elongated bald head, narrow lotus calyx, stem and round base.",
+      "source_url": "https://sketchfab.com/3d-models/tutankhamen-emerging-from-a-lotus-762c33df947e4f57862634a2771e2f56",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/6a80a25a-53fb-4d80-bf59-18cfcc8164b2/download"
+    },
+    {
+      "id": "mannequin",
+      "name": "Wooden portrait bust",
+      "audit_status": "Reference-based",
+      "audit_note": "Removed invented striped nemes and jeweled collar; matched the source model\u2019s tall crown and pale armless torso.",
+      "source_url": "https://sketchfab.com/3d-models/tutankhamun-mannequin-1c402508d14c411ab6adca42542ae76f",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/d5801d7b-86bf-4b18-b6ca-c03f713b17b6/download"
+    },
+    {
+      "id": "mask",
+      "name": "Gold funerary mask",
+      "audit_status": "Reference-based",
+      "audit_note": "Checked mask type against the GEM color photograph: gold face, striped nemes, beard and broad collar. Retained stylized icon; tiny insignia and inlays are simplified.",
+      "source_url": "https://gem.eg/en/collection/artefacts/the-golden-burial-mask-of-tutankhamun",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/8e6be5d8-9559-46dd-87fc-de4ac5f87945/download"
+    },
+    {
+      "id": "middle-coffin-ai",
+      "name": "Middle coffin",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Separate Carter 254 icon; corrected muted first result to distinguish blue/gold headcloth and colorful feather inlay from the outer and inner coffins.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/4666f59b-f719-4fdb-8c89-4621747150f6/download"
+    },
+    {
+      "id": "model-boat-2-ai",
+      "name": "Model boat, second example",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed separate sailing-boat silhouette. Sail, mast and cabin are illustrative; no secure Carter number or exact source boat is established.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/9348fa85-3057-4de0-ac37-9d53923c0f26/download"
+    },
+    {
+      "id": "model-boat-ai",
+      "name": "Model boat",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed hull, central cabin and steering-oar type. No secure Carter number for this AI comparison; exact boat identity and details remain unverified.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/3be572dc-97cf-48d8-8073-612b28c95ba7/download"
+    },
+    {
+      "id": "nested-coffins-ai",
+      "name": "Three nested coffins",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Retained only as a simplified assembly icon. Individual outer, middle and inner coffins now have separate files; this diagram is not a measured nesting/clearance model.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/3c6d506f-0dba-42e7-a03e-f964eca525d4/download"
+    },
+    {
+      "id": "outer-coffin-ai",
+      "name": "Outermost coffin",
+      "audit_status": "Reconstruction reference \u2014 not independent historical verification",
+      "audit_note": "Separate Carter 253 icon using the project\u2019s reconstruction front: broad gilded-wood body, gold headcloth and restrained carving. Not blue-striped like the middle coffin.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/77b4d213-1978-4354-aa02-2294ea2858bb/download"
+    },
+    {
+      "id": "painted-chest",
+      "name": "Painted wooden chest",
+      "audit_status": "Reference-based",
+      "audit_note": "Replaced generic treasure chest with archival photograph\u2019s broad chest and painted scene panels; cleaned photographic backdrop. Monochrome source; original color not established from this image.",
+      "source_url": "https://www.griffith.ox.ac.uk/gri/carter/021-p0076.html",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/fbb05bcd-e8b9-430d-a43a-509905752c32/download"
+    },
+    {
+      "id": "pectoral-ai",
+      "name": "Scarab pectoral, alternate",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Recomposed necklace completely within transparent margins. Exact ancient pectoral match unverified; retain as an explicitly illustrative alternate design.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/34825c1d-cc84-47e7-92f6-bfbb0dfec736/download"
+    },
+    {
+      "id": "sandals-ai",
+      "name": "Sandals",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed pair and recognizable sandal type. Straps, sole decoration and precise correspondence to Tutankhamun\u2019s gold funerary sandals remain unverified.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/0fb847dc-18ad-4ae2-a986-4a26c7d671d9/download"
+    },
+    {
+      "id": "scarab-bracelet",
+      "name": "Scarab bracelet",
+      "audit_status": "Reference-based",
+      "audit_note": "Added omitted bracelet artwork. Visually checked the actual Marius Ciulei source model: raised dark-blue scarab atop circular gold hinged bangle with red, ivory and turquoise shoulder inlays. PixelLab illustration preserves those identifying features; exact ancient identity and findspot remain unverified.",
+      "source_url": "https://skfb.ly/pxoON",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/d4aa066a-1559-4c87-abd9-4685b416ba98/download"
+    },
+    {
+      "id": "scarab-pectoral",
+      "name": "Winged scarab pectoral",
+      "audit_status": "Reference-based",
+      "audit_note": "Changed outstretched fantasy wings to the source model\u2019s upward-curving rounded wings and central turquoise scarab. The source model itself is an artistic reconstruction with no secure ancient catalog match.",
+      "source_url": "https://sketchfab.com/3d-models/ancient-egyptian-jewelry-7fc4496e06b74293b23b24afc28b46e6",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/1a34651b-5557-4c09-93df-67085ff583e2/download"
+    },
+    {
+      "id": "senet",
+      "name": "Senet board and pieces",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Replaced uncountable generated grid with exact PixelLab workbench drawing: 30 cells in 3 rows of 10; cone and spool pieces. Generic teaching board, not a facsimile of Carter 345.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/pixel-tools/5d36c4d4-9f71-4bdd-8773-0130a2d5b867/assets/front/full.png"
+    },
+    {
+      "id": "shabti-khepresh-ai",
+      "name": "Royal shabti with blue crown",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed mummiform silhouette, crossed arms and blue crown. Kept as royal type illustration; exact ancient object, surface colors and inscription unverified.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/63173796-08b4-4e83-94e0-53e31a00bba2/download"
+    },
+    {
+      "id": "shabti-nemes-ai",
+      "name": "Royal shabti with nemes headcloth",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Removed separate living-person legs and short skirt; corrected lower half to continuous mummiform body. Royal type illustration; exact ancient object and inscription unverified.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/30ee91f9-7734-4078-8fe3-c32dc9765144/download"
+    },
+    {
+      "id": "shawabti-horudja",
+      "name": "Shawabti of Horudja, comparison",
+      "audit_status": "Reference-based",
+      "audit_note": "Removed bright emerald and gold trim; matched source model\u2019s pale gray-green narrow figure. Different ancient owner, not a Tutankhamun find.",
+      "source_url": "https://sketchfab.com/3d-models/shabti-of-horudja-hargm7373-160c00aa5abb4f8aa1ac6af07796eb53",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/2f628f62-0a63-4d9d-a5da-6a536de4f5e0/download"
+    },
+    {
+      "id": "shawabti-nedjem",
+      "name": "Shawabti of Nedjem, comparison",
+      "audit_status": "Reference-based",
+      "audit_note": "Matched source model\u2019s dark worn figure and crossed arms; removed invented bright paint and oversized projecting tools. Different ancient owner, not a Tutankhamun find.",
+      "source_url": "https://sketchfab.com/3d-models/shabti-of-nedjem-w760-f975e1e56d6744cfb5963367b0160253",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/74e8ed11-90b5-4439-a98b-c154d9ac23bc/download"
+    },
+    {
+      "id": "shawabti-nesi-qa-shu",
+      "name": "Shawabti of Nesi-qa-Shu, comparison",
+      "audit_status": "Reference-based",
+      "audit_note": "Removed cream bandages and royal headcloth; matched source model\u2019s worn green surface and plain figure. Different ancient owner, not a Tutankhamun find.",
+      "source_url": "https://sketchfab.com/3d-models/shabti-figure-8161d0bfc36348ecaa5a59fcb38e8644",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/f451c4b8-ac89-4492-bd0b-a915fa953873/download"
+    },
+    {
+      "id": "shawabti-psamtik",
+      "name": "Shawabti of Psamtik, comparison",
+      "audit_status": "Reference-based",
+      "audit_note": "Replaced invented royal ornament with source model\u2019s muted green faience and narrow plain figure. Different ancient owner, not a Tutankhamun find.",
+      "source_url": "https://sketchfab.com/3d-models/shabti-of-psamtik-hargm3632-932aa55171b04c33ba0e803f555896e4",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/4ad50373-6fc1-4d61-8dc7-46a6aac41d72/download"
+    },
+    {
+      "id": "shawabti-ramose",
+      "name": "Shawabti of Ramose, comparison",
+      "audit_status": "Reference-based",
+      "audit_note": "Matched cream paint, dark wig, crossed hands and vertical markings of the credited model. Different ancient owner, not a Tutankhamun find.",
+      "source_url": "https://sketchfab.com/3d-models/shabti-of-ramose-37128a12fc4d4c5e842a872f4085664d",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/325a7346-0aa6-406c-915c-444e38e23531/download"
+    },
+    {
+      "id": "shield-2-ai",
+      "name": "Openwork ceremonial shield",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Reviewed arch-top, flat-base openwork silhouette. Royal and animal motifs remain illustrative; no secure ancient catalog match established.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/3e8a37c1-d35b-4caf-9dff-3320aa2bcc2b/download"
+    },
+    {
+      "id": "shield-ai",
+      "name": "Ceremonial shield",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "Corrected round shield to tall arch-top, flat-base form and removed giant pharaoh face. Central figure/lion ornament remains illustrative; no secure ancient catalog match.",
+      "source_url": null,
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/d7f95c7e-b3f2-4569-80a8-9b01e9b9d76c/download"
+    },
+    {
+      "id": "throne",
+      "name": "Golden throne",
+      "audit_status": "Reference-based",
+      "audit_note": "Replaced the invented large face on the back with a reference-based king-and-queen scene; restored open frame, thin legs and separate footstool.",
+      "source_url": "https://gem.eg/en/collection/artefacts/golden-throne",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/5c584116-216b-4dac-924b-0e7843586931/download"
+    },
+    {
+      "id": "throwing-sticks-ai",
+      "name": "Decorated throwing sticks",
+      "audit_status": "Reference-based",
+      "audit_note": "Replaced straight thin staffs with broad curved throwing sticks. Archival comparison is Carter 54d/e; exact identity of the game\u2019s AI mesh remains unverified. Monochrome source.",
+      "source_url": "https://www.griffith.ox.ac.uk/gri/carter/054d-p0483.html",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/c1ae3067-ee9f-4f1d-84c3-64e5920931ac/download"
+    },
+    {
+      "id": "ankh-key",
+      "name": "Ankh \u00b7 key of life",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/44ad2330-fee6-4bed-95b7-1c7ef4ccdd42/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "decorated-throwing-sticks",
+      "name": "Decorated throwing sticks \u00b7 second model",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/72b7c39d-9361-4982-aa1a-9e1f3ce77d9d/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "harvard-headrest",
+      "name": "Headrest \u00b7 Harvard reference",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/1bb2fe66-5586-4412-96b3-e2b3b563ad7a/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "kv54-vase",
+      "name": "Vase 9 \u00b7 KV54 cache",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/920d0c11-5dcd-47cc-9543-ec96a4f6252f/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "kv54-vase8",
+      "name": "Vase 8 \u00b7 KV54 cache",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/5291822c-a019-4889-a505-6ca1b8a973cf/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "thuya-canopic-chest",
+      "name": "Canopic chest of Thuya",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/947532a7-1df5-445f-96eb-f08797aca4f9/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "userhat-canopic-jar",
+      "name": "Canopic jar and lid of Userhat",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/b925c6ec-13af-4fb3-9f66-56b27e58389e/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "tutankhamen-and-ankhesenamun",
+      "name": "Tutankhamen and Ankhesenamun \u00b7 reference",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/8e9a146c-ee4b-49f1-8ad4-0df795cf4f9b/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "replica-display",
+      "name": "Chair and vessel \u00b7 replica display",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/94880375-4c25-49e7-abc3-180e7472464f/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "canopic-wooden-shrine",
+      "name": "Gilded wooden canopic shrine",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/ca12faa5-2111-42c1-bc3e-22bea0c85c5b/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "canopic-calcite-chest",
+      "name": "Calcite canopic chest",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/de50758a-7404-4749-9277-c54b11140d81/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "canopic-calcite-lid",
+      "name": "Calcite chest lid",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/a9b4d0a1-6944-4152-8932-ab256c2de66d/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "canopic-head-stoppers",
+      "name": "Four head-shaped canopic stoppers",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/57003b30-c476-4a38-a5dc-377491c44c4f/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    },
+    {
+      "id": "king-tut-chair",
+      "name": "Golden throne \u00b7 alternate reconstruction",
+      "pixellab_download": "https://api.pixellab.ai/mcp/images/398cc192-603d-49bb-bfa7-8cdf60a57d2c/download",
+      "audit_status": "Teaching illustration \u2014 exact match unverified",
+      "audit_note": "PixelLab teaching illustration based on the project model. Inscriptions, proportions and surface details are approximate; no new archaeological identification or findspot is asserted."
+    }
+  ]
+}
