@@ -8,5 +8,6 @@
   "triangles": 59999,
   "licenseStatus": "No Creative Commons license asserted.",
   "derivativeChanges": "Mesh simplified; textures reduced to 1024 px. Original preserved locally.",
-  "dateAdded": "2026-11-23"
+  "dateAdded": "2026-11-23",
+  "nestingStatus": "Detailed assembly in nested-coffins-ai.glb: original web-mesh exterior positions, normals and UVs retained on lid and case, original 4K color/normal maps restored, internal liners and cut rims added, children uniformly scaled and positioned inside original enclosing surfaces."
 }

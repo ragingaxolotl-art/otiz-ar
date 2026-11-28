@@ -345,6 +345,24 @@
         }
       }
     },
+    "diadem-ai": {
+      "materials": {
+        "diadem-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/diadem-ai-color-0.jpg"
+          }
+        }
+      }
+    },
+    "funerary-bed-ai": {
+      "materials": {
+        "funerary-bed-ai-material-0": {
+          "map": {
+            "url": "assets/egypt/detail/funerary-bed-ai-color-0.jpg"
+          }
+        }
+      }
+    },
     "shabti-nemes-ai": {
       "materials": {
         "shabti-nemes-ai-material-0": {

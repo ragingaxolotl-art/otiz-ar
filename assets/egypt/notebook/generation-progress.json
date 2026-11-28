@@ -1,0 +1,227 @@
+[
+  {
+    "id": "mask",
+    "job_id": "8e6be5d8-9559-46dd-87fc-de4ac5f87945",
+    "name": "Gold funerary mask"
+  },
+  {
+    "id": "dagger",
+    "job_id": "b9415a40-313c-4495-88c6-33af27623323",
+    "name": "Iron dagger and gold sheath"
+  },
+  {
+    "id": "painted-chest",
+    "name": "Painted wooden chest",
+    "job_id": "7754d670-9d3c-4522-be8d-d8690704995a"
+  },
+  {
+    "id": "throne",
+    "name": "Golden throne",
+    "job_id": "c598a5e1-5a77-49cc-a66a-4289b66e6ff0"
+  },
+  {
+    "id": "canopic",
+    "name": "Canopic shrine and calcite chest",
+    "job_id": "f205c054-7200-41cb-b3a6-389d59fc222a"
+  },
+  {
+    "id": "anubis-replica",
+    "name": "Anubis shrine",
+    "job_id": "60492811-e4e7-4556-bd94-45c4bd66035b"
+  },
+  {
+    "id": "scarab-pectoral",
+    "name": "Winged scarab pectoral",
+    "job_id": "216e4040-89a9-47a3-83c4-b670e58b811f"
+  },
+  {
+    "id": "lotus-head",
+    "name": "Head emerging from a lotus",
+    "job_id": "2f8781c8-9aba-46ac-9e7f-60e0b8199d8a"
+  },
+  {
+    "id": "mannequin",
+    "name": "Wooden portrait bust",
+    "job_id": "722530c5-a8d4-432b-b933-c51be270202f"
+  },
+  {
+    "id": "funerary-bed-ai",
+    "name": "Cow-headed funerary couch",
+    "job_id": "dee6b211-483b-4dc6-aa35-985c9e7d1bfb"
+  },
+  {
+    "id": "fan-ai",
+    "name": "Ceremonial fan",
+    "job_id": "4139d2a6-813e-4bce-bb9e-c6b28d2f6aa5"
+  },
+  {
+    "id": "throwing-sticks-ai",
+    "name": "Decorated throwing sticks",
+    "job_id": "1e1abf86-47da-431e-8554-b9b826d293c5"
+  },
+  {
+    "id": "lotus-ai",
+    "name": "Calcite perfume vessel",
+    "job_id": "9d45e97e-ac50-46c2-a0df-a15e6b57d94a"
+  },
+  {
+    "id": "headrest-ai",
+    "name": "Ivory headrest with Shu and lions",
+    "job_id": "65e054aa-9eba-4a83-a1a0-6eef0554678a"
+  },
+  {
+    "id": "sandals-ai",
+    "name": "Sandals",
+    "job_id": "0fb847dc-18ad-4ae2-a986-4a26c7d671d9"
+  },
+  {
+    "id": "model-boat-ai",
+    "name": "Model boat",
+    "job_id": "3be572dc-97cf-48d8-8073-612b28c95ba7"
+  },
+  {
+    "id": "model-boat-2-ai",
+    "name": "Model boat, second example",
+    "job_id": "9348fa85-3057-4de0-ac37-9d53923c0f26"
+  },
+  {
+    "id": "crook-staff-ai",
+    "name": "Crook and flail",
+    "job_id": "9961916b-70df-4c01-aa9b-38a52f64a6de"
+  },
+  {
+    "id": "pectoral-ai",
+    "name": "Scarab pectoral, alternate",
+    "job_id": "8bbdeb77-40e9-4784-8caf-17b6d80c6908"
+  },
+  {
+    "id": "shield-ai",
+    "name": "Ceremonial shield",
+    "job_id": "9871d0e6-2497-4084-a772-8978c58a9471"
+  },
+  {
+    "id": "chariot-ai",
+    "name": "Chariot",
+    "job_id": "f2a8ba7b-1e65-4c5f-b7a2-bc989ee2ecb8"
+  },
+  {
+    "id": "shield-2-ai",
+    "name": "Openwork ceremonial shield",
+    "job_id": "3e8a37c1-d35b-4caf-9dff-3320aa2bcc2b"
+  },
+  {
+    "id": "senet",
+    "name": "Senet board and pieces",
+    "job_id": "51e25b9b-dad0-4e64-8aa3-4b1f6701a24c"
+  },
+  {
+    "id": "guardian-statue-ai",
+    "name": "Guardian with nemes headcloth",
+    "job_id": "1c86bb50-501c-44d3-af5e-d9bafb5f6e8a"
+  },
+  {
+    "id": "guardian-khat-ai",
+    "name": "Guardian with khat headdress",
+    "job_id": "e1519bb6-02f7-4e13-b06f-e43046f38f20"
+  },
+  {
+    "id": "shabti-nemes-ai",
+    "name": "Royal shabti with nemes headcloth",
+    "job_id": "fd47efbb-89c9-49ed-b2ee-3c4b239766d6"
+  },
+  {
+    "id": "shabti-khepresh-ai",
+    "name": "Royal shabti with blue crown",
+    "job_id": "63173796-08b4-4e83-94e0-53e31a00bba2"
+  },
+  {
+    "id": "diadem-ai",
+    "name": "Royal diadem",
+    "job_id": "acafbbdb-f0cc-472f-b67d-c46ff2d104eb"
+  },
+  {
+    "id": "ankhesenamun-chest",
+    "name": "Arched-lid chest",
+    "job_id": "c719a5f0-51f3-4531-a397-1b68eaf79969"
+  },
+  {
+    "id": "burial-shrine-207-ai",
+    "name": "Outermost burial shrine",
+    "job_id": "ac7c93b6-2fa4-4f58-b6f3-d1c3622f196d"
+  },
+  {
+    "id": "burial-shrine-237-ai",
+    "name": "Second burial shrine",
+    "job_id": "8700e3fc-d1b6-43d5-addb-7c369509d4f4"
+  },
+  {
+    "id": "burial-shrine-238-ai",
+    "name": "Third burial shrine",
+    "job_id": "07611c20-cb9e-41b6-8da8-464829c50b0a"
+  },
+  {
+    "id": "burial-shrine-239-ai",
+    "name": "Innermost burial shrine",
+    "job_id": "9c5bddf8-ec22-4b92-9f36-379232213187"
+  },
+  {
+    "id": "nested-coffins-ai",
+    "name": "Three nested coffins",
+    "job_id": "3c6d506f-0dba-42e7-a03e-f964eca525d4"
+  },
+  {
+    "id": "coffin-replica",
+    "name": "Anthropoid coffin",
+    "job_id": "6c53fe75-83e6-4d0b-b270-e6191ee84085"
+  },
+  {
+    "id": "funerary-bed",
+    "name": "Funerary couch",
+    "job_id": "b6d5ae5d-e654-48cf-9715-04cb34906789"
+  },
+  {
+    "id": "shawabti-nedjem",
+    "name": "Shawabti of Nedjem, comparison",
+    "job_id": "7cd1e87a-86a7-491d-aad5-5a0eabb4836a"
+  },
+  {
+    "id": "shawabti-ramose",
+    "name": "Shawabti of Ramose, comparison",
+    "job_id": "8c80e5fc-7cf3-47c5-915e-b6b90de5b2d6"
+  },
+  {
+    "id": "shawabti-psamtik",
+    "name": "Shawabti of Psamtik, comparison",
+    "job_id": "4c56bee7-d36d-45dc-a461-8ab44aa0c658"
+  },
+  {
+    "id": "shawabti-horudja",
+    "name": "Shawabti of Horudja, comparison",
+    "job_id": "211edab5-41ba-46bc-a90b-a360ec8a2897"
+  },
+  {
+    "id": "shawabti-nesi-qa-shu",
+    "name": "Shawabti of Nesi-qa-Shu, comparison",
+    "job_id": "eca70ca6-c616-43fd-803e-126c55a2381c"
+  },
+  {
+    "id": "outer-coffin-ai",
+    "name": "Outermost coffin",
+    "job_id": "77b4d213-1978-4354-aa02-2294ea2858bb"
+  },
+  {
+    "id": "middle-coffin-ai",
+    "name": "Middle coffin",
+    "job_id": "4666f59b-f719-4fdb-8c89-4621747150f6"
+  },
+  {
+    "id": "inner-coffin-ai",
+    "name": "Innermost gold coffin",
+    "job_id": "2c88aa6b-52b8-4f2a-8e29-a7f3188467bd"
+  },
+  {
+    "id": "scarab-bracelet",
+    "name": "Scarab bracelet",
+    "job_id": "d4aa066a-1559-4c87-abd9-4685b416ba98"
+  }
+]

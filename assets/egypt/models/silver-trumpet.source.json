@@ -1,0 +1,50 @@
+{
+  "visualReferenceCredits": [
+    "Douglas Yeo, photographs of the silver trumpet and wooden insert, Grand Egyptian Museum, 15 January 2026, The Last Trombone.",
+    "Suaudeau, two photographs of Carter 175 and its painted wooden insert, Paris exhibition, 29 April 2019, Wikimedia Commons, CC BY-SA 4.0. Photographs consulted for reconstruction; no photo pixels embedded."
+  ],
+  "title": "Silver trumpet embellished with gold \u00b7 Carter 175",
+  "creator": "Codex \u00b7 geometry and textures written directly in code",
+  "method": "Deterministic annular shells swept along a gently curved centerline; no Meshy generation",
+  "generator": "scripts/build-silver-trumpet.py",
+  "model": "silver-trumpet.glb",
+  "units": "meters",
+  "dimensions": {
+    "length": 0.58,
+    "maximumBellDiameter": 0.088,
+    "tubeDiameters": [
+      0.016,
+      0.026
+    ],
+    "centerlineBow": 0.012
+  },
+  "parts": [
+    "silver-body-and-hollow-bell",
+    "gold-mouthpiece",
+    "gold-bell-border"
+  ],
+  "triangles": 52224,
+  "webBytes": 7211640,
+  "reference": "https://www.griffith.ox.ac.uk/gri/carter/175-c175-1.html",
+  "additionalReferences": [
+    "https://www.griffith.ox.ac.uk/gri/carter/175-c175-2.html",
+    "https://tutankhamun.griffith.ox.ac.uk/object-records/175",
+    "https://www.globalegyptianmuseum.org/detail.aspx?id=15043",
+    "https://thelasttrombone.com/2026/02/13/the-tutankhamun-trumpets/",
+    "https://commons.wikimedia.org/wiki/File:Trompette_d%27argent_et_sa_sourdine_en_bois_du_tombeau_de_Tout%C3%A2nkhamon.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trompette_d%27argent_et_sa_sourdine_en_bois_du_tombeau_de_Tout%C3%A2nkhamon_2.jpg"
+  ],
+  "placement": "Recorded in the burial chamber\u2019s southeast corner under lamp 173. Displayed on the approach floor at the burial entrance for access; this is a teaching offset from the recorded findspot.",
+  "interpretation": "Documented length, bell diameter, silver body and gold mouthpiece/border. A gentle 12 mm shaft bow, bell curvature, 0.5\u20130.6 mm wall thickness and aged silver patina are modeling choices. Color, metallic/roughness and normal maps are UV-attached and embedded in the GLB, with standalone PNGs in silver-trumpet-textures/. Reference-derived pointed calices, alternating dotted and hatched fields, gold garland, cartouche emblems and a simplified three-figure tableau. The fine inscriptions and unseen circumference are interpretive, not a facsimile. The painted wooden insert is a separate duplicated profile in silver-trumpet-core.glb, with solid end caps and its own painted pattern.",
+  "textures": [
+    "silver-basecolor.png",
+    "silver-metallic-roughness.png",
+    "silver-normal.png",
+    "gold-border-basecolor.png",
+    "gold-metallic-roughness.png",
+    "gold-normal.png",
+    "gold-mouthpiece-basecolor.png"
+  ],
+  "artwork": "128\u00d7128 code-drawn icon; not PixelLab or AI-generated artwork",
+  "licenseStatus": "New code-drawn geometry and ornament created for this project; museum photographs used as visual references only, with no photographic pixels embedded."
+}

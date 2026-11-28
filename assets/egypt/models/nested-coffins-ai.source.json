@@ -1,41 +1,74 @@
 {
-  "title": "Three nested coffins \u00b7 teaching assembly",
-  "sources": [
-    "outer-coffin-ai.source.json",
-    "middle-coffin-ai.source.json",
-    "inner-coffin-ai.source.json"
-  ],
+  "title": "Three detailed nested coffins",
+  "construction": "Original decorated source exteriors retained on every lid and case. Original uploaded full-resolution maps restored. Only thin internal liners and cut rims added. Original external depth retained.",
   "fitChecks": [
     {
       "coffin": "outer",
-      "childScale": 0.886,
+      "childScale": 0.7022216796875,
       "childTranslation": [
-        0.0001974027156829834,
-        0.00023434311151504517,
-        -0.3497896723151207
+        0.00020741008993354628,
+        -0.0003997618732682895,
+        -0.07952107889403123
       ],
-      "innerFloor": -0.8108258707298638,
-      "lidPlane": -0.08,
-      "sideClearance": 0.012,
-      "verifiedChildVertices": 35383
+      "verifiedChildVertices": 39269,
+      "closedCrossSections": 160,
+      "interiorClearance": 0.018000000000000002,
+      "outsideChildVertices": 0,
+      "fit": "Every child vertex inside both neighboring inward-offset source cross-sections, including the lid cavity."
     },
     {
       "coffin": "middle",
-      "childScale": 0.91,
+      "childScale": 0.809716796875,
       "childTranslation": [
-        -0.00024070456624031067,
-        0.00032622784376144413,
-        -0.2672336161434651
+        -0.0010086787173349877,
+        0.08002578149287728,
+        -0.03279489634391212
       ],
-      "innerFloor": -0.47278351965546617,
-      "lidPlane": -0.08,
-      "sideClearance": 0.012,
-      "verifiedChildVertices": 41798
+      "verifiedChildVertices": 41798,
+      "closedCrossSections": 160,
+      "interiorClearance": 0.018000000000000002,
+      "outsideChildVertices": 0,
+      "fit": "Every child vertex inside both neighboring inward-offset source cross-sections, including the lid cavity."
     }
   ],
-  "fit": "Every child mesh vertex checked against its containing cavity with side clearance. Both child assemblies lie below their enclosing lid and above their case floor.",
-  "construction": "Outer and middle decorated lids cut from supplied meshes. Hollow cases, hidden surfaces, wall thickness and relative scale are constructed teaching geometry, not verified archaeological measurements. Innermost mesh retained.",
-  "dateAdded": "2026-11-23",
-  "webBytes": 8547964,
-  "openWebBytes": 8548048
+  "exteriorChecks": {
+    "outer": {
+      "sourceTriangles": 59998,
+      "decoratedCaseTriangles": 7247,
+      "decoratedLidTriangles": 53541,
+      "exteriorChanged": false,
+      "fullResolutionSourceMaps": true
+    },
+    "middle": {
+      "sourceTriangles": 59999,
+      "decoratedCaseTriangles": 21143,
+      "decoratedLidTriangles": 40658,
+      "exteriorChanged": false,
+      "fullResolutionSourceMaps": true
+    },
+    "inner": {
+      "sourceTriangles": 59998,
+      "decoratedCaseTriangles": 8066,
+      "decoratedLidTriangles": 53548,
+      "exteriorChanged": false,
+      "fullResolutionSourceMaps": true
+    }
+  },
+  "sources": [
+    "outer-coffin-ai.glb",
+    "middle-coffin-ai.glb",
+    "inner-coffin-ai.glb"
+  ],
+  "textureSources": [
+    "outer-coffin-ai-original.glb",
+    "middle-coffin-ai-original.glb",
+    "inner-coffin-ai-original.glb"
+  ],
+  "originalSourceHashes": {
+    "outer": "824c3568de9506b7cd62f5695008ebe144c17349a7f8d207905fdd8d414df8e9",
+    "middle": "48519be402defa3c6002aca83ddfdfb91871db802a4b986b3d607442e65737e6",
+    "inner": "9dd4bcf28830a7d702156b730d5ff7a1aff5f596c9d1bbd418fbcbeed4176495"
+  },
+  "webBytes": 104945736,
+  "openWebBytes": 104945820
 }

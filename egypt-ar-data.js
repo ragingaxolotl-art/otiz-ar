@@ -5,7 +5,7 @@ window.ARTIFACTS=[
     "n": 1,
     "id": "throwing-sticks-ai",
     "name": "Throwing sticks · AI reconstruction",
-    "modelUrl": "assets/egypt/models/throwing-sticks-ai.glb",
+    "modelUrl": "assets/egypt/models/throwing-sticks-ai.glb?v=oblong-1",
     "lengthCm": 60,
     "fact": "Teacher-supplied AI reconstruction of a decorated pair of throwing sticks. Compare the side profile and curvature with the assignment photograph; archaeological accuracy is not established.",
     "question": "How could the shapes help these objects function when thrown?",
@@ -112,7 +112,7 @@ window.ARTIFACTS=[
     "fact": "A scan of a 1929 reproduction of Tutankhamun’s throne, rather than the original ancient chair.",
     "question": "Which features suggest a royal seat?",
     "creator": "pmanuelian",
-    "source": "https://skfb.ly/oKr6q",
+    "source": "https://skfb.ly/oIWXX",
     "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
   },
   {
@@ -296,6 +296,30 @@ window.ARTIFACTS=[
     "creator": "Teacher-supplied Meshy AI",
     "source": "assets/egypt/models/shield-2-ai.source.json",
     "license": null
-  }
+  },
+{
+  "n": 25,
+  "id": "guardian-statue-ai",
+  "name": "Guardian statue with nemes headcloth · AI reconstruction",
+  "modelUrl": "assets/egypt/models/guardian-statue-ai.glb",
+  "lengthCm": 190,
+  "fact": "Antechamber · AI comparison for Tutankhamun’s guardian (ka) statue with nemes headcloth, mace and staff. The original pair flanked the sealed burial-chamber doorway. Shown near the burial entrance at an approximate teaching position; this generated mesh is not a verified catalog match and its all-gold finish differs from the originals’ black-and-gold surfaces.",
+  "question": "Which features identify this as a royal guardian, and how does its finish differ from the original?",
+  "creator": "Teacher-supplied Meshy AI",
+  "source": "assets/egypt/models/guardian-statue-ai.source.json",
+  "license": null
+},
+{
+  "n": 26,
+  "id": "guardian-khat-ai",
+  "name": "Guardian statue with khat headdress · AI reconstruction",
+  "modelUrl": "assets/egypt/models/guardian-khat-ai.glb",
+  "lengthCm": 190,
+  "fact": "Antechamber · AI comparison for Tutankhamun’s guardian statue with khat headdress, mace and staff. The original pair flanked the sealed burial-chamber doorway. This companion faces the nemes guardian near the burial entrance; coordinates are approximate teaching positions. The generated all-gold finish differs from the originals’ black-and-gold surfaces; exact catalog match is unverified.",
+  "question": "How does the khat headdress differ from the companion guardian’s nemes headcloth?",
+  "creator": "Teacher-supplied Meshy AI",
+  "source": "assets/egypt/models/guardian-khat-ai.source.json",
+  "license": null
+}
 ];
 window.LIFE_SIZES=Object.fromEntries(ARTIFACTS.map(a=>[a.n,{cm:a.lengthCm,kind:"Approximate teaching span",note:"Display scale only; not a verified museum measurement."}]));

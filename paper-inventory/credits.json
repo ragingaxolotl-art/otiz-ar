@@ -493,6 +493,24 @@
       "license": "Upload record"
     },
     {
+      "id": "silver-trumpet",
+      "name": "Carter 175 \u00b7 Silver trumpet",
+      "file": "assets/egypt/models/silver-trumpet.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Codex \u00b7 procedural geometry and textures",
+      "license": "Project-created model"
+    },
+    {
+      "id": "silver-trumpet-core",
+      "name": "Painted wooden trumpet insert",
+      "file": "assets/egypt/models/silver-trumpet-core.glb",
+      "part": null,
+      "room": "burial",
+      "credit": "Codex \u00b7 duplicated profile with reference-derived painted texture",
+      "license": "Project-created model"
+    },
+    {
       "id": "ankh-key",
       "name": "Ankh \u00b7 key of life",
       "room": "reference",
@@ -1066,6 +1084,18 @@
       "audit_note": "Replaced straight thin staffs with broad curved throwing sticks. Archival comparison is Carter 54d/e; exact identity of the game\u2019s AI mesh remains unverified. Monochrome source.",
       "source_url": "https://www.griffith.ox.ac.uk/gri/carter/054d-p0483.html",
       "pixellab_download": "https://api.pixellab.ai/mcp/images/c1ae3067-ee9f-4f1d-84c3-64e5920931ac/download"
+    },
+    {
+      "id": "silver-trumpet",
+      "name": "Carter 175 \u00b7 Silver trumpet",
+      "audit_status": "Code-drawn teaching illustration",
+      "audit_note": "Code-drawn icon of the project-created Carter 175 trumpet or painted wooden protective insert. Surface details are approximate."
+    },
+    {
+      "id": "silver-trumpet-core",
+      "name": "Painted wooden trumpet insert",
+      "audit_status": "Code-drawn teaching illustration",
+      "audit_note": "Code-drawn icon of the project-created Carter 175 trumpet or painted wooden protective insert. Surface details are approximate."
     },
     {
       "id": "ankh-key",

@@ -1,0 +1,10 @@
+{
+  "title": "Chest from Ankhesenamun",
+  "creator": "Wieslaw Kruczala",
+  "source": "https://skfb.ly/oLPyn",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "file": "ankhesenamun-chest.glb",
+  "source_sha256": "ffdaeaba19493a3c064d25b1a03572d34ec8e723cd97a454d894cddfb3021f3c",
+  "modifications": "Repacked self-contained source glTF as GLB. Geometry and source materials unchanged. Source glTF has no texture references.",
+  "placement": "Treasury teaching stand-in for a pale arched-lid storage chest; original model depicts a different chest associated with the Antechamber. Approximate size and position, not an identified Treasury find."
+}

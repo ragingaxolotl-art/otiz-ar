@@ -1,13 +1,25 @@
-# Explorer player body
+# Explorer
 
 “Girl explorer” by EvgeshQa, [original model](https://skfb.ly/o8NMr), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-`girl-explorer-body.glb` is the first-person derivative used in the tomb. It retains the coherent body, shirt and pouch, corrects the shared head bind scale, removes the unseen neck tip, and excludes the head/hair and detached source accessories. Brown vertex colors stand in for shorts and boots. The 71-joint rig retains the native idle, walk, run and jump clips; there is no native crouch clip.
+The tomb loads `girl-explorer-restored.glb`: all 17 original meshes, 193,165 triangles, original materials, clothing, accessories and five native animation clips. The earlier local export incorrectly shared one skin across different mesh bindings. The restored export keeps 15 individual skins. Its rigid eyes are parented to the original animated eye bones rather than static placement nodes.
 
-The original download is preserved locally as `girl-explorer-original.glb`; its hash is in the source record. With that file available, `scripts/prepare-explorer.py` rebuilds the derivative. The original has not been overwritten.
+The field notebook shows a complete idle-pose display copy. Walking keeps the source rig and limb animation. Only head, facial, hair and headwear surfaces are hidden in first person. The camera stays under the existing controls; the body aligns its authored eye centers to it. Scale follows the 1.60 m eye reference; the hat extends above the 1.75 m collider reference. There is no source crouch clip: crouching lowers the camera/body without compressing the limbs.
 
-The avatar is adapted to the existing 1.75 m player / 1.60 m eye reference. These are application scale settings, not a real-world measurement of the stylized model. Physics and head tracking remain independent of body animation. The first-person camera hides head surfaces, renders front faces and keeps the feet on the physical player reference.
+`girl-explorer-original.glb` is the unchanged earlier broken local export, retained for diagnosis. `girl-explorer-body.glb` and `prepare-explorer.py` are legacy cut-down derivatives and are no longer loaded.
 
-## First-person rendering (2026-11-23)
+## Rebuild
 
-The runtime now bakes the coherent authored idle pose into ordinary meshes once on load, keeping the body, shirt and pouch together. Full-body animation clips are retained in the GLB but are not played in first person: their limb deformation was unsuitable for the close camera. The body is a fixed reference pose, not an animated walking avatar. Crouching lowers the existing camera/collision stance without vertically squashing the model. The body follows the physical feet through jumps and drops, with its near-head surfaces clipped below the eye. Walking speed and VR camera settings are unchanged.
+The complete per-mesh-skin export was rebuilt from the public CC BY viewer scene using the MIT-licensed [sfrip exporter](https://github.com/Corpocore/sfrip) with `--no-merge`. Run `python3 scripts/restore-explorer.py /path/to/Girl_explorer.glb` on that complete export to restore both rigid eye attachments and write the runtime GLB. The script validates that all 17 meshes and 15 skins remain. Asset hashes and counts are in `girl-explorer.source.json`.
+
+Validation: `node tests/tomb-player.test.cjs`; open `tests/tomb-player.html` for full-book and walking previews plus movement/camera regression checks.
+
+The interactive preview includes camera-height (0.50–1.90 m) and camera-clearance (0–0.60 m radius) sliders. The height adjustment moves the camera independently of the avatar. First-person materials hide fragments within the clearance sphere and render front faces only; the complete notebook materials are unchanged.
+
+Preview slider values are saved in localStorage under `explorer-preview-settings-v1`, across reloads and query-string variants on the same origin. Initial saved profile: camera height 1.27 m, Z 0 m, forearms 1.72×, clearance radius 0.04 m. Reset position preserves slider settings. While running, an index-only body geometry hides the torso and upper accessories while retaining limb weights; original geometry returns for other motions. The full book copy is unaffected.
+
+## User-provided adventurer
+
+`adventurer-mixamo.glb` is a byte-for-byte copy of the supplied Meshy/Mixamo GLB: one mesh, 28 joints and all 18 animations retained. Open `tests/adventurer-player.html` for the same adjustment controls and movement preview. Its saved settings use `adventurer-preview-settings-v1`, independent of the explorer. Camera placement estimates eye level from the head markers; use the sliders to tune it. The tomb still uses the existing explorer until the new character is selected for integration.
+
+The adventurer first-person defaults selected by the user are camera height 1.36 m, camera Z −0.32 m, forearm length 1.41×, clearance radius 0 m. Later saved slider adjustments take precedence. Its animation selector exposes all 18 source clips in both walking and a live complete Book view. Drag the Book view to rotate the animated character.

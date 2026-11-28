@@ -1,5 +1,5 @@
 EGYPT COLLECTION INVENTORY
-63 catalog entries; 122 local GLB files reconciled.
+65 catalog entries; 125 local GLB files reconciled.
 Originals and alternate exports are mapped to their entries, not counted as new excavated finds.
 
 ENTRANCE
@@ -32,6 +32,8 @@ BURIAL
   Three nested coffins [nested-coffins-ai]
   Outermost coffin [outer-coffin-ai]
   Sandals [sandals-ai]
+  Carter 175 · Silver trumpet [silver-trumpet]
+  Painted wooden trumpet insert [silver-trumpet-core]
 
 TREASURY
   Arched-lid chest [ankhesenamun-chest]

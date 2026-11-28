@@ -1,0 +1,11 @@
+{
+  "title": "Diadem \u00b7 Meshy teaching reconstruction",
+  "creator": "Teacher-supplied Meshy AI",
+  "sourceUpload": "Meshy_AI_Golden_Crown_Relic_20261127_texture.glb",
+  "originalSha256": "0be4faefa565a04e5942397f005bb200365a8a201318d280e6ee80cdf47a4983",
+  "file": "diadem-ai.glb",
+  "comparison": "Carter 256,4,o \u00b7 diadem",
+  "modifications": "Embedded preview textures reduced to 1024px; mesh and UV data unchanged. Original upload and original color textures preserved.",
+  "licenseStatus": "User supplied for classroom integration; no separate license asserted.",
+  "placement": "Burial chamber comparison beside coffin assemblage; the original diadem was on the king\u2019s head. Model shape and display scale approximate."
+}

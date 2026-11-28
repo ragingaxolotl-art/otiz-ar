@@ -7,7 +7,7 @@
   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
   "intendedUse": "Active first-person player body and height reference in the tomb.",
   "localOriginalFile": "girl-explorer-original.glb",
-  "file": "girl-explorer-body.glb",
+  "file": "girl-explorer-restored.glb",
   "originalSha256": "9f73ae6a49699c3eded5703b69cf8da21dfd1c03bc57a90fc027a719fc85417d",
   "originalInspection": {
     "fileBytes": 12967032,
@@ -41,7 +41,7 @@
       }
     ],
     "crouchIncluded": false,
-    "status": "Original retained locally without modification. Source export has detached/skewed parts caused by inconsistent body bind scale.",
+    "status": "Earlier local export retained unchanged for diagnosis. It incorrectly shared one skin across meshes with different bindings.",
     "preview": "../../tmp/explorer-source-preview.jpg"
   },
   "playerBodyInspection": {
@@ -55,7 +55,8 @@
       "rig|Jump": 152,
       "rig|Run": 123,
       "rig|Walk": 140
-    }
+    },
+    "status": "Legacy cut-down derivative, no longer loaded."
   },
   "integration": {
     "active": true,
@@ -64,17 +65,31 @@
     "eyeHeightMeters": 1.6,
     "crouchedHeightMeters": 1.0,
     "physics": "Existing player collider and movement retained; model is a visual body reference.",
-    "camera": "Fixed first-person eye position; native body animation does not bob the camera.",
+    "camera": "Physics-driven camera aligned to the original animated eye centers by translating the body; limb poses unchanged.",
     "headAndHairVisible": false,
-    "clothingAdaptation": "Source shirt and pouch retained. Detached accessory/clothing meshes omitted; brown vertex colors approximate shorts and boots on the coherent body mesh.",
-    "crouch": "No source crouch clip; body reference lowers/compresses with the existing crouch height.",
+    "clothingAdaptation": "All original clothing and accessories retained.",
+    "crouch": "Camera stance lowers; no source crouch clip.",
     "modifications": [
-      "Corrected shared head bind-scale on body vertices",
-      "Cropped unseen malformed neck tip",
-      "Retained body, shirt and pouch; excluded head, hair and damaged accessories",
-      "Added brown shorts/boot coloring",
-      "Retained native idle, walk, run and jump clips; removed attack and unused rig nodes"
+      "Preserved individual source mesh skin bindings",
+      "Restored original rigid eye parenting",
+      "First-person visibility only: hide head, facial, hair and headwear surfaces"
     ]
   },
-  "runtimePresentation": "2026-11-23: first-person body and clothing baked together from the authored idle pose at load; fixed reference pose follows physical feet. Native clips preserved but not played in first person. No vertical squash for crouch."
+  "runtimePresentation": "Full idle-pose character baked into an independent notebook copy. First person retains the original live limb rig, hides head surfaces only, and aligns the camera with the authored eye centers.",
+  "restoredInspection": {
+    "fileBytes": 13100660,
+    "sha256": "44860e8b79343da304a6a16d0ee1d933ef5cee5f7cb6ed9f5a2359c2b322930a",
+    "meshCount": 17,
+    "skinCount": 15,
+    "vertexCount": 101396,
+    "triangleCount": 193165,
+    "animations": [
+      "rig|Attack",
+      "rig|Idel",
+      "rig|Jump",
+      "rig|Run.001",
+      "rig|Walk"
+    ],
+    "repair": "Complete per-mesh-skin export from the artist public viewer data. Both rigid eyes reattached to their original animated eye bones. No clothing, limb, texture or accessory removed."
+  }
 }

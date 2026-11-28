@@ -1,0 +1,47 @@
+{
+  "title": "Adventurer",
+  "source": "User-provided Meshy/Mixamo animated GLB",
+  "originalFilename": "Meshy_AI_Adventurer_Model_T_Pose_20261127_animated_mixamo_All_animation.glb",
+  "file": "adventurer-mixamo.glb",
+  "sha256": "ce22a399001e72b5463381cd62cc4d1ca1479bcb038eda8ce6aedebed02429a8",
+  "fileBytes": 15520996,
+  "originalFileUnchanged": true,
+  "meshCount": 1,
+  "jointCount": 28,
+  "animationNames": [
+    "Running",
+    "Walking",
+    "female",
+    "Carry_Heavy_Object_Walk",
+    "Cautious_Crouch_Walk_Forward_inplace",
+    "Collect_Object",
+    "Female_Bend_Over_Pick_Up_Inspect",
+    "Female_Crouch_Pick_Fruit_Basket_Stand",
+    "Idle_11",
+    "Idle_12",
+    "Idle_Step_Turn_Left",
+    "Idle_Turn_Left",
+    "Idle_Turn_Right",
+    "Jump_Run_inplace",
+    "Jump_with_Arms_Open",
+    "Sit_to_standTransition_Female_2",
+    "Step_Forward_and_Push",
+    "Touch_and_Run"
+  ],
+  "preview": "../../tests/adventurer-player.html",
+  "settingsKey": "adventurer-preview-settings-v1",
+  "cameraAnchor": "Estimated eye point from HeadTop_End and headfront markers; adjustable with preview sliders.",
+  "runtimeChanges": [
+    "Head and neck hidden through a separate triangle-index view in first person",
+    "Only limb-influenced triangles displayed while running",
+    "Forearm scaling applied to live rig after animation; reciprocal hand scaling preserves hand size",
+    "Complete source pose used for book view"
+  ],
+  "firstPersonDefaults": {
+    "cameraHeight": 1.36,
+    "cameraZ": -0.32,
+    "forearmLength": 1.41,
+    "invisibleRadius": 0
+  },
+  "animationPreview": "All 18 source clips selectable in first-person and live complete Book mode."
+}

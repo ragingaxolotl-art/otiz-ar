@@ -10,9 +10,9 @@
   {id:'nested-coffins-ai',name:'Three nested coffins',carter:'253–255'}
  ];
  function stageFor(id){const i=layers.findIndex(l=>l.id===id);return i<0?0:i;}
- function create({THREE:T,scene,onChange=()=>{},onReveal=()=>{},onDoors=()=>{},message=()=>{}}={}){
+ function create({THREE:T,scene,onChange=()=>{},onReveal=()=>{},onDoors=()=>{},collectionMode=false,message=()=>{}}={}){
   const $=id=>document.getElementById(id),panel=$('burial-layer-panel'),start=$('burial-layer-start'),status=$('burial-layer-status'),next=$('burial-layer-next'),previous=$('burial-layer-previous'),reset=$('burial-layer-reset'),close=$('burial-layer-close');
-  let stage=0,opened=false,ready=false,coffinsActive=false,shrines=[],stone=[],coffins=null,doors=[],doorsOpen=false;
+  let stage=0,opened=false,ready=false,coffinsActive=false,shrines=[],stone=[],coffins=null,doors=[],doorsOpen=false,cutaway=false,removed=new Set();
   const openDoors=$('burial-layer-open');
   function setDoors(value){doorsOpen=!!value;doors.forEach((d,i)=>{d.rotation.y=(i===0?-1:1)*(doorsOpen?Math.PI*.52:0);});visibility();onChange();onDoors(doorsOpen);ui();}
   function ui(){
@@ -23,13 +23,12 @@
    openDoors.hidden=stage!==0;openDoors.disabled=coffinsActive;openDoors.textContent=doorsOpen?'Close outer shrine doors':'Open outer shrine doors';
    $('burial-layer-hint').textContent=coffinsActive?'Return the coffin copies before changing the outer layers.':stage===5?'Choose Explore nested coffins to open the three coffins and see the wrapped mummy.':stage===0?'Open the east-facing double doors to see the second shrine nested inside. Then remove each enclosure in order.':'Reveal each enclosing layer to see what was inside it. Restore all closes the doors and returns the four shrines to their nested positions.';
   }
+  const clipped=new WeakSet();
+  function cutFront(group,backOnly=false){if(clipped.has(group))return;clipped.add(group);group.updateWorldMatrix(true,true);const box=new T.Box3().setFromObject(group),z=(box.min.z+box.max.z)/2+(backOnly?.7:0),plane=new T.Plane(new T.Vector3(0,0,1),-z);group.traverse(o=>{if(!o.isMesh)return;const clip=m=>{const copy=m.clone();copy.clippingPlanes=[plane];copy.clipShadows=true;return copy;};o.material=Array.isArray(o.material)?o.material.map(clip):clip(o.material);});}
   function visibility(){
-   // Closed shells conceal their contents. Keep every object at its nested
-   // transform, but cull enclosed layers until revealed to avoid drawing
-   // unseen surfaces through approximate generated roof and wall profiles.
-   shrines.forEach((e,i)=>{e.group.visible=i===stage||stage===0&&doorsOpen&&i===1;});
-   stone.forEach(({object,visible})=>{object.visible=visible&&stage===4;});
-   if(coffins)coffins.group.visible=stage>=4&&!coffinsActive;
+   shrines.forEach((e,i)=>{e.group.visible=collectionMode?i<=stage&&!cutaway&&!removed.has(layers[i].id):i===stage||stage===0&&doorsOpen&&i===1;if(collectionMode&&i<stage)cutFront(e.group);});
+   stone.forEach(({object,visible})=>{object.visible=visible&&!removed.has('stone-sarcophagus')&&(stage===4||collectionMode&&stage>4&&!cutaway);if(collectionMode&&stage>4)cutFront(object,true);});
+   if(coffins)coffins.group.visible=stage>=(collectionMode?5:4)&&!coffinsActive;
   }
   function setStage(value){
    if(!ready||coffinsActive)return;
@@ -74,13 +73,13 @@
    pivot.position.y+=bottom-new T.Box3().setFromObject(pivot).min.y;pivot.position.x=-3.3765;pivot.position.z=-3.3678;pivot.updateWorldMatrix(true,true);
    ready=true;visibility();onChange();ui();
   }
-  function open(id){if(id)setStage(stageFor(id));opened=true;ui();}
+  function open(id){if(id&&!collectionMode)setStage(stageFor(id));opened=true;ui();}
   function update(near,active){
    if(coffinsActive!==active){coffinsActive=active;visibility();ui();}
    if(opened&&(!near||coffinsActive)){opened=false;ui();}
    start.hidden=!ready||!near||opened||coffinsActive;
   }
-  return {attach,open,update,reveal:id=>setStage(stageFor(id)),reset:()=>setStage(0),get stage(){return stage;},get doorsOpen(){return doorsOpen;},get doors(){return doors;},get coffinsVisible(){return ready&&stage===5;},get ready(){return ready;},get layers(){return layers;},get stoneObjects(){return stone.map(s=>s.object);}};
+  return {attach,open,update,remove(id){removed.add(id);visibility();onChange();},setCutaway(value){cutaway=!!value;visibility();},openContainer(){if(stage===0)setDoors(true);setStage(stage+1);},reveal:id=>setStage(stageFor(id)),reset:()=>setStage(0),get stage(){return stage;},get doorsOpen(){return doorsOpen;},get doors(){return doors;},get coffinsVisible(){return ready&&stage===5;},get ready(){return ready;},get layers(){return layers;},get stoneObjects(){return stone.map(s=>s.object);}};
  }
  return {layers,stageFor,create};
 });

@@ -1,0 +1,47 @@
+{
+  "visualReferenceCredits": [
+    "Douglas Yeo, photographs of the silver trumpet and wooden insert, Grand Egyptian Museum, 15 January 2026, The Last Trombone.",
+    "Suaudeau, two photographs of Carter 175 and its painted wooden insert, Paris exhibition, 29 April 2019, Wikimedia Commons, CC BY-SA 4.0. Photographs consulted for reconstruction; no photo pixels embedded."
+  ],
+  "title": "Painted wooden protective insert \u00b7 Carter 175",
+  "creator": "Codex \u00b7 geometry and textures written directly in code",
+  "method": "Deterministic annular shells swept along a gently curved centerline; no Meshy generation",
+  "generator": "scripts/build-silver-trumpet.py",
+  "model": "silver-trumpet-core.glb",
+  "units": "meters",
+  "dimensions": {
+    "length": 0.58,
+    "maximumBellDiameter": 0.088,
+    "tubeDiameters": [
+      0.016,
+      0.026
+    ],
+    "centerlineBow": 0.012
+  },
+  "parts": [
+    "duplicated-painted-wood-body",
+    "solid-painted-lotus-end",
+    "solid-wooden-tip"
+  ],
+  "triangles": 23296,
+  "webBytes": 6817440,
+  "reference": "https://www.griffith.ox.ac.uk/gri/carter/175-c175-1.html",
+  "additionalReferences": [
+    "https://www.griffith.ox.ac.uk/gri/carter/175-c175-2.html",
+    "https://tutankhamun.griffith.ox.ac.uk/object-records/175",
+    "https://www.globalegyptianmuseum.org/detail.aspx?id=15043",
+    "https://thelasttrombone.com/2026/02/13/the-tutankhamun-trumpets/",
+    "https://commons.wikimedia.org/wiki/File:Trompette_d%27argent_et_sa_sourdine_en_bois_du_tombeau_de_Tout%C3%A2nkhamon.jpg",
+    "https://commons.wikimedia.org/wiki/File:Trompette_d%27argent_et_sa_sourdine_en_bois_du_tombeau_de_Tout%C3%A2nkhamon_2.jpg"
+  ],
+  "placement": "Recorded in the burial chamber\u2019s southeast corner under lamp 173. Displayed on the approach floor at the burial entrance for access; this is a teaching offset from the recorded findspot.",
+  "interpretation": "Created by duplicating the silver trumpet outer profile and giving it solid ends, a wooden tip and separate red, blue-green and ochre painted lotus textures. This is a reference-based teaching reconstruction of the wooden protective insert, not a second ancient trumpet. Shares the 58 cm modeling envelope for comparison; exact insert dimensions, pigment loss, unseen pattern and geometry are approximate.",
+  "textures": [
+    "painted-wood-basecolor.png",
+    "painted-wood-metallic-roughness.png",
+    "painted-wood-normal.png",
+    "painted-wood-end.png"
+  ],
+  "artwork": "128\u00d7128 code-drawn icon; not PixelLab or AI-generated artwork",
+  "licenseStatus": "New code-drawn geometry and ornament created for this project; museum photographs used as visual references only, with no photographic pixels embedded."
+}

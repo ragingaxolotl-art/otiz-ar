@@ -1,11 +1,11 @@
 {
-  "title": "Outermost burial shrine · Carter 207",
+  "title": "Outermost burial shrine \u00b7 Carter 207",
   "creator": "Teacher-supplied Meshy AI",
   "sourceUpload": "Meshy_AI_Golden_Shrine_of_Sekhmet_20261127_texture.glb",
   "sourcePath": "/Users/guardh/Downloads/Meshy_AI_Golden_Shrine_of_Sekhmet_20261127_texture.glb",
   "sourceSha256": "0be68ad0fb519f1710de1286cfc2cb324a4472646814a656751673d9e36d9f5b",
   "webModel": "burial-shrine-207-upload.glb",
-  "identification": "Comparison with Tutankhamun’s outermost burial shrine: repeating gold djed pillars and tyet knots against blue faience. Not a shrine of Sekhmet. Generated proportions and details differ.",
+  "identification": "Comparison with Tutankhamun\u2019s outermost burial shrine: repeating gold djed pillars and tyet knots against blue faience. Not a shrine of Sekhmet. Generated proportions and details differ.",
   "catalogue": "https://www-griffith.ames.ox.ac.uk/gri/carter/207-c207-01.html",
   "displayDimensionsWidthHeightLengthM": [
     3.63,
@@ -13,11 +13,11 @@
     5.265
   ],
   "placement": "Burial chamber, east-facing double doors; around shrines 237, 238 and 239, the stone sarcophagus and three coffins.",
-  "changes": "Attribute-aware simplification; axis and reference dimensions fitted; textured door leaves separated, geometry clipped with interpolated UVs. Source base color retained at 4096 pixels; no AI retexturing.",
+  "changes": "Complete original uploaded geometry restored, without simplification or texture reduction. Axes and reference display dimensions fitted. Door seams clipped with interpolated UVs. All original embedded maps retained.",
   "parts": [
     {
       "name": "shrine-shell",
-      "triangles": 100997,
+      "triangles": 1142638,
       "min": [
         -1.815000057220459,
         0.0,
@@ -31,30 +31,30 @@
     },
     {
       "name": "shrine-door-left",
-      "triangles": 10981,
+      "triangles": 87130,
       "min": [
         -1.5700000524520874,
         0.07999999821186066,
         2.359999895095825
       ],
       "max": [
-        1.1920928955078125e-07,
+        1.4901161193847656e-08,
         2.569999933242798,
-        2.5642342567443848
+        2.564246416091919
       ]
     },
     {
       "name": "shrine-door-right",
-      "triangles": 10768,
+      "triangles": 86662,
       "min": [
-        -2.9802322387695312e-08,
+        -7.450580596923828e-09,
         0.07999999821186066,
         2.359999895095825
       ],
       "max": [
         1.5700000524520874,
         2.569999933242798,
-        2.5643656253814697
+        2.5642879009246826
       ]
     }
   ],
@@ -74,5 +74,7 @@
   "displayAnchorXZ": [
     -3.3765,
     -3.3678
-  ]
+  ],
+  "sourceTriangles": 1310480,
+  "webBytes": 74664368
 }

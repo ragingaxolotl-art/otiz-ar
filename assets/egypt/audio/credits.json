@@ -1,13 +1,17 @@
 [
   {
     "key": "coffin-scrape",
-    "prompt": "Heavy gilded wooden coffin lid sliding slowly across a wooden rim, dry gritty scraping and low wood creaks, one short 1.3 second movement in a small stone chamber, no voices or music.",
-    "generation": "tQn4XCGwAkToJegB4L7E",
-    "duration": 2,
-    "provider": "ElevenLabs",
-    "model": "eleven_text_to_sound_v2",
-    "file": "coffin-scrape.mp3",
-    "usage": "Used for lid sliding"
+    "file": "coffin-stone-scrape.mp3",
+    "creator": "freesound_community",
+    "provider": "Pixabay",
+    "source": "https://pixabay.com/sound-effects/",
+    "creatorUrl": "https://pixabay.com/users/freesound_community-46691455/",
+    "sourceFile": "freesound_community-tomb-door-open-stone-scrape-102748.mp3",
+    "originalSeconds": 7.752,
+    "trimmedSeconds": 4.008,
+    "sourceSha256": "6fc855e79a1d9570aeaf6de7ffde041898eed0e490016c85cff901b95b3440e7",
+    "changes": "Trimmed to the first 4.008 seconds on complete MP3 frame boundaries. Gameplay plays only the required lid-slide interval with short fades, stops at release, and loops the excerpt only for unusually slow slider settings.",
+    "usage": "Lid scraping while the lid moves; user-supplied replacement for the generated sound."
   },
   {
     "key": "coffin-set-down",
