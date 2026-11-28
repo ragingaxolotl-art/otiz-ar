@@ -1,0 +1,16 @@
+{
+  "title": "Reproduction of the Throne of King Tutankhamun",
+  "creator": "pmanuelian",
+  "short_url": "https://skfb.ly/oIWXX",
+  "license": "CC Attribution-NonCommercial-ShareAlike 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "file": "throne-reproduction-original.zip",
+  "status": "Uploaded source preserved; locally hosted mobile model used in the resource viewer, Egypt AR card 5 and antechamber walkthrough.",
+  "object": "1929 reproduction by Elias Hatoun, Harvard Museum of the Ancient Near East 2022.3.1",
+  "source_url": "https://skfb.ly/oIWXX",
+  "source_glb": "assets/egypt/models/throne-reproduction-original.glb",
+  "source_sha256": "3eecf42b4af424dba6c2c620a4e43597f84e086384baed072b2d8f93da8a7238",
+  "modifications": "Embedded textures reduced to 1024 pixels for the game. Removed the disconnected modern museum display pedestal from the walkthrough model; all retained throne vertex positions, normals, UVs and image bytes are unchanged. Full source scan retained separately. Source base color available up to 4096 pixels on inspection.",
+  "placement": "Antechamber, approximate position associated with Carter 91; no claim of exact original placement.",
+  "displayBaseRemovalRecord": "outputs/tomb-movement-fix/throne-base-removal.json"
+}
